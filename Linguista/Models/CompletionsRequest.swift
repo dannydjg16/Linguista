@@ -1,8 +1,8 @@
 //
-//  Request.swift
+//  CompletionsRequest.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 6/18/24.
+//  Created by Daniel Grant on 6/25/24.
 //
 
 import Foundation
@@ -20,15 +20,5 @@ struct CompletionsRequest: Codable {
         case temperature
         case maxTokens = "max_tokens"
         case topP = "top_p"
-    }
-}
-
-struct Message: Codable {
-    var role: String?
-    var content: String?
-
-    enum CodingKeys: String, CodingKey {
-        case role
-        case content
     }
 }
