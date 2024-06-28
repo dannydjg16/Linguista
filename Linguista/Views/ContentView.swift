@@ -87,14 +87,14 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 NavigationLink(destination: LoginView()) {
-                    Text("Go to Login")
+                    Text("Login")
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
                 NavigationLink(destination: LearnView()) {
-                    Text("Learn a Langauge")
+                    Text("Quick Learn")
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)

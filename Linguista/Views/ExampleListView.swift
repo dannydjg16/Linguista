@@ -30,6 +30,8 @@ struct ExampleListView: View {
     private func performAction(for item: String) {
         // Perform any action based on the selected item
         print("Selected item: \(item)")
+        
+        
     }
 }
 
