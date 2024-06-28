@@ -9,18 +9,28 @@ import Foundation
 import SwiftUI
 
 struct NavigationListView: View {
-    let items = ["Item 1", "Item 2", "Item 3"] // Example data
     
     var body: some View {
         NavigationView {
-            List(items, id: \.self) { item in
-                NavigationLink(destination: DetailView(item: item)) {
-                    Text(item)
-                }
+            List(predefinedPrompts, id: \.self) { item in
+                NavigationLink(destination: self.destinationView(for: item)) {
+                                    Text(item)
+                                }
             }
-            .navigationTitle("Items")
+            .navigationTitle("LANGUAGE HERE")
         }
     }
+    
+    @ViewBuilder
+        private func destinationView(for item: String) -> some View {
+            if item == predefinedPrompts[0] {
+                DetailView(item: item)
+            } else if item == "Item 2" {
+                LearnView()
+            } else {
+                LearnView()
+            }
+        }
 }
 
 struct DetailView: View {
