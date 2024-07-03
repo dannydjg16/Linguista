@@ -12,14 +12,12 @@ struct NavigationListView: View {
     let selectedLanguage: String
     
     var body: some View {
-        NavigationView {
             List(predefinedPrompts, id: \.self) { item in
                 NavigationLink(destination: self.destinationView(for: item)) {
                                     Text(item)
                                 }
             }
             .navigationTitle("\(selectedLanguage)")
-        }
     }
     
     @ViewBuilder
