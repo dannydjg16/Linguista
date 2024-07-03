@@ -20,24 +20,22 @@ struct SelectPromptView: View {
     let selectedLanguage: String
     
     var body: some View {
-            List(predefinedPrompts, id: \.self) { item in
-                NavigationLink(destination: self.destinationView(for: item)) {
-                                    Text(item)
-                                }
+        List(predefinedPrompts, id: \.self) { item in
+            NavigationLink(destination: self.destinationView(for: item)) {
+                Text(item)
             }
-            .navigationTitle("\(selectedLanguage)")
+        }
+        .navigationTitle("\(selectedLanguage)")
     }
     
     @ViewBuilder
-        private func destinationView(for item: String) -> some View {
-            if item == predefinedPrompts[0] {
-                DetailView(item: item)
-            } else if item == "Item 2" {
-                DetailView(item: item)
-            } else {
-                DetailView(item: item)
-            }
+    private func destinationView(for item: String) -> some View {
+        if item == predefinedPrompts[0] {
+            DetailView(item: item)
+        } else  {
+            MessageView(selectedLanguage: selectedLanguage)
         }
+    }
 }
 
 struct DetailView: View {
