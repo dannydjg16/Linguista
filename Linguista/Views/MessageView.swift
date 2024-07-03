@@ -49,7 +49,7 @@ struct MessageView: View {
             }
             .padding()
         }
-        .navigationTitle("Home")
+        .navigationTitle("dfasld;fjadlskfjsdalkfjads")
     }
 
     private func sendMessage() {
