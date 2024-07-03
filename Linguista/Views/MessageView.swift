@@ -68,11 +68,12 @@ class BlankService {
     func call() {
         // Implementation of your service logic
         print("Calling BlankService...")
+        
     }
 }
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(selectedLanguage: "sdfsd")
+        MessageView(selectedLanguage: "flsakdfjsadlkfj")
     }
 }
