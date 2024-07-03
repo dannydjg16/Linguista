@@ -1,4 +1,12 @@
 //
+//  SelectPromptView.swift
+//  Linguista
+//
+//  Created by Daniel Grant on 7/3/24.
+//
+
+import Foundation
+//
 //  NavigationListView.swift
 //  Linguista
 //
@@ -8,7 +16,7 @@
 import Foundation
 import SwiftUI
 
-struct NavigationListView: View {
+struct SelectPromptView: View {
     let selectedLanguage: String
     
     var body: some View {
@@ -44,8 +52,8 @@ struct DetailView: View {
     }
 }
 
-struct NavigationListView_Previews: PreviewProvider {
+struct SelectPromptView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationListView(selectedLanguage: "Farsi")
+        SelectPromptView(selectedLanguage: "Farsi")
     }
 }

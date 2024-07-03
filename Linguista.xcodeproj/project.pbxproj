@@ -13,10 +13,10 @@
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
 		8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */; };
 		8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */; };
-		8120C7C62C2E5DED007DCE2E /* NavigationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C52C2E5DED007DCE2E /* NavigationListView.swift */; };
 		8120C7C82C2E637A007DCE2E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C72C2E637A007DCE2E /* MessageView.swift */; };
 		8120C7CA2C2E6585007DCE2E /* CompletionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C92C2E6585007DCE2E /* CompletionsService.swift */; };
 		8120C7CE2C34F718007DCE2E /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */; };
+		8120C7D02C35F5C6007DCE2E /* SelectPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */; };
 		81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */; };
 		81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD92C13BD2900F1ABB0 /* ContentView.swift */; };
 		81494ADC2C13BD2A00F1ABB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */; };
@@ -50,10 +50,10 @@
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleListView.swift; sourceTree = "<group>"; };
 		8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		8120C7C52C2E5DED007DCE2E /* NavigationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationListView.swift; sourceTree = "<group>"; };
 		8120C7C72C2E637A007DCE2E /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		8120C7C92C2E6585007DCE2E /* CompletionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsService.swift; sourceTree = "<group>"; };
 		8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
+		8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPromptView.swift; sourceTree = "<group>"; };
 		81494AD42C13BD2900F1ABB0 /* Linguista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linguista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaApp.swift; sourceTree = "<group>"; };
 		81494AD92C13BD2900F1ABB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,9 +97,9 @@
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
 				8120C7A62C2A79EF007DCE2E /* LoginView.swift */,
 				8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */,
-				8120C7C52C2E5DED007DCE2E /* NavigationListView.swift */,
 				8120C7C72C2E637A007DCE2E /* MessageView.swift */,
 				8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */,
+				8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,9 +344,9 @@
 				8120C7A72C2A79EF007DCE2E /* LoginView.swift in Sources */,
 				8120C7C82C2E637A007DCE2E /* MessageView.swift in Sources */,
 				8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */,
-				8120C7C62C2E5DED007DCE2E /* NavigationListView.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */,
+				8120C7D02C35F5C6007DCE2E /* SelectPromptView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
