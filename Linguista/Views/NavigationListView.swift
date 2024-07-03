@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct NavigationListView: View {
+    let selectedLanguage: String
     
     var body: some View {
         NavigationView {
@@ -17,7 +18,7 @@ struct NavigationListView: View {
                                     Text(item)
                                 }
             }
-            .navigationTitle("LANGUAGE HERE")
+            .navigationTitle("\(selectedLanguage)")
         }
     }
     
@@ -26,9 +27,9 @@ struct NavigationListView: View {
             if item == predefinedPrompts[0] {
                 DetailView(item: item)
             } else if item == "Item 2" {
-                LearnView()
+                DetailView(item: item)
             } else {
-                LearnView()
+                DetailView(item: item)
             }
         }
 }
@@ -47,6 +48,6 @@ struct DetailView: View {
 
 struct NavigationListView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationListView()
+        NavigationListView(selectedLanguage: "Farsi")
     }
 }

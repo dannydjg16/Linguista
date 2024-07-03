@@ -14,7 +14,7 @@ struct LanguageSelectionView: View {
         
         VStack {
             List(popularLanguages, id: \.self) { language in
-                NavigationLink(destination: MessageView(selectedLanguage: language)) {
+                NavigationLink(destination: NavigationListView(selectedLanguage: language)) {
                     Text(language)
                 }
             }

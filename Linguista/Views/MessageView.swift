@@ -9,10 +9,12 @@ import Foundation
 import SwiftUI
 
 struct MessageView: View {
+    let selectedLanguage: String
+    
+    
     @State private var systemPrompt = ""
     @State private var messageText = ""
     @State private var messageLog: [String] = []
-    let selectedLanguage: String
     
     let completionService = CompletionService()
     
@@ -25,7 +27,7 @@ struct MessageView: View {
                             .padding(8)
                             .background(Color.blue)
                             .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .cornerRadius(100)
                             .padding(.horizontal, 10)
                     }
                 }
@@ -43,12 +45,13 @@ struct MessageView: View {
                         .padding(.vertical, 10)
                         .background(Color.blue)
                         .foregroundColor(.white)
-                        .cornerRadius(8)
+                        .cornerRadius(100)
                 }
                 .padding(.trailing)
             }
             .padding()
         }
+        .background(Color.gray)
         .navigationTitle("\(selectedLanguage)")
     }
 

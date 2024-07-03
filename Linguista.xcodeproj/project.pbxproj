@@ -8,13 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8120C7A72C2A79EF007DCE2E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7A62C2A79EF007DCE2E /* LoginView.swift */; };
-		8120C7AB2C2A7C5F007DCE2E /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AA2C2A7C5F007DCE2E /* LearnView.swift */; };
 		8120C7AD2C2A807C007DCE2E /* CompletionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AC2C2A807C007DCE2E /* CompletionsRequest.swift */; };
 		8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AE2C2A8091007DCE2E /* Message.swift */; };
-		8120C7B12C2B3ACB007DCE2E /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7B02C2B3ACB007DCE2E /* PromptView.swift */; };
-		8120C7B52C2B4724007DCE2E /* CollectionParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7B42C2B4724007DCE2E /* CollectionParentView.swift */; };
-		8120C7B72C2B475D007DCE2E /* CustomItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7B62C2B475D007DCE2E /* CustomItemView.swift */; };
-		8120C7BB2C2B4797007DCE2E /* CollectionExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BA2C2B4797007DCE2E /* CollectionExampleView.swift */; };
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
 		8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */; };
 		8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */; };
@@ -50,13 +45,8 @@
 
 /* Begin PBXFileReference section */
 		8120C7A62C2A79EF007DCE2E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		8120C7AA2C2A7C5F007DCE2E /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		8120C7AC2C2A807C007DCE2E /* CompletionsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsRequest.swift; sourceTree = "<group>"; };
 		8120C7AE2C2A8091007DCE2E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		8120C7B02C2B3ACB007DCE2E /* PromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
-		8120C7B42C2B4724007DCE2E /* CollectionParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionParentView.swift; sourceTree = "<group>"; };
-		8120C7B62C2B475D007DCE2E /* CustomItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemView.swift; sourceTree = "<group>"; };
-		8120C7BA2C2B4797007DCE2E /* CollectionExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExampleView.swift; sourceTree = "<group>"; };
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleListView.swift; sourceTree = "<group>"; };
 		8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
@@ -106,11 +96,6 @@
 			children = (
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
 				8120C7A62C2A79EF007DCE2E /* LoginView.swift */,
-				8120C7AA2C2A7C5F007DCE2E /* LearnView.swift */,
-				8120C7B02C2B3ACB007DCE2E /* PromptView.swift */,
-				8120C7B42C2B4724007DCE2E /* CollectionParentView.swift */,
-				8120C7B62C2B475D007DCE2E /* CustomItemView.swift */,
-				8120C7BA2C2B4797007DCE2E /* CollectionExampleView.swift */,
 				8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */,
 				8120C7C52C2E5DED007DCE2E /* NavigationListView.swift */,
 				8120C7C72C2E637A007DCE2E /* MessageView.swift */,
@@ -350,14 +335,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8120C7B12C2B3ACB007DCE2E /* PromptView.swift in Sources */,
 				8120C7CA2C2E6585007DCE2E /* CompletionsService.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
 				8120C7AD2C2A807C007DCE2E /* CompletionsRequest.swift in Sources */,
-				8120C7BB2C2B4797007DCE2E /* CollectionExampleView.swift in Sources */,
-				8120C7B72C2B475D007DCE2E /* CustomItemView.swift in Sources */,
-				8120C7AB2C2A7C5F007DCE2E /* LearnView.swift in Sources */,
 				8120C7CE2C34F718007DCE2E /* LanguageSelectionView.swift in Sources */,
 				8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* LoginView.swift in Sources */,
@@ -365,7 +346,6 @@
 				8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */,
 				8120C7C62C2E5DED007DCE2E /* NavigationListView.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
-				8120C7B52C2B4724007DCE2E /* CollectionParentView.swift in Sources */,
 				8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
