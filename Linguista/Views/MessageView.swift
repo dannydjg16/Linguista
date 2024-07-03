@@ -12,6 +12,8 @@ struct MessageView: View {
     @State private var systemPrompt = ""
     @State private var messageText = ""
     @State private var messageLog: [String] = []
+    let selectedLanguage: String
+    
     let completionService = CompletionService()
     
     var body: some View {
@@ -47,6 +49,7 @@ struct MessageView: View {
             }
             .padding()
         }
+        .navigationTitle("Home")
     }
 
     private func sendMessage() {
@@ -70,6 +73,6 @@ class BlankService {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView()
+        MessageView(selectedLanguage: "sdfsd")
     }
 }

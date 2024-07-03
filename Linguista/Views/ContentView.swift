@@ -93,7 +93,7 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-                NavigationLink(destination: MessageView()) {
+                NavigationLink(destination: LanguageSelectionView()) {
                     Text("Quick Learn")
                         .padding()
                         .background(Color.green)
