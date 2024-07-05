@@ -31,9 +31,10 @@ struct SelectPromptView: View {
     @ViewBuilder
     private func destinationView(for item: String) -> some View {
         if item == predefinedPrompts[0] {
-            DetailView(item: item)
+            //DetailView(item: item)
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
         } else  {
-            MessageView(selectedLanguage: selectedLanguage)
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
         }
     }
 }

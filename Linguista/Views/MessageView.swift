@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MessageView: View {
     let selectedLanguage: String
-    
+    let selectedPrompt: String
     
     @State private var systemPrompt = ""
     @State private var messageText = ""
@@ -52,7 +52,7 @@ struct MessageView: View {
             .padding()
         }
         .background(Color.gray)
-        .navigationTitle("\(selectedLanguage)")
+        .navigationTitle("\(selectedPrompt): \(selectedLanguage)")
     }
 
     private func sendMessage() {
@@ -77,6 +77,6 @@ class BlankService {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(selectedLanguage: "flsakdfjsadlkfj")
+        MessageView(selectedLanguage: "flsakdfjsadlkfj",selectedPrompt: "hh")
     }
 }
