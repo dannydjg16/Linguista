@@ -15,6 +15,11 @@ struct MessageView: View {
     @State private var systemPrompt = ""
     @State private var messageText = ""
     @State private var messageLog: [String] = []
+    @State private var message1 = Message(role: "system", content: "")
+    @State private var message2 = Message(role: "user", content: "")
+    //@State private var messages: [Message] = [message1, message2]
+    lazy var completionReq = CompletionsRequest(model: "gpt-3.5-turbo", messages: [message1, message2], temperature: 0.2, maxTokens: 20, topP: 1)
+    
     
     let completionService = CompletionService()
     
@@ -55,13 +60,13 @@ struct MessageView: View {
         .navigationTitle("\(selectedPrompt): \(selectedLanguage)")
     }
 
-    private func sendMessage() {
+    private mutating func sendMessage() {
         if !messageText.isEmpty {
             messageLog.append(messageText)
             messageText = ""
             
             // Call your service here, for example:
-            BlankService().call()
+            completionService.sendRequest(completionRequest: completionReq)
         }
     }
 }
