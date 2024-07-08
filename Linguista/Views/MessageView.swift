@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+
 struct MessageView: View {
     let selectedLanguage: String
     let selectedPrompt: String
@@ -19,7 +20,6 @@ struct MessageView: View {
     @State private var message2 = Message(role: "user", content: "")
     //@State private var messages: [Message] = [message1, message2]
     lazy var completionReq = CompletionsRequest(model: "gpt-3.5-turbo", messages: [message1, message2], temperature: 0.2, maxTokens: 20, topP: 1)
-    
     
     let completionService = CompletionService()
     
@@ -60,10 +60,15 @@ struct MessageView: View {
         .navigationTitle("\(selectedPrompt): \(selectedLanguage)")
     }
 
-    private mutating func sendMessage() {
+    private func sendMessage() {
         if !messageText.isEmpty {
             messageLog.append(messageText)
             messageText = ""
+            
+            let completionReq = CompletionsRequest(model: "gpt-3.5-turbo", messages: [message1, message2], temperature: 0.2, maxTokens: 20, topP: 1)
+            
+            // Update the messages in the completion request
+            //completionReq.messages.append(Message(role: "user", content: messageText))
             
             // Call your service here, for example:
             completionService.sendRequest(completionRequest: completionReq)
