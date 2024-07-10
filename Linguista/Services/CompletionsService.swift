@@ -8,9 +8,8 @@ import SwiftUI
 import Combine
 import Foundation
 
-// Service class to handle networking
 class CompletionService {
-    func sendRequest(completionRequest: CompletionsRequest) -> AnyPublisher<Data, Error> {
+    func sendRequest(completionRequest: CompletionsRequest) -> AnyPublisher<CompletionsResponse, Error> {
         let url = URL(string: "https://localhost:7244/openai/completions")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -26,6 +25,7 @@ class CompletionService {
         return URLSession.shared.dataTaskPublisher(for: request)
             .mapError { $0 as Error }
             .map { $0.data }
+            .decode(type: CompletionsResponse.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
