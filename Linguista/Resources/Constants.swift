@@ -1,0 +1,96 @@
+//
+//  Constants.swift
+//  Linguista
+//
+//  Created by Daniel Grant on 6/25/24.
+//
+
+import Foundation
+import SwiftUI
+
+let predefinedPrompts: [String] = [
+    "Translate a Word",
+    "Translate a Sentence",
+    "Ask a question about a language",
+    "Have a Conversation",
+    "Tell me an interesting fact"
+]
+
+
+let popularLanguages = [
+    "Farsi",
+    "Amharic",
+    "Assamese",
+    "Bengali",
+    "Belarusian",
+    "Bhojpuri",
+    "Burmese",
+    "Chewa",
+    "Chhattisgarhi",
+    "Chittagonian",
+    "Croatian",
+    "Czech",
+    "Danish",
+    "Deccan",
+    "Dhundhari",
+    "Dutch",
+    "Eastern Min Chinese",
+    "Eastern Punjabi",
+    "Egyptian Arabic",
+    "English",
+    "French",
+    "German",
+    "Greek",
+    "Gujarati",
+    "Hakka Chinese",
+    "Haitian Creole",
+    "Hausa",
+    "Hungarian",
+    "Indonesian",
+    "Italian",
+    "Japanese",
+    "Javanese",
+    "Jin Chinese",
+    "Kannada",
+    "Kazakh",
+    "Khmer",
+    "Korean",
+    "Magahi",
+    "Malagasy",
+    "Malayalam",
+    "Malaysian Sign Language",
+    "Marathi",
+    "Marwari",
+    "Min Nan Chinese",
+    "Nepali",
+    "Northern Uzbek",
+    "Odia (Oriya)",
+    "Polish",
+    "Portuguese",
+    "Romanian",
+    "Russian",
+    "Saraiki",
+    "Serbo-Croatian",
+    "Sinhala",
+    "Sinhalese",
+    "Somali",
+    "Southern Pashto",
+    "Spanish",
+    "Sundanese",
+    "Sylheti",
+    "Tagalog (Filipino)",
+    "Tai Lue",
+    "Tamil",
+    "Telugu",
+    "Thai",
+    "Turkish",
+    "Ukrainian",
+    "Urdu",
+    "Vietnamese",
+    "Western Punjabi",
+    "Wu Chinese",
+    "Xiang Chinese",
+    "Yoruba",
+    "Yue Chinese",
+    "Zhuang"
+]
