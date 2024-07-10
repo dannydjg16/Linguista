@@ -71,17 +71,10 @@ struct MessageView: View {
             //completionReq.messages.append(Message(role: "user", content: messageText))
             
             // Call your service here, for example:
-            completionService.sendRequest(completionRequest: completionReq)
+            var response = completionService.sendRequest(completionRequest: completionReq)
+            
+            
         }
-    }
-}
-
-// Example BlankService class (hypothetical)
-class BlankService {
-    func call() {
-        // Implementation of your service logic
-        print("Calling BlankService...")
-        
     }
 }
 
