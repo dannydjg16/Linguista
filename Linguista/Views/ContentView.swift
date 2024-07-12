@@ -100,6 +100,13 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
+                NavigationLink(destination: MessageView()) {
+                    Text("Test")
+                        .padding()
+                        .background(Color.mint)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
             }
             .navigationTitle("Home")
         }

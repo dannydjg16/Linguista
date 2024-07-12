@@ -15,10 +15,24 @@ class MessageViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let completionService = CompletionService()
 
-    func sendMessage(completionRequest: CompletionsRequest) {
+    func sendRequest() {
+        let message1 = Message(role: "system", content: "System message")
+        let message2 = Message(role: "user", content: "User message")
+        
+        let completionRequest = CompletionsRequest(
+            model: "gpt-3.5-turbo",
+            messages: [message1, message2],
+            temperature: 0.2,
+            maxTokens: 20,
+            topP: 1
+        )
+        
         completionService.sendRequest(completionRequest: completionRequest)
             .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
                     self.errorMessage = error.localizedDescription
                 }
             }, receiveValue: { response in

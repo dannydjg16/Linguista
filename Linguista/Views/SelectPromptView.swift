@@ -32,9 +32,9 @@ struct SelectPromptView: View {
     private func destinationView(for item: String) -> some View {
         if item == predefinedPrompts[0] {
             //DetailView(item: item)
-            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+            MessageView()
         } else  {
-            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+            MessageView()
         }
     }
 }

@@ -2,84 +2,53 @@
 //  MessageView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 6/27/24.
+//  Created by Daniel Grant on 7/10/24.
 //
 
 import Foundation
 import SwiftUI
 
-
 struct MessageView: View {
-    let selectedLanguage: String
-    let selectedPrompt: String
-    
-    @State private var systemPrompt = ""
-    @State private var messageText = ""
-    @State private var messageLog: [String] = []
-    @State private var message1 = Message(role: "system", content: "")
-    @State private var message2 = Message(role: "user", content: "")
-    //@State private var messages: [Message] = [message1, message2]
-    lazy var completionReq = CompletionsRequest(model: "gpt-3.5-turbo", messages: [message1, message2], temperature: 0.2, maxTokens: 20, topP: 1)
-    
-    let completionService = CompletionService()
+    @ObservedObject var viewModel = MessageViewModel()
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(messageLog, id: \.self) { message in
-                        Text(message)
-                            .padding(8)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(100)
-                            .padding(.horizontal, 10)
+            Text("Completion Request Example")
+                .font(.title)
+                .padding()
+
+            if let response = viewModel.completionResponse {
+                Text("Response ID: \(response.id ?? "N/A")")
+                Text("Model: \(response.model ?? "N/A")")
+                if let choices = response.choices {
+                    ForEach(choices, id: \.self) { choice in
+                        Text("Choice: \(choice.message.content)")
                     }
                 }
             }
-            .frame(maxHeight: 300)
 
-            HStack {
-                TextField("Enter your message", text: $messageText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
+            if let errorMessage = viewModel.errorMessage {
+                Text("Error: \(errorMessage)")
+                    .foregroundColor(.red)
+            }
 
-                Button(action: sendMessage) {
-                    Text("Send")
-                        .padding(.horizontal, 15)
-                        .padding(.vertical, 10)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(100)
-                }
-                .padding(.trailing)
+            Button(action: {
+                viewModel.sendRequest()
+            }) {
+                Text("Send Request")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
             .padding()
         }
-        .background(Color.gray)
-        .navigationTitle("\(selectedPrompt): \(selectedLanguage)")
-    }
-
-    private func sendMessage() {
-        if !messageText.isEmpty {
-            messageLog.append(messageText)
-            messageText = ""
-            
-            let completionReq = CompletionsRequest(model: "gpt-3.5-turbo", messages: [message1, message2], temperature: 0.2, maxTokens: 20, topP: 1)
-            
-            // Update the messages in the completion request
-            //completionReq.messages.append(Message(role: "user", content: messageText))
-            
-            // Call your service here, for example:
-            var response = completionService.sendRequest(completionRequest: completionReq)
-            
-            
-        }
+        .padding()
     }
 }
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(selectedLanguage: "flsakdfjsadlkfj",selectedPrompt: "hh")
+        MessageView()
     }
 }
