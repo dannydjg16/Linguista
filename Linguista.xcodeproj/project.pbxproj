@@ -20,7 +20,6 @@
 		8120C7D42C3E3726007DCE2E /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7D32C3E3726007DCE2E /* MessageViewModel.swift */; };
 		8120C7D92C3E3AC4007DCE2E /* CustomSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7D82C3E3AC4007DCE2E /* CustomSessionDelegate.swift */; };
 		8120C7DB2C3E483A007DCE2E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7DA2C3E483A007DCE2E /* MessageView.swift */; };
-		8120C7DD2C40EBB1007DCE2E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8120C7DC2C40EBB1007DCE2E /* Info.plist */; };
 		81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */; };
 		81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD92C13BD2900F1ABB0 /* ContentView.swift */; };
 		81494ADC2C13BD2A00F1ABB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */; };
@@ -61,7 +60,6 @@
 		8120C7D32C3E3726007DCE2E /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		8120C7D82C3E3AC4007DCE2E /* CustomSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSessionDelegate.swift; sourceTree = "<group>"; };
 		8120C7DA2C3E483A007DCE2E /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		8120C7DC2C40EBB1007DCE2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81494AD42C13BD2900F1ABB0 /* Linguista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linguista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaApp.swift; sourceTree = "<group>"; };
 		81494AD92C13BD2900F1ABB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 		81494ACB2C13BD2900F1ABB0 = {
 			isa = PBXGroup;
 			children = (
-				8120C7DC2C40EBB1007DCE2E /* Info.plist */,
 				81494AD62C13BD2900F1ABB0 /* Linguista */,
 				81494AE72C13BD2A00F1ABB0 /* LinguistaTests */,
 				81494AF12C13BD2A00F1ABB0 /* LinguistaUITests */,
@@ -331,7 +328,6 @@
 			files = (
 				81494ADF2C13BD2A00F1ABB0 /* Preview Assets.xcassets in Resources */,
 				81494ADC2C13BD2A00F1ABB0 /* Assets.xcassets in Resources */,
-				8120C7DD2C40EBB1007DCE2E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

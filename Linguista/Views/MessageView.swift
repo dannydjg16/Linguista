@@ -33,7 +33,7 @@ struct MessageView: View {
             }
 
             Button(action: {
-                viewModel.sendRequest()
+                fetchFromAPI()
             }) {
                 Text("Send Request")
                     .padding()
@@ -51,4 +51,29 @@ struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
         MessageView()
     }
+}
+
+func fetchFromAPI() {
+    // Use 127.0.0.1 for the simulator or your local IP address for a physical device
+    let urlString = "http://192.168.1.100:7244/api/yourendpoint" // replace with your actual IP and endpoint
+    guard let url = URL(string: urlString) else { return }
+
+    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        if let error = error {
+            print("Error: \(error)")
+            return
+        }
+        
+        guard let data = data else { return }
+
+        do {
+            // Parse the data here
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            print("Response JSON: \(json)")
+        } catch let jsonError {
+            print("Error parsing JSON: \(jsonError)")
+        }
+    }
+
+    task.resume()
 }
