@@ -64,7 +64,9 @@ func postReqnmuest() {
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    let dataModel = CompletionsRequest(model: "", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
+    let messages = [Message(role: "system", content: ""), Message(role: "user", content: "")]
+    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
+
     
     do {
         let jsonData = try JSONEncoder().encode(dataModel)
@@ -109,8 +111,11 @@ func postRequest() {
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    let dataModel = CompletionsRequest(model: "", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
-
+    //let dataModel = CompletionsRequest(model: "", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
+    let messages = [Message(role: "system", content: <#T##String#>), Message(role: "user", content: <#T##String#>)]
+    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
+    
+    
     do {
         let jsonData = try JSONEncoder().encode(dataModel)
         request.httpBody = jsonData
