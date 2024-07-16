@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct MessageView: View {
+    let selectedLanguage: String
+    let selectedPrompt: String
     @ObservedObject var viewModel = MessageViewModel()
     
     var body: some View {
