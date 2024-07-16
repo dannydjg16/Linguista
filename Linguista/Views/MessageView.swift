@@ -53,48 +53,6 @@ struct MessageView_Previews: PreviewProvider {
     }
 }
 
-//func postReqnmuest() {
-//    // Your local IP address and endpoint
-//    guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else {
-//        print("Invalid URL")
-//        return
-//    }
-//    
-//    var request = URLRequest(url: url)
-//    request.httpMethod = "POST"
-//    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//    let messages = [Message(role: "system", content: ""), Message(role: "user", content: "")]
-//    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
-//
-//    
-//    do {
-//        let jsonData = try JSONEncoder().encode(dataModel)
-//        request.httpBody = jsonData
-//    } catch {
-//        print("Error encoding data: \(error)")
-//        return
-//    }
-//
-//    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//        if let error = error {
-//            print("Error: \(error)")
-//            return
-//        }
-//
-//        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-//            print("Invalid response")
-//            return
-//        }
-//
-//        if let data = data, let responseString = String(data: data, encoding: .utf8) {
-//            print("Response: \(responseString)")
-//        }
-//    }
-//
-//    task.resume()
-//}
-
 class CustomSessionnDelegate: NSObject, URLSessionDelegate {
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
