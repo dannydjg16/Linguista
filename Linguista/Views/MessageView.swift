@@ -35,7 +35,7 @@ struct MessageView: View {
             }
 
             Button(action: {
-                postRequest()
+                postRequest(selectedPrompt: "\(selectedPrompt)", selectedLanguage: "\(selectedLanguage)")
             }) {
                 Text("Send Request")
                     .padding()
@@ -51,7 +51,7 @@ struct MessageView: View {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView()
+        MessageView(selectedLanguage: "Farsi", selectedPrompt: "Translate this word")
     }
 }
 
@@ -61,7 +61,7 @@ class CustomSessionnDelegate: NSObject, URLSessionDelegate {
     }
 }
 
-func postRequest() {
+func postRequest(selectedPrompt: String, selectedLanguage: String) {
     guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else {
         print("Invalid URL")
         return
@@ -72,8 +72,8 @@ func postRequest() {
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     //let dataModel = CompletionsRequest(model: "", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
-    let messages = [Message(role: "system", content: <#T##String#>), Message(role: "user", content: <#T##String#>)]
-    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
+    let messages = [Message(role: "system", content: "\(selectedPrompt) in \(selectedLanguage)"), Message(role: "user", content: "gorbeh")]
+    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 10)
     
     
     do {
