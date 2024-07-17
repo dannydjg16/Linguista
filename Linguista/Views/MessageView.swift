@@ -11,13 +11,14 @@ import SwiftUI
 struct MessageView: View {
     let selectedLanguage: String
     let selectedPrompt: String
+    @State private var userInput: String = ""
     @ObservedObject var viewModel = MessageViewModel()
     
     var body: some View {
         VStack {
-            Text("Completion Request Example")
-                .font(.title)
-                .padding()
+            TextField("Enter some text", text: $userInput)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
 
             if let response = viewModel.completionResponse {
                 Text("Response ID: \(response.id ?? "N/A")")
@@ -35,7 +36,7 @@ struct MessageView: View {
             }
 
             Button(action: {
-                postRequest(selectedPrompt: "\(selectedPrompt)", selectedLanguage: "\(selectedLanguage)")
+                postRequest(selectedPrompt: "\(selectedPrompt)", selectedLanguage: "\(selectedLanguage)", userMessage: userInput)
             }) {
                 Text("Send Request")
                     .padding()
@@ -61,7 +62,7 @@ class CustomSessionnDelegate: NSObject, URLSessionDelegate {
     }
 }
 
-func postRequest(selectedPrompt: String, selectedLanguage: String) {
+func postRequest(selectedPrompt: String, selectedLanguage: String, userMessage: String) {
     guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else {
         print("Invalid URL")
         return
