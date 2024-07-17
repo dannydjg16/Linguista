@@ -100,7 +100,7 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-                NavigationLink(destination: MessageView(selectedLanguage: "Farsi", selectedPrompt: "Translate this word")) {
+                NavigationLink(destination: MessageView(selectedLanguage: "Farsi", selectedPrompt: "Translate this word into english")) {
                     Text("Test")
                         .padding()
                         .background(Color.mint)
