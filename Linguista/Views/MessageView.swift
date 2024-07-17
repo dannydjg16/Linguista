@@ -16,7 +16,7 @@ struct MessageView: View {
     
     var body: some View {
         VStack {
-            TextField("Enter some text", text: $userInput)
+            TextField("Enter translation prompt", text: $userInput)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
 
