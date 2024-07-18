@@ -14,6 +14,7 @@ struct MessageView: View {
     @State private var userInput: String = ""
     @ObservedObject var viewModel = MessageViewModel()
     
+    
     var body: some View {
         VStack {
             TextField("Enter translation prompt", text: $userInput)
@@ -53,12 +54,6 @@ struct MessageView: View {
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
         MessageView(selectedLanguage: "Farsi", selectedPrompt: "Translate this word")
-    }
-}
-
-class CustomSessionnDelegate: NSObject, URLSessionDelegate {
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
     }
 }
 
