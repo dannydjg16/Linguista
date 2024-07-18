@@ -12,15 +12,15 @@ struct MessageView: View {
     let selectedLanguage: String
     let selectedPrompt: String
     @State private var userInput: String = ""
-    @ObservedObject var viewModel = MessageViewModel()
+    @StateObject var viewModel = MessageViewModel()
     
     
     var body: some View {
         VStack {
             TextField("Enter translation prompt", text: $userInput)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
             if let response = viewModel.completionResponse {
                 Text("Response ID: \(response.id ?? "N/A")")
                 Text("Model: \(response.model ?? "N/A")")
@@ -30,14 +30,17 @@ struct MessageView: View {
                     }
                 }
             }
-
+            
             if let errorMessage = viewModel.errorMessage {
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.red)
             }
-
+            
             Button(action: {
-                postRequest(selectedPrompt: "\(selectedPrompt)", selectedLanguage: "\(selectedLanguage)", userMessage: userInput)
+                let messages = [Message(role: "system", content: "\(selectedPrompt) in \(selectedLanguage)"), Message(role: "user", content: "\(userInput)")]
+                let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                viewModel.fetchCompletion(completionRequest: dataModel)
+                //postRequest(selectedPrompt: "\(selectedPrompt)", selectedLanguage: "\(selectedLanguage)", userMessage: userInput)
             }) {
                 Text("Send Request")
                     .padding()
@@ -45,11 +48,20 @@ struct MessageView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+            if viewModel.isLoading {
+                ProgressView("Loading...")
+                    .padding()
+            } else if let response = viewModel.completionResponse {
+                Text("Name: \(response.id)")
+                Text("Age: \(response.model)")
+            } else if let errorMessage = viewModel.errorMessage {
+                Text("Error: \(errorMessage)")
+                    .foregroundColor(.red)
+            }}
             .padding()
         }
-        .padding()
     }
-}
+
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
@@ -58,42 +70,42 @@ struct MessageView_Previews: PreviewProvider {
 }
 
 func postRequest(selectedPrompt: String, selectedLanguage: String, userMessage: String) {
-    let messages = [Message(role: "system", content: "\(selectedPrompt) in \(selectedLanguage)"), Message(role: "user", content: "gorbeh")]
-    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-    
-    guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else {
-        print("Invalid URL")
-        return
-    }
-
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-    do {
-        let jsonData = try JSONEncoder().encode(dataModel)
-        request.httpBody = jsonData
-    } catch {
-        print("Error encoding data: \(error)")
-        return
-    }
-
-    let session = URLSession(configuration: .default, delegate: CustomSessionDelegate(), delegateQueue: nil)
-    let task = session.dataTask(with: request) { data, response, error in
-        if let error = error {
-            print("Error: \(error)")
-            return
-        }
-
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            print("Invalid response")
-            return
-        }
-
-        if let data = data, let responseString = String(data: data, encoding: .utf8) {
-            print("Response: \(responseString)")
-        }
-    }
-
-    task.resume()
+//    let messages = [Message(role: "system", content: "\(selectedPrompt) in \(selectedLanguage)"), Message(role: "user", content: "\(userMessage)")]
+//    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+//    
+//    guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else {
+//        print("Invalid URL")
+//        return
+//    }
+//
+//    var request = URLRequest(url: url)
+//    request.httpMethod = "POST"
+//    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//    
+//    do {
+//        let jsonData = try JSONEncoder().encode(dataModel)
+//        request.httpBody = jsonData
+//    } catch {
+//        print("Error encoding data: \(error)")
+//        return
+//    }
+//
+//    let session = URLSession(configuration: .default, delegate: CustomSessionDelegate(), delegateQueue: nil)
+//    let task = session.dataTask(with: request) { data, response, error in
+//        if let error = error {
+//            print("Error: \(error)")
+//            return
+//        }
+//
+//        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+//            print("Invalid response")
+//            return
+//        }
+//
+//        if let data = data, let responseString = String(data: data, encoding: .utf8) {
+//            print("Response: \(responseString)")
+//        }
+//    }
+//
+//    task.resume()
 }
