@@ -58,6 +58,9 @@ struct MessageView_Previews: PreviewProvider {
 }
 
 func postRequest(selectedPrompt: String, selectedLanguage: String, userMessage: String) {
+    let messages = [Message(role: "system", content: "\(selectedPrompt) in \(selectedLanguage)"), Message(role: "user", content: "gorbeh")]
+    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+    
     guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else {
         print("Invalid URL")
         return
@@ -66,11 +69,6 @@ func postRequest(selectedPrompt: String, selectedLanguage: String, userMessage: 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-    //let dataModel = CompletionsRequest(model: "", messages: [], temperature: 0.2, maxTokens: 10, topP: 10)
-    let messages = [Message(role: "system", content: "\(selectedPrompt) in \(selectedLanguage)"), Message(role: "user", content: "gorbeh")]
-    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-    
     
     do {
         let jsonData = try JSONEncoder().encode(dataModel)
