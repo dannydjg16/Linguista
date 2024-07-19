@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 let predefinedPrompts: [String] = [
-    "Translate a Word to English",
-    "Translate a Sentence",
+    "Translate a word into English",
+    "Translate a sentence",
     "Ask a question about a language",
     "Have a Conversation",
     "Tell me an interesting fact"
