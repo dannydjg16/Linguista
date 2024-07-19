@@ -32,8 +32,18 @@ struct SelectPromptView: View {
     private func destinationView(for item: String) -> some View {
         if item == predefinedPrompts[0] {
             MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
-        } else  {
-            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)        }
+        } else if item == predefinedPrompts[1] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+        }
+        else if item == predefinedPrompts[2] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+        }
+        else if item == predefinedPrompts[3] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+        }
+        else if item == predefinedPrompts[4] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+        }
     }
 }
 
