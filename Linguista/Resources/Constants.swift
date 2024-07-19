@@ -10,10 +10,12 @@ import SwiftUI
 
 let predefinedPrompts: [String] = [
     "Translate a word into English",
-    "Translate a sentence",
-    "Ask a question about a language",
-    "Have a Conversation",
-    "Tell me an interesting fact"
+    "Translate a sentence into English",
+    "Translate a word from English",
+    "Translate a sentence from English",
+    "Have a Conversation"
+    //"Ask a question about a language",
+    //"Tell me an interesting fact"
 ]
 
 

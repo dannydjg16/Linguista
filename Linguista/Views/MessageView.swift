@@ -29,16 +29,10 @@ struct MessageView: View {
                 }
             }
             
-            if let errorMessage = viewModel.errorMessage {
-                Text("Error: \(errorMessage)")
-                    .foregroundColor(.red)
-            }
-            
             Button(action: {
                 let messages = [Message(role: "system", content: "\(selectedPrompt) from \(selectedLanguage)"), Message(role: "user", content: "\(userInput)")]
                 let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                 viewModel.fetchCompletion(completionRequest: dataModel)
-                //postRequest(selectedPrompt: "\(selectedPrompt)", selectedLanguage: "\(selectedLanguage)", userMessage: userInput)
             }) {
                 Text("Send Request")
                     .padding()
