@@ -30,7 +30,7 @@ struct MessageView: View {
             }
             
             Button(action: {
-                let messages = [Message(role: "system", content: "\(selectedPrompt) from \(selectedLanguage)"), Message(role: "user", content: "\(userInput)")]
+                let messages = [Message(role: "system", content: "\(selectedPrompt) \(selectedLanguage)"), Message(role: "user", content: "\(userInput)")]
                 let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                 viewModel.fetchCompletion(completionRequest: dataModel)
             }) {
