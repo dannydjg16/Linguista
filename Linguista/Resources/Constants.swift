@@ -14,8 +14,6 @@ let predefinedPrompts: [String] = [
     "Translate a word from English to",
     "Translate a sentence from English to",
     "Have a Conversation in"
-    //"Ask a question about a language",
-    //"Tell me an interesting fact"
 ]
 
 

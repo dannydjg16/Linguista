@@ -49,6 +49,7 @@ struct MessageView: View {
             }}
             .padding()
             .navigationTitle("\(selectedPrompt) \(selectedLanguage)")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 
