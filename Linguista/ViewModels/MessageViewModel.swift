@@ -17,7 +17,7 @@ class MessageViewModel: ObservableObject {
     private let completionService = CompletionService()
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
-        guard let url = URL(string: "https://localhost:7244/OpenAi/completions") else { return }
+        guard let url = URL(string: "https://linguista-appservice.azurewebsites.net/openai/completions") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

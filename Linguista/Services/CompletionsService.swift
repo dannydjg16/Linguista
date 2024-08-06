@@ -40,7 +40,7 @@ class CompletionService {
     }
     
     func sendRequest(completionRequest: CompletionsRequest) -> AnyPublisher<CompletionsResponse, Error> {
-        let url = URL(string: "https://localhost:7244/openai/completions")!
+        let url = URL(string: "https://linguista-appservice.azurewebsites.net/openai/completionshtto")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
