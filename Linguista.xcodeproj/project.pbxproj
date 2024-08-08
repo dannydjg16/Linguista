@@ -27,6 +27,7 @@
 		81494AE92C13BD2A00F1ABB0 /* LinguistaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AE82C13BD2A00F1ABB0 /* LinguistaTests.swift */; };
 		81494AF32C13BD2A00F1ABB0 /* LinguistaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AF22C13BD2A00F1ABB0 /* LinguistaUITests.swift */; };
 		81494AF52C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AF42C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift */; };
+		81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		81494AEE2C13BD2A00F1ABB0 /* LinguistaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinguistaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81494AF22C13BD2A00F1ABB0 /* LinguistaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaUITests.swift; sourceTree = "<group>"; };
 		81494AF42C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		81841B102C62D79F00B7A5AC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				8120C7C92C2E6585007DCE2E /* CompletionsService.swift */,
+				81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -185,6 +189,7 @@
 				81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */,
 				81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */,
 				81494ADD2C13BD2A00F1ABB0 /* Preview Content */,
+				81841B102C62D79F00B7A5AC /* Config.plist */,
 			);
 			path = Linguista;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				8120C7AD2C2A807C007DCE2E /* CompletionsRequest.swift in Sources */,
 				8120C7D42C3E3726007DCE2E /* MessageViewModel.swift in Sources */,
 				8120C7CE2C34F718007DCE2E /* LanguageSelectionView.swift in Sources */,
+				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* LoginView.swift in Sources */,
 				8120C7DB2C3E483A007DCE2E /* MessageView.swift in Sources */,
