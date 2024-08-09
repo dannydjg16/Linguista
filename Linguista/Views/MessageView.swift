@@ -40,6 +40,17 @@ struct MessageView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+            Button(action: {
+                
+                //viewModel.fetchCompletion(completionRequest: dataModel)
+            }) {
+                Text("Token")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            
             if viewModel.isLoading {
                 ProgressView("Loading...")
                     .padding()
