@@ -27,12 +27,12 @@ struct CompletionsResponse: Codable {
     }
 }
 
-struct Choice: Codable {
+struct Choice: Codable, Hashable {
     var index: Int
     var message: Message
     var logProbs: String?
     var finishReason: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case index
         case message
@@ -41,11 +41,11 @@ struct Choice: Codable {
     }
 }
 
-struct Usage: Codable {
+struct Usage: Codable, Hashable {
     var promptTokens: Int
     var completionTokens: Int
     var totalTokens: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case promptTokens = "prompt_tokens"
         case completionTokens = "completion_tokens"

@@ -6,12 +6,8 @@
 //
 
 import Foundation
-struct Message: Codable {
-    var role: String?
-    var content: String?
 
-    enum CodingKeys: String, CodingKey {
-        case role
-        case content
-    }
+struct Message: Codable, Hashable {
+    var role: String
+    var content: String
 }

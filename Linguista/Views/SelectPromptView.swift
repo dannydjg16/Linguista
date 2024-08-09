@@ -22,7 +22,7 @@ struct SelectPromptView: View {
     var body: some View {
         List(predefinedPrompts, id: \.self) { item in
             NavigationLink(destination: self.destinationView(for: item)) {
-                Text(item)
+                Text("\(item) \(selectedLanguage)")
             }
         }
         .navigationTitle("\(selectedLanguage)")
@@ -31,23 +31,19 @@ struct SelectPromptView: View {
     @ViewBuilder
     private func destinationView(for item: String) -> some View {
         if item == predefinedPrompts[0] {
-            //DetailView(item: item)
             MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
-        } else  {
+        } else if item == predefinedPrompts[1] {
             MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
         }
-    }
-}
-
-struct DetailView: View {
-    var item: String
-    
-    var body: some View {
-        VStack {
-            Text("Selected: \(item)")
-                .font(.largeTitle)
+        else if item == predefinedPrompts[2] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
         }
-        .navigationTitle(item)
+        else if item == predefinedPrompts[3] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+        }
+        else if item == predefinedPrompts[4] {
+            MessageView(selectedLanguage: selectedLanguage, selectedPrompt: item)
+        }
     }
 }
 

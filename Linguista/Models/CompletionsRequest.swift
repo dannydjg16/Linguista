@@ -8,8 +8,8 @@
 import Foundation
 
 struct CompletionsRequest: Codable {
-    var model: String?
-    var messages: [Message]?
+    var model: String
+    var messages: [Message]
     var temperature: Float
     var maxTokens: Int
     var topP: Int

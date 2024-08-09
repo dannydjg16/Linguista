@@ -13,11 +13,11 @@
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
 		8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */; };
 		8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */; };
-		8120C7C82C2E637A007DCE2E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C72C2E637A007DCE2E /* MessageView.swift */; };
-		8120C7CA2C2E6585007DCE2E /* CompletionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7C92C2E6585007DCE2E /* CompletionsService.swift */; };
 		8120C7CE2C34F718007DCE2E /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */; };
 		8120C7D02C35F5C6007DCE2E /* SelectPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */; };
 		8120C7D22C3D635E007DCE2E /* CompletionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7D12C3D635E007DCE2E /* CompletionsResponse.swift */; };
+		8120C7D42C3E3726007DCE2E /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7D32C3E3726007DCE2E /* MessageViewModel.swift */; };
+		8120C7DB2C3E483A007DCE2E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7DA2C3E483A007DCE2E /* MessageView.swift */; };
 		81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */; };
 		81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD92C13BD2900F1ABB0 /* ContentView.swift */; };
 		81494ADC2C13BD2A00F1ABB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */; };
@@ -25,6 +25,9 @@
 		81494AE92C13BD2A00F1ABB0 /* LinguistaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AE82C13BD2A00F1ABB0 /* LinguistaTests.swift */; };
 		81494AF32C13BD2A00F1ABB0 /* LinguistaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AF22C13BD2A00F1ABB0 /* LinguistaUITests.swift */; };
 		81494AF52C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AF42C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift */; };
+		81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */; };
+		81841B122C66B61100B7A5AC /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81841B112C66B61100B7A5AC /* Config.plist */; };
+		81841B142C66B66A00B7A5AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B132C66B66A00B7A5AC /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,11 +54,12 @@
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleListView.swift; sourceTree = "<group>"; };
 		8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		8120C7C72C2E637A007DCE2E /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		8120C7C92C2E6585007DCE2E /* CompletionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsService.swift; sourceTree = "<group>"; };
 		8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPromptView.swift; sourceTree = "<group>"; };
 		8120C7D12C3D635E007DCE2E /* CompletionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsResponse.swift; sourceTree = "<group>"; };
+		8120C7D32C3E3726007DCE2E /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		8120C7DA2C3E483A007DCE2E /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		8120C7DE2C40F099007DCE2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		81494AD42C13BD2900F1ABB0 /* Linguista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linguista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaApp.swift; sourceTree = "<group>"; };
 		81494AD92C13BD2900F1ABB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +70,9 @@
 		81494AEE2C13BD2A00F1ABB0 /* LinguistaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinguistaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81494AF22C13BD2A00F1ABB0 /* LinguistaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaUITests.swift; sourceTree = "<group>"; };
 		81494AF42C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		81841B112C66B61100B7A5AC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		81841B132C66B66A00B7A5AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +106,9 @@
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
 				8120C7A62C2A79EF007DCE2E /* LoginView.swift */,
 				8120C7C02C2B4B55007DCE2E /* ExampleListView.swift */,
-				8120C7C72C2E637A007DCE2E /* MessageView.swift */,
 				8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */,
 				8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */,
+				8120C7DA2C3E483A007DCE2E /* MessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,7 +116,7 @@
 		8120C7A52C2A78DA007DCE2E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8120C7C92C2E6585007DCE2E /* CompletionsService.swift */,
+				81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -117,6 +124,7 @@
 		8120C7BC2C2B480E007DCE2E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				81841B132C66B66A00B7A5AC /* Config.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				8120C7C32C2B4C80007DCE2E /* ListViewModel.swift */,
+				8120C7D32C3E3726007DCE2E /* MessageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -160,6 +169,7 @@
 		81494AD62C13BD2900F1ABB0 /* Linguista */ = {
 			isa = PBXGroup;
 			children = (
+				8120C7DE2C40F099007DCE2E /* Info.plist */,
 				8120C7C22C2B4C6C007DCE2E /* ViewModels */,
 				8120C7BD2C2B4833007DCE2E /* Resources */,
 				8120C7BC2C2B480E007DCE2E /* Helpers */,
@@ -169,6 +179,7 @@
 				81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */,
 				81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */,
 				81494ADD2C13BD2A00F1ABB0 /* Preview Content */,
+				81841B112C66B61100B7A5AC /* Config.plist */,
 			);
 			path = Linguista;
 			sourceTree = "<group>";
@@ -313,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81494ADF2C13BD2A00F1ABB0 /* Preview Assets.xcassets in Resources */,
+				81841B122C66B61100B7A5AC /* Config.plist in Resources */,
 				81494ADC2C13BD2A00F1ABB0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,14 +350,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8120C7CA2C2E6585007DCE2E /* CompletionsService.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
+				81841B142C66B66A00B7A5AC /* Config.swift in Sources */,
 				8120C7AD2C2A807C007DCE2E /* CompletionsRequest.swift in Sources */,
+				8120C7D42C3E3726007DCE2E /* MessageViewModel.swift in Sources */,
 				8120C7CE2C34F718007DCE2E /* LanguageSelectionView.swift in Sources */,
+				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* LoginView.swift in Sources */,
-				8120C7C82C2E637A007DCE2E /* MessageView.swift in Sources */,
+				8120C7DB2C3E483A007DCE2E /* MessageView.swift in Sources */,
 				8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8120C7D22C3D635E007DCE2E /* CompletionsResponse.swift in Sources */,
@@ -517,6 +531,7 @@
 				DEVELOPMENT_TEAM = H9YG269PFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Linguista/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -546,6 +561,7 @@
 				DEVELOPMENT_TEAM = H9YG269PFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Linguista/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
