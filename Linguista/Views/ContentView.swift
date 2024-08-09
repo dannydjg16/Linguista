@@ -26,7 +26,7 @@ struct ContentView: View {
                         .cornerRadius(8)
                 }
             }
-            .navigationTitle("Home")
+            .navigationTitle("Linguista")
         }
     }
 }
