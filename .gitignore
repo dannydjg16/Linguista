@@ -23,3 +23,4 @@ xcuserdata/
 Package.pins
 .swiftpm/xcode/
 .swiftpm/repositories/
+Linguista/Config.plist
