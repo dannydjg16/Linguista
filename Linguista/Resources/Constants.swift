@@ -19,6 +19,7 @@ let predefinedPrompts: [String] = [
 
 let popularLanguages = [
     "Farsi",
+    "English",
     "Amharic",
     "Assamese",
     "Bengali",
@@ -37,7 +38,6 @@ let popularLanguages = [
     "Eastern Min Chinese",
     "Eastern Punjabi",
     "Egyptian Arabic",
-    "English",
     "French",
     "German",
     "Greek",
