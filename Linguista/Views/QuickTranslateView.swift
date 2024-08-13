@@ -57,10 +57,10 @@ struct QuickTranslateView: View {
                             .foregroundColor(.blue)
                             .cornerRadius(10)
                     }
-                    .frame(width: 150) // Set width of the button
+                    .frame(width: 150)
+                   
                    Spacer()
                 }
-               .frame(maxWidth: .infinity, alignment: .center)
              }
 
             Section{
@@ -70,7 +70,6 @@ struct QuickTranslateView: View {
                     Text("Three").tag(3)
                 }
                 .pickerStyle(MenuPickerStyle())
-                
                 
                 TextEditor(text: $translationResult)
                     .frame(height: 200)
