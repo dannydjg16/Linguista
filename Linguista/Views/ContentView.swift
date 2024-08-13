@@ -25,6 +25,13 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
+                NavigationLink(destination: QuickTranslateView()) {
+                    Text("Quick Translate")
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
             }
             .navigationTitle("Linguista")
         }

@@ -9,55 +9,79 @@ import Foundation
 import SwiftUI
 
 struct QuickTranslateView: View {
-    @State private var stepValue = 0
-    //@State private var selection = 1
-    @State private var date = Date()
-    @State private var text = "Enter your message"
-    @State private var items = ["Feature 1", "Feature 2", "Feature 3"]
-    @State private var selection: [String: Bool] = [:]
+    @State private var translationText = "Translation Text"
+    @State private var isPlaceholderVisible = true
+    @State private var translationResult = "See Translation"
+    @State private var isPlaceholderResultVisible = true
+    @State private var languageOne: String = "English"
+    @State private var languageTwo: String = "English"
+    
 
-    func handleOption1() {
-        print("Option 1 selected")
-        // Add your action for Option 1 here
-    }
-
-    func handleOption2() {
-        print("Option 2 selected")
-        // Add your action for Option 2 here
-    }
     
     var body: some View {
-        VStack{
-            Picker("Select a number", selection: $selection) {
-                Text("One").tag(1)
-                Text("Two").tag(2)
-                Text("Three").tag(3)
-            }
-            .pickerStyle(MenuPickerStyle())
-            
-            List {
-                Section(header: Text("Header")) {
-                    Text("Item 1")
-                    Text("Item 2")
+        
+        List{
+            Section{
+                Picker("Translate Language:", selection: $languageOne) {
+                    Text("One").tag(1)
+                    Text("Two").tag(2)
+                    Text("Three").tag(3)
                 }
-                Section(header: Text("Header2")) {
-                    Text("Item 3")
-                    Text("Item 4")
+                .pickerStyle(MenuPickerStyle())
+                
+                TextEditor(text: $translationText)
+                    .frame(height: 200)
+                    .border(Color.white, width: 1)
+                    .foregroundColor(isPlaceholderVisible ? Color.gray : Color.primary)
+                    .onTapGesture {
+                        if isPlaceholderVisible {
+                            translationText = "" // Clear the placeholder text when the user taps
+                            isPlaceholderVisible = false
+                        }
+                    }
+
+            }
+
+            Section{
+               HStack{
+                    Spacer()
+                    
+                    Button(action: {
+                        let messages = [Message(role: "system", content: "translate"), Message(role: "user", content: "\(translationText)")]
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                        //viewModel.fetchCompletion(completionRequest: dataModel)
+                    }) {
+                        Text("Translate")
+                            //.padding()
+                            .background(Color.white)
+                            .foregroundColor(.blue)
+                            .cornerRadius(10)
+                    }
+                    .frame(width: 150) // Set width of the button
+                   Spacer()
                 }
-            }
-        }
-//        TabView {
-//            Text("Tab 1").tabItem { Text("First") }
-//            Text("Tab 2").tabItem { Text("Second") }
-//        }
-        List {
-            Section(header: Text("Header")) {
-                Text("Item 1")
-                Text("Item 2")
-            }
-            Section(header: Text("Header2")) {
-                Text("Item 3")
-                Text("Item 4")
+               .frame(maxWidth: .infinity, alignment: .center)
+             }
+
+            Section{
+                Picker("Translate to:", selection: $languageTwo) {
+                    Text("One").tag(1)
+                    Text("Two").tag(2)
+                    Text("Three").tag(3)
+                }
+                .pickerStyle(MenuPickerStyle())
+                
+                
+                TextEditor(text: $translationResult)
+                    .frame(height: 200)
+                    .border(Color.white, width: 1)
+                    .foregroundColor(isPlaceholderResultVisible ? Color.gray : Color.primary)
+                    .onTapGesture {
+                        if isPlaceholderResultVisible {
+                            translationResult = "" // Clear the placeholder text when the user taps
+                            isPlaceholderVisible = false
+                        }
+                    }
             }
         }
     }
