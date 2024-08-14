@@ -13,8 +13,9 @@ struct QuickTranslateView: View {
     @State private var isPlaceholderVisible = true
     @State private var translationResult = "See Translation"
     @State private var isPlaceholderResultVisible = true
-    @State private var languageOne = 2
-    @State private var languageTwo = 1
+    @State private var languageToTranslate = 2
+    @State private var languageToTranslateTo = 1
+    @StateObject var viewModel = MessageViewModel()
     
 
     
@@ -22,7 +23,7 @@ struct QuickTranslateView: View {
         
         List{
             Section{
-                Picker("Translate Language:", selection: $languageOne) {
+                Picker("Translate Language:", selection: $languageToTranslate) {
                     ForEach(popularLanguageObjects){ language in
                         Text(language.name).tag(language.id)
                     }
@@ -47,9 +48,9 @@ struct QuickTranslateView: View {
                     Spacer()
                     
                     Button(action: {
-                        let messages = [Message(role: "system", content: "translate"), Message(role: "user", content: "\(translationText)")]
+                        let messages = [Message(role: "system", content: "translate \(languageToTranslate) into \(languageToTranslateTo). Return the response as understandable in \(languageToTranslateTo)"), Message(role: "user", content: "\(translationText)")]
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                        //viewModel.fetchCompletion(completionRequest: dataModel)
+                        viewModel.fetchCompletion(completionRequest: dataModel)
                     }) {
                         Text("Translate")
                             //.padding()
@@ -64,7 +65,7 @@ struct QuickTranslateView: View {
              }
 
             Section{
-                Picker("Translate to:", selection: $languageTwo) {
+                Picker("Translate to:", selection: $languageToTranslateTo) {
                     ForEach(popularLanguageObjects){ language in
                         Text(language.name).tag(language.id)
                     }
