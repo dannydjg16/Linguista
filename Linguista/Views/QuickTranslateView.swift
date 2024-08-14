@@ -13,8 +13,8 @@ struct QuickTranslateView: View {
     @State private var isPlaceholderVisible = true
     @State private var translationResult = "See Translation"
     @State private var isPlaceholderResultVisible = true
-    @State private var languageOne: String = "English"
-    @State private var languageTwo: String = "English"
+    @State private var languageOne = 1
+    @State private var languageTwo = 1
     
 
     
@@ -23,7 +23,7 @@ struct QuickTranslateView: View {
         List{
             Section{
                 Picker("Translate Language:", selection: $languageOne) {
-                    Text("One").tag(1)
+                    Text("Eng").tag(1)
                     Text("Two").tag(2)
                     Text("Three").tag(3)
                 }
@@ -83,6 +83,7 @@ struct QuickTranslateView: View {
                     }
             }
         }
+        
     }
 }
 
