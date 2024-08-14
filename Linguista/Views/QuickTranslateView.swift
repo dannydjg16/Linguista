@@ -67,12 +67,11 @@ struct QuickTranslateView: View {
                         viewModel.fetchCompletion(completionRequest: dataModel)
                     }) {
                         Text("Translate")
-                            //.padding()
-                            .background(Color.white)
-                            .foregroundColor(.blue)
-                            .cornerRadius(10)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
                     }
-                    .frame(width: 150)
                    
                    Spacer()
                 }
@@ -89,7 +88,7 @@ struct QuickTranslateView: View {
                 TextEditor(text: $translationResult)
                     .frame(height: 200)
                     .border(Color.white, width: 1)
-                    .foregroundColor(isPlaceholderResultVisible ? Color.gray : Color.primary)
+                    .foregroundColor(isPlaceholderResultVisible ? Color.black : Color.primary)
                     .onTapGesture {
                         if isPlaceholderResultVisible {
                             translationResult = "" // Clear the placeholder text when the user taps
