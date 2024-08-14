@@ -13,7 +13,7 @@ struct QuickTranslateView: View {
     @State private var isPlaceholderVisible = true
     @State private var translationResult = "See Translation"
     @State private var isPlaceholderResultVisible = true
-    @State private var languageOne = 1
+    @State private var languageOne = 2
     @State private var languageTwo = 1
     
 
@@ -23,9 +23,9 @@ struct QuickTranslateView: View {
         List{
             Section{
                 Picker("Translate Language:", selection: $languageOne) {
-                    Text("Eng").tag(1)
-                    Text("Two").tag(2)
-                    Text("Three").tag(3)
+                    ForEach(popularLanguageObjects){ language in
+                        Text(language.name).tag(language.id)
+                    }
                 }
                 .pickerStyle(MenuPickerStyle())
                 
@@ -83,7 +83,11 @@ struct QuickTranslateView: View {
                     }
             }
         }
-        
+    }
+    
+    
+    func getLanguageName(by id: Int) -> String? {
+        return popularLanguageObjects.first { $0.id == id }?.name
     }
 }
 
