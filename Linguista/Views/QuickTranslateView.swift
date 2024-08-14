@@ -20,8 +20,22 @@ struct QuickTranslateView: View {
 
     
     var body: some View {
+
         
         List{
+            if let response = viewModel.completionResponse {
+                if let choices = response.choices {
+                    // Here, we modify the state property and use it to display the result
+                    Text(choices.map { $0.message.content }.joined(separator: " "))
+                        .onAppear {
+                            translationResult = choices.map { $0.message.content }.joined(separator: " ")
+                        }
+                } else {
+                    Text("No choices available")
+                }
+            } else {
+                Text("No response available")
+            }
             Section{
                 Picker("Translate Language:", selection: $languageToTranslate) {
                     ForEach(popularLanguageObjects){ language in
