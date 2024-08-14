@@ -65,9 +65,9 @@ struct QuickTranslateView: View {
 
             Section{
                 Picker("Translate to:", selection: $languageTwo) {
-                    Text("One").tag(1)
-                    Text("Two").tag(2)
-                    Text("Three").tag(3)
+                    ForEach(popularLanguageObjects){ language in
+                        Text(language.name).tag(language.id)
+                    }
                 }
                 .pickerStyle(MenuPickerStyle())
                 

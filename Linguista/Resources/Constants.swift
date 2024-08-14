@@ -94,3 +94,7 @@ let popularLanguages = [
     "Yue Chinese",
     "Zhuang"
 ]
+
+let popularLanguageObjects: [Language] = popularLanguages.enumerated().map { (index, name) in
+    Language(id: index + 1, name: name)
+}
