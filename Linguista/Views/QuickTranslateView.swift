@@ -62,7 +62,7 @@ struct QuickTranslateView: View {
                     Spacer()
                     
                     Button(action: {
-                        let messages = [Message(role: "system", content: "translate \(languageToTranslate) into \(languageToTranslateTo). Return the response as understandable in \(languageToTranslateTo)"), Message(role: "user", content: "\(translationText)")]
+                        let messages = [Message(role: "system", content: "translate \(getLanguageName(by: languageToTranslate))into \(getLanguageName(by: languageToTranslateTo)). Return the response as understandable in \(languageToTranslateTo)"), Message(role: "user", content: "\(translationText)")]
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                         viewModel.fetchCompletion(completionRequest: dataModel)
                     }) {
@@ -100,8 +100,8 @@ struct QuickTranslateView: View {
     }
     
     
-    func getLanguageName(by id: Int) -> String? {
-        return popularLanguageObjects.first { $0.id == id }?.name
+    func getLanguageName(by id: Int) -> String {
+        return popularLanguageObjects.first { $0.id == id }!.name
     }
 }
 
