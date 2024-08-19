@@ -28,6 +28,8 @@
 		81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */; };
 		81841B122C66B61100B7A5AC /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81841B112C66B61100B7A5AC /* Config.plist */; };
 		81841B142C66B66A00B7A5AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B132C66B66A00B7A5AC /* Config.swift */; };
+		81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */; };
+		81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B192C6C5F7700B7A5AC /* Language.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		81841B112C66B61100B7A5AC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		81841B132C66B66A00B7A5AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTranslateView.swift; sourceTree = "<group>"; };
+		81841B192C6C5F7700B7A5AC /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 				8120C7CD2C34F718007DCE2E /* LanguageSelectionView.swift */,
 				8120C7CF2C35F5C6007DCE2E /* SelectPromptView.swift */,
 				8120C7DA2C3E483A007DCE2E /* MessageView.swift */,
+				81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				8120C7AC2C2A807C007DCE2E /* CompletionsRequest.swift */,
 				8120C7AE2C2A8091007DCE2E /* Message.swift */,
 				8120C7D12C3D635E007DCE2E /* CompletionsResponse.swift */,
+				81841B192C6C5F7700B7A5AC /* Language.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -358,7 +364,9 @@
 				8120C7CE2C34F718007DCE2E /* LanguageSelectionView.swift in Sources */,
 				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				8120C7C12C2B4B55007DCE2E /* ExampleListView.swift in Sources */,
+				81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* LoginView.swift in Sources */,
+				81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */,
 				8120C7DB2C3E483A007DCE2E /* MessageView.swift in Sources */,
 				8120C7C42C2B4C80007DCE2E /* ListViewModel.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
