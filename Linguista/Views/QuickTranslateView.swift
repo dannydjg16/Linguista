@@ -26,7 +26,9 @@ struct QuickTranslateView: View {
             if let response = viewModel.completionResponse {
                 if let choices = response.choices {
                     // Here, we modify the state property and use it to display the result
-                    Text(choices.map { $0.message.content }.joined(separator: " "))
+                    Text(choices.map 
+                         { $0.message.content }
+                        .joined(separator: " "))
                         .onAppear {
                             translationResult = choices.map { $0.message.content }.joined(separator: " ")
                         }
@@ -64,7 +66,11 @@ struct QuickTranslateView: View {
                     Button(action: {
                         let messages = [Message(role: "system", content: "translate \(getLanguageName(by: languageToTranslate)) into \(getLanguageName(by: languageToTranslateTo)). Only respond using the latin alphabet"), Message(role: "user", content: "\(translationText)")]
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                        viewModel.fetchCompletion(completionRequest: dataModel)
+                        viewModel.fetchCompletion(completionRequest: dataModel) { result in
+                            DispatchQueue.main.async {
+                                translationResult = result
+                            }
+                        }
                     }) {
                         Text("Translate")
                             .padding()
