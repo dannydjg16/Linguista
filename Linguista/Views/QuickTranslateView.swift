@@ -17,8 +17,6 @@ struct QuickTranslateView: View {
     @State private var languageToTranslateTo = 1
     @StateObject var viewModel = MessageViewModel()
     
-
-    
     var body: some View {
         List{
             Section{
@@ -88,7 +86,6 @@ struct QuickTranslateView: View {
             }
         }
     }
-    
     
     func getLanguageName(by id: Int) -> String {
         return popularLanguageObjects.first { $0.id == id }!.name
