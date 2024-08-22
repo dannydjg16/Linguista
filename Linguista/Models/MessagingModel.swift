@@ -10,5 +10,5 @@ import Foundation
 struct MessagingModel: Identifiable {
     let id = UUID()
     let message: Message
-    let isSentByUser: Bool
+    var isSentByUser: Bool
 }
