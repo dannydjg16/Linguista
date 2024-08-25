@@ -17,7 +17,7 @@ class MessagingViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var isLoading = false
     
-    func sendMessage(completionRequest: CompletionsRequest) async {
+    func sendMessage(completionRequest: CompletionsRequest)  {
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages.first!, isSentByUser: true)
         messages.append(userMessage)
