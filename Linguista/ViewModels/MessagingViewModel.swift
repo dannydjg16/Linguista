@@ -31,6 +31,21 @@ class MessagingViewModel: ObservableObject {
             }
         }
         
+        func updateCompletions(with request: CompletionsRequest) {
+            Task {
+                do {
+                    let response = try await fetchCompletion(completionRequest: request)
+                    // Update the array on the main thread
+                    DispatchQueue.main.async {
+                        let message = response.choices?.first?.message
+                        let messagingResponse = MessagingModel(message: message ?? Message(role: "error", content: "error"), isSentByUser: false)
+                        self.messages.append(messagingResponse)
+                    }
+                } catch {
+                    print("Failed to fetch completion: \(error)")
+                }
+            }
+        }
         
     }
     
@@ -38,8 +53,8 @@ class MessagingViewModel: ObservableObject {
         // Mocked API request. Replace with actual API call.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             let responseText = "Response to: \(text)"
-            let responseMessage = Message(text: responseText, isSentByUser: false)
-            self.messages.append(responseMessage)
+           // let responseMessage = MessagingModel(message: completionRequest.messages.first!, isSentByUser: true)
+            //self.messages.append(text)
         }
         
         
