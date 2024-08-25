@@ -11,17 +11,10 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-                NavigationLink(destination: LanguageSelectionView()) {
-                    Text("Quick Learn")
+                NavigationLink(destination: MessagingView()) {
+                    Text("Send a Message")
                         .padding()
                         .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                NavigationLink(destination: MessageView(selectedLanguage: "Farsi", selectedPrompt: "Translate this word into english")) {
-                    Text("Test")
-                        .padding()
-                        .background(Color.mint)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }

@@ -15,12 +15,12 @@ class MessageViewModel: ObservableObject {
     @Published var isLoading = false
     private var cancellable: AnyCancellable?
     private let authService = AuthenticationService.shared
+    
     func fetchCompletion(completionRequest: CompletionsRequest) {
-    //func fetchCompletion(completionRequest: CompletionsRequest, completion: @escaping (CompletionsResponse) -> Void) {
-        
         guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
         // https://localhost:7244/openai/completions
         // https://linguista-appservice.azurewebsites.net/openai/completions
+        
         authService.getAccessToken { [weak self] accessToken in
             guard let self = self, let accessToken = accessToken else {
                 DispatchQueue.main.async {
