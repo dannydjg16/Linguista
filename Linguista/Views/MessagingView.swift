@@ -47,7 +47,7 @@ struct MessagingView: View {
                     //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                     let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                     let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                    //viewModel.fetchCompletion(completionRequest: dataModel)
+                    //gorbehviewModel.fetchCompletion(completionRequest: dataModel)
                     messagingViewModel.sendMessage(completionRequest: dataModel)
                     currentMessage = ""
                 }) {
