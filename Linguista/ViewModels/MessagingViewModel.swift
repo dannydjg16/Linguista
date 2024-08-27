@@ -49,19 +49,6 @@ class MessagingViewModel: ObservableObject {
         
     }
     
-    private func sendRequest(text: String) {
-        // Mocked API request. Replace with actual API call.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let responseText = "Response to: \(text)"
-           // let responseMessage = MessagingModel(message: completionRequest.messages.first!, isSentByUser: true)
-            //self.messages.append(text)
-        }
-        
-        
-        
-        
-    }
-    
 //    func fetchCompletion(completionRequest: CompletionsRequest) async throws -> CompletionsResponse {
 //        guard let url = URL(string: "https://localhost:7244/openai/completions") else {
 //            throw URLError(.badURL)
@@ -124,7 +111,7 @@ class MessagingViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         
-        let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
+        let session = URLSession(configuration: .default, delegate: CustomSessionDelegate(), delegateQueue: nil)
         
         let (data, _) = try await session.data(for: request)
         isLoading = false
