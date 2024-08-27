@@ -11,6 +11,7 @@ import SwiftUI
 struct MessagingView: View {
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""
+    @StateObject var viewModel = MessageViewModel()
     
 
     var body: some View {
