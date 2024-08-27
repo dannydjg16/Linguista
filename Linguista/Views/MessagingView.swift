@@ -16,20 +16,26 @@ struct MessagingView: View {
         VStack {
             ScrollView {
                 VStack(spacing: 10) {
+                    
                     ForEach($messagingViewModel.messages, id: \.id) { $message in
+                        
                         HStack {
+                            
                             if message.isSentByUser {
                                 Spacer()
+                                
                                 Text(message.message.content)
                                     .padding()
                                     .background(Color.blue)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
+                                
                             } else {
                                 Text(message.message.content)
                                     .padding()
                                     .background(Color.gray.opacity(0.2))
                                     .cornerRadius(10)
+                                
                                 Spacer()
                             }
                         }
@@ -43,12 +49,20 @@ struct MessagingView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
+                    // Commented out for when we want dynamic language conversation. Will also need to update the latin alphabet part with a better prompt.
                     //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
-                    let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
+                    
+                    // Commented out in case I every want to just test the implementation rather than specifics. Helped me once or twice so far.
+                    //let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
+                    
+                    let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                    
                     let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                    //gorbehviewModel.fetchCompletion(completionRequest: dataModel)
+                    
                     messagingViewModel.sendMessage(completionRequest: dataModel)
+                    
                     currentMessage = ""
+                    
                 }) {
                     Text("Send")
                         .bold()
