@@ -10,8 +10,7 @@ import SwiftUI
 
 struct MessagingView: View {
     @StateObject private var messagingViewModel = MessagingViewModel()
-    @State private var currentMessage = ""
-    
+    @State private var currentMessage = ""    
 
     var body: some View {
         VStack {
@@ -45,7 +44,7 @@ struct MessagingView: View {
                 
                 Button(action: {
                     //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
-                    let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                    let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
                     let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                     //gorbehviewModel.fetchCompletion(completionRequest: dataModel)
                     messagingViewModel.sendMessage(completionRequest: dataModel)
