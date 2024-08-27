@@ -19,7 +19,7 @@ class MessagingViewModel: ObservableObject {
     
     func sendMessage(completionRequest: CompletionsRequest)  {
         // Add the user's message to the list
-        let userMessage = MessagingModel(message: completionRequest.messages.first!, isSentByUser: true)
+        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         messages.append(userMessage)
         
         fetchCompletion(completionRequest: completionRequest)
