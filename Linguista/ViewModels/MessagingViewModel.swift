@@ -10,6 +10,7 @@ import Foundation
 import Combine
 
 class MessagingViewModel: ObservableObject {
+    
     @Published var messages: [MessagingModel] = []
     private let authService = AuthenticationService.shared
     private var cancellable: AnyCancellable?
@@ -17,6 +18,7 @@ class MessagingViewModel: ObservableObject {
     @Published var isLoading = false
     
     func sendMessage(completionRequest: CompletionsRequest)  {
+        
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         messages.append(userMessage)
@@ -26,6 +28,7 @@ class MessagingViewModel: ObservableObject {
     }
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
+        
         guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
         // https://localhost:7244/openai/completions
         // https://linguista-appservice.azurewebsites.net/openai/completions

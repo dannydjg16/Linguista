@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct MessagingView: View {
+    
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""    
 

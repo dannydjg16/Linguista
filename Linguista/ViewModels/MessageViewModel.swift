@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 
 class MessageViewModel: ObservableObject {
+    
     @Published var completionResponse: CompletionsResponse?
     @Published var errorMessage: String?
     @Published var isLoading = false

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct QuickTranslateView: View {
+    
     @State private var translationText = "Translation Text"
     @State private var isPlaceholderVisible = true
     @State private var translationResult = "See Translation"
