@@ -8,6 +8,7 @@
 import Foundation
 
 class Config {
+    
     static let shared = Config()
     
     private var config: [String: Any] = [:]

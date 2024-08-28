@@ -10,22 +10,25 @@ import Foundation
 import Combine
 
 class MessagingViewModel: ObservableObject {
+    
     @Published var messages: [MessagingModel] = []
-    private let authService = AuthenticationService.shared
-    private var cancellable: AnyCancellable?
-    @Published var completionResponse: CompletionsResponse?
     @Published var errorMessage: String?
     @Published var isLoading = false
+    private let authService = AuthenticationService.shared
+    private var cancellable: AnyCancellable?
     
     func sendMessage(completionRequest: CompletionsRequest)  {
+        
         // Add the user's message to the list
-        let userMessage = MessagingModel(message: completionRequest.messages.first!, isSentByUser: true)
+        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         messages.append(userMessage)
         
+        // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: completionRequest)
     }
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
+        
         guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
         // https://localhost:7244/openai/completions
         // https://linguista-appservice.azurewebsites.net/openai/completions
@@ -69,7 +72,6 @@ class MessagingViewModel: ObservableObject {
                         self.errorMessage = error.localizedDescription
                     }
                 }, receiveValue: { response in
-                    self.completionResponse = response
                     let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
                     let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
                     self.messages.append(responseMessageModel)
@@ -80,5 +82,3 @@ class MessagingViewModel: ObservableObject {
             cancellable?.cancel()
         }
 }
-
-
