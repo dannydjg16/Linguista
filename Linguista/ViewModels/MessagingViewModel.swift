@@ -12,10 +12,10 @@ import Combine
 class MessagingViewModel: ObservableObject {
     
     @Published var messages: [MessagingModel] = []
-    private let authService = AuthenticationService.shared
-    private var cancellable: AnyCancellable?
     @Published var errorMessage: String?
     @Published var isLoading = false
+    private let authService = AuthenticationService.shared
+    private var cancellable: AnyCancellable?
     
     func sendMessage(completionRequest: CompletionsRequest)  {
         
