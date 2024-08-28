@@ -79,5 +79,3 @@ class MessagingViewModel: ObservableObject {
             cancellable?.cancel()
         }
 }
-
-
