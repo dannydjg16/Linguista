@@ -70,7 +70,6 @@ class MessagingViewModel: ObservableObject {
                         self.errorMessage = error.localizedDescription
                     }
                 }, receiveValue: { response in
-                    self.completionResponse = response
                     let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
                     let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
                     self.messages.append(responseMessageModel)
