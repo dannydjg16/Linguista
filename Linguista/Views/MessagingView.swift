@@ -77,3 +77,9 @@ struct MessagingView: View {
         }
     }
 }
+
+struct MessagingView_Previews: PreviewProvider {
+    static var previews: some View {
+        MessagingView()
+    }
+}
