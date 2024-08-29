@@ -56,7 +56,7 @@ struct MessagingView: View {
                     // Commented out in case I every want to just test the implementation rather than specifics. Helped me once or twice so far.
                     //let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
                     
-                    let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                    let messages = [Message(role: "system", content: "Translate farsi into english, or english to farsi based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                     
                     let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                     
@@ -75,5 +75,11 @@ struct MessagingView: View {
             }
             .padding()
         }
+    }
+}
+
+struct MessagingView_Previews: PreviewProvider {
+    static var previews: some View {
+        MessagingView()
     }
 }
