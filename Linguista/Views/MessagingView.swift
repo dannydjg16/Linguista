@@ -16,7 +16,7 @@ struct MessagingView: View {
 
     var body: some View {
         List{
-            VStack {
+            
                 Section{
                     Picker("Translate Language:", selection: $languageToTranslate) {
                         ForEach(popularLanguageObjects){ language in
@@ -58,39 +58,39 @@ struct MessagingView: View {
                 }
 
                 Section {
-                    
-                }
-                HStack {
-                    TextField("Type a message", text: $currentMessage)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    Button(action: {
-                        // Commented out for when we want dynamic language conversation. Will also need to update the latin alphabet part with a better prompt.
-                        //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                    HStack {
+                        TextField("Type a message", text: $currentMessage)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        // Commented out in case I every want to just test the implementation rather than specifics. Helped me once or twice so far.
-                        //let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
-                        
-                        let messages = [Message(role: "system", content: "Translate farsi into english, or english to farsi based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
-                        
-                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                        
-                        messagingViewModel.sendMessage(completionRequest: dataModel)
-                        
-                        currentMessage = ""
-                        
-                    }) {
-                        Text("Send")
-                            .bold()
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                        Button(action: {
+                            // Commented out for when we want dynamic language conversation. Will also need to update the latin alphabet part with a better prompt.
+                            //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                            
+                            // Commented out in case I every want to just test the implementation rather than specifics. Helped me once or twice so far.
+                            //let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
+                            
+                            let messages = [Message(role: "system", content: "Translate farsi into english, or english to farsi based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                            
+                            let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                            
+                            messagingViewModel.sendMessage(completionRequest: dataModel)
+                            
+                            currentMessage = ""
+                            
+                        }) {
+                            Text("Send")
+                                .bold()
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+
                 
-            }}
+            }
     }
 }
 
