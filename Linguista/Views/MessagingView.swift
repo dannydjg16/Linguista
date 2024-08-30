@@ -12,13 +12,13 @@ struct MessagingView: View {
     
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""
-    @State private var languageToTranslate = 2
+    @State private var languageToTranslate = 1
 
     var body: some View {
         List{
             
                 Section{
-                    Picker("Translate Language:", selection: $languageToTranslate) {
+                    Picker("Translation Language:", selection: $languageToTranslate) {
                         ForEach(popularLanguageObjects){ language in
                             Text(language.name).tag(language.id)
                         }
@@ -55,9 +55,7 @@ struct MessagingView: View {
                         }
                         .padding()
                     }
-                }
 
-                Section {
                     HStack {
                         TextField("Type a message", text: $currentMessage)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -88,8 +86,6 @@ struct MessagingView: View {
                     }
                     .padding()
                 }
-
-                
             }
     }
 }
