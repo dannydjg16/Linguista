@@ -64,9 +64,6 @@ struct MessagingView: View {
                             // Commented out for when we want dynamic language conversation. Will also need to update the latin alphabet part with a better prompt.
                             //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                             
-                            // Commented out in case I every want to just test the implementation rather than specifics. Helped me once or twice so far.
-                            //let messages = [Message(role: "system", content: "translate farsi into english. Only respond using the latin alphabet"), Message(role: "user", content: "gorbeh")]
-                            
                             let messages = [Message(role: "system", content: "Translate \(getLanguageName(by: languageToTranslate)) into english, or english to \(getLanguageName(by: languageToTranslate)) based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                             
                             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
