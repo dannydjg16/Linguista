@@ -11,7 +11,7 @@ import Combine
 
 class MessagingViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = []
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
     @Published var errorMessage: String?
     @Published var isLoading = false
     private let authService = AuthenticationService.shared
