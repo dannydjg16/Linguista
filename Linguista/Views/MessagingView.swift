@@ -15,16 +15,19 @@ struct MessagingView: View {
     @State private var languageToTranslate = 1
 
     var body: some View {
-        List{
+        //List{
             
                 Section{
-                    Picker("Translation Language:", selection: $languageToTranslate) {
+                    Picker("Language: ", selection: $languageToTranslate) {
                         ForEach(popularLanguageObjects){ language in
                             Text(language.name).tag(language.id)
+                                
                         }
                     }
-                    .pickerStyle(MenuPickerStyle())
+                    .pickerStyle(NavigationLinkPickerStyle())
+                    .padding()
                 }
+        
                 Section{
                     ScrollView {
                         VStack(spacing: 10) {
@@ -61,9 +64,6 @@ struct MessagingView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
                         Button(action: {
-                            // Commented out for when we want dynamic language conversation. Will also need to update the latin alphabet part with a better prompt.
-                            //let messages = [Message(role: "system", content: "translate \(getLanguageName(by: "farsi")) into \(getLanguageName(by: "english")). Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
-                            
                             let messages = [Message(role: "system", content: "Translate \(getLanguageName(by: languageToTranslate)) into english, or english to \(getLanguageName(by: languageToTranslate)) based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                             
                             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
@@ -82,7 +82,7 @@ struct MessagingView: View {
                         }
                     }
                     .padding()
-                }
+                //}
             }
     }
     
