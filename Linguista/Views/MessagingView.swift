@@ -15,72 +15,76 @@ struct MessagingView: View {
     @State private var languageToTranslate = 1
     
     var body: some View {
-        
-        Section{
-            Picker("Language: ", selection: $languageToTranslate) {
-                ForEach(popularLanguageObjects){ language in
-                    Text(language.name).tag(language.id)
-                    
-                }
-            }
-            .pickerStyle(NavigationLinkPickerStyle())
-            .padding()
-        }
-        
-        Section{
-            ScrollView {
-                VStack(spacing: 10) {
-                    
-                    ForEach($messagingViewModel.messages, id: \.id) { $message in
+        VStack{
+            Section{
+                Picker("Language: ", selection: $languageToTranslate) {
+                    ForEach(popularLanguageObjects){ language in
+                        Text(language.name).tag(language.id)
                         
-                        HStack {
+                    }
+                }
+                .pickerStyle(NavigationLinkPickerStyle())
+                .padding(.top, -20)    // Move the section closer to the top by 10 points
+                .padding(.bottom, -20) // Move the section closer to the bottom by 10 points
+                .padding([.leading, .trailing], 16) // Regular padding on the left and right
+            }
+            
+            
+            Section{
+                ScrollView {
+                    VStack(spacing: 10) {
+                        
+                        ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
-                            if message.isSentByUser {
-                                Spacer()
+                            HStack {
                                 
-                                Text(message.message.content)
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                
-                            } else {
-                                Text(message.message.content)
-                                    .padding()
-                                    .background(Color.gray.opacity(0.2))
-                                    .cornerRadius(10)
-                                
-                                Spacer()
+                                if message.isSentByUser {
+                                    Spacer()
+                                    
+                                    Text(message.message.content)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                    
+                                } else {
+                                    Text(message.message.content)
+                                        .padding()
+                                        .background(Color.gray.opacity(0.2))
+                                        .cornerRadius(10)
+                                    
+                                    Spacer()
+                                }
                             }
                         }
+                    }
+                    .padding()
+                }
+                
+                HStack {
+                    TextField("Type a message", text: $currentMessage)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Button(action: {
+                        let messages = [Message(role: "system", content: "Translate \(getLanguageName(by: languageToTranslate)) into english, or english to \(getLanguageName(by: languageToTranslate)) based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                        
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                        
+                        messagingViewModel.sendMessage(completionRequest: dataModel)
+                        
+                        currentMessage = ""
+                        
+                    }) {
+                        Text("Send")
+                            .bold()
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
                 }
                 .padding()
             }
-            
-            HStack {
-                TextField("Type a message", text: $currentMessage)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Button(action: {
-                    let messages = [Message(role: "system", content: "Translate \(getLanguageName(by: languageToTranslate)) into english, or english to \(getLanguageName(by: languageToTranslate)) based on what word is provided. Only respond using the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
-                    
-                    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                    
-                    messagingViewModel.sendMessage(completionRequest: dataModel)
-                    
-                    currentMessage = ""
-                    
-                }) {
-                    Text("Send")
-                        .bold()
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-            }
-            .padding()
         }
     }
     
