@@ -17,6 +17,7 @@ struct MessagingView: View {
     var body: some View {
         VStack{
             Section{
+                
                 Picker("Language: ", selection: $languageToTranslate) {
                     ForEach(popularLanguageObjects){ language in
                         Text(language.name).tag(language.id)
@@ -24,8 +25,6 @@ struct MessagingView: View {
                     }
                 }
                 .pickerStyle(NavigationLinkPickerStyle())
-                .padding(.top, -20)    // Move the section closer to the top by 10 points
-                .padding(.bottom, -20) // Move the section closer to the bottom by 10 points
                 .padding([.leading, .trailing], 16) // Regular padding on the left and right
             }
             
