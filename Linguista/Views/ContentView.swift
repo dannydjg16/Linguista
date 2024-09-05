@@ -30,6 +30,13 @@ struct ContentView: View {
             }
             .navigationTitle("Linguista")
         }
+        
+        TabView{
+            LoginView()
+                .tabItem {
+                    Label("Login", systemImage: "")
+                }
+        }
     }
 }
 

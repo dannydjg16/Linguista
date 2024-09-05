@@ -32,7 +32,6 @@ struct MessagingView: View {
             Section{
                 ScrollView {
                     VStack(spacing: 10) {
-                        
                         ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
                             HStack {
