@@ -25,7 +25,9 @@ struct MessagingView: View {
                     }
                 }
                 .pickerStyle(NavigationLinkPickerStyle())
-                .padding([.leading, .trailing], 16) // Regular padding on the left and right
+                .padding([.leading, .trailing], 90)
+                .padding(.bottom, 5)
+                .padding(.top, 16)
             }
             
             
