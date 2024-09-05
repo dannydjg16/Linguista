@@ -73,7 +73,7 @@ struct ConversationView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
-                        let messages = [Message(role: "system", content: "Translate \(getLanguageName(by: languageToTranslate)) into english, or english to \(getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                         
@@ -94,11 +94,6 @@ struct ConversationView: View {
                 
             }
         }
-    }
-    
-    
-    func getLanguageName(by id: Int) -> String {
-        return popularLanguageObjects.first { $0.id == id }!.name
     }
 }
 
