@@ -1,16 +1,16 @@
 //
-//  MessagingView.swift
+//  ConversationView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 8/20/24.
+//  Created by Daniel Grant on 9/5/24.
 //
 
 import Foundation
 import SwiftUI
 
-struct MessagingView: View {
+struct ConversationView: View {
     
-    @StateObject private var messagingViewModel = MessagingViewModel()
+    @StateObject private var messagingViewModel = ConversationViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     
@@ -73,9 +73,10 @@ struct MessagingView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
-                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet."),
+                                        Message(role: "user", content: "\(currentMessage)")]
                         
-                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
                         
                         messagingViewModel.sendMessage(completionRequest: dataModel)
                         
@@ -97,7 +98,7 @@ struct MessagingView: View {
     }
 }
 
-struct MessagingView_Previews: PreviewProvider {
+struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {
         MessagingView()
     }

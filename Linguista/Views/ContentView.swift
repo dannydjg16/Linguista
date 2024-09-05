@@ -8,17 +8,19 @@ struct ContentView: View {
         
         TabView(selection: $selectedTab){
             
-            LoginView()
-                .tabItem {
-                    Label("Login", systemImage: "person.fill")
-                }
-                .tag(0)
-            
             NavigationView{
                 MessagingView()
             }
             .tabItem {
-                Label("Messaging", systemImage: "message.fill")
+                Label("Messaging", systemImage: "questionmark.bubble.fill")
+            }
+            .tag(0)
+            
+            NavigationView{
+                ConversationView()
+            }
+            .tabItem {
+                Label("Chat", systemImage: "message.fill")
             }
             .tag(1)
             
@@ -27,6 +29,12 @@ struct ContentView: View {
                     Label("Translate", systemImage: "arrow.left.arrow.right")
                 }
                 .tag(2)
+            
+            LoginView()
+                .tabItem {
+                    Label("Login", systemImage: "person.fill")
+                }
+                .tag(3)
         }.accentColor(.brown)
     }
 }
