@@ -1,16 +1,16 @@
 //
-//  MessagingView.swift
+//  ConversationView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 8/20/24.
+//  Created by Daniel Grant on 9/5/24.
 //
 
 import Foundation
 import SwiftUI
 
-struct MessagingView: View {
+struct ConversationView: View {
     
-    @StateObject private var messagingViewModel = MessagingViewModel()
+    @StateObject private var messagingViewModel = ConversationViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     
@@ -102,7 +102,7 @@ struct MessagingView: View {
     }
 }
 
-struct MessagingView_Previews: PreviewProvider {
+struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {
         MessagingView()
     }
