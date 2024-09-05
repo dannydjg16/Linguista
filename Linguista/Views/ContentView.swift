@@ -9,7 +9,9 @@ struct ContentView: View {
                 .tabItem {
                     Label("Login", systemImage: "person.fill")
                 }
-            MessagingView()
+            NavigationView{
+                MessagingView()
+            }
                 .tabItem {
                     Label("Messaging", systemImage: "")
                 }
