@@ -15,7 +15,7 @@ struct MessagingView: View {
     @State private var languageToTranslate = 1
     
     var body: some View {
-        VStack{
+        List{
             Section{
                 
                 Picker("Language: ", selection: $languageToTranslate) {
