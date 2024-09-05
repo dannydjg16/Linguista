@@ -91,6 +91,7 @@ struct MessagingView: View {
                     }
                 }
                 .padding()
+                
             }
         }
     }

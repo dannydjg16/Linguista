@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var selectedTab = 1
     
     var body: some View {
@@ -26,7 +27,7 @@ struct ContentView: View {
                     Label("Translate", systemImage: "arrow.left.arrow.right")
                 }
                 .tag(2)
-        }
+        }.accentColor(.brown)
     }
 }
 
