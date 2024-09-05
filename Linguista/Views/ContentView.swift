@@ -12,12 +12,12 @@ struct ContentView: View {
             NavigationView{
                 MessagingView()
             }
-                .tabItem {
-                    Label("Messaging", systemImage: "")
-                }
+            .tabItem {
+                Label("Messaging", systemImage: "message.fill")
+            }
             QuickTranslateView()
                 .tabItem {
-                    Label("Translate", systemImage: "")
+                    Label("Translate", systemImage: "arrow.left.arrow.right")
                 }
         }
     }
