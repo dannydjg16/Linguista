@@ -36,6 +36,14 @@ struct ContentView: View {
                 .tabItem {
                     Label("Login", systemImage: "")
                 }
+            MessagingView()
+                .tabItem {
+                    Label("Messaging", systemImage: "")
+                }
+            QuickTranslateView()
+                .tabItem {
+                    Label("Translate", systemImage: "")
+                }
         }
     }
 }
