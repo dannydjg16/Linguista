@@ -25,14 +25,19 @@ struct MessagingView: View {
                     }
                 }
                 .pickerStyle(NavigationLinkPickerStyle())
-                .padding([.leading, .trailing], 16) // Regular padding on the left and right
+                .padding([.leading, .trailing], 16)
+                .padding([.top, .bottom], 10)
+                
             }
-            
+            .background(Color.brown.opacity(0.15)) // Background color
+            .cornerRadius(10) // Rounded corners
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.brown.opacity(0.15), lineWidth: 2))
             
             Section{
                 ScrollView {
                     VStack(spacing: 10) {
-                        
                         ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
                             HStack {
@@ -42,14 +47,17 @@ struct MessagingView: View {
                                     
                                     Text(message.message.content)
                                         .padding()
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
+                                        .background(Color.white)
+                                        .foregroundColor(.black)
                                         .cornerRadius(10)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.brown.opacity(0.15), lineWidth: 2))
                                     
                                 } else {
                                     Text(message.message.content)
                                         .padding()
-                                        .background(Color.gray.opacity(0.2))
+                                        .background(Color.brown.opacity(0.2))
                                         .cornerRadius(10)
                                     
                                     Spacer()
@@ -77,12 +85,13 @@ struct MessagingView: View {
                         Text("Send")
                             .bold()
                             .padding()
-                            .background(Color.blue)
+                            .background(Color.brown)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
                 }
                 .padding()
+                
             }
         }
     }

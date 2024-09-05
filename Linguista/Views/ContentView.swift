@@ -2,34 +2,32 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var selectedTab = 1
+    
     var body: some View {
         
-        NavigationView {
-            VStack {
-                NavigationLink(destination: LoginView()) {
-                    Text("Login")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+        TabView(selection: $selectedTab){
+            
+            LoginView()
+                .tabItem {
+                    Label("Login", systemImage: "person.fill")
                 }
-                NavigationLink(destination: MessagingView()) {
-                    Text("Send a Message")
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                NavigationLink(destination: QuickTranslateView()) {
-                    Text("Quick Translate")
-                        .padding()
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
+                .tag(0)
+            
+            NavigationView{
+                MessagingView()
             }
-            .navigationTitle("Linguista")
-        }
+            .tabItem {
+                Label("Messaging", systemImage: "message.fill")
+            }
+            .tag(1)
+            
+            QuickTranslateView()
+                .tabItem {
+                    Label("Translate", systemImage: "arrow.left.arrow.right")
+                }
+                .tag(2)
+        }.accentColor(.brown)
     }
 }
 
