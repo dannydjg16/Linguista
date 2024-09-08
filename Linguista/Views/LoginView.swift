@@ -11,6 +11,7 @@ import AuthenticationServices
 struct LoginView: View {
     
     var body: some View {
+        Spacer()
             SignInWithAppleButton(
                 .signIn,
                 onRequest: { request in
@@ -27,7 +28,7 @@ struct LoginView: View {
                 }
             )
             .signInWithAppleButtonStyle(.black) // You can change to .white or .whiteOutline
-            .frame(width: 100, height: 30)
+            .frame(width: 140, height: 30)
         }
         
         func handleAuthorization(_ authorization: ASAuthorization) {
