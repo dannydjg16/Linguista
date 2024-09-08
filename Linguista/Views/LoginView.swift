@@ -27,7 +27,7 @@ struct LoginView: View {
                 }
             )
             .signInWithAppleButtonStyle(.black) // You can change to .white or .whiteOutline
-            .frame(width: 280, height: 60)
+            .frame(width: 100, height: 30)
         }
         
         func handleAuthorization(_ authorization: ASAuthorization) {
