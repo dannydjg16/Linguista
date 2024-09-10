@@ -23,6 +23,7 @@ class MessagingViewModel: ObservableObject {
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         messages.append(userMessage)
         
+        //completionRequest.messages
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: completionRequest)
     }
