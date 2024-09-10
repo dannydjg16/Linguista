@@ -15,6 +15,7 @@ struct MessagingView: View {
     @State private var languageToTranslate = 1
     
     var body: some View {
+        
         VStack{
             Section{
                 
