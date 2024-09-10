@@ -31,7 +31,7 @@ class MessagingViewModel: ObservableObject {
         
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
-        fetchCompletion(completionRequest: completionRequest)
+        fetchCompletion(completionRequest: conversationSoFar)
     }
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
