@@ -30,7 +30,7 @@ class MessagingViewModel: ObservableObject {
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
         
-        guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
+        guard let url = URL(string: "https://linguista-appservice.azurewebsites.net/openai/completions") else { return }
         // https://localhost:7244/openai/completions
         // https://linguista-appservice.azurewebsites.net/openai/completions
         
