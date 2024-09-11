@@ -28,8 +28,6 @@ class MessagingViewModel: ObservableObject {
         conversationSoFar.messages = messages.compactMap { $0.message }
         //conversationSoFar.messages.append(completionRequest.messages[1])
         
-        
-        
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: conversationSoFar)
     }
