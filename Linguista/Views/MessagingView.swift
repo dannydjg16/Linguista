@@ -106,14 +106,6 @@ struct MessagingView: View {
             }
         }
     }
-    
-    private func recalculateHeight() {
-            // Use a method to calculate how many lines of text there are
-            let numberOfLines = currentMessage.split(separator: "\n").count
-            let lineHeight: CGFloat = 20 // Approximate line height
-            let newHeight = max(40, CGFloat(numberOfLines) * lineHeight) // 40 is the min height
-            textEditorHeight = min(newHeight, 200) // Limit to max height of 200, adjust as needed
-        }
 }
 
 struct MessagingView_Previews: PreviewProvider {
