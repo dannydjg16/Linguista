@@ -80,7 +80,7 @@ struct MessagingView: View {
                     
                         .cornerRadius(8)
                         .onChange(of: currentMessage){
-                            recalculateHeight() // Adjust the height based on text changes
+                            textEditorHeight = Utilities.recalculateHeight(height: textEditorHeight, text: currentMessage) // Adjust the height based on text changes
                         }
                     
                     Button(action: {
