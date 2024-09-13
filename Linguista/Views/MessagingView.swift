@@ -13,7 +13,7 @@ struct MessagingView: View {
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
-    @State private var textEditorHeight: CGFloat = 40
+    @State private var textEditorHeight: CGFloat = 20
     
     var body: some View {
         
