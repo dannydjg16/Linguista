@@ -70,8 +70,11 @@ struct MessagingView: View {
                 }
                 
                 HStack {
-                    TextField("Type a message", text: $currentMessage)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    TextEditor(text: $currentMessage)
+                        .frame(minHeight: 40, maxHeight: .infinity) // Allows the TextEditor to expand
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(8)
                     
                     Button(action: {
                         let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
