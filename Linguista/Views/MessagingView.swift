@@ -13,6 +13,7 @@ struct MessagingView: View {
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
+    @State private var textEditorHeight: CGFloat = 40
     
     var body: some View {
         
@@ -71,10 +72,16 @@ struct MessagingView: View {
                 
                 HStack {
                     TextEditor(text: $currentMessage)
-                        .frame(minHeight: 40, maxHeight: .infinity) // Allows the TextEditor to expand
+                        .frame(height: textEditorHeight)
                         .padding()
-                        .background(Color.gray.opacity(0.2))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+                    
                         .cornerRadius(8)
+                        .onChange(of: currentMessage){
+                            recalculateHeight() // Adjust the height based on text changes
+                        }
                     
                     Button(action: {
                         let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
@@ -99,6 +106,14 @@ struct MessagingView: View {
             }
         }
     }
+    
+    private func recalculateHeight() {
+            // Use a method to calculate how many lines of text there are
+            let numberOfLines = currentMessage.split(separator: "\n").count
+            let lineHeight: CGFloat = 20 // Approximate line height
+            let newHeight = max(40, CGFloat(numberOfLines) * lineHeight) // 40 is the min height
+            textEditorHeight = min(newHeight, 200) // Limit to max height of 200, adjust as needed
+        }
 }
 
 struct MessagingView_Previews: PreviewProvider {
