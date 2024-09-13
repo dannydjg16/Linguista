@@ -13,7 +13,7 @@ struct ConversationView: View {
     @StateObject private var messagingViewModel = ConversationViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
-    @State private var textEditorHeight: CGFloat = 40
+    @State private var textEditorHeight: CGFloat = 30
     
     var body: some View {
         VStack{
