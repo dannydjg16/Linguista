@@ -49,13 +49,21 @@ struct QuickTranslateView: View {
                         let messages = [Message(role: "system", content: "translate \(Utilities.getLanguageName(by: languageToTranslate)) into \(Utilities.getLanguageName(by: languageToTranslateTo)). Only respond using the latin alphabet"), Message(role: "user", content: "\(translationText)")]
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                         viewModel.fetchCompletion(completionRequest: dataModel)
-                    }) {
+                    }).overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.brown.opacity(0.15), lineWidth: 2)) {
                         Text("Translate")
                             .padding()
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.brown.opacity(0.15), lineWidth: 2))
                     }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.brown.opacity(0.15), lineWidth: 2))
                    
                    Spacer()
                 }
