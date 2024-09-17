@@ -70,18 +70,14 @@ struct ConversationView: View {
                 }
                 
                 HStack {
-                    TextEditor(text: $currentMessage)
+                    TextField("Type a message", text: $currentMessage)
                         .frame(height: textEditorHeight)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-                    
                         .cornerRadius(8)
-                        .onChange(of: currentMessage){
-                            textEditorHeight = Utilities.recalculateHeight(height: textEditorHeight, text: currentMessage) // Adjust the height based on text changes
-                        }
-                    
+
                     Button(action: {
                         let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet."),
                                         Message(role: "user", content: "\(currentMessage)")]
