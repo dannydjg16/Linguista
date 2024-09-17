@@ -38,36 +38,46 @@ struct MessagingView: View {
                     .stroke(Color.brown.opacity(0.15), lineWidth: 2))
             
             Section{
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach($messagingViewModel.messages, id: \.id) { $message in
-                            
-                            HStack {
+                ScrollViewReader { scrollViewProxy in 
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            ForEach($messagingViewModel.messages, id: \.id) { $message in
                                 
-                                if message.isSentByUser {
-                                    Spacer()
+                                HStack {
                                     
-                                    Text(message.message.content)
-                                        .padding()
-                                        .background(Color.white)
-                                        .foregroundColor(.black)
-                                        .cornerRadius(10)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-                                    
-                                } else {
-                                    Text(message.message.content)
-                                        .padding()
-                                        .background(Color.brown.opacity(0.2))
-                                        .cornerRadius(10)
-                                    
-                                    Spacer()
+                                    if message.isSentByUser {
+                                        Spacer()
+                                        
+                                        Text(message.message.content)
+                                            .padding()
+                                            .background(Color.white)
+                                            .foregroundColor(.black)
+                                            .cornerRadius(10)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+                                        
+                                    } else {
+                                        Text(message.message.content)
+                                            .padding()
+                                            .background(Color.brown.opacity(0.2))
+                                            .cornerRadius(10)
+                                        
+                                        Spacer()
+                                    }
                                 }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
+                    .onChange(of: messagingViewModel.messages) { _ in
+                        // Scroll to the last message when new messages are added
+                        if let lastIndex = messagingViewModel.messages.indices.last {
+                            withAnimation {
+                                scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
+                            }
+                        }
+                    }
                 }
                 
                 HStack {
