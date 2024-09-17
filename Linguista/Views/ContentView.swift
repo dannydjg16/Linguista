@@ -30,7 +30,7 @@ struct ContentView: View {
                 }
                 .tag(2)
             
-            LoginView()
+            ScrollToNewView()
                 .tabItem {
                     Label("Login", systemImage: "person.fill")
                 }
