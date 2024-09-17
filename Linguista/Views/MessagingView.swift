@@ -11,6 +11,7 @@ import SwiftUI
 struct MessagingView: View {
     
     @StateObject private var messagingViewModel = MessagingViewModel()
+    @State private var messagesList: [MessagingModel] = []
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
@@ -40,8 +41,8 @@ struct MessagingView: View {
             Section{
                 ScrollViewReader { scrollViewProxy in 
                     ScrollView {
-                        VStack(spacing: 10) {
-                            ForEach($messagingViewModel.messages, id: \.id) { $message in
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach($messagesList, id: \.id) { $message in
                                 
                                 HStack {
                                     
@@ -70,9 +71,9 @@ struct MessagingView: View {
                         }
                         .padding()
                     }
-                    .onChange(of: messagingViewModel.messages) { _ in
+                    .onChange(of: messagesList) { _ in
                         // Scroll to the last message when new messages are added
-                        if let lastIndex = messagingViewModel.messages.indices.last {
+                        if let lastIndex = messagesList.indices.last {
                             withAnimation {
                                 scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
                             }
@@ -102,6 +103,8 @@ struct MessagingView: View {
                         
                         currentMessage = ""
                         
+                        messagesList = messagingViewModel.messages
+                        
                     }) {
                         Text("Send")
                             .bold()
@@ -118,8 +121,8 @@ struct MessagingView: View {
     }
 }
 
-struct MessagingView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessagingView()
-    }
-}
+//struct MessagingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessagingView()
+//    }
+//}
