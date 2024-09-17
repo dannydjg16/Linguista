@@ -110,6 +110,6 @@ struct ConversationView: View {
 
 struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagingView()
+        ConversationView()
     }
 }
