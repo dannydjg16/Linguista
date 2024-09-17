@@ -40,7 +40,7 @@ struct MessagingView: View {
             Section{
                 ScrollViewReader { scrollViewProxy in 
                     ScrollView {
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(spacing: 10) {
                             ForEach($messagingViewModel.messages, id: \.id) { $message in
                                 
                                 HStack {
