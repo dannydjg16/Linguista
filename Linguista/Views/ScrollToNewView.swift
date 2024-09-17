@@ -26,7 +26,7 @@ struct ScrollToNewView: View {
                         }
                     }
                 }
-                .onChange(of: messages) { _ in
+                .onChange(of: messages) {
                     // Scroll to the last message when new messages are added
                     if let lastIndex = messages.indices.last {
                         withAnimation {
