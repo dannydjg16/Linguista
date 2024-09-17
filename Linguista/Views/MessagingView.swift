@@ -11,7 +11,6 @@ import SwiftUI
 struct MessagingView: View {
     
     @StateObject private var messagingViewModel = MessagingViewModel()
-    @State private var messagesList: [MessagingModel] = []
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
@@ -42,7 +41,7 @@ struct MessagingView: View {
                 ScrollViewReader { scrollViewProxy in 
                     ScrollView {
                         VStack(alignment: .leading, spacing: 10) {
-                            ForEach($messagesList, id: \.id) { $message in
+                            ForEach($messagingViewModel.messages, id: \.id) { $message in
                                 
                                 HStack {
                                     
@@ -71,28 +70,16 @@ struct MessagingView: View {
                         }
                         .padding()
                     }
-                    .onChange(of: messagesList) { _ in
-                        // Scroll to the last message when new messages are added
-                        if let lastIndex = messagesList.indices.last {
-                            withAnimation {
-                                scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
-                            }
-                        }
-                    }
                 }
                 
                 HStack {
-                    TextEditor(text: $currentMessage)
+                    TextField("Type a message", text: $currentMessage)
                         .frame(height: textEditorHeight)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-                    
                         .cornerRadius(8)
-                        .onChange(of: currentMessage){
-                            textEditorHeight = Utilities.recalculateHeight(height: textEditorHeight, text: currentMessage) // Adjust the height based on text changes
-                        }
                     
                     Button(action: {
                         let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
@@ -102,9 +89,6 @@ struct MessagingView: View {
                         messagingViewModel.sendMessage(completionRequest: dataModel)
                         
                         currentMessage = ""
-                        
-                        messagesList = messagingViewModel.messages
-                        
                     }) {
                         Text("Send")
                             .bold()
@@ -121,8 +105,8 @@ struct MessagingView: View {
     }
 }
 
-//struct MessagingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MessagingView()
-//    }
-//}
+struct MessagingView_Previews: PreviewProvider {
+    static var previews: some View {
+        MessagingView()
+    }
+}
