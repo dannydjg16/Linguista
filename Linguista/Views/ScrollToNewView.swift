@@ -14,7 +14,6 @@ struct ScrollToNewView: View {
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
     
-    
     var body: some View {
         VStack {
             Section{
