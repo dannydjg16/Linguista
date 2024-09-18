@@ -89,14 +89,17 @@ struct ConversationView: View {
                     .cornerRadius(8)
                 
                 Button(action: {
-                    let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet."),
-                                    Message(role: "user", content: "\(currentMessage)")]
                     
-                    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
-                    
-                    messagingViewModel.sendMessage(completionRequest: dataModel)
-                    
-                    currentMessage = ""
+                    if !currentMessage.isEmpty {
+                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet."),
+                                        Message(role: "user", content: "\(currentMessage)")]
+                        
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
+                        
+                        messagingViewModel.sendMessage(completionRequest: dataModel)
+                        
+                        currentMessage = ""
+                    }
                     
                 }) {
                     Text("Send")
