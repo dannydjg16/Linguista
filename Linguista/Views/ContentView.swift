@@ -9,7 +9,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab){
             
             NavigationView{
-                ScrollToNewView()
+                MessagingView()
             }
             .tabItem {
                 Label("Messaging", systemImage: "questionmark.bubble.fill")
@@ -17,7 +17,7 @@ struct ContentView: View {
             .tag(0)
             
             NavigationView{
-                MessagingView()
+                ConversationView()
             }
             .tabItem {
                 Label("Chat", systemImage: "message.fill")
@@ -33,6 +33,12 @@ struct ContentView: View {
             LoginView()
                 .tabItem {
                     Label("Login", systemImage: "person.fill")
+                }
+                .tag(3)
+            
+            ScrollToNewView()
+                .tabItem {
+                    Label("test", systemImage: "testtube.2")
                 }
                 .tag(3)
         }.accentColor(.brown)
