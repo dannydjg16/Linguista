@@ -36,9 +36,9 @@ struct ConversationView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.brown.opacity(0.15), lineWidth: 2))
             
-            Section{
+            ScrollViewReader { scrollViewProxy in
                 ScrollView {
-                    VStack(spacing: 10) {
+                    VStack(alignment: .leading, spacing: 10) {
                         ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
                             HStack {
@@ -69,16 +69,28 @@ struct ConversationView: View {
                     .padding()
                 }
                 
-                HStack {
-                    TextField("Type a message", text: $currentMessage)
-                        .frame(height: textEditorHeight)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-                        .cornerRadius(8)
-
-                    Button(action: {
+                .onChange(of: $messagingViewModel.messages.count) {
+                    // Scroll to the last message when new messages are added
+                    if let lastIndex = $messagingViewModel.messages.last?.id {
+                        withAnimation {
+                            scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
+                        }
+                    }
+                }
+            }
+            
+            HStack {
+                TextField("Type a message", text: $currentMessage)
+                    .frame(height: textEditorHeight)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+                    .cornerRadius(8)
+                
+                Button(action: {
+                    
+                    if !currentMessage.isEmpty {
                         let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet."),
                                         Message(role: "user", content: "\(currentMessage)")]
                         
@@ -87,22 +99,23 @@ struct ConversationView: View {
                         messagingViewModel.sendMessage(completionRequest: dataModel)
                         
                         currentMessage = ""
-                        
-                    }) {
-                        Text("Send")
-                            .bold()
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
                     }
+                    
+                }) {
+                    Text("Send")
+                        .bold()
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
-                .padding()
-                
             }
+            .padding()
+            
         }
     }
 }
+
 
 struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {

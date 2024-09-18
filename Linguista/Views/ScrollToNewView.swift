@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct ScrollToNewView: View {
-    @State private var messages: [String] = ["Hello", "How are you?", "I'm fine, thank you!"]
-    @State private var newMessage: String = ""
     
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
-    
     
     var body: some View {
         VStack {
@@ -93,13 +90,17 @@ struct ScrollToNewView: View {
                     .cornerRadius(8)
                 
                 Button(action: {
-                    let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                     
-                    let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                    if !currentMessage.isEmpty {
+                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                        
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                        
+                        messagingViewModel.sendMessage(completionRequest: dataModel)
+                        
+                        currentMessage = ""
+                    }
                     
-                    messagingViewModel.sendMessage(completionRequest: dataModel)
-                    
-                    currentMessage = ""
                 }) {
                     Text("Send")
                         .bold()
@@ -110,13 +111,6 @@ struct ScrollToNewView: View {
                 }
             }
             .padding()
-        }
-    }
-    
-    private func sendMessage() {
-        if !newMessage.isEmpty {
-            messages.append(newMessage)
-            newMessage = ""
         }
     }
 }
