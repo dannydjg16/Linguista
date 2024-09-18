@@ -52,7 +52,7 @@ struct QuickTranslateView: View {
                     }) {
                         Text("Translate")
                             .padding()
-                            .background(Color.blue)
+                            .background(Color.brown)
                             .foregroundColor(.white)
                             .cornerRadius(5)
                     }
