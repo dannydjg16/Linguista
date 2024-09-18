@@ -40,7 +40,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("test", systemImage: "testtube.2")
                 }
-                .tag(3)
+                .tag(4)
         }.accentColor(.brown)
     }
 }
