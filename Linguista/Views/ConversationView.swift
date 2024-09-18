@@ -36,9 +36,9 @@ struct ConversationView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.brown.opacity(0.15), lineWidth: 2))
             
-            Section{
+            ScrollViewReader { scrollViewProxy in
                 ScrollView {
-                    VStack(spacing: 10) {
+                    VStack(alignment: .leading, spacing: 10) {
                         ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
                             HStack {
@@ -68,6 +68,16 @@ struct ConversationView: View {
                     }
                     .padding()
                 }
+                
+                .onChange(of: $messagingViewModel.messages.count) {
+                    // Scroll to the last message when new messages are added
+                    if let lastIndex = $messagingViewModel.messages.last?.id {
+                        withAnimation {
+                            scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
+                        }
+                    }
+                }
+            }
                 
                 HStack {
                     TextField("Type a message", text: $currentMessage)
@@ -102,7 +112,7 @@ struct ConversationView: View {
             }
         }
     }
-}
+
 
 struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {
