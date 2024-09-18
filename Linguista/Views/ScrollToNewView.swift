@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ScrollToNewView: View {
-    @State private var messages: [String] = ["Hello", "How are you?", "I'm fine, thank you!"]
-    @State private var newMessage: String = ""
-    
+
     @StateObject private var messagingViewModel = MessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
@@ -110,13 +108,6 @@ struct ScrollToNewView: View {
                 }
             }
             .padding()
-        }
-    }
-    
-    private func sendMessage() {
-        if !newMessage.isEmpty {
-            messages.append(newMessage)
-            newMessage = ""
         }
     }
 }
