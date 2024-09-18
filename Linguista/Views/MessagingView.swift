@@ -90,7 +90,7 @@ struct MessagingView: View {
                     .cornerRadius(8)
                 
                 Button(action: {
-
+                    
                     if !currentMessage.isEmpty {
                         let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
                         
