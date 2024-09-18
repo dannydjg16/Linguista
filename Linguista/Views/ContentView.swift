@@ -9,7 +9,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab){
             
             NavigationView{
-                MessagingView()
+                ScrollToNewView()
             }
             .tabItem {
                 Label("Messaging", systemImage: "questionmark.bubble.fill")
@@ -17,7 +17,7 @@ struct ContentView: View {
             .tag(0)
             
             NavigationView{
-                ConversationView()
+                MessagingView()
             }
             .tabItem {
                 Label("Chat", systemImage: "message.fill")
