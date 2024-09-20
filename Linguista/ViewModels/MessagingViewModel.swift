@@ -19,7 +19,7 @@ class MessagingViewModel: ObservableObject {
     func sendMessage(completionRequest: CompletionsRequest)  {
         
         // Add
-//        let systemMessage = MessagingModel(message: completionRequest.messages[0], isSentByUser: true)
+        let systemMessage = MessagingModel(message: completionRequest.messages[0], isSentByUser: true)
 //        messages.append(systemMessage)
         
         // Add the user's message to the list
@@ -29,6 +29,9 @@ class MessagingViewModel: ObservableObject {
         // Put together list to save messages
         var conversationSoFar = completionRequest
         conversationSoFar.messages = messages.compactMap { $0.message }
+        
+        // Add system prompt
+        conversationSoFar.messages.append(completionRequest.messages[0])
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: conversationSoFar)
