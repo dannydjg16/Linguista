@@ -26,6 +26,9 @@ class MessagingViewModel: ObservableObject {
         var conversationSoFar = completionRequest
         conversationSoFar.messages = messages.compactMap { $0.message }
         
+        // Add system prompt
+        conversationSoFar.messages.append(completionRequest.messages[0])
+        
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: conversationSoFar)
     }
