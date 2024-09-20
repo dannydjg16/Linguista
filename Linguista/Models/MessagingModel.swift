@@ -11,4 +11,5 @@ struct MessagingModel: Identifiable, Equatable {
     let id = UUID()
     let message: Message
     var isSentByUser: Bool
+    var role: String
 }
