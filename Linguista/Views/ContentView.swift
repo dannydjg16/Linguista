@@ -36,7 +36,9 @@ struct ContentView: View {
                 }
                 .tag(3)
             
-            ScrollToNewView()
+            NavigationView{
+                ScrollToNewView()
+            }
                 .tabItem {
                     Label("test", systemImage: "testtube.2")
                 }
