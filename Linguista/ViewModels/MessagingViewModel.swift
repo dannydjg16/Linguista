@@ -33,6 +33,20 @@ class MessagingViewModel: ObservableObject {
         fetchCompletion(completionRequest: conversationSoFar)
     }
     
+    
+    func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
+        guard completionRequest.messages.count > maxLength else {
+            return completionRequest
+        }
+        
+        // Make list of messages
+        let trimmedCompletionArray = [completionRequest.messages.first!] + completionRequest.messages.dropFirst().prefix(maxLength - 1)
+        // Attach trimmed list to Completion Request
+        completionRequest.messages = trimmedCompletionArray
+        
+        return completionRequest
+    }
+    
     func fetchCompletion(completionRequest: CompletionsRequest) {
         
         guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
