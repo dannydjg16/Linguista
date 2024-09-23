@@ -33,7 +33,6 @@ class MessagingViewModel: ObservableObject {
         fetchCompletion(completionRequest: conversationSoFar)
     }
     
-    
     func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
         guard completionRequest.messages.count > maxLength else {
             return completionRequest
