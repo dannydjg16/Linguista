@@ -53,15 +53,6 @@ class MessagingViewModel: ObservableObject {
         completionRequestToReturn.messages = trimmedArray
         
         return completionRequestToReturn
-        
-        // Make list of messages
-//        let trimmedCompletionArray = [completionRequest.messages.first!] + completionRequest.messages.dropFirst().prefix(maxLength - 1)
-//        // Make var to alter completionRequest list and retun that
-//        var completionRequestToReturn = completionRequest
-//        // Attach trimmed list to Completion Request
-//        completionRequestToReturn.messages = trimmedCompletionArray
-//        
-//        return completionRequestToReturn
     }
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
