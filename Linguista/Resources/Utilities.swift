@@ -21,7 +21,7 @@ struct Utilities {
         return min(newHeight, 200) // Limit to max height of 200, adjust as needed
     }
     
-    func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
+    static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
         guard completionRequest.messages.count > maxLength else {
             return completionRequest
         }
