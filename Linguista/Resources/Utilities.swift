@@ -21,18 +21,18 @@ struct Utilities {
         return min(newHeight, 200) // Limit to max height of 200, adjust as needed
     }
     
-    static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
+    static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int, savedMessages: Int) -> CompletionsRequest {
         guard completionRequest.messages.count > maxLength else {
             return completionRequest
         }
         
         // Always keep the first two elements
-        let firstTwo = completionRequest.messages.prefix(2)
+        let firstMessageCount = completionRequest.messages.prefix(savedMessages)
         
         // Calculate how many elements from the end to keep
-        let elementsFromEnd = maxLength - firstTwo.count
+        let elementsFromEnd = maxLength - firstMessageCount.count
         let lastElements = completionRequest.messages.suffix(elementsFromEnd)
-        let trimmedArray = Array(firstTwo + lastElements)
+        let trimmedArray = Array(firstMessageCount + lastElements)
         
         var completionRequestToReturn = completionRequest
         // Attach trimmed list to Completion Request
