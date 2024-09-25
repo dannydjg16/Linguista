@@ -28,6 +28,26 @@ class ConversationViewModel: ObservableObject {
         fetchCompletion(completionRequest: completionRequest)
     }
     
+    func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
+        guard completionRequest.messages.count > maxLength else {
+            return completionRequest
+        }
+        
+        // Always keep the first two elements
+        let firstTwo = completionRequest.messages.prefix(2)
+        
+        // Calculate how many elements from the end to keep
+        let elementsFromEnd = maxLength - firstTwo.count
+        let lastElements = completionRequest.messages.suffix(elementsFromEnd)
+        let trimmedArray = Array(firstTwo + lastElements)
+        
+        var completionRequestToReturn = completionRequest
+        // Attach trimmed list to Completion Request
+        completionRequestToReturn.messages = trimmedArray
+        
+        return completionRequestToReturn
+    }
+    
     func fetchCompletion(completionRequest: CompletionsRequest) {
         
         guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
