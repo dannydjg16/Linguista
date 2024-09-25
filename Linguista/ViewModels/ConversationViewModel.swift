@@ -34,7 +34,7 @@ class ConversationViewModel: ObservableObject {
         let trimmedConversation = trimMessageArray(completionRequest: conversationSoFar, maxLength: 4)
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
-        fetchCompletion(completionRequest: completionRequest)
+        fetchCompletion(completionRequest: trimmedConversation)
     }
     
     func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
