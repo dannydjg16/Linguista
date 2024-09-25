@@ -29,39 +29,10 @@ class MessagingViewModel: ObservableObject {
         // Add system prompt at the beginning of the conversation
         conversationSoFar.messages.insert(completionRequest.messages[0], at: 0)
         
-        let trimmedConversation = trimMessageArray(completionRequest: conversationSoFar, maxLength: 4)
+        let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 4, savedMessages: 1)
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: trimmedConversation)
-    }
-    
-    func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
-        guard completionRequest.messages.count > maxLength else {
-            return completionRequest
-        }
-        
-        // Always keep the first two elements
-        let firstTwo = completionRequest.messages.prefix(2)
-        
-        // Calculate how many elements from the end to keep
-        let elementsFromEnd = maxLength - firstTwo.count
-        let lastElements = completionRequest.messages.suffix(elementsFromEnd)
-        let trimmedArray = Array(firstTwo + lastElements)
-        
-        var completionRequestToReturn = completionRequest
-        // Attach trimmed list to Completion Request
-        completionRequestToReturn.messages = trimmedArray
-        
-        return completionRequestToReturn
-        
-        // Make list of messages
-//        let trimmedCompletionArray = [completionRequest.messages.first!] + completionRequest.messages.dropFirst().prefix(maxLength - 1)
-//        // Make var to alter completionRequest list and retun that
-//        var completionRequestToReturn = completionRequest
-//        // Attach trimmed list to Completion Request
-//        completionRequestToReturn.messages = trimmedCompletionArray
-//        
-//        return completionRequestToReturn
     }
     
     func fetchCompletion(completionRequest: CompletionsRequest) {

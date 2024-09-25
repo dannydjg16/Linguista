@@ -20,4 +20,24 @@ struct Utilities {
         let newHeight = max(40, CGFloat(numberOfLines) * lineHeight) // 40 is the min height
         return min(newHeight, 200) // Limit to max height of 200, adjust as needed
     }
+    
+    static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int, savedMessages: Int) -> CompletionsRequest {
+        guard completionRequest.messages.count > maxLength else {
+            return completionRequest
+        }
+        
+        // Always keep the first two elements
+        let firstMessageCount = completionRequest.messages.prefix(savedMessages)
+        
+        // Calculate how many elements from the end to keep
+        let elementsFromEnd = maxLength - firstMessageCount.count
+        let lastElements = completionRequest.messages.suffix(elementsFromEnd)
+        let trimmedArray = Array(firstMessageCount + lastElements)
+        
+        var completionRequestToReturn = completionRequest
+        // Attach trimmed list to Completion Request
+        completionRequestToReturn.messages = trimmedArray
+        
+        return completionRequestToReturn
+    }
 }
