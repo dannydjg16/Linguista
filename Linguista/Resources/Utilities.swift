@@ -28,14 +28,15 @@ struct Utilities {
         }
         
         // Always keep the first two elements
-        let firstMessageCount = completionRequest.messages.prefix(savedMessages)
+        let firstMessages = completionRequest.messages.prefix(savedMessages)
         
         // Calculate how many elements from the end to keep
-        let elementsFromEnd = maxLength - firstMessageCount.count
+        let elementsFromEnd = maxLength - firstMessages.count
         // Get last elements to send to API
         let lastElements = completionRequest.messages.suffix(elementsFromEnd)
         // combine the first and last parts of the array
-        let trimmedArray = Array(firstMessageCount + lastElements)
+        let trimmedArray = Array(firstMessages + lastElements)
+        
         
         var completionRequestToReturn = completionRequest
         // Attach trimmed list to Completion Request
