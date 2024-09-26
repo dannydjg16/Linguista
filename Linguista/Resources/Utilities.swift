@@ -31,13 +31,14 @@ struct Utilities {
         let firstMessages = completionRequest.messages.prefix(savedMessages)
         
         // Calculate how many elements from the end to keep
-        let elementsFromEnd = maxLength - firstMessages.count
+        let numberOfElementsFromEnd = maxLength - firstMessages.count
         // Get last elements to send to API
-        let lastElements = completionRequest.messages.suffix(elementsFromEnd)
-        // combine the first and last parts of the array
-        let trimmedArray = Array(firstMessages + lastElements)
+        let lastMessages = completionRequest.messages.suffix(numberOfElementsFromEnd)
         
+        // Combine the first and last messages of the array that is being trimmed to make a new array
+        let trimmedArray = Array(firstMessages + lastMessages)
         
+        // Create new CompletionRequest so that I can alter the message array
         var completionRequestToReturn = completionRequest
         // Attach trimmed list to Completion Request
         completionRequestToReturn.messages = trimmedArray
