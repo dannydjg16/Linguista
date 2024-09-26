@@ -22,6 +22,7 @@ struct Utilities {
     }
     
     static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int, savedMessages: Int) -> CompletionsRequest {
+        
         guard completionRequest.messages.count > maxLength else {
             return completionRequest
         }
@@ -31,7 +32,9 @@ struct Utilities {
         
         // Calculate how many elements from the end to keep
         let elementsFromEnd = maxLength - firstMessageCount.count
+        // Get last elements to send to API
         let lastElements = completionRequest.messages.suffix(elementsFromEnd)
+        // combine the first and last parts of the array
         let trimmedArray = Array(firstMessageCount + lastElements)
         
         var completionRequestToReturn = completionRequest
