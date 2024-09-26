@@ -31,6 +31,7 @@ class ConversationViewModel: ObservableObject {
         // Add system prompt at the beginning of the conversation
         conversationSoFar.messages.insert(completionRequest.messages[0], at: 0)
         
+        // Call trimMessageArray to limit the size of the array thats passed in.
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10, savedMessages: 1)
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
