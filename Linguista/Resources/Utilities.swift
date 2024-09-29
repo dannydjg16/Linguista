@@ -45,9 +45,10 @@ struct Utilities {
             return completionRequest
         }
         
+        let systemMessageCount = 0
         
         // Always keep the first two elements
-        let firstMessages = completionRequest.messages.prefix(savedMessages)
+        let firstMessages = completionRequest.messages.prefix(systemMessageCount)
         
         // Calculate how many elements from the end to keep
         let numberOfElementsFromEnd = maxLength - firstMessages.count
