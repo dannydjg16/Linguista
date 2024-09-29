@@ -37,4 +37,31 @@ struct Utilities {
         
         return completionRequestToReturn
     }
+    
+    // This will be the function overload to filter out by system messages and save those
+    static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
+        
+        guard completionRequest.messages.count > maxLength else {
+            return completionRequest
+        }
+        
+        
+        // Always keep the first two elements
+        let firstMessages = completionRequest.messages.prefix(savedMessages)
+        
+        // Calculate how many elements from the end to keep
+        let numberOfElementsFromEnd = maxLength - firstMessages.count
+        // Get last elements to send to API
+        let lastMessages = completionRequest.messages.suffix(numberOfElementsFromEnd)
+        
+        // Combine the first and last messages of the array that is being trimmed to make a new array
+        let trimmedArray = Array(firstMessages + lastMessages)
+        
+        // Create new CompletionRequest so that I can alter the message array
+        var completionRequestToReturn = completionRequest
+        // Attach trimmed list to Completion Request
+        completionRequestToReturn.messages = trimmedArray
+        
+        return completionRequestToReturn
+    }
 }
