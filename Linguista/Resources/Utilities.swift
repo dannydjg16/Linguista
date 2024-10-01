@@ -45,7 +45,7 @@ struct Utilities {
             return completionRequest
         }
         
-        let systemMessageCount = 0
+        let systemMessageCount = completionRequest.messages.filter{ $0.role == "system" }.count
         
         // Always keep the system elements
         let systemMessages = completionRequest.messages.prefix(systemMessageCount)
