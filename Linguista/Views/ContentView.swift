@@ -37,7 +37,7 @@ struct ContentView: View {
                 .tag(3)
             
             NavigationView{
-                ScrollToNewView()
+                UserContextMessagingView()
             }
                 .tabItem {
                     Label("test", systemImage: "testtube.2")
