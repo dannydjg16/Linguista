@@ -10,7 +10,7 @@ import SwiftUI
 
 struct UserContextMessagingView: View {
     
-    @StateObject private var messagingViewModel = MessagingViewModel()
+    @StateObject private var messagingViewModel = UserContextMessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
@@ -23,6 +23,24 @@ struct UserContextMessagingView: View {
                 Picker("Language: ", selection: $languageToTranslate) {
                     ForEach(popularLanguageObjects){ language in
                         Text(language.name).tag(language.id)
+                        
+                    }
+                }
+                .pickerStyle(NavigationLinkPickerStyle())
+                .padding([.leading, .trailing], 16)
+                .padding([.top, .bottom], 10)
+                
+            }
+            .background(Color.brown.opacity(0.15))
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+            Section{
+                
+                Picker("Prompt: ", selection: $languageToTranslate) {
+                    ForEach(conversationPromptObjects){ prompt in
+                        Text(prompt.name).tag(prompt.id)
                         
                     }
                 }
