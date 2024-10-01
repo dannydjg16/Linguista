@@ -48,15 +48,15 @@ struct Utilities {
         let systemMessageCount = 0
         
         // Always keep the system elements
-        let firstMessages = completionRequest.messages.prefix(systemMessageCount)
+        let systemMessages = completionRequest.messages.prefix(systemMessageCount)
         
-        // Calculate how many elements from the end to keep
-        let numberOfElementsFromEnd = maxLength - firstMessages.count
-        // Get last elements to send to API
-        let lastMessages = completionRequest.messages.suffix(numberOfElementsFromEnd)
+        // Calculate how many non-system elements to keep
+        let numberOfNonSystemElementsToKeep = maxLength - systemMessages.count
+        // Get non-system elements to send to API
+        let nonSystemElementsToKeep = completionRequest.messages.suffix(numberOfNonSystemElementsToKeep)
         
-        // Combine the first and last messages of the array that is being trimmed to make a new array
-        let trimmedArray = Array(firstMessages + lastMessages)
+        // Combine the system and non-system messages of the array that is being trimmed to make a new array
+        let trimmedArray = Array(systemMessages + nonSystemElementsToKeep)
         
         // Create new CompletionRequest so that I can alter the message array
         var completionRequestToReturn = completionRequest
