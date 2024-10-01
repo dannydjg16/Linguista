@@ -10,7 +10,7 @@ import Combine
 
 class UserContextMessagingViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello, use the prompt section above to choose the context of your conversation"), isSentByUser: false)]
     @Published var errorMessage: String?
     @Published var isLoading = false
     private let authService = AuthenticationService.shared
@@ -30,7 +30,7 @@ class UserContextMessagingViewModel: ObservableObject {
         conversationSoFar.messages.insert(completionRequest.messages[0], at: 0)
         
         // Call trimMessageArray to limit the size of the array thats passed in.
-        let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 9)
+        let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 8)
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
         fetchCompletion(completionRequest: trimmedConversation)
