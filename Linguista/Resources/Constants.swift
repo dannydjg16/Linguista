@@ -16,6 +16,16 @@ let predefinedPrompts: [String] = [
     "Have a Conversation in"
 ]
 
+let conversationPrompts: [String] = [
+    "Ordering at a restaurant",
+    "Meeting someone for the first time",
+    "Asking for directions",
+    "Checking into a hotel"
+]
+
+let conversationPromptObjects: [Language] = conversationPrompts.enumerated().map { (index, name) in
+    Language(id: index + 1, name: name)
+}
 
 let popularLanguages = [
     "Farsi",
