@@ -47,7 +47,7 @@ struct Utilities {
         
         let systemMessageCount = 0
         
-        // Always keep the first two elements
+        // Always keep the system elements
         let firstMessages = completionRequest.messages.prefix(systemMessageCount)
         
         // Calculate how many elements from the end to keep
