@@ -47,8 +47,6 @@ struct Utilities {
         
         // Always keep the system elements
         let systemMessages = completionRequest.messages.filter{ $0.role == "system" }
-        // Get the number of system messages
-        let systemMessageCount = systemMessages.count
         
         // Calculate how many non-system elements to keep
         let numberOfNonSystemElementsToKeep = maxLength - systemMessages.count
