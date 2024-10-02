@@ -13,6 +13,7 @@ struct UserContextMessagingView: View {
     @StateObject private var messagingViewModel = UserContextMessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
+    @State private var conversationPromptInt = 1
     @State private var textEditorHeight: CGFloat = 20
     
     var body: some View {
@@ -38,7 +39,7 @@ struct UserContextMessagingView: View {
                     .stroke(Color.brown.opacity(0.15), lineWidth: 2))
             Section{
                 
-                Picker("Prompt: ", selection: $languageToTranslate) {
+                Picker("Prompt: ", selection: $conversationPromptInt) {
                     ForEach(conversationPromptObjects){ prompt in
                         Text(prompt.name).tag(prompt.id)
                         
