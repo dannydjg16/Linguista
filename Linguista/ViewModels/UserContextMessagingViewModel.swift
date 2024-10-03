@@ -19,7 +19,7 @@ class UserContextMessagingViewModel: ObservableObject {
     func sendMessage(completionRequest: CompletionsRequest)  {
         
         // Add the user's message to the list
-        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
+        let userMessage = MessagingModel(message: completionRequest.messages[2], isSentByUser: true)
         messages.append(userMessage)
         
         // Put together list to save messages
@@ -28,6 +28,7 @@ class UserContextMessagingViewModel: ObservableObject {
         
         // Add system prompt at the beginning of the conversation
         conversationSoFar.messages.insert(completionRequest.messages[0], at: 0)
+        conversationSoFar.messages.insert(completionRequest.messages[1], at: 1)
         
         // Call trimMessageArray to limit the size of the array thats passed in.
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 8)
