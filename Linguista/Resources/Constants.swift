@@ -23,8 +23,8 @@ let conversationPrompts: [String] = [
     "Checking into a hotel"
 ]
 
-let conversationPromptObjects: [Language] = conversationPrompts.enumerated().map { (index, name) in
-    Language(id: index + 1, name: name)
+let conversationPromptObjects: [Prompt] = conversationPrompts.enumerated().map { (index, name) in
+    Prompt(id: index + 1, name: name)
 }
 
 let popularLanguages = [
