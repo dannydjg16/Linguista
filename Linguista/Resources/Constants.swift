@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 let conversationPrompts: [String] = [
+    "Having a lesson with a language tutor",
     "Ordering at a restaurant",
     "Meeting someone for the first time",
     "Asking for directions",
