@@ -8,14 +8,6 @@
 import Foundation
 import SwiftUI
 
-let predefinedPrompts: [String] = [
-    "Translate a word to English from",
-    "Translate a sentence to English from",
-    "Translate a word from English to",
-    "Translate a sentence from English to",
-    "Have a Conversation in"
-]
-
 let conversationPrompts: [String] = [
     "Ordering at a restaurant",
     "Meeting someone for the first time",
