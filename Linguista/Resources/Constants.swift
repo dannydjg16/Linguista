@@ -8,14 +8,17 @@
 import Foundation
 import SwiftUI
 
-let predefinedPrompts: [String] = [
-    "Translate a word to English from",
-    "Translate a sentence to English from",
-    "Translate a word from English to",
-    "Translate a sentence from English to",
-    "Have a Conversation in"
+let conversationPrompts: [String] = [
+    "Having a lesson with a language tutor",
+    "Ordering at a restaurant",
+    "Meeting someone for the first time",
+    "Asking for directions",
+    "Checking into a hotel"
 ]
 
+let conversationPromptObjects: [Prompt] = conversationPrompts.enumerated().map { (index, name) in
+    Prompt(id: index + 1, name: name)
+}
 
 let popularLanguages = [
     "Farsi",

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedTab = 0
+    @State private var selectedTab = 4
     
     var body: some View {
         
@@ -36,11 +36,18 @@ struct ContentView: View {
                 }
                 .tag(3)
             
+//            NavigationView{
+//                UserContextMessagingView()
+//            }
+//                .tabItem {
+//                    Label("test", systemImage: "testtube.2")
+//                }
+//                .tag(4)
             NavigationView{
-                ScrollToNewView()
+                TestView()
             }
                 .tabItem {
-                    Label("test", systemImage: "testtube.2")
+                    Label("a", systemImage: "testtube.2")
                 }
                 .tag(4)
         }.accentColor(.brown)

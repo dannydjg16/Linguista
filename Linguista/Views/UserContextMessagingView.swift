@@ -1,26 +1,48 @@
 //
-//  ScrollToNewView.swift
+//  UserContextMessagingView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 9/16/24.
+//  Created by Daniel Grant on 10/1/24.
 //
 
+import Foundation
 import SwiftUI
 
-struct ScrollToNewView: View {
+struct UserContextMessagingView: View {
     
-    @StateObject private var messagingViewModel = MessagingViewModel()
+    @StateObject private var messagingViewModel = UserContextMessagingViewModel()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
+    @State private var conversationPromptInt = 1
     @State private var textEditorHeight: CGFloat = 20
+    @State private var showCustomLanguageField: Bool = false
+
     
     var body: some View {
-        VStack {
+        
+        VStack{
             Section{
                 
                 Picker("Language: ", selection: $languageToTranslate) {
                     ForEach(popularLanguageObjects){ language in
                         Text(language.name).tag(language.id)
+                    }
+                }
+                .pickerStyle(NavigationLinkPickerStyle())
+                .padding([.leading, .trailing], 16)
+                .padding([.top, .bottom], 10)
+                
+            }
+            .background(Color.brown.opacity(0.15))
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+            Section{
+                
+                Picker("Prompt: ", selection: $conversationPromptInt) {
+                    ForEach(conversationPromptObjects){ prompt in
+                        Text(prompt.name).tag(prompt.id)
                         
                     }
                 }
@@ -34,8 +56,6 @@ struct ScrollToNewView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-            
-            
             
             ScrollViewReader { scrollViewProxy in
                 ScrollView {
@@ -79,8 +99,8 @@ struct ScrollToNewView: View {
                 }
             }
             
-            // Text field and send button
             HStack {
+                
                 TextField("Type a message", text: $currentMessage)
                     .frame(height: textEditorHeight)
                     .padding()
@@ -92,7 +112,9 @@ struct ScrollToNewView: View {
                 Button(action: {
                     
                     if !currentMessage.isEmpty {
-                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. The response should contain only the direct translation and it should be written in the latin alphabet"), Message(role: "user", content: "\(currentMessage)")]
+                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. Transliterate the response into latin letters. I cant read letters in other languages. Do not include letters from other alphabets. Only the latin alphabet"),
+                                        Message(role: "system", content: "\(Utilities.getPromptById(by: conversationPromptInt))"),
+                                        Message(role: "user", content: "\(currentMessage)")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                         
@@ -111,12 +133,14 @@ struct ScrollToNewView: View {
                 }
             }
             .padding()
+            
         }
     }
 }
 
-struct ScrollToNewView_Previews: PreviewProvider {
+
+struct UserContextMessagingView_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollToNewView()
+        MessagingView()
     }
 }

@@ -13,12 +13,8 @@ struct Utilities {
         return popularLanguageObjects.first { $0.id == id }!.name
     }
     
-    static func recalculateHeight(height: CGFloat, text: String) -> CGFloat {
-        // Use a method to calculate how many lines of text there are
-        let numberOfLines = text.split(separator: "\n").count
-        let lineHeight: CGFloat = 20 // Approximate line height
-        let newHeight = max(40, CGFloat(numberOfLines) * lineHeight) // 40 is the min height
-        return min(newHeight, 200) // Limit to max height of 200, adjust as needed
+    static func getPromptById(by id: Int) -> String {
+        return conversationPromptObjects.first { $0.id == id }!.name
     }
     
     static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int, savedMessages: Int) -> CompletionsRequest {
@@ -37,6 +33,32 @@ struct Utilities {
         
         // Combine the first and last messages of the array that is being trimmed to make a new array
         let trimmedArray = Array(firstMessages + lastMessages)
+        
+        // Create new CompletionRequest so that I can alter the message array
+        var completionRequestToReturn = completionRequest
+        // Attach trimmed list to Completion Request
+        completionRequestToReturn.messages = trimmedArray
+        
+        return completionRequestToReturn
+    }
+    
+    // This will be the function overload to filter out by system messages and save those
+    static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int) -> CompletionsRequest {
+        
+        guard completionRequest.messages.count > maxLength else {
+            return completionRequest
+        }
+        
+        // Always keep the system elements
+        let systemMessages = completionRequest.messages.filter{ $0.role == "system" }
+        
+        // Calculate how many non-system elements to keep
+        let numberOfNonSystemElementsToKeep = maxLength - systemMessages.count
+        // Get non-system elements to send to API
+        let nonSystemElementsToKeep = completionRequest.messages.suffix(numberOfNonSystemElementsToKeep)
+        
+        // Combine the system and non-system messages of the array that is being trimmed to make a new array
+        let trimmedArray = Array(systemMessages + nonSystemElementsToKeep)
         
         // Create new CompletionRequest so that I can alter the message array
         var completionRequestToReturn = completionRequest
