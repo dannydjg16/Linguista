@@ -20,7 +20,7 @@ struct TestView: View {
                     Text(language.name).tag(language.id)
                 }
                 // Add an "Other" option
-                Text("Other").tag("Other")
+                Text("Other").tag(200)
             }
             .pickerStyle(NavigationLinkPickerStyle())
             .padding([.leading, .trailing], 16)
