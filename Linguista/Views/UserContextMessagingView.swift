@@ -15,6 +15,8 @@ struct UserContextMessagingView: View {
     @State private var languageToTranslate = 1
     @State private var conversationPromptInt = 1
     @State private var textEditorHeight: CGFloat = 20
+    @State private var showCustomLanguageField: Bool = false
+
     
     var body: some View {
         

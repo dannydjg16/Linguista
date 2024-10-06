@@ -36,13 +36,20 @@ struct ContentView: View {
                 }
                 .tag(3)
             
+//            NavigationView{
+//                UserContextMessagingView()
+//            }
+//                .tabItem {
+//                    Label("test", systemImage: "testtube.2")
+//                }
+//                .tag(4)
             NavigationView{
-                UserContextMessagingView()
+                ScrollToNewView()
             }
                 .tabItem {
-                    Label("test", systemImage: "testtube.2")
+                    Label("a", systemImage: "testtube.2")
                 }
-                .tag(4)
+                .tag(5)
         }.accentColor(.brown)
     }
 }
