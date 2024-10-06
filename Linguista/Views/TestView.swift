@@ -1,13 +1,13 @@
 //
-//  ScrollToNewView.swift
+//  TestView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 9/16/24.
+//  Created by Daniel Grant on 10/6/24.
 //
 
 import SwiftUI
 
-struct ScrollToNewView: View {
+struct TestView: View {
     
     @State private var languageToTranslate: String = ""
     @State private var customLanguage: String = ""
@@ -40,8 +40,8 @@ struct ScrollToNewView: View {
 }
 
 
-struct ScrollToNewView_Previews: PreviewProvider {
+struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollToNewView()
+        TestView()
     }
 }
