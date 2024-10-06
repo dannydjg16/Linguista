@@ -24,7 +24,6 @@ struct UserContextMessagingView: View {
                 Picker("Language: ", selection: $languageToTranslate) {
                     ForEach(popularLanguageObjects){ language in
                         Text(language.name).tag(language.id)
-                        
                     }
                 }
                 .pickerStyle(NavigationLinkPickerStyle())
