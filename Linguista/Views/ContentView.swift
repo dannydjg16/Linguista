@@ -44,12 +44,12 @@ struct ContentView: View {
 //                }
 //                .tag(4)
             NavigationView{
-                ScrollToNewView()
+                TestView()
             }
                 .tabItem {
                     Label("a", systemImage: "testtube.2")
                 }
-                .tag(5)
+                .tag(4)
         }.accentColor(.brown)
     }
 }
