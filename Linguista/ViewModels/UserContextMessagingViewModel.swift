@@ -39,7 +39,7 @@ class UserContextMessagingViewModel: ObservableObject {
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
         
-        guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
+        guard let url = URL(string: localBaseUrl + completionsEndpoint) else { return }
         
         authService.getAccessToken { [weak self] accessToken in
             guard let self = self, let accessToken = accessToken else {
