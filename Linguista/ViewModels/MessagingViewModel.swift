@@ -39,8 +39,6 @@ class MessagingViewModel: ObservableObject {
     func fetchCompletion(completionRequest: CompletionsRequest) {
         
         guard let url = URL(string: "https://localhost:7244/openai/completions") else { return }
-        // https://localhost:7244/openai/completions
-        // https://linguista-appservice.azurewebsites.net/openai/completions
         
         authService.getAccessToken { [weak self] accessToken in
             guard let self = self, let accessToken = accessToken else {
