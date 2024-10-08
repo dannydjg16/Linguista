@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+let localBaseUrl = "https://localhost:7244"
+let apiBaseUrl = "https://linguista-appservice.azurewebsites.net"
+let completionsEndpoint = "/openai/completions"
+
 let conversationPrompts: [String] = [
     "Having a lesson with a language tutor",
     "Ordering at a restaurant",
