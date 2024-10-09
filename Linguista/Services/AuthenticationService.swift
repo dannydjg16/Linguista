@@ -13,7 +13,7 @@ class AuthenticationService {
     
     static let shared = AuthenticationService()
     private var accessToken: String?
-    private let tokenURL = "https://dev-7824301.okta.com/oauth2/default/v1/token"
+    private let tokenURL = authBaseUrl + authTokenEndpoint
     private let clientID = Config.shared.value(forKey: "ClientID")!
     private let clientSecret = Config.shared.value(forKey: "ClientSecret")!
     
