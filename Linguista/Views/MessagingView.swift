@@ -96,8 +96,10 @@ struct MessagingView: View {
                                         Message(role: "user", content: "\(currentMessage)")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                        Task{
+                            await messagingViewModel.sendMessage(completionRequest: dataModel)
+                        }
                         
-                        messagingViewModel.sendMessage(completionRequest: dataModel)
                         
                         currentMessage = ""
                     }

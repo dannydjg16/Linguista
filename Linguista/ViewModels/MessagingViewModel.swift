@@ -14,9 +14,10 @@ class MessagingViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var isLoading = false
     private let authService = AuthenticationService.shared
+    private let completionsService = CompletionsService.shared
     private var cancellable: AnyCancellable?
     
-    func sendMessage(completionRequest: CompletionsRequest)  {
+    func sendMessage(completionRequest: CompletionsRequest) async  {
         
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
@@ -33,7 +34,14 @@ class MessagingViewModel: ObservableObject {
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 5, savedMessages: 1)
         
         // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
-        fetchCompletion(completionRequest: trimmedConversation)
+        //fetchCompletion(completionRequest: trimmedConversation)
+        do{
+            let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
+            //return response
+        } catch {
+            
+        }
+        
     }
     
     func fetchCompletion(completionRequest: CompletionsRequest) {
