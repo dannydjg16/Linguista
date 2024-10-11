@@ -33,67 +33,16 @@ class MessagingViewModel: ObservableObject {
         // Call trimMessageArray to limit the size of the array thats passed in.
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 5, savedMessages: 1)
         
-        // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
-        //fetchCompletion(completionRequest: trimmedConversation)
         do{
+            
             let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
-            //return response
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
+            self.messages.append(responseMessageModel)
+            
         } catch {
-            
+            // Do Error Handling
         }
         
     }
-    
-    func fetchCompletion(completionRequest: CompletionsRequest) {
-        
-        guard let url = URL(string: localBaseUrl + completionsEndpoint) else { return }
-        
-        authService.getAccessToken { [weak self] accessToken in
-            guard let self = self, let accessToken = accessToken else {
-                DispatchQueue.main.async {
-                    self?.errorMessage = "Failed to retrieve access token"
-                }
-                return
-            }
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            
-            do {
-                let jsonData = try JSONEncoder().encode(completionRequest)
-                request.httpBody = jsonData
-            } catch {
-                self.errorMessage = "Failed to encode requset: \(error.localizedDescription)"
-                return
-            }
-            
-            isLoading = true
-            errorMessage = nil
-            
-            let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
-            
-            cancellable = session.dataTaskPublisher(for: request)
-                .map { $0.data }
-                .decode(type: CompletionsResponse.self, decoder: JSONDecoder())
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { completion in
-                    self.isLoading = false
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self.errorMessage = error.localizedDescription
-                    }
-                }, receiveValue: { response in
-                    let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-                    let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-                    self.messages.append(responseMessageModel)
-                })
-        }
-    }
-        deinit {
-            cancellable?.cancel()
-        }
 }
