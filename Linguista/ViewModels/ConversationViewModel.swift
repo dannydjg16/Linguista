@@ -19,7 +19,7 @@ class ConversationViewModel: ObservableObject {
     private let completionsService = CompletionsService.shared
     private var cancellable: AnyCancellable?
     
-    func sendMessage(completionRequest: CompletionsRequest)  {
+    func sendMessage(completionRequest: CompletionsRequest) async {
         
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
@@ -35,8 +35,19 @@ class ConversationViewModel: ObservableObject {
         // Call trimMessageArray to limit the size of the array thats passed in.
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10, savedMessages: 1)
         
-        // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
-        fetchCompletion(completionRequest: trimmedConversation)
+        do {
+            
+            let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
+            DispatchQueue.main.async {
+                self.messages.append(responseMessageModel)
+            }
+            //self.messages.append(responseMessageModel)
+            
+        } catch {
+            // Do Error Handling
+        }
     }
     
 }
