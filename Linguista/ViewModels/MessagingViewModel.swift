@@ -21,6 +21,7 @@ class MessagingViewModel: ObservableObject {
         
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
+        
         DispatchQueue.main.async {
             self.messages.append(userMessage)
         }
@@ -36,7 +37,6 @@ class MessagingViewModel: ObservableObject {
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 5, savedMessages: 1)
         
         do {
-            
             let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
