@@ -16,63 +16,6 @@ class CompletionsService: ObservableObject {
     private let authService = AuthenticationService.shared
     private var cancellable: AnyCancellable?
     
-//    func fetchCompletion(completionRequest: CompletionsRequest) -> CompletionsResponse {
-//        
-//        guard let url = URL(string: localBaseUrl + completionsEndpoint) else { return }
-//        
-//        authService.getAccessToken { [weak self] accessToken in
-//            guard let self = self, let accessToken = accessToken else {
-//                DispatchQueue.main.async {
-//                    self?.errorMessage = "Failed to retrieve access token"
-//                }
-//                return
-//            }
-//            
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-//            
-//            do {
-//                let jsonData = try JSONEncoder().encode(completionRequest)
-//                request.httpBody = jsonData
-//            } catch {
-//                self.errorMessage = "Failed to encode requset: \(error.localizedDescription)"
-//                return
-//            }
-//            
-//            isLoading = true
-//            errorMessage = nil
-//            
-//            let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
-//            
-//            cancellable = session.dataTaskPublisher(for: request)
-//                .map { $0.data }
-//                .decode(type: CompletionsResponse.self, decoder: JSONDecoder())
-//                .receive(on: DispatchQueue.main)
-//                .sink(receiveCompletion: { completion in
-//                    self.isLoading = false
-//                    switch completion {
-//                    case .finished:
-//                        break
-//                    case .failure(let error):
-//                        self.errorMessage = error.localizedDescription
-//                    }
-//                }, receiveValue: { response in
-//                    completion(.s)
-//                    return response
-//                    
-//                    //let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-//                    //let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-//                    //self.messages.append(responseMessageModel)
-//                })
-//        }
-//    }
-//        deinit {
-//            cancellable?.cancel()
-//        }
-    
-    
     func fetchCompletion(completionRequest: CompletionsRequest) async throws -> CompletionsResponse {
         
         guard let url = URL(string: localBaseUrl + completionsEndpoint) else {
@@ -100,5 +43,13 @@ class CompletionsService: ObservableObject {
         
         isLoading = false
         return response
+    }
+}
+
+class URLSessionPinningDelegate: NSObject, URLSessionDelegate {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        // Disable SSL certificate validation for local development
+        let urlCredential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+        completionHandler(.useCredential, urlCredential)
     }
 }
