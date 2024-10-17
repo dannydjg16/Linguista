@@ -11,12 +11,9 @@ import Combine
 class UserContextMessagingViewModel: ObservableObject {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello, use the prompt section above to choose the context of your conversation"), isSentByUser: false)]
-    @Published var errorMessage: String?
-    @Published var isLoading = false
-    private let authService = AuthenticationService.shared
-    private var cancellable: AnyCancellable?
+    private let completionsService = CompletionsService.shared
     
-    func sendMessage(completionRequest: CompletionsRequest)  {
+    func sendMessage(completionRequest: CompletionsRequest) async {
         
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[2], isSentByUser: true)
@@ -33,60 +30,16 @@ class UserContextMessagingViewModel: ObservableObject {
         // Call trimMessageArray to limit the size of the array thats passed in.
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 8)
         
-        // This gets the completion response and adds that message to the array of messages(which ends up getting displayed by the view)
-        fetchCompletion(completionRequest: trimmedConversation)
-    }
-    
-    func fetchCompletion(completionRequest: CompletionsRequest) {
-        
-        guard let url = URL(string: localBaseUrl + completionsEndpoint) else { return }
-        
-        authService.getAccessToken { [weak self] accessToken in
-            guard let self = self, let accessToken = accessToken else {
-                DispatchQueue.main.async {
-                    self?.errorMessage = "Failed to retrieve access token"
-                }
-                return
+        do {
+            
+            let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
+            DispatchQueue.main.async {
+                self.messages.append(responseMessageModel)
             }
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            
-            do {
-                let jsonData = try JSONEncoder().encode(completionRequest)
-                request.httpBody = jsonData
-            } catch {
-                self.errorMessage = "Failed to encode requset: \(error.localizedDescription)"
-                return
-            }
-            
-            isLoading = true
-            errorMessage = nil
-            
-            let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
-            
-            cancellable = session.dataTaskPublisher(for: request)
-                .map { $0.data }
-                .decode(type: CompletionsResponse.self, decoder: JSONDecoder())
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { completion in
-                    self.isLoading = false
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self.errorMessage = error.localizedDescription
-                    }
-                }, receiveValue: { response in
-                    let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-                    let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-                    self.messages.append(responseMessageModel)
-                })
+        } catch {
+            // Do Error Handling
         }
     }
-        deinit {
-            cancellable?.cancel()
-        }
 }

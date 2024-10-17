@@ -97,7 +97,7 @@ struct MessagingView: View {
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
                         
-                        Task{
+                        Task {
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
                         

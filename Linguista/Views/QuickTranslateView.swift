@@ -48,7 +48,11 @@ struct QuickTranslateView: View {
                     Button(action: {
                         let messages = [Message(role: "system", content: "translate \(Utilities.getLanguageName(by: languageToTranslate)) into \(Utilities.getLanguageName(by: languageToTranslateTo)). Only respond using the latin alphabet"), Message(role: "user", content: "\(translationText)")]
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-                        viewModel.fetchCompletion(completionRequest: dataModel)
+                        
+                        Task {
+                            await viewModel.fetchCompletion(completionRequest: dataModel)
+                        }
+                        
                     }) {
                         Text("Translate")
                             .padding()

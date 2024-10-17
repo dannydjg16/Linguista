@@ -12,15 +12,9 @@ import Combine
 class ConversationViewModel: ObservableObject {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Let's have a conversation. If you have any questions, feel free to ask!"), isSentByUser: false), MessagingModel(message: Message(role: "user", content: "How has your day been?"), isSentByUser: false)]
-    
-    @Published var errorMessage: String?
-    @Published var isLoading = false
-    private let authService = AuthenticationService.shared
     private let completionsService = CompletionsService.shared
-    private var cancellable: AnyCancellable?
     
     func sendMessage(completionRequest: CompletionsRequest) async {
-        
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         messages.append(userMessage)
@@ -42,9 +36,7 @@ class ConversationViewModel: ObservableObject {
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             DispatchQueue.main.async {
                 self.messages.append(responseMessageModel)
-            }
-            //self.messages.append(responseMessageModel)
-            
+            }            
         } catch {
             // Do Error Handling
         }

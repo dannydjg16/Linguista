@@ -11,11 +11,7 @@ import Combine
 class MessagingViewModel: ObservableObject {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
-    @Published var errorMessage: String?
-    @Published var isLoading = false
-    private let authService = AuthenticationService.shared
     private let completionsService = CompletionsService.shared
-    private var cancellable: AnyCancellable?
     
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
@@ -42,9 +38,7 @@ class MessagingViewModel: ObservableObject {
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             DispatchQueue.main.async {
                 self.messages.append(responseMessageModel)
-            }
-            //self.messages.append(responseMessageModel)
-            
+            }            
         } catch {
             // Do Error Handling
         }
