@@ -30,7 +30,7 @@ class MessagingViewModel: ObservableObject {
         
         // Put together list to save messages
         var conversationSoFar = completionRequest
-        //
+        // Keep completion request data, but update the message array to pass forward.
         conversationSoFar.messages = messages.compactMap { $0.message }
         
         // Add system prompt at the beginning of the conversation
