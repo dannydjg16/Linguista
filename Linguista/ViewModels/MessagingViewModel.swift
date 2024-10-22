@@ -18,12 +18,23 @@ class MessagingViewModel: ObservableObject {
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             self.messages.append(userMessage)
-        }
+        //}
         
         // Put together list to save messages
         var conversationSoFar = completionRequest
+        // Here, completionRequest has what is sent over from the view. This is the instruction to the system and the user message.
+            // It does NOT have the message above(the one to the user. Im not sure if this one is needed)
+        
+        
+        // What is needed to send to open ai
+            // Definitely the original system message every time. SHould be at the top. This is the most important instruction for the ai.
+            
+            //
+        
+        // Conversation so far went from 2 items to 1 here. user message was removed.
+            // Below, at this point(when screen first used, "messages" only has the message above.)
         conversationSoFar.messages = messages.compactMap { $0.message }
         
         // Add system prompt at the beginning of the conversation
