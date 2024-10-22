@@ -22,17 +22,11 @@ class MessagingViewModel: ObservableObject {
         // Identify System Message for use later
         let systemMessageInRequest = completionRequest.messages[0]
         
-        // Create message
-        let systemMessage = MessagingModel(message: systemMessageInRequest, isSentByUser: true)
-        
         // Identify Users Message for use later
-            // This might need to be array length - 1, not just the item at index 1
         let userMessage = MessagingModel(message: completionRequest.messages.last!, isSentByUser: true)
         
         // Add user message to the message array that the user can see.
-        //DispatchQueue.main.async {
-            self.messages.append(userMessage)
-        //}
+        self.messages.append(userMessage)
         
         // Put together list to save messages
         var conversationSoFar = completionRequest
@@ -49,9 +43,9 @@ class MessagingViewModel: ObservableObject {
             let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-            DispatchQueue.main.async {
-                self.messages.append(responseMessageModel)
-            }            
+            // Add response to message array
+            self.messages.append(responseMessageModel)
+            
         } catch {
             // Do Error Handling
         }
