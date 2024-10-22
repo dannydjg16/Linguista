@@ -16,14 +16,18 @@ class MessagingViewModel: ObservableObject {
     // Might be best to handle this stuff in two parts. 1 to handle the display stuff for the user and 1 to handle the api stuff.
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
+        if (completionRequest.messages.count == 0){
+            return
+        }
         // Identify System Message for use later
         let systemMessageInRequest = completionRequest.messages[0]
         
         // Create message
         let systemMessage = MessagingModel(message: systemMessageInRequest, isSentByUser: true)
+        
         // Identify Users Message for use later
             // This might need to be array length - 1, not just the item at index 1
-        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
+        let userMessage = MessagingModel(message: completionRequest.messages.last!, isSentByUser: true)
         
         // Add user message to the message array that the user can see.
         //DispatchQueue.main.async {
@@ -51,6 +55,5 @@ class MessagingViewModel: ObservableObject {
         } catch {
             // Do Error Handling
         }
-        
     }
 }
