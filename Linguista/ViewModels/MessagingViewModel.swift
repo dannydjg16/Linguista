@@ -13,19 +13,19 @@ class MessagingViewModel: ObservableObject {
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
     private let completionsService = CompletionsService.shared
     
+    // Might be best to handle this stuff in two parts. 1 to handle the display stuff for the user and 1 to handle the api stuff.
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
         // Identify System Message for use later
         let systemMessageInRequest = completionRequest.messages[0]
-        let systemMessage = MessagingModel(message: completionRequest.messages[0], isSentByUser: true)
         
+        // Create message
+        let systemMessage = MessagingModel(message: systemMessageInRequest, isSentByUser: true)
         // Identify Users Message for use later
-        let userMessage = MessagingModel(message: systemMessageInRequest, isSentByUser: true)
-        
-        
+            // This might need to be array length - 1, not just the item at index 1
+        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         
         // Add user message to the message array that the user can see.
-        // this will also allow the user message to be sent to the ai when messages gets mapped to conversationSoFAr
         //DispatchQueue.main.async {
             self.messages.append(userMessage)
         //}
