@@ -15,30 +15,28 @@ class MessagingViewModel: ObservableObject {
     
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
-        // Add the user's message to the list
-        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
+        // Identify System Message for use later
+        let systemMessageInRequest = completionRequest.messages[0]
+        let systemMessage = MessagingModel(message: completionRequest.messages[0], isSentByUser: true)
         
+        // Identify Users Message for use later
+        let userMessage = MessagingModel(message: systemMessageInRequest, isSentByUser: true)
+        
+        
+        
+        // Add user message to the message array that the user can see.
+        // this will also allow the user message to be sent to the ai when messages gets mapped to conversationSoFAr
         //DispatchQueue.main.async {
             self.messages.append(userMessage)
         //}
         
         // Put together list to save messages
         var conversationSoFar = completionRequest
-        // Here, completionRequest has what is sent over from the view. This is the instruction to the system and the user message.
-            // It does NOT have the message above(the one to the user. Im not sure if this one is needed)
-        
-        
-        // What is needed to send to open ai
-            // Definitely the original system message every time. SHould be at the top. This is the most important instruction for the ai.
-            
-            //
-        
-        // Conversation so far went from 2 items to 1 here. user message was removed.
-            // Below, at this point(when screen first used, "messages" only has the message above.)
+        //
         conversationSoFar.messages = messages.compactMap { $0.message }
         
         // Add system prompt at the beginning of the conversation
-        conversationSoFar.messages.insert(completionRequest.messages[0], at: 0)
+        conversationSoFar.messages.insert(systemMessageInRequest, at: 0)
         
         // Call trimMessageArray to limit the size of the array thats passed in.
         let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 5, savedMessages: 1)
