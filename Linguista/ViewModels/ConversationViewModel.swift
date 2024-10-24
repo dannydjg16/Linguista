@@ -14,34 +14,39 @@ class ConversationViewModel: ObservableObject {
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Let's have a conversation. If you have any questions, feel free to ask!"), isSentByUser: false), MessagingModel(message: Message(role: "user", content: "How has your day been?"), isSentByUser: false)]
     private let completionsService = CompletionsService.shared
     
-    func sendMessage(completionRequest: CompletionsRequest) async {
+    func sendMessage(completionRequest: CompletionsRequest) async  {
         
         if (completionRequest.messages.count == 0){
             return
         }
+        // Identify System Message for use later
+        let systemMessage = completionRequest.messages.filter{ $0.role == "system" }.first
         
-        // Add the user's message to the list
-        let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
-        messages.append(userMessage)
+        // Identify Users Message for use later
+        let userMessage = MessagingModel(message: completionRequest.messages.last!, isSentByUser: true)
+        
+        // Add user message to the message array that the user can see.
+        self.messages.append(userMessage)
         
         // Put together list to save messages
         var conversationSoFar = completionRequest
+        
+        // Keep completion request data, but update the message array to pass forward.
         conversationSoFar.messages = messages.compactMap { $0.message }
         
         // Add system prompt at the beginning of the conversation
-        conversationSoFar.messages.insert(completionRequest.messages[0], at: 0)
+        conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
         
         // Call trimMessageArray to limit the size of the array thats passed in.
-        let trimmedConversation = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10, savedMessages: 1)
+        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
         
         do {
-            
-            let response = try await completionsService.fetchCompletion(completionRequest: trimmedConversation)
+            let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-            DispatchQueue.main.async {
-                self.messages.append(responseMessageModel)
-            }            
+            // Add response to message array
+            self.messages.append(responseMessageModel)
+            
         } catch {
             // Do Error Handling
         }
