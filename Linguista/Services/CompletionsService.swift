@@ -22,8 +22,8 @@ class CompletionsService: ObservableObject {
             throw URLError(.badURL)
         }
         
-        let accessToken = try await authService.getAccessToken()
-        
+        //let accessToken = try await authService.getAccessToken()
+        let accessToken = "a"
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
