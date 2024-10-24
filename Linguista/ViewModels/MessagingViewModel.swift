@@ -13,7 +13,6 @@ class MessagingViewModel: ObservableObject {
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
     private let completionsService = CompletionsService.shared
     
-    // Might be best to handle this stuff in two parts. 1 to handle the display stuff for the user and 1 to handle the api stuff.
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
         if (completionRequest.messages.count == 0){

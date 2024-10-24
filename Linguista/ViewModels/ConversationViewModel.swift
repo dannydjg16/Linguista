@@ -15,6 +15,11 @@ class ConversationViewModel: ObservableObject {
     private let completionsService = CompletionsService.shared
     
     func sendMessage(completionRequest: CompletionsRequest) async {
+        
+        if (completionRequest.messages.count == 0){
+            return
+        }
+        
         // Add the user's message to the list
         let userMessage = MessagingModel(message: completionRequest.messages[1], isSentByUser: true)
         messages.append(userMessage)
