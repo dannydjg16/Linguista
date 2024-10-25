@@ -19,6 +19,7 @@ class ConversationViewModel: ObservableObject {
         if (completionRequest.messages.count == 0){
             return
         }
+        
         // Identify System Message for use later
         let systemMessage = completionRequest.messages.filter{ $0.role == "system" }.first
         
