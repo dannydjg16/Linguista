@@ -92,6 +92,7 @@ struct ConversationView: View {
                     
                     if !currentMessage.isEmpty {
                         let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet. The user is not able to read words in other alphabets except the latin alphabet."),
+                                        Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
                                         Message(role: "user", content: "\(currentMessage)")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
@@ -99,7 +100,7 @@ struct ConversationView: View {
                         Task {
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
-                                                
+                        
                         currentMessage = ""
                     }
                     
