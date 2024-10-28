@@ -95,7 +95,7 @@ struct ConversationView: View {
                                         Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
                                         Message(role: "user", content: "\(currentMessage)")]
                         
-                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 50, topP: 1)
                         
                         Task {
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
