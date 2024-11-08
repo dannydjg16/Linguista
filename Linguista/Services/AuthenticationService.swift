@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 class AuthenticationService {
     
     static let shared = AuthenticationService()

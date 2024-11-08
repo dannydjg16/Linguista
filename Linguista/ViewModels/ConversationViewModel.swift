@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import Combine
 
 class ConversationViewModel: ObservableObject {
@@ -49,7 +48,7 @@ class ConversationViewModel: ObservableObject {
             self.messages.append(responseMessageModel)
             
         } catch {
-            // Do Error Handling
+            print("Error: \(error.localizedDescription)")
         }
     }
     
