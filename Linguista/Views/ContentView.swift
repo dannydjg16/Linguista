@@ -44,7 +44,7 @@ struct ContentView: View {
 //                }
 //                .tag(4)
             NavigationView{
-                TestView()
+                SpeechRecognizerView()
             }
                 .tabItem {
                     Label("a", systemImage: "testtube.2")
