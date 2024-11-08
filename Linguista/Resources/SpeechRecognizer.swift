@@ -1,3 +1,11 @@
+//
+//  SpeechRecognizer.swift
+//  Linguista
+//
+//  Created by Daniel Grant on 11/7/24.
+//
+
+import Foundation
 import SwiftUI
 import Speech
 import AVFoundation
@@ -5,12 +13,12 @@ import AVFoundation
 class SpeechRecognizer: ObservableObject {
     @Published var transcribedText = ""
     @Published var isRecording = false
-
     private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private var audioEngine = AVAudioEngine()
 
+    // Function to request permission to use speech recognition
     func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { status in
             DispatchQueue.main.async {
@@ -24,20 +32,22 @@ class SpeechRecognizer: ObservableObject {
         }
     }
 
+    // Function to start listening and transcribing speech
     func startTranscribing() {
-        guard !isRecording else { return }  // Prevents starting if already recording
-        isRecording = true
+        // Ensure previous tasks are stopped
+        stopTranscribing()
 
-        stopTranscribing()  // Ensure any previous session is stopped
-
+        // Setup audio session
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
         try? audioSession.setActive(true, options: .notifyOthersOnDeactivation)
 
+        // Setup recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest else { return }
         recognitionRequest.shouldReportPartialResults = true
 
+        // Start recognition task
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { result, error in
             if let result = result {
                 DispatchQueue.main.async {
@@ -50,6 +60,7 @@ class SpeechRecognizer: ObservableObject {
             }
         }
 
+        // Setup audio input
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
@@ -60,15 +71,28 @@ class SpeechRecognizer: ObservableObject {
         try? audioEngine.start()
     }
 
+    // Function to stop transcribing and reset the session
+//    func stopTranscribing() {
+//        audioEngine.stop()
+//        recognitionRequest?.endAudio()
+//        recognitionTask?.cancel()
+//        recognitionRequest = nil
+//        recognitionTask = nil
+//    }
+    
     func stopTranscribing() {
-        guard isRecording else { return }  // Prevents stopping if not recording
-
+        // Stop the audio engine
         audioEngine.stop()
+        
+        // Remove the input node tap
         audioEngine.inputNode.removeTap(onBus: 0)
+        
+        // End the audio session
         recognitionRequest?.endAudio()
         recognitionTask?.cancel()
+        
+        // Reset recognitionRequest and recognitionTask
         recognitionRequest = nil
         recognitionTask = nil
-        isRecording = false
     }
 }
