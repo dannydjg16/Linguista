@@ -70,15 +70,6 @@ class SpeechRecognizer: ObservableObject {
         audioEngine.prepare()
         try? audioEngine.start()
     }
-
-    // Function to stop transcribing and reset the session
-//    func stopTranscribing() {
-//        audioEngine.stop()
-//        recognitionRequest?.endAudio()
-//        recognitionTask?.cancel()
-//        recognitionRequest = nil
-//        recognitionTask = nil
-//    }
     
     func stopTranscribing() {
         // Stop the audio engine
