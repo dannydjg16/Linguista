@@ -9,21 +9,19 @@ import Foundation
 import SwiftUI
 
 struct SpeechRecognizerView: View {
-    @StateObject private var speechRecognizer = SpeechRecognizer()
+    @ObservedObject var speechRecognizer: SpeechRecognizer
 
     var body: some View {
         VStack {
-            Text(speechRecognizer.transcribedText)
-                .padding()
-                .border(Color.gray, width: 1)
-                .padding()
 
             Button(action: toggleRecording) {
                 Text(speechRecognizer.isRecording ? "Stop Recording" : "Start Recording")
                     .padding()
-                    .background(speechRecognizer.isRecording ? Color.red : Color.green)
+                    .background(speechRecognizer.isRecording ? Color.red : Color.brown)
+                    
                     .foregroundColor(.white)
                     .cornerRadius(8)
+                    
             }
         }
         .onAppear {
@@ -37,11 +35,12 @@ struct SpeechRecognizerView: View {
         } else {
             speechRecognizer.startTranscribing()
         }
+        speechRecognizer.isRecording.toggle()
     }
 }
 
 struct SpeechRecognizerView_Previews: PreviewProvider {
     static var previews: some View {
-        SpeechRecognizerView()
+        SpeechRecognizerView(speechRecognizer: SpeechRecognizer())
     }
 }

@@ -11,9 +11,11 @@ import SwiftUI
 struct ConversationView: View {
     
     @StateObject private var messagingViewModel = ConversationViewModel()
+    @StateObject private var speechRecognizer = SpeechRecognizer()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
+    
     
     var body: some View {
         VStack{
@@ -78,7 +80,14 @@ struct ConversationView: View {
                     }
                 }
             }
-            
+            HStack {
+                Text(speechRecognizer.transcribedText)
+                    .padding()
+                    .border(Color.gray, width: 1)
+                    .padding()
+                SpeechRecognizerView(speechRecognizer: speechRecognizer)
+                                .padding()
+            }
             HStack {
                 TextField("Type a message", text: $currentMessage)
                     .frame(height: textEditorHeight)

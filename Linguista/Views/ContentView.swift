@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
     
     var body: some View {
         
@@ -44,7 +44,7 @@ struct ContentView: View {
 //                }
 //                .tag(4)
             NavigationView{
-                SpeechRecognizerView()
+                //SpeechRecognizerView()
             }
                 .tabItem {
                     Label("a", systemImage: "testtube.2")
