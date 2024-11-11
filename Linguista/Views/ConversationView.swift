@@ -89,7 +89,7 @@ struct ConversationView: View {
                                 .padding()
             }
             HStack {
-                TextField("Type a message", text: $currentMessage)
+                TextField("Type a message", text: $speechRecognizer.transcribedText)
                     .frame(height: textEditorHeight)
                     .padding()
                     .overlay(
