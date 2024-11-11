@@ -81,10 +81,6 @@ struct ConversationView: View {
                 }
             }
             HStack {
-//                Text(speechRecognizer.transcribedText)
-//                    .padding()
-//                    .border(Color.gray, width: 1)
-//                    .padding()
                 SpeechRecognizerView(speechRecognizer: speechRecognizer)
                                 .padding()
             }
