@@ -11,7 +11,6 @@ import SwiftUI
 struct ConversationView: View {
     
     @StateObject private var messagingViewModel = ConversationViewModel()
-    @StateObject private var speechRecognizer = SpeechRecognizer()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
@@ -81,11 +80,7 @@ struct ConversationView: View {
                 }
             }
             HStack {
-                SpeechRecognizerView(speechRecognizer: speechRecognizer)
-                                .padding()
-            }
-            HStack {
-                TextField("Type a message", text: $speechRecognizer.transcribedText)
+                TextField("Type a message", text: $currentMessage)
                     .frame(height: textEditorHeight)
                     .padding()
                     .overlay(
@@ -95,7 +90,7 @@ struct ConversationView: View {
                 
                 Button(action: {
                     
-                    if !speechRecognizer.transcribedText.isEmpty {
+                    if !currentMessage.isEmpty {
                         let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet. The user is not able to read words in other alphabets except the latin alphabet."),
                                         Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
                                         Message(role: "user", content: "\(currentMessage)")]
