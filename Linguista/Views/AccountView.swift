@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 
-struct LoginView: View {
+struct AccountView: View {
     
     var body: some View {
         VStack{
@@ -48,8 +48,8 @@ struct LoginView: View {
     
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        AccountView()
     }
 }
