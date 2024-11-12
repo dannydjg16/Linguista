@@ -47,7 +47,7 @@ struct ContentView: View {
                 SpokenMessagingView()
             }
                 .tabItem {
-                    Label("a", systemImage: "testtube.2")
+                    Label("a", systemImage: "phone.bubble.fill")
                 }
                 .tag(4)
         }.accentColor(.brown)
