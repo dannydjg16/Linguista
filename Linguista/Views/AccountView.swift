@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  AccountView.swift
 //  Linguista
 //
 //  Created by Daniel Grant on 6/25/24.
