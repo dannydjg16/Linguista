@@ -11,6 +11,7 @@ import SwiftUI
 struct MessagingView: View {
     
     @StateObject private var messagingViewModel = MessagingViewModel()
+    @StateObject private var textToSpeech = TextToSpeech()
     @State private var currentMessage = ""
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
@@ -75,7 +76,12 @@ struct MessagingView: View {
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
                         }
+                        if (messagingViewModel.messages.last?.isSentByUser == false){
+                            textToSpeech.speak(text: messagingViewModel.messages.last!.message.content)
+                        }
                     }
+                    
+                    
                 }
             }
             
@@ -92,10 +98,10 @@ struct MessagingView: View {
                 Button(action: {
                     
                     if !currentMessage.isEmpty {
-                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. Transliterate the response into latin letters. I cant read letters in other languages. Do not include letters from other alphabets. Only the latin alphabet"),
+                        let messages = [Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. Transliterate the response into latin letters. I cant read letters in other languages. Do not include letters from other alphabets. Only the latin alphabet. Do not respond in letters from the \(Utilities.getLanguageName(by: languageToTranslate)) alphabet"),
                                         Message(role: "user", content: "\(currentMessage)")]
                         
-                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 50, topP: 1)
                         
                         Task {
                             await messagingViewModel.sendMessage(completionRequest: dataModel)

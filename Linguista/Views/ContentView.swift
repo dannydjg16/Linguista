@@ -44,7 +44,7 @@ struct ContentView: View {
 //                }
 //                .tag(4)
             NavigationView{
-                SpokenMessagingView()
+                TextToSpeechView()
             }
                 .tabItem {
                     Label("a", systemImage: "phone.badge.waveform")
