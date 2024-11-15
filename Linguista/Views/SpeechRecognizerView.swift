@@ -10,25 +10,25 @@ import SwiftUI
 
 struct SpeechRecognizerView: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
-
+    
     var body: some View {
         VStack {
-
+            
             Button(action: toggleRecording) {
                 Text(speechRecognizer.isRecording ? "Stop Recording" : "Start Recording")
                     .padding()
                     .background(speechRecognizer.isRecording ? Color.red : Color.brown)
-                    
+                
                     .foregroundColor(.white)
                     .cornerRadius(8)
-                    
+                
             }
         }
         .onAppear {
             speechRecognizer.requestAuthorization()
         }
     }
-
+    
     private func toggleRecording() {
         if speechRecognizer.isRecording {
             speechRecognizer.stopTranscribing()
