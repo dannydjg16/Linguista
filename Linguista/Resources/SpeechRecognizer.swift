@@ -17,7 +17,7 @@ class SpeechRecognizer: ObservableObject {
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private var audioEngine = AVAudioEngine()
-
+    
     // Function to request permission to use speech recognition
     func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { status in
@@ -31,22 +31,22 @@ class SpeechRecognizer: ObservableObject {
             }
         }
     }
-
+    
     // Function to start listening and transcribing speech
     func startTranscribing() {
         // Ensure previous tasks are stopped
         stopTranscribing()
-
+        
         // Setup audio session
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
         try? audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-
+        
         // Setup recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest else { return }
         recognitionRequest.shouldReportPartialResults = true
-
+        
         // Start recognition task
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { result, error in
             if let result = result {
@@ -54,19 +54,19 @@ class SpeechRecognizer: ObservableObject {
                     self.transcribedText = result.bestTranscription.formattedString
                 }
             }
-
+            
             if error != nil || (result?.isFinal ?? false) {
                 self.stopTranscribing()
             }
         }
-
+        
         // Setup audio input
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
             self.recognitionRequest?.append(buffer)
         }
-
+        
         audioEngine.prepare()
         try? audioEngine.start()
     }

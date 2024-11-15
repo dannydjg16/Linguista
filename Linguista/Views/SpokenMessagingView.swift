@@ -82,7 +82,7 @@ struct SpokenMessagingView: View {
             }
             HStack {
                 SpeechRecognizerView(speechRecognizer: speechRecognizer)
-                                .padding()
+                    .padding()
             }
             HStack {
                 TextField("Type a message", text: $speechRecognizer.transcribedText)

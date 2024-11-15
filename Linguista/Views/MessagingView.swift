@@ -80,8 +80,6 @@ struct MessagingView: View {
                             textToSpeech.speak(text: messagingViewModel.messages.last!.message.content)
                         }
                     }
-                    
-                    
                 }
             }
             
@@ -100,7 +98,7 @@ struct MessagingView: View {
                     if !currentMessage.isEmpty {
                         let messages = [
                             Message(role: "system", content: "Translate \(Utilities.getLanguageName(by: languageToTranslate)) into english, or english to \(Utilities.getLanguageName(by: languageToTranslate)) based on what word is provided. Transliterate the response into latin letters. I cant read letters in other languages. Do not include letters from other alphabets. Only the latin alphabet. Do not respond in letters from the \(Utilities.getLanguageName(by: languageToTranslate)) alphabet"),
-                                        Message(role: "user", content: "\(currentMessage)")]
+                            Message(role: "user", content: "\(currentMessage)")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 50, topP: 1)
                         
