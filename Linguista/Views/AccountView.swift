@@ -45,7 +45,6 @@ struct AccountView: View {
                 print("Full Name: \(fullName?.givenName ?? "No name")")
             }
         }
-    
 }
 
 struct AccountView_Previews: PreviewProvider {
