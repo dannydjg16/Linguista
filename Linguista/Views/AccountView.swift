@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  AccountView.swift
 //  Linguista
 //
 //  Created by Daniel Grant on 6/25/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 
-struct LoginView: View {
+struct AccountView: View {
     
     var body: some View {
         VStack{
@@ -31,25 +31,23 @@ struct LoginView: View {
             .signInWithAppleButtonStyle(.black) // You can change to .white or .whiteOutline
             .frame(width: 140, height: 30)
         }
-
-        }
-        
-        func handleAuthorization(_ authorization: ASAuthorization) {
-            if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-                let userID = appleIDCredential.user
-                let email = appleIDCredential.email
-                let fullName = appleIDCredential.fullName
-                // Save user credentials or send to your server for verification
-                print("User ID: \(userID)")
-                print("Email: \(email ?? "No email")")
-                print("Full Name: \(fullName?.givenName ?? "No name")")
-            }
-        }
+    }
     
+    func handleAuthorization(_ authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let userID = appleIDCredential.user
+            let email = appleIDCredential.email
+            let fullName = appleIDCredential.fullName
+            // Save user credentials or send to your server for verification
+            print("User ID: \(userID)")
+            print("Email: \(email ?? "No email")")
+            print("Full Name: \(fullName?.givenName ?? "No name")")
+        }
+    }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        AccountView()
     }
 }

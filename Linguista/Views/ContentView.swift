@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedTab = 0
+    @State private var selectedTab = 4
     
     var body: some View {
         
@@ -30,9 +30,9 @@ struct ContentView: View {
                 }
                 .tag(2)
             
-            LoginView()
+            AccountView()
                 .tabItem {
-                    Label("Login", systemImage: "person.fill")
+                    Label("Account", systemImage: "person.fill")
                 }
                 .tag(3)
             
@@ -44,10 +44,10 @@ struct ContentView: View {
 //                }
 //                .tag(4)
             NavigationView{
-                TestView()
+                TextToSpeechView()
             }
                 .tabItem {
-                    Label("a", systemImage: "testtube.2")
+                    Label("a", systemImage: "phone.badge.waveform")
                 }
                 .tag(4)
         }.accentColor(.brown)

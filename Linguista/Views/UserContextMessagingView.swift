@@ -17,7 +17,6 @@ struct UserContextMessagingView: View {
     @State private var textEditorHeight: CGFloat = 20
     @State private var showCustomLanguageField: Bool = false
 
-    
     var body: some View {
         
         VStack{
@@ -135,7 +134,6 @@ struct UserContextMessagingView: View {
                 }
             }
             .padding()
-            
         }
     }
 }
