@@ -21,7 +21,6 @@ struct SpeechRecognizerView: View {
                 
                     .foregroundColor(.white)
                     .cornerRadius(8)
-                
             }
         }
         .onAppear {
