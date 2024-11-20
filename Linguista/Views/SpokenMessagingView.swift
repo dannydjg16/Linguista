@@ -108,7 +108,6 @@ struct SpokenMessagingView: View {
                         
                         currentMessage = ""
                     }
-                    
                 }) {
                     Text("Send")
                         .bold()
