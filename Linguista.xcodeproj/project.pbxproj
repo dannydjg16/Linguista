@@ -25,6 +25,8 @@
 		81494AF52C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AF42C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift */; };
 		8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FDFB2CE65A72005A0428 /* TextToSpeech.swift */; };
 		8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */; };
+		8159FE002CEEEE5B005A0428 /* AudioFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FDFF2CEEEE5B005A0428 /* AudioFetcher.swift */; };
+		8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */; };
 		81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */; };
 		81841B122C66B61100B7A5AC /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81841B112C66B61100B7A5AC /* Config.plist */; };
 		81841B142C66B66A00B7A5AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B132C66B66A00B7A5AC /* Config.swift */; };
@@ -83,6 +85,8 @@
 		81494AF42C13BD2A00F1ABB0 /* LinguistaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8159FDFB2CE65A72005A0428 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechView.swift; sourceTree = "<group>"; };
+		8159FDFF2CEEEE5B005A0428 /* AudioFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFetcher.swift; sourceTree = "<group>"; };
+		8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		81841B112C66B61100B7A5AC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		81841B132C66B66A00B7A5AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				8188C72A2CB2B95F00A10210 /* TestView.swift */,
 				8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */,
 				819622142CE303DB009D9392 /* SpokenMessagingView.swift */,
+				8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				812D1F0A2C897E8400255A86 /* Utilities.swift */,
 				819622102CDDAC59009D9392 /* SpeechRecognizer.swift */,
 				8159FDFB2CE65A72005A0428 /* TextToSpeech.swift */,
+				8159FDFF2CEEEE5B005A0428 /* AudioFetcher.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				812D1F092C897DCD00255A86 /* ConversationViewModel.swift in Sources */,
 				812D1F072C897DBB00255A86 /* ConversationView.swift in Sources */,
 				81D8E40D2C74561400D7C0F8 /* MessagingViewModel.swift in Sources */,
+				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
 				81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */,
 				8188C7272CAC0CF700A10210 /* UserContextMessagingView.swift in Sources */,
@@ -412,6 +419,7 @@
 				8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */,
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
 				8188C7252CAC0CD200A10210 /* UserContextMessagingViewModel.swift in Sources */,
+				8159FE002CEEEE5B005A0428 /* AudioFetcher.swift in Sources */,
 				8188C72B2CB2B96300A10210 /* TestView.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
