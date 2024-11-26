@@ -16,7 +16,6 @@ class TtsViewModel: ObservableObject {
     
     func fetchTts(ttsRequest: TtsRequest) async throws -> Data {
         let response = try await completionsService.fetchTts(ttsRequest: ttsRequest)
-        // Add response to message array
         return response
     }
     
