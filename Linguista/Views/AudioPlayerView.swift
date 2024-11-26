@@ -5,23 +5,46 @@
 //  Created by Daniel Grant on 11/20/24.
 //
 
-import Foundation
 import SwiftUI
+import AVFoundation
 
 struct AudioPlayerView: View {
-    @StateObject private var audioFetcher = AudioFetcher()
-    
+    @StateObject private var ttsViewModel = TtsViewModel()
+    @State private var isLoading = false
+    @State private var errorMessage: String?
+
     var body: some View {
         VStack {
-            Text("Audio Player")
-                .font(.headline)
-            
-            HStack {
-                Button("Pause") { audioFetcher.audioPlayer?.pause() }
-                Button("Resume") { audioFetcher.audioPlayer?.play() }
-                Button("Stop") { audioFetcher.audioPlayer?.stop() }
-            } 
+            if isLoading {
+                ProgressView("Fetching Audio...")
+            } else {
+                Button("Fetch & Play Audio") {
+                    Task {
+                        await fetchAndPlayAudio()
+                    }
+                }
+            }
+
+            if let errorMessage = errorMessage {
+                Text("Error: \(errorMessage)")
+                    .foregroundColor(.red)
+            }
         }
         .padding()
+    }
+
+    private func fetchAndPlayAudio() async {
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            let ttsRequest = TtsRequest(model: "tts-1", input: "Danny is Cool", voice: "shimmer")
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
+            ttsViewModel.playAudio(with: audioData)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        isLoading = false
     }
 }

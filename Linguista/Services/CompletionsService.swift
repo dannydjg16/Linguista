@@ -42,7 +42,7 @@ class CompletionsService: ObservableObject {
         return response
     }
     
-    func fetchAudio(ttsRequest: TtsRequest) async throws -> Data {
+    func fetchTts(ttsRequest: TtsRequest) async throws -> Data {
 
         guard let url = URL(string: localBaseUrl + ttsEndpoint) else {
             throw URLError(.badURL)
