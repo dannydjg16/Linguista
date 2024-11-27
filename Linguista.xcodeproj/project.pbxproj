@@ -34,7 +34,6 @@
 		8188C7252CAC0CD200A10210 /* UserContextMessagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */; };
 		8188C7272CAC0CF700A10210 /* UserContextMessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */; };
 		8188C7292CAEA25A00A10210 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7282CAEA25A00A10210 /* Prompt.swift */; };
-		8188C72B2CB2B96300A10210 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C72A2CB2B95F00A10210 /* TestView.swift */; };
 		8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C72D2CB764C700A10210 /* CompletionsService.swift */; };
 		819622112CDDAC59009D9392 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622102CDDAC59009D9392 /* SpeechRecognizer.swift */; };
 		819622132CDDAC75009D9392 /* SpeechRecognizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */; };
@@ -95,7 +94,6 @@
 		8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContextMessagingViewModel.swift; sourceTree = "<group>"; };
 		8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContextMessagingView.swift; sourceTree = "<group>"; };
 		8188C7282CAEA25A00A10210 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
-		8188C72A2CB2B95F00A10210 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		8188C72D2CB764C700A10210 /* CompletionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsService.swift; sourceTree = "<group>"; };
 		819622102CDDAC59009D9392 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */,
 				81D8E4082C7452DD00D7C0F8 /* MessagingView.swift */,
 				812D1F062C897DBB00255A86 /* ConversationView.swift */,
-				8188C72A2CB2B95F00A10210 /* TestView.swift */,
 				8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */,
 				819622142CE303DB009D9392 /* SpokenMessagingView.swift */,
 				8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */,
@@ -424,7 +421,6 @@
 				8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */,
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
 				8188C7252CAC0CD200A10210 /* UserContextMessagingViewModel.swift in Sources */,
-				8188C72B2CB2B96300A10210 /* TestView.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
 				8120C7D22C3D635E007DCE2E /* CompletionsResponse.swift in Sources */,
