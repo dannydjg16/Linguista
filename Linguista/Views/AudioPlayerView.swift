@@ -38,7 +38,7 @@ struct AudioPlayerView: View {
         errorMessage = nil
 
         do {
-            let ttsRequest = TtsRequest(model: "tts-1", input: "Danny is Cool", voice: "shimmer")
+            let ttsRequest = TtsRequest(model: "tts-1", input: "Danny is Cool", voice: "shimmer", speed: 0.9)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
         } catch {
