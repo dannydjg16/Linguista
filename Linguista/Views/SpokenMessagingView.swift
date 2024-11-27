@@ -16,6 +16,10 @@ struct SpokenMessagingView: View {
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
     
+    @StateObject private var ttsViewModel = TtsViewModel()
+    @State private var isLoading = false
+    @State private var errorMessage: String?
+    
     
     var body: some View {
         VStack{
@@ -74,6 +78,12 @@ struct SpokenMessagingView: View {
                 .onChange(of: $messagingViewModel.messages.count) {
                     // Scroll to the last message when new messages are added
                     if let lastIndex = $messagingViewModel.messages.last?.id {
+                        Task {
+                            if let unwrappedMessageContent = messagingViewModel.messages.last?.message.content {
+                                await fetchAndPlayAudio(input: unwrappedMessageContent) // Pass the plain String
+                            }
+                            
+                        }
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
                         }
@@ -121,7 +131,24 @@ struct SpokenMessagingView: View {
             
         }
     }
+    
+    private func fetchAndPlayAudio(input: String) async {
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.9)
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
+            ttsViewModel.playAudio(with: audioData)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        isLoading = false
+    }
 }
+
+
 
 
 struct SpokenMessagingView_Previews: PreviewProvider {
