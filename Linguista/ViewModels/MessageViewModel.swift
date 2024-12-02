@@ -12,9 +12,6 @@ import SwiftUI
 class MessageViewModel: ObservableObject {
     
     @Published var completionResponse: CompletionsResponse?
-    @Published var errorMessage: String?
-    @Published var isLoading = false
-    private var cancellable: AnyCancellable?
     private let completionsService = CompletionsService.shared
     
     func fetchCompletion(completionRequest: CompletionsRequest) async {
