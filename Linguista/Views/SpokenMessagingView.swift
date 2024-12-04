@@ -83,7 +83,6 @@ struct SpokenMessagingView: View {
                             if let unwrappedMessageContent = messagingViewModel.messages.last?.message.content {
                                 await fetchAndPlayAudio(input: unwrappedMessageContent) // Pass the plain String
                             }
-                            
                         }
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
@@ -114,7 +113,8 @@ struct SpokenMessagingView: View {
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 50, topP: 1)
                         
                         Task {
-                            await messagingViewModel.sendMessage(completionRequest: dataModel)
+                            
+                            //await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
                         
                         currentMessage = ""
