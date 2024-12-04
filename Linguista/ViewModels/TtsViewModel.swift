@@ -11,8 +11,8 @@ import AVFoundation
 class TtsViewModel: ObservableObject {
     
     @Published var data: Data?
-    private let completionsService = CompletionsService.shared
     @Published var audioPlayer: AVAudioPlayer?
+    private let completionsService = CompletionsService.shared
     
     func fetchTts(ttsRequest: TtsRequest) async throws -> Data {
         let response = try await completionsService.fetchTts(ttsRequest: ttsRequest)

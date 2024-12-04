@@ -11,8 +11,10 @@ import Speech
 import AVFoundation
 
 class SpeechRecognizer: ObservableObject {
+    
     @Published var transcribedText = ""
     @Published var isRecording = false
+    
     private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?

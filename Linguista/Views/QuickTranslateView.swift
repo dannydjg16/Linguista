@@ -13,7 +13,6 @@ struct QuickTranslateView: View {
     @State private var translationText = "Translation Text"
     @State private var isPlaceholderVisible = true
     @State private var translationResult = "See Translation"
-    @State private var isPlaceholderResultVisible = true
     @State private var languageToTranslate = 2
     @State private var languageToTranslateTo = 1
     @StateObject var viewModel = MessageViewModel()
