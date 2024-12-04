@@ -12,6 +12,9 @@ class MessagingViewModel: ObservableObject {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
     private let completionsService = CompletionsService.shared
+    private let ttsViewModel = TtsViewModel()
+    private var isLoading = false
+    private var errorMessage: String?
     
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
@@ -47,8 +50,27 @@ class MessagingViewModel: ObservableObject {
             // Add response to message array
             self.messages.append(responseMessageModel)
             
+            Task {
+                await fetchAndPlayAudio(input: responseMessageModel.message.content) // Pass the plain String
+            }
+            
         } catch {
             print("Error: \(error.localizedDescription)")
         }
+    }
+    
+    private func fetchAndPlayAudio(input: String) async {
+        isLoading = true
+        errorMessage = nil
+        
+        do {
+            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.9)
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
+            ttsViewModel.playAudio(with: audioData)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
     }
 }
