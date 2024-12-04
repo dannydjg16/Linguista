@@ -17,11 +17,6 @@ struct SpokenMessagingView: View {
     @State private var languageToTranslate = 1
     @State private var textEditorHeight: CGFloat = 20
     
-//    @StateObject private var ttsViewModel = TtsViewModel()
-//    @State private var isLoading = false
-//    @State private var errorMessage: String?
-    
-    
     var body: some View {
         VStack{
             Section{
@@ -103,7 +98,7 @@ struct SpokenMessagingView: View {
                     if !speechRecognizer.transcribedText.isEmpty {
                         let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet. The user is not able to read words in other alphabets except the latin alphabet."),
                                         Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
-                                        Message(role: "user", content: "\($speechRecognizer.transcribedText)")]
+                                        Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 50, topP: 1)
                         
@@ -112,13 +107,7 @@ struct SpokenMessagingView: View {
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
                         
-//                        Task {
-//                            if let unwrappedMessageContent = messagingViewModel.messages.last?.message.content {
-//                                await fetchAndPlayAudio(input: unwrappedMessageContent) // Pass the plain String
-//                            }
-//                        }
-                        
-                        currentMessage = ""
+                        speechRecognizer.transcribedText = ""
                     }
                 }) {
                     Text("Send")
@@ -133,21 +122,6 @@ struct SpokenMessagingView: View {
             
         }
     }
-    
-//    private func fetchAndPlayAudio(input: String) async {
-//        isLoading = true
-//        errorMessage = nil
-//
-//        do {
-//            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.9)
-//            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
-//            ttsViewModel.playAudio(with: audioData)
-//        } catch {
-//            errorMessage = error.localizedDescription
-//        }
-//
-//        isLoading = false
-//    }
 }
 
 
