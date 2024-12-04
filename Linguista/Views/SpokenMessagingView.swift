@@ -79,11 +79,6 @@ struct SpokenMessagingView: View {
                 .onChange(of: $messagingViewModel.messages.count) {
                     // Scroll to the last message when new messages are added
                     if let lastIndex = $messagingViewModel.messages.last?.id {
-                        Task {
-                            if let unwrappedMessageContent = messagingViewModel.messages.last?.message.content {
-                                await fetchAndPlayAudio(input: unwrappedMessageContent) // Pass the plain String
-                            }
-                        }
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
                         }
@@ -114,7 +109,13 @@ struct SpokenMessagingView: View {
                         
                         Task {
                             
-                            //await messagingViewModel.sendMessage(completionRequest: dataModel)
+                            await messagingViewModel.sendMessage(completionRequest: dataModel)
+                        }
+                        
+                        Task {
+                            if let unwrappedMessageContent = messagingViewModel.messages.last?.message.content {
+                                await fetchAndPlayAudio(input: unwrappedMessageContent) // Pass the plain String
+                            }
                         }
                         
                         currentMessage = ""
