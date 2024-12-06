@@ -52,7 +52,7 @@ class ConversationViewModel: ObservableObject {
             self.messages.append(responseMessageModel)
             
             Task {
-                await fetchAndPlayAudio(input: responseMessageModel.message.content) // Pass the plain String
+                await fetchAndPlayAudio(messagingModel: responseMessageModel) // Pass the plain String
             }
             
         } catch {
@@ -60,19 +60,25 @@ class ConversationViewModel: ObservableObject {
         }
     }
     
-    private func fetchAndPlayAudio(input: String) async {
+    private func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
+        
         isLoading = true
         errorMessage = nil
         
+        var updatedMessagingModel = messagingModel
+        
         do {
-            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "tts-1", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
+            updatedMessagingModel.audioData = audioData
         } catch {
             errorMessage = error.localizedDescription
         }
         
         isLoading = false
+        
+        return updatedMessagingModel
     }
     
 }
