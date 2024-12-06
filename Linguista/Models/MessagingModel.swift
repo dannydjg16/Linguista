@@ -11,4 +11,5 @@ struct MessagingModel: Identifiable, Equatable {
     let id = UUID()
     var message: Message
     var isSentByUser: Bool
+    var audioData: Data?
 }
