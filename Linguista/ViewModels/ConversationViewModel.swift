@@ -65,7 +65,7 @@ class ConversationViewModel: ObservableObject {
         errorMessage = nil
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.9)
+            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
         } catch {
