@@ -97,7 +97,7 @@ struct SpokenMessagingView: View {
                     
                     if !speechRecognizer.transcribedText.isEmpty {
 //                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet. The user is not able to read words in other alphabets except the latin alphabet."),
-                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet. The user is not able to read words in other alphabets except the latin alphabet."),
+                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate))"),
                                         Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
                                         Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
                         
