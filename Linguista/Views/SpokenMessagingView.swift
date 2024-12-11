@@ -56,22 +56,21 @@ struct SpokenMessagingView: View {
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
                                                 .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+                                } else {
+                                    Text(message.message.content)
+                                        .padding()
+                                        .background(Color.brown.opacity(0.2))
+                                        .cornerRadius(10)
                                     Button(action: {
                                         messagingViewModel.playAudio(messagingModel: message)
                                     }){
-                                        Text("Send")
+                                        Text("Play")
                                             .bold()
                                             .padding()
                                             .background(Color.brown)
                                             .foregroundColor(.white)
                                             .cornerRadius(10)
                                     }
-                                } else {
-                                    Text(message.message.content)
-                                        .padding()
-                                        .background(Color.brown.opacity(0.2))
-                                        .cornerRadius(10)
-                                    
                                     Spacer()
                                 }
                             }
