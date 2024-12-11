@@ -48,10 +48,10 @@ class ConversationViewModel: ObservableObject {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-            // Add response to message array
             
             Task {
-                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel) // Pass the plain String
+                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                // Add response to message array
                 self.messages.append(messageModelWithAudio)
             }
             
@@ -81,4 +81,9 @@ class ConversationViewModel: ObservableObject {
         return updatedMessagingModel
     }
     
+    public func playAudio(messagingModel: MessagingModel){
+        if let audioData = messagingModel.audioData {
+            ttsViewModel.playAudio(with: audioData )
+        }
+    }
 }
