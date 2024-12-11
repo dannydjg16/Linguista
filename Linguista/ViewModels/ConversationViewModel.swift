@@ -49,7 +49,6 @@ class ConversationViewModel: ObservableObject {
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             // Add response to message array
-            //self.messages.append(responseMessageModel)
             
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel) // Pass the plain String
