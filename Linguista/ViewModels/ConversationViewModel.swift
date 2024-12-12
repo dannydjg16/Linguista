@@ -68,7 +68,7 @@ class ConversationViewModel: ObservableObject {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "tts-1", input: messagingModel.message.content, voice: "Nova", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
