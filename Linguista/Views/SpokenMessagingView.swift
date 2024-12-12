@@ -61,16 +61,9 @@ struct SpokenMessagingView: View {
                                         .padding()
                                         .background(Color.brown.opacity(0.2))
                                         .cornerRadius(10)
-                                    Button(action: {
-                                        messagingViewModel.playAudio(messagingModel: message)
-                                    }){
-                                        Text("Play")
-                                            .bold()
-                                            .padding()
-                                            .background(Color.brown)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(10)
-                                    }
+                                    
+                                    PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
+                                    
                                     Spacer()
                                 }
                             }
