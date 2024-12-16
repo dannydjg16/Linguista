@@ -11,6 +11,7 @@ import Combine
 class ConversationViewModel: ObservableObject {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Let's have a conversation. If you have any questions, feel free to ask!"), isSentByUser: false), MessagingModel(message: Message(role: "user", content: "How has your day been?"), isSentByUser: false)]
+    
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
     private var isLoading = false
@@ -47,11 +48,11 @@ class ConversationViewModel: ObservableObject {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
-            // Add response to message array
-            self.messages.append(responseMessageModel)
             
             Task {
-                await fetchAndPlayAudio(input: responseMessageModel.message.content) // Pass the plain String
+                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                // Add response to message array
+                self.messages.append(messageModelWithAudio)
             }
             
         } catch {
@@ -59,19 +60,36 @@ class ConversationViewModel: ObservableObject {
         }
     }
     
-    private func fetchAndPlayAudio(input: String) async {
+    private func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
+        
         isLoading = true
         errorMessage = nil
         
+        var updatedMessagingModel = messagingModel
+        
         do {
-            let ttsRequest = TtsRequest(model: "tts-1", input: input, voice: "shimmer", speed: 0.9)
+            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
+            updatedMessagingModel.audioData = audioData
         } catch {
             errorMessage = error.localizedDescription
         }
         
         isLoading = false
+        
+        return updatedMessagingModel
     }
     
+    public func playAudio(messagingModel: MessagingModel){
+        if let audioData = messagingModel.audioData {
+            ttsViewModel.playAudio(with: audioData )
+        }
+    }
+    
+    public func playAudio(messagingModel: MessagingModel, speed: Float){
+        if let audioData = messagingModel.audioData {
+            ttsViewModel.playAudio(with: audioData, speed: speed )
+        }
+    }
 }

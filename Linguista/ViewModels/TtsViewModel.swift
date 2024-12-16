@@ -27,4 +27,14 @@ class TtsViewModel: ObservableObject {
             print("Error playing audio: \(error.localizedDescription)")
         }
     }
+    
+    func playAudio(with data: Data, speed: Float) {
+        do {
+            audioPlayer = try AVAudioPlayer(data: data)
+            audioPlayer?.rate = speed
+            audioPlayer?.play()
+        } catch {
+            print("Error playing audio: \(error.localizedDescription)")
+        }
+    }
 }
