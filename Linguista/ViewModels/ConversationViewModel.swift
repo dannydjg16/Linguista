@@ -86,4 +86,10 @@ class ConversationViewModel: ObservableObject {
             ttsViewModel.playAudio(with: audioData )
         }
     }
+    
+    public func playAudio(messagingModel: MessagingModel, speed: Float){
+        if let audioData = messagingModel.audioData {
+            ttsViewModel.playAudio(with: audioData, speed: speed )
+        }
+    }
 }
