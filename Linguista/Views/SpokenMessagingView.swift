@@ -50,6 +50,7 @@ struct SpokenMessagingView: View {
                                     
                                     Text(message.message.content)
                                         .padding()
+                                        .multilineTextAlignment(.leading)
                                         .background(Color.white)
                                         .foregroundColor(.black)
                                         .cornerRadius(10)
