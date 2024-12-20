@@ -114,7 +114,31 @@ struct SpokenMessagingView: View {
                         speechRecognizer.transcribedText = ""
                     }
                 }) {
-                    Text("Send")
+                    Text("\(Utilities.getLanguageName(by: languageToTranslate))")
+                        .bold()
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                Button(action: {
+                    
+                    if !speechRecognizer.transcribedText.isEmpty {
+                        let messages = [
+                                        Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
+                                        Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
+                        
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+                        
+                        Task {
+                            
+                            await messagingViewModel.sendMessage(completionRequest: dataModel)
+                        }
+                        
+                        speechRecognizer.transcribedText = ""
+                    }
+                }) {
+                    Text("English")
                         .bold()
                         .padding()
                         .background(Color.brown)
