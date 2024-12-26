@@ -106,7 +106,6 @@ struct SpokenMessagingView: View {
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
                         
                         Task {
-                            
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
                         
@@ -129,7 +128,6 @@ struct SpokenMessagingView: View {
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
                         
                         Task {
-                            
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
                         
