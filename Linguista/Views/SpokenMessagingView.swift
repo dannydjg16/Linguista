@@ -43,7 +43,7 @@ struct SpokenMessagingView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
-                            HStack {
+                            HStack(alignment: .bottom, spacing: 10) {
                                 
                                 if message.isSentByUser {
                                     Spacer()
