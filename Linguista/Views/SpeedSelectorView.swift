@@ -56,8 +56,7 @@ struct SpeedSelectorView: View {
             // Picker for speed options
             Picker("Speed", selection: $playbackSpeed) {
                 ForEach(speedOptions, id: \.self) { speed in
-                    let speedPercentage = speed * 100
-                    Text(String(format: "%.1fx", speedPercentage))
+                    Text("\(Int(speed * 100))%") // Converts Float to Int and appends %
                         .tag(speed)
                 }
             }
