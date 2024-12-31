@@ -148,9 +148,6 @@ struct SpokenMessagingView: View {
     }
 }
 
-
-
-
 struct SpokenMessagingView_Previews: PreviewProvider {
     static var previews: some View {
         SpokenMessagingView()
