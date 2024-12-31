@@ -31,6 +31,7 @@ class TtsViewModel: ObservableObject {
     func playAudio(with data: Data, speed: Float) {
         do {
             audioPlayer = try AVAudioPlayer(data: data)
+            audioPlayer?.enableRate = true
             audioPlayer?.rate = speed
             audioPlayer?.play()
         } catch {

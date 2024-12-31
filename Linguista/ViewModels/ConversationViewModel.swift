@@ -83,7 +83,7 @@ class ConversationViewModel: ObservableObject {
     
     public func playAudio(messagingModel: MessagingModel){
         if let audioData = messagingModel.audioData {
-            ttsViewModel.playAudio(with: audioData )
+            ttsViewModel.playAudio(with: audioData)
         }
     }
     
