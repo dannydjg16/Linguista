@@ -8,68 +8,25 @@
 import Foundation
 import SwiftUI
 
-//struct SpeedSelectorView: View {
-//    @Binding var playbackSpeed: Float
-//    
-//    var body: some View {
-//        VStack {
-//            Text("Adjust Playback Speed")
-//                .font(.headline)
-//                .padding()
-//            
-//            Slider(value: $playbackSpeed, in: 0.5...1.0, step: 0.1) {
-//                Text("Speed")
-//            }
-//            .padding()
-//            
-//            Text(String(format: "Speed: %.1fx", playbackSpeed))
-//                .font(.subheadline)
-//                .padding()
-//            
-//            Button(action: {
-//                // Close the view
-//                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
-//            }) {
-//                Text("Done")
-//                    .bold()
-//                    .padding()
-//                    .background(Color.brown)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//            }
-//        }
-//        .padding()
-//    }
-//}
 struct SpeedSelectorView: View {
     @Binding var playbackSpeed: Float
     @Environment(\.presentationMode) var presentationMode
-
-    let speedOptions: [Float] = [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-
+        
     var body: some View {
         VStack {
-            Text("Adjust Playback Speed")
-                .font(.headline)
+            
+            /// Display current speed as a percentage
+            Text("Current Playback Speed: \(Int(playbackSpeed * 100))%")
                 .padding()
 
-            // Picker for speed options
-            Picker("Speed", selection: $playbackSpeed) {
-                ForEach(speedOptions, id: \.self) { speed in
-                    Text("\(Int(speed * 100))%") // Converts Float to Int and appends %
-                        .tag(speed)
-                }
-            }
-            .pickerStyle(WheelPickerStyle()) // You can also use .MenuPickerStyle() for a dropdown
-            .padding()
-
-            Spacer() // Pushes the Done button to the bottom
-
-            // Done Button
+            Slider(value: $playbackSpeed, in: 0.4...1.0, step: 0.01)
+                .padding()
+                
+            Spacer()
+            
             HStack {
                 Spacer()
                 Button(action: {
-                    // Dismiss the sheet
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Done")
@@ -79,9 +36,16 @@ struct SpeedSelectorView: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-                .padding() // Add padding to keep it away from the edges
+                .padding()
             }
         }
         .padding()
+    }
+}
+
+struct SpeedSelectorView_Previews: PreviewProvider {
+    @State static var playbackSpeed: Float = 0.7
+    static var previews: some View {
+        SpeedSelectorView(playbackSpeed: $playbackSpeed)
     }
 }
