@@ -11,13 +11,63 @@ import SwiftUI
 struct PlayAudioButton: View {
     let message: MessagingModel // Replace with your actual message type
     let messagingViewModel: ConversationViewModel // Replace with your view model type
+    @State private var playbackSpeed: Float = 1.0 // Default speed
+    @State private var isSpeedSelectorPresented: Bool = false // Tracks if the speed selector is shown
     
     var body: some View {
         if message.audioData != nil { // Check if the property is not nil
             Button(action: {
-                messagingViewModel.playAudio(messagingModel: message, speed: 0.1)
+                // Call playAudio with the selected speed
+                messagingViewModel.playAudio(messagingModel: message, speed: playbackSpeed)
             }) {
                 Text("Play")
+                    .bold()
+                    .padding()
+                    .frame(minWidth: 100) // Ensure a minimum width
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            
+            Button(action: {
+                isSpeedSelectorPresented = true
+            }) {
+                Text("Speed")
+                    .font(.system(size: 14, weight: .regular)) // Smaller font size
+                    .foregroundColor(.blue) // Link-like color
+                    .underline() // Makes it look like a link
+            }
+            .sheet(isPresented: $isSpeedSelectorPresented) {
+                SpeedSelectorView(playbackSpeed: $playbackSpeed)
+            }
+        }
+    }
+}
+
+
+struct SpeedSelectorView: View {
+    @Binding var playbackSpeed: Float
+    
+    var body: some View {
+        VStack {
+            Text("Adjust Playback Speed")
+                .font(.headline)
+                .padding()
+            
+            Slider(value: $playbackSpeed, in: 0.5...2.0, step: 0.1) {
+                Text("Speed")
+            }
+            .padding()
+            
+            Text(String(format: "Speed: %.1fx", playbackSpeed))
+                .font(.subheadline)
+                .padding()
+            
+            Button(action: {
+                // Close the view
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Done")
                     .bold()
                     .padding()
                     .background(Color.brown)
@@ -25,5 +75,6 @@ struct PlayAudioButton: View {
                     .cornerRadius(10)
             }
         }
+        .padding()
     }
 }
