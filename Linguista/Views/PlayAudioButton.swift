@@ -43,38 +43,3 @@ struct PlayAudioButton: View {
         }
     }
 }
-
-
-struct SpeedSelectorView: View {
-    @Binding var playbackSpeed: Float
-    
-    var body: some View {
-        VStack {
-            Text("Adjust Playback Speed")
-                .font(.headline)
-                .padding()
-            
-            Slider(value: $playbackSpeed, in: 0.5...2.0, step: 0.1) {
-                Text("Speed")
-            }
-            .padding()
-            
-            Text(String(format: "Speed: %.1fx", playbackSpeed))
-                .font(.subheadline)
-                .padding()
-            
-            Button(action: {
-                // Close the view
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
-            }) {
-                Text("Done")
-                    .bold()
-                    .padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-        }
-        .padding()
-    }
-}
