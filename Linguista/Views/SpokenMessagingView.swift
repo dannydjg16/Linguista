@@ -98,7 +98,7 @@ struct SpokenMessagingView: View {
                 Button(action: {
                     
                     if !speechRecognizer.transcribedText.isEmpty {
-                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate))"),
+                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate))") ,
                                         
                                         Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
                                         Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
