@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MessagingModel: Identifiable, Equatable {
+struct MessagingModel: Identifiable, Equatable, Codable {
     let id = UUID()
     var message: Message
     var isSentByUser: Bool

@@ -36,13 +36,6 @@ struct ContentView: View {
                 }
                 .tag(3)
             
-//            NavigationView{
-//                UserContextMessagingView()
-//            }
-//                .tabItem {
-//                    Label("test", systemImage: "testtube.2")
-//                }
-//                .tag(4)
             NavigationView{
                 SpokenMessagingView()
             }
@@ -50,6 +43,7 @@ struct ContentView: View {
                     Label("a", systemImage: "phone.badge.waveform")
                 }
                 .tag(4)
+            
         }.accentColor(.brown)
     }
 }

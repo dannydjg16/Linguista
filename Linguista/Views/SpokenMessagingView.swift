@@ -43,13 +43,14 @@ struct SpokenMessagingView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach($messagingViewModel.messages, id: \.id) { $message in
                             
-                            HStack {
+                            HStack(alignment: .bottom, spacing: 10) {
                                 
                                 if message.isSentByUser {
                                     Spacer()
                                     
                                     Text(message.message.content)
                                         .padding()
+                                        .multilineTextAlignment(.leading)
                                         .background(Color.white)
                                         .foregroundColor(.black)
                                         .cornerRadius(10)
@@ -97,22 +98,43 @@ struct SpokenMessagingView: View {
                 Button(action: {
                     
                     if !speechRecognizer.transcribedText.isEmpty {
-                        //                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) but output the response in the latin alphabet. The user is not able to read words in other alphabets except the latin alphabet."),
                         let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate))"),
+                                        
                                         Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
                                         Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
                         
-                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 50, topP: 1)
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
                         
                         Task {
-                            
                             await messagingViewModel.sendMessage(completionRequest: dataModel)
                         }
                         
                         speechRecognizer.transcribedText = ""
                     }
                 }) {
-                    Text("Send")
+                    Text("\(Utilities.getLanguageName(by: languageToTranslate))")
+                        .bold()
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                Button(action: {
+                    
+                    if !speechRecognizer.transcribedText.isEmpty {
+                        let messages = [
+                            Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
+                        
+                        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+                        
+                        Task {
+                            await messagingViewModel.sendMessage(completionRequest: dataModel)
+                        }
+                        
+                        speechRecognizer.transcribedText = ""
+                    }
+                }) {
+                    Text("English")
                         .bold()
                         .padding()
                         .background(Color.brown)
@@ -125,9 +147,6 @@ struct SpokenMessagingView: View {
         }
     }
 }
-
-
-
 
 struct SpokenMessagingView_Previews: PreviewProvider {
     static var previews: some View {
