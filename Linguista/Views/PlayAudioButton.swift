@@ -15,7 +15,7 @@ struct PlayAudioButton: View {
     var body: some View {
         if message.audioData != nil { // Check if the property is not nil
             Button(action: {
-                messagingViewModel.playAudio(messagingModel: message)
+                messagingViewModel.playAudio(messagingModel: message, speed: 0.1)
             }) {
                 Text("Play")
                     .bold()
