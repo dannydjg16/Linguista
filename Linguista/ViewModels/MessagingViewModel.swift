@@ -10,7 +10,7 @@ import Combine
 
 class MessagingViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you."), isSentByUser: false)]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "user", content: "Hello! Send us a word or sentence and we will translate it for you.", additionalContent: "nullString"), isSentByUser: false)]
     private let completionsService = CompletionsService.shared
     
     func sendMessage(completionRequest: CompletionsRequest) async  {
@@ -42,7 +42,7 @@ class MessagingViewModel: ObservableObject {
         
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
-            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error", additionalContent: "nullString")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             // Add response to message array
             self.messages.append(responseMessageModel)

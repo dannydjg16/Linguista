@@ -57,7 +57,7 @@ struct SpokenMessagingView: View {
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
                                                 .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-                                } else {
+                                } else if message.message.role == "system" {
                                     Text(message.message.content)
                                         .padding()
                                         .background(Color.brown.opacity(0.2))
@@ -66,7 +66,17 @@ struct SpokenMessagingView: View {
                                     PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
                                     
                                     Spacer()
+                                } else {
+                                    Text(message.message.additionalContent)
+                                        .padding()
+                                        .background(Color.brown.opacity(0.2))
+                                        .cornerRadius(10)
+                                    
+                                    PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
+                                    
+                                    Spacer()
                                 }
+                                
                             }
                         }
                     }
@@ -98,10 +108,10 @@ struct SpokenMessagingView: View {
                 Button(action: {
                     
                     if !speechRecognizer.transcribedText.isEmpty {
-                        let messages = [Message(role: "system", content: "Pretend you are having a conversation as if you are teaching an English speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate))") ,
+                        let messages = [Message(role: "system", content: "You are having a conversation where you are teaching an English speaking person how to speak \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate))", additionalContent: "nullString"),
                                         
-                                        Message(role: "system", content: "Analyze all messages provided and continue the conversation"),
-                                        Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
+                                        Message(role: "system", content: "Analyze all messages provided and continue the conversation", additionalContent: "nullString"),
+                                        Message(role: "user", content: "\(speechRecognizer.transcribedText)", additionalContent: "nullString")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
                         
@@ -123,7 +133,7 @@ struct SpokenMessagingView: View {
                     
                     if !speechRecognizer.transcribedText.isEmpty {
                         let messages = [
-                            Message(role: "user", content: "\(speechRecognizer.transcribedText)")]
+                            Message(role: "user", content: "\(speechRecognizer.transcribedText)", additionalContent: "nullString")]
                         
                         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
                         
