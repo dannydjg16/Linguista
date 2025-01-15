@@ -10,5 +10,5 @@ import Foundation
 struct Message: Codable, Hashable {
     var role: String
     var content: String
-    var additionalContent: String
+    var additionalContent: String = ""
 }
