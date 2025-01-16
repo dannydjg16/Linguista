@@ -19,83 +19,18 @@ struct SpokenMessagingView: View {
     
     var body: some View {
         VStack{
-            Section{
-                
-                Picker("Language: ", selection: $languageToTranslate) {
-                    ForEach(popularLanguageObjects){ language in
-                        Text(language.name).tag(language.id)
-                        
-                    }
-                }
-                .pickerStyle(NavigationLinkPickerStyle())
-                .padding([.leading, .trailing], 16)
-                .padding([.top, .bottom], 10)
-                
-            }
-            .background(Color.brown.opacity(0.15))
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.brown.opacity(0.15), lineWidth: 2))
             
-            ScrollViewReader { scrollViewProxy in
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        ForEach($messagingViewModel.messages, id: \.id) { $message in
-                            
-                            HStack(alignment: .bottom, spacing: 10) {
-                                
-                                if message.isSentByUser {
-                                    Spacer()
-                                    
-                                    Text(message.message.content)
-                                        .padding()
-                                        .multilineTextAlignment(.leading)
-                                        .background(Color.white)
-                                        .foregroundColor(.black)
-                                        .cornerRadius(10)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.brown.opacity(0.15), lineWidth: 2))
-                                } else if message.message.role == "system" {
-                                    Text(message.message.content)
-                                        .padding()
-                                        .background(Color.brown.opacity(0.2))
-                                        .cornerRadius(10)
-                                    
-                                    PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
-                                    
-                                    Spacer()
-                                } else {
-                                    Text(message.message.additionalContent)
-                                        .padding()
-                                        .background(Color.brown.opacity(0.2))
-                                        .cornerRadius(10)
-                                    
-                                    PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
-                                    
-                                    Spacer()
-                                }
-                                
-                            }
-                        }
-                    }
-                    .padding()
-                }
-                
-                .onChange(of: $messagingViewModel.messages.count) {
-                    // Scroll to the last message when new messages are added
-                    if let lastIndex = $messagingViewModel.messages.last?.id {
-                        withAnimation {
-                            scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
-                        }
-                    }
-                }
-            }
-            HStack {
-                SpeechRecognizerView(speechRecognizer: speechRecognizer)
-                    .padding()
-            }
+            LanguagePickerView(languageToTranslate: $languageToTranslate)
+            
+            MessageListView(messagingViewModel: messagingViewModel)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+            
+            
+            SpeechRecognizerView(speechRecognizer: speechRecognizer)
+                .padding()
+            
             HStack {
                 TextField("Type a message", text: $speechRecognizer.transcribedText)
                     .frame(height: textEditorHeight)
