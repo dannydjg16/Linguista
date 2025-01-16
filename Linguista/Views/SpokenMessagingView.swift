@@ -27,9 +27,6 @@ struct SpokenMessagingView: View {
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(10)
             
-            //SpeechRecognizerView(speechRecognizer: speechRecognizer)
-                //.padding()
-            
             MessageInputView(
                             speechRecognizer: speechRecognizer,
                             languageToTranslate: $languageToTranslate,
