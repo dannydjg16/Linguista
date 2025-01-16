@@ -24,7 +24,7 @@ struct SpokenMessagingView: View {
             
             MessageListView(messagingViewModel: messagingViewModel)
                 .padding()
-                .background(Color.gray.opacity(0.1))
+                .background(Color.white)
                 .cornerRadius(10)
             
             MessageInputView(
