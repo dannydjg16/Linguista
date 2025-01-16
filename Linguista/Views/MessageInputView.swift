@@ -48,3 +48,10 @@ struct MessageInputView: View {
         }
     }
 }
+
+
+struct MessageInputView_Previews: PreviewProvider {
+    static var previews: some View {
+        MessageInputView(speechRecognizer: SpeechRecognizer(), languageToTranslate: .constant(1), messagingViewModel: ConversationViewModel())
+    }
+}
