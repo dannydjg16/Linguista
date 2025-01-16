@@ -40,6 +40,7 @@
 		8194D0242D38C43000CAE54C /* LanguagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D0232D38C43000CAE54C /* LanguagePickerView.swift */; };
 		8194D0262D38C51300CAE54C /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D0252D38C51300CAE54C /* MessageListView.swift */; };
 		8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */; };
+		8194D02A2D38C68C00CAE54C /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D0292D38C68C00CAE54C /* MessageInputView.swift */; };
 		819622112CDDAC59009D9392 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622102CDDAC59009D9392 /* SpeechRecognizer.swift */; };
 		819622132CDDAC75009D9392 /* SpeechRecognizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */; };
 		819622152CE303DB009D9392 /* SpokenMessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622142CE303DB009D9392 /* SpokenMessagingView.swift */; };
@@ -105,6 +106,7 @@
 		8194D0232D38C43000CAE54C /* LanguagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerView.swift; sourceTree = "<group>"; };
 		8194D0252D38C51300CAE54C /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		8194D0292D38C68C00CAE54C /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		819622102CDDAC59009D9392 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
 		819622142CE303DB009D9392 /* SpokenMessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpokenMessagingView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				8194D0232D38C43000CAE54C /* LanguagePickerView.swift */,
 				8194D0252D38C51300CAE54C /* MessageListView.swift */,
 				8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */,
+				8194D0292D38C68C00CAE54C /* MessageInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				81D8E40D2C74561400D7C0F8 /* MessagingViewModel.swift in Sources */,
 				819DC6A52CF5742A00452923 /* TtsRequest.swift in Sources */,
 				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
+				8194D02A2D38C68C00CAE54C /* MessageInputView.swift in Sources */,
 				81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */,
 				8194D0262D38C51300CAE54C /* MessageListView.swift in Sources */,
 				8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */,
