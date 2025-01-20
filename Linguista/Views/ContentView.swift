@@ -12,7 +12,7 @@ struct ContentView: View {
                 SpokenMessagingView()
             }
                 .tabItem {
-                    Label("a", systemImage: "phone.badge.waveform")
+                    Label("Chat", systemImage: "phone.badge.waveform")
                 }
                 .tag(0)
             
