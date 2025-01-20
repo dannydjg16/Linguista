@@ -141,6 +141,6 @@ struct UserContextMessagingView: View {
 
 struct UserContextMessagingView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagingView()
+        UserContextMessagingView()
     }
 }
