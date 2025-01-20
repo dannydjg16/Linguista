@@ -32,7 +32,6 @@
 		81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */; };
 		81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B192C6C5F7700B7A5AC /* Language.swift */; };
 		8188C7252CAC0CD200A10210 /* UserContextMessagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */; };
-		8188C7272CAC0CF700A10210 /* UserContextMessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */; };
 		8188C7292CAEA25A00A10210 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7282CAEA25A00A10210 /* Prompt.swift */; };
 		8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C72D2CB764C700A10210 /* CompletionsService.swift */; };
 		8194D0222D23791000CAE54C /* SpeedSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D0212D23791000CAE54C /* SpeedSelectorView.swift */; };
@@ -96,7 +95,6 @@
 		81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTranslateView.swift; sourceTree = "<group>"; };
 		81841B192C6C5F7700B7A5AC /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContextMessagingViewModel.swift; sourceTree = "<group>"; };
-		8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContextMessagingView.swift; sourceTree = "<group>"; };
 		8188C7282CAEA25A00A10210 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		8188C72D2CB764C700A10210 /* CompletionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsService.swift; sourceTree = "<group>"; };
 		8194D0212D23791000CAE54C /* SpeedSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedSelectorView.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				819622142CE303DB009D9392 /* SpokenMessagingView.swift */,
 				8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */,
 				81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */,
-				8188C7262CAC0CF700A10210 /* UserContextMessagingView.swift */,
 				8194D0232D38C43000CAE54C /* LanguagePickerView.swift */,
 				8194D0252D38C51300CAE54C /* MessageListView.swift */,
 				8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */,
@@ -427,7 +424,6 @@
 				8194D0262D38C51300CAE54C /* MessageListView.swift in Sources */,
 				8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */,
-				8188C7272CAC0CF700A10210 /* UserContextMessagingView.swift in Sources */,
 				81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */,
 				819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */,
 				8194D0242D38C43000CAE54C /* LanguagePickerView.swift in Sources */,
