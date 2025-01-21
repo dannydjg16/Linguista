@@ -31,7 +31,6 @@
 		81841B142C66B66A00B7A5AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B132C66B66A00B7A5AC /* Config.swift */; };
 		81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */; };
 		81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B192C6C5F7700B7A5AC /* Language.swift */; };
-		8188C7252CAC0CD200A10210 /* UserContextMessagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */; };
 		8188C7292CAEA25A00A10210 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7282CAEA25A00A10210 /* Prompt.swift */; };
 		8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C72D2CB764C700A10210 /* CompletionsService.swift */; };
 		8194D0222D23791000CAE54C /* SpeedSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D0212D23791000CAE54C /* SpeedSelectorView.swift */; };
@@ -45,7 +44,6 @@
 		819DC6A52CF5742A00452923 /* TtsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A42CF5742A00452923 /* TtsRequest.swift */; };
 		819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A62CF579E100452923 /* TtsViewModel.swift */; };
 		81D8E40B2C74559E00D7C0F8 /* MessagingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E40A2C74559E00D7C0F8 /* MessagingModel.swift */; };
-		81D8E40D2C74561400D7C0F8 /* MessagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E40C2C74561400D7C0F8 /* MessagingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +92,6 @@
 		81841B132C66B66A00B7A5AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTranslateView.swift; sourceTree = "<group>"; };
 		81841B192C6C5F7700B7A5AC /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContextMessagingViewModel.swift; sourceTree = "<group>"; };
 		8188C7282CAEA25A00A10210 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		8188C72D2CB764C700A10210 /* CompletionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsService.swift; sourceTree = "<group>"; };
 		8194D0212D23791000CAE54C /* SpeedSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedSelectorView.swift; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 		819DC6A42CF5742A00452923 /* TtsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsRequest.swift; sourceTree = "<group>"; };
 		819DC6A62CF579E100452923 /* TtsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsViewModel.swift; sourceTree = "<group>"; };
 		81D8E40A2C74559E00D7C0F8 /* MessagingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingModel.swift; sourceTree = "<group>"; };
-		81D8E40C2C74561400D7C0F8 /* MessagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,9 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				8120C7D32C3E3726007DCE2E /* MessageViewModel.swift */,
-				81D8E40C2C74561400D7C0F8 /* MessagingViewModel.swift */,
 				812D1F082C897DCD00255A86 /* ConversationViewModel.swift */,
-				8188C7242CAC0CD200A10210 /* UserContextMessagingViewModel.swift */,
 				819DC6A62CF579E100452923 /* TtsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -416,7 +410,6 @@
 				812D1F0B2C897E8400255A86 /* Utilities.swift in Sources */,
 				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				812D1F092C897DCD00255A86 /* ConversationViewModel.swift in Sources */,
-				81D8E40D2C74561400D7C0F8 /* MessagingViewModel.swift in Sources */,
 				819DC6A52CF5742A00452923 /* TtsRequest.swift in Sources */,
 				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
 				8194D02A2D38C68C00CAE54C /* MessageInputView.swift in Sources */,
@@ -431,7 +424,6 @@
 				819622112CDDAC59009D9392 /* SpeechRecognizer.swift in Sources */,
 				8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */,
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
-				8188C7252CAC0CD200A10210 /* UserContextMessagingViewModel.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
 				8120C7D22C3D635E007DCE2E /* CompletionsResponse.swift in Sources */,
