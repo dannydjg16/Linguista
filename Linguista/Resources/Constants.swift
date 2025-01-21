@@ -111,3 +111,16 @@ let popularLanguages = [
 let popularLanguageObjects: [Language] = popularLanguages.enumerated().map { (index, name) in
     Language(id: index + 1, name: name)
 }
+
+let conversationStarters = [
+    "How's your day going?",
+    "What's new in your world?",
+    "Seen any good shows lately?",
+    "What's your favorite book or movie?",
+    "Any exciting plans for the weekend?",
+    "What's your favorite season?",
+    "What's something you're passionate about?",
+    "What's your favorite travel memory?",
+    "What's your favorite type of music?",
+    "What's the best meal you've had recently?"
+]
