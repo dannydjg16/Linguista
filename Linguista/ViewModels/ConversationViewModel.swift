@@ -10,7 +10,7 @@ import Combine
 
 class ConversationViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "Let's have a conversation. If you have any questions, feel free to ask!", additionalContent: "nullString"), isSentByUser: false)]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0...conversationStarters.count)])", additionalContent: "nullString"), isSentByUser: false)]
     
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
