@@ -13,9 +13,7 @@ struct SpokenMessagingView: View {
     @StateObject private var messagingViewModel = ConversationViewModel()
     @StateObject private var speechRecognizer = SpeechRecognizer()
     
-    @State private var currentMessage = ""
     @State private var languageToTranslate = 1
-    @State private var textEditorHeight: CGFloat = 20
     
     var body: some View {
         VStack{
