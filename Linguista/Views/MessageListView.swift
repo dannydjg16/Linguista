@@ -16,7 +16,7 @@ struct MessageListView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(messagingViewModel.messages, id: \.id) { message in
-                        MessageBubbleView(message: message)
+                        MessageBubbleView(message: message, messagingViewModel: messagingViewModel)
                     }
                 }
                 //.padding()

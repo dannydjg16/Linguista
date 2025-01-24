@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MessageBubbleView: View {
     let message: MessagingModel
+    let messagingViewModel: ConversationViewModel
 
     var body: some View {
         HStack {
@@ -28,6 +29,8 @@ struct MessageBubbleView: View {
                     .padding()
                     .background(Color.brown.opacity(0.2))
                     .cornerRadius(10)
+                
+                PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
                 Spacer()
             }
         }
