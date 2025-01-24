@@ -37,7 +37,7 @@ struct MessageInputView: View {
     private func sendMessage() {
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: languageToTranslate)).", additionalContent: "nullString"),
+                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Respond in \(Utilities.getLanguageName(by: languageToTranslate)) to continue the conversation.", additionalContent: "nullString"),
                 Message(role: "user", content: speechRecognizer.transcribedText, additionalContent: "nullString")
             ]
             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
