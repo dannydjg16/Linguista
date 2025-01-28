@@ -13,7 +13,7 @@ struct MessageBubbleView: View {
     let messagingViewModel: ConversationViewModel
 
     var body: some View {
-        HStack {
+        HStack(alignment: .bottom, spacing: 10) {
             if message.isSentByUser {
                 Spacer()
                 Text(message.message.content)
