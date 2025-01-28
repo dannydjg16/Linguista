@@ -51,7 +51,7 @@ class ConversationViewModel: ObservableObject {
             
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
-                // Add response to message array
+                // Add response with audio to message array
                 self.messages.append(messageModelWithAudio)
             }
             
