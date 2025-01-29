@@ -19,9 +19,8 @@ struct MessageListView: View {
                         MessageBubbleView(message: message, messagingViewModel: messagingViewModel)
                     }
                 }
-                //.padding()
             }
-            .onChange(of: messagingViewModel.messages.count) { _ in
+            .onChange(of: messagingViewModel.messages.count) {
                 if let lastIndex = messagingViewModel.messages.last?.id {
                     withAnimation {
                         scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)

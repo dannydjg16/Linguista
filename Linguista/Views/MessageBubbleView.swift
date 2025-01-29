@@ -25,7 +25,7 @@ struct MessageBubbleView: View {
                             .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                     )
             } else {
-                Text(message.message.additionalContent)
+                Text(message.message.additionalContent ?? message.message.content)
                     .padding()
                     .background(Color.brown.opacity(0.2))
                     .cornerRadius(10)
