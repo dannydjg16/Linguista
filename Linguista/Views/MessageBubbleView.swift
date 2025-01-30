@@ -24,8 +24,16 @@ struct MessageBubbleView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                     )
+            } else if (message.message.additionalContent == "nullString") {
+                Text(message.message.content)
+                    .padding()
+                    .background(Color.brown.opacity(0.2))
+                    .cornerRadius(10)
+                
+                PlayAudioButton(message: message, messagingViewModel: messagingViewModel)
+                Spacer()
             } else {
-                Text(message.message.additionalContent ?? message.message.content)
+                Text(message.message.content)
                     .padding()
                     .background(Color.brown.opacity(0.2))
                     .cornerRadius(10)
