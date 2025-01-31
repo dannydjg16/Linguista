@@ -10,7 +10,7 @@ import Combine
 
 class ConversationViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])", additionalContent: "nullString"), isSentByUser: false)]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false)]
     
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
@@ -46,7 +46,7 @@ class ConversationViewModel: ObservableObject {
         
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
-            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error", additionalContent: "nullString")
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             
             Task {
