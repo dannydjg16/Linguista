@@ -9,7 +9,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab){
             
             NavigationView{
-                SpokenMessagingView()
+                ChatView()
             }
                 .tabItem {
                     Label("Chat", systemImage: "phone.badge.waveform")
