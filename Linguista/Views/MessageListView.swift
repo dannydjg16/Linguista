@@ -12,6 +12,9 @@ struct MessageListView: View {
     @ObservedObject var messagingViewModel: ConversationViewModel
 
     var body: some View {
+        if let firstMessage = messagingViewModel.messages.first {
+            Text("Topic: \(firstMessage.message.content)")
+        }
         ScrollViewReader { scrollViewProxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
@@ -21,6 +24,7 @@ struct MessageListView: View {
                 }
             }
             .onChange(of: messagingViewModel.messages.count) {
+                
                 if let lastIndex = messagingViewModel.messages.last?.id {
                     withAnimation {
                         scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
