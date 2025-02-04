@@ -29,8 +29,10 @@ class ConversationViewModel: ObservableObject {
         // Identify Users Message for use later
         let userMessage = MessagingModel(message: completionRequest.messages.last!, isSentByUser: true)
         
-        // Add user message to the message array that the user can see.
-        self.messages.append(userMessage)
+        // Add user message to the message array
+        await MainActor.run {
+            self.messages.append(userMessage)
+        }
         
         // Put together list to save messages
         var conversationSoFar = completionRequest
@@ -52,7 +54,9 @@ class ConversationViewModel: ObservableObject {
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
                 // Add response with audio to message array
-                self.messages.append(messageModelWithAudio)
+                await MainActor.run {
+                    self.messages.append(userMessage)
+                }
             }
             
         } catch {
