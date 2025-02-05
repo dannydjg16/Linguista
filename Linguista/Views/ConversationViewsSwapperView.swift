@@ -1,0 +1,32 @@
+//
+//  ConversationViewsSwapperView.swift
+//  Linguista
+//
+//  Created by Daniel Grant on 2/5/25.
+//
+
+import Foundation
+import SwiftUI
+
+struct ConversationViewsSwapperView: View {
+    
+    @State private var innerSelection = 0
+    
+    var body: some View {
+        NavigationView {
+            TabView(selection: $innerSelection) {
+                
+                ChatView()
+                    .tag(0)
+                
+                
+                SpokenMessagingView()
+                    .tag(1)
+            }
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+    }
+}
+
+

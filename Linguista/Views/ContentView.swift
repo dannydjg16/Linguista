@@ -8,19 +8,7 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            NavigationView {
-                TabView(selection: $innerSelection) {
-                    
-                    ChatView()
-                        .tag(0)
-                    
-                    
-                    SpokenMessagingView()
-                        .tag(1)
-                }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            ConversationViewsSwapperView()
             .tabItem {
                 Label("Chat", systemImage: "phone.badge.waveform")
             }
