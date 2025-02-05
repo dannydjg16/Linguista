@@ -19,28 +19,28 @@ struct ContentView: View {
                         .tag(1)
                 }
             }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .tabItem {
+                Label("Chat", systemImage: "phone.badge.waveform")
+            }
+            .tag(0)
+            
+            QuickTranslateView()
                 .tabItem {
-                    Label("Chat", systemImage: "phone.badge.waveform")
+                    Label("Translate", systemImage: "arrow.left.arrow.right")
                 }
-                .tag(0)
-                
-                QuickTranslateView()
-                    .tabItem {
-                        Label("Translate", systemImage: "arrow.left.arrow.right")
-                    }
-                    .tag(1)
-                
-                AccountView()
-                    .tabItem {
-                        Label("Account", systemImage: "person.fill")
-                    }
-                    .tag(2)
-                
-            }.accentColor(.brown)
+                .tag(1)
             
+            AccountView()
+                .tabItem {
+                    Label("Account", systemImage: "person.fill")
+                }
+                .tag(2)
             
+        }.accentColor(.brown)
+        
+        
     }
 }
 
