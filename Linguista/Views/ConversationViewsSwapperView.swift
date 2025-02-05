@@ -17,11 +17,11 @@ struct ConversationViewsSwapperView: View {
         NavigationView {
             TabView(selection: $innerSelection) {
                 
-                ChatView()
+                ChatView(messagingViewModel: messagingViewModel)
                     .tag(0)
                 
                 
-                SpokenMessagingView()
+                SpokenMessagingView(messagingViewModel: messagingViewModel)
                     .tag(1)
             }
         }
