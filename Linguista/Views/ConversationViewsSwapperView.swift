@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ConversationViewsSwapperView: View {
     
+    @StateObject private var messagingViewModel = ConversationViewModel()
     @State private var innerSelection = 0
     
     var body: some View {
@@ -28,5 +29,3 @@ struct ConversationViewsSwapperView: View {
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
     }
 }
-
-

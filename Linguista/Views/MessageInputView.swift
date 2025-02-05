@@ -9,9 +9,11 @@ import Foundation
 import SwiftUI
 
 struct MessageInputView: View {
-    @ObservedObject var speechRecognizer: SpeechRecognizer
+    
     @Binding var languageToTranslate: Int
+    
     @ObservedObject var messagingViewModel: ConversationViewModel
+    @ObservedObject var speechRecognizer: SpeechRecognizer
 
     var body: some View {
         HStack {

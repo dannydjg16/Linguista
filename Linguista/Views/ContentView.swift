@@ -3,11 +3,11 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedTab = 0
-    @State private var innerSelection = 0
     
     var body: some View {
         
         TabView(selection: $selectedTab) {
+            
             ConversationViewsSwapperView()
             .tabItem {
                 Label("Chat", systemImage: "phone.badge.waveform")
