@@ -9,17 +9,21 @@ import Foundation
 import SwiftUI
 
 struct MessageListView: View {
+    
     @ObservedObject var messagingViewModel: ConversationViewModel
     @State private var backgroundColor: Color = .blue
 
     var body: some View {
        //MyView()
-        ZStack{
+        
+            
             backgroundColor
                 .edgesIgnoringSafeArea(.all) // Make it cover the entire screen
-            if let firstMessage = messagingViewModel.messages.first {
-                Text("Topic: \(firstMessage.message.content)")
-            }
+            
+//            if let firstMessage = messagingViewModel.messages.first {
+//                Text("Topic: \(firstMessage.message.content)")
+//            }
+            
             ScrollViewReader { scrollViewProxy in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
@@ -45,7 +49,7 @@ struct MessageListView: View {
                     }
                 }
             }
-        }
+        
 
     }
     
