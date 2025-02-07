@@ -11,14 +11,14 @@ import SwiftUI
 
 struct ChatView: View {
     
-    @StateObject private var messagingViewModel = ConversationViewModel()
-    @StateObject private var speechRecognizer = SpeechRecognizer()
-    
+    @ObservedObject var messagingViewModel: ConversationViewModel
+    @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var languageToTranslate = 1
     
     var body: some View {
         VStack{
             
+            Text("CHAT VIEW")
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
             MessageListView(messagingViewModel: messagingViewModel)
@@ -27,17 +27,17 @@ struct ChatView: View {
                 .cornerRadius(10)
             
             MessageInputView(
-                            speechRecognizer: speechRecognizer,
-                            languageToTranslate: $languageToTranslate,
-                            messagingViewModel: messagingViewModel
-                        )
-                        .padding()
+                languageToTranslate: $languageToTranslate,
+                messagingViewModel: messagingViewModel,
+                speechRecognizer: speechRecognizer
+            )
+            .padding()
         }
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(messagingViewModel: ConversationViewModel())
     }
 }
