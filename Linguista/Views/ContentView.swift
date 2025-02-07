@@ -2,49 +2,33 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedTab = 4
+    @State private var selectedTab = 0
     
     var body: some View {
         
-        TabView(selection: $selectedTab){
+        TabView(selection: $selectedTab) {
             
-            NavigationView{
-                MessagingView()
-            }
+            ConversationViewsSwapperView()
             .tabItem {
-                Label("Messaging", systemImage: "questionmark.bubble.fill")
+                Label("Chat", systemImage: "phone.badge.waveform")
             }
             .tag(0)
-            
-            NavigationView{
-                ConversationView()
-            }
-            .tabItem {
-                Label("Chat", systemImage: "message.fill")
-            }
-            .tag(1)
             
             QuickTranslateView()
                 .tabItem {
                     Label("Translate", systemImage: "arrow.left.arrow.right")
                 }
-                .tag(2)
+                .tag(1)
             
             AccountView()
                 .tabItem {
                     Label("Account", systemImage: "person.fill")
                 }
-                .tag(3)
-            
-            NavigationView{
-                SpokenMessagingView()
-            }
-                .tabItem {
-                    Label("a", systemImage: "phone.badge.waveform")
-                }
-                .tag(4)
+                .tag(2)
             
         }.accentColor(.brown)
+        
+        
     }
 }
 

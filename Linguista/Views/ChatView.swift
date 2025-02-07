@@ -1,14 +1,15 @@
 //
-//  SpokenMessagingView.swift
+//  ChatView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 11/11/24.
+//  Created by Daniel Grant on 2/2/25.
 //
+
 
 import Foundation
 import SwiftUI
 
-struct SpokenMessagingView: View {
+struct ChatView: View {
     
     @ObservedObject var messagingViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
@@ -17,7 +18,7 @@ struct SpokenMessagingView: View {
     var body: some View {
         VStack{
             
-            Text("SPOKEN MESSAGING VIEW")
+            Text("CHAT VIEW")
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
             MessageListView(messagingViewModel: messagingViewModel)
@@ -35,8 +36,8 @@ struct SpokenMessagingView: View {
     }
 }
 
-struct SpokenMessagingView_Previews: PreviewProvider {
+struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        SpokenMessagingView(messagingViewModel: ConversationViewModel())
+        ChatView(messagingViewModel: ConversationViewModel())
     }
 }
