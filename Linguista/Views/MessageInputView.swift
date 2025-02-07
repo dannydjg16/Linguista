@@ -14,7 +14,7 @@ struct MessageInputView: View {
     
     @ObservedObject var messagingViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
-
+    
     var body: some View {
         HStack {
             TextField("Type a message", text: $speechRecognizer.transcribedText)
@@ -25,7 +25,7 @@ struct MessageInputView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                 )
-
+            
             Button("Send") {
                 sendMessage()
             }
@@ -35,7 +35,7 @@ struct MessageInputView: View {
             .cornerRadius(10)
         }
     }
-
+    
     private func sendMessage() {
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
@@ -54,6 +54,7 @@ struct MessageInputView: View {
 
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageInputView(speechRecognizer: SpeechRecognizer(), languageToTranslate: .constant(1), messagingViewModel: ConversationViewModel())
+        MessageInputView(languageToTranslate: .constant(1),
+                         messagingViewModel: ConversationViewModel(),speechRecognizer: SpeechRecognizer())
     }
 }
