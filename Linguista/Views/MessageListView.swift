@@ -14,15 +14,9 @@ struct MessageListView: View {
     @State private var backgroundColor: Color = .blue
 
     var body: some View {
-       //MyView()
-        
-            
+                    
             backgroundColor
-                .edgesIgnoringSafeArea(.all) // Make it cover the entire screen
-            
-//            if let firstMessage = messagingViewModel.messages.first {
-//                Text("Topic: \(firstMessage.message.content)")
-//            }
+                .edgesIgnoringSafeArea(.all)
             
             ScrollViewReader { scrollViewProxy in
                 ScrollView {
