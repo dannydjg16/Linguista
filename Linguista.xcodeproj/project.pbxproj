@@ -44,7 +44,6 @@
 		8194D02C2D506D0300CAE54C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8194D02B2D506D0300CAE54C /* ChatView.swift */; };
 		819622112CDDAC59009D9392 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622102CDDAC59009D9392 /* SpeechRecognizer.swift */; };
 		819622132CDDAC75009D9392 /* SpeechRecognizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */; };
-		819622152CE303DB009D9392 /* SpokenMessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622142CE303DB009D9392 /* SpokenMessagingView.swift */; };
 		819DC6A52CF5742A00452923 /* TtsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A42CF5742A00452923 /* TtsRequest.swift */; };
 		819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A62CF579E100452923 /* TtsViewModel.swift */; };
 		81D8E40B2C74559E00D7C0F8 /* MessagingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E40A2C74559E00D7C0F8 /* MessagingModel.swift */; };
@@ -109,7 +108,6 @@
 		8194D02B2D506D0300CAE54C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		819622102CDDAC59009D9392 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
-		819622142CE303DB009D9392 /* SpokenMessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpokenMessagingView.swift; sourceTree = "<group>"; };
 		819DC6A42CF5742A00452923 /* TtsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsRequest.swift; sourceTree = "<group>"; };
 		819DC6A62CF579E100452923 /* TtsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsViewModel.swift; sourceTree = "<group>"; };
 		81D8E40A2C74559E00D7C0F8 /* MessagingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingModel.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				813C405F2D0A8630007C10D3 /* PlayAudioButton.swift */,
 				819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */,
 				8194D0212D23791000CAE54C /* SpeedSelectorView.swift */,
-				819622142CE303DB009D9392 /* SpokenMessagingView.swift */,
 				8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */,
 				81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */,
 				8194D0232D38C43000CAE54C /* LanguagePickerView.swift */,
@@ -416,7 +413,6 @@
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
 				81841B142C66B66A00B7A5AC /* Config.swift in Sources */,
 				8194D02C2D506D0300CAE54C /* ChatView.swift in Sources */,
-				819622152CE303DB009D9392 /* SpokenMessagingView.swift in Sources */,
 				8188C7292CAEA25A00A10210 /* Prompt.swift in Sources */,
 				8120C7AD2C2A807C007DCE2E /* CompletionsRequest.swift in Sources */,
 				819622132CDDAC75009D9392 /* SpeechRecognizerView.swift in Sources */,
