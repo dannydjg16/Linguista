@@ -20,7 +20,7 @@ struct TextMessagingView: View {
             Text("SPOKEN MESSAGING VIEW")
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
-            BackAndForthChatView(messagingViewModel: messagingViewModel)
+            MessageListView(messagingViewModel: messagingViewModel)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
