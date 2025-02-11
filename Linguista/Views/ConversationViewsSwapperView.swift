@@ -21,7 +21,7 @@ struct ConversationViewsSwapperView: View {
                     .tag(0)
                 
                 
-                SpokenMessagingView(messagingViewModel: messagingViewModel)
+                TextMessagingView(messagingViewModel: messagingViewModel)
                     .tag(1)
             }
         }

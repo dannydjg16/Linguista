@@ -21,7 +21,7 @@ struct ChatView: View {
             Text("CHAT VIEW")
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
-            MessageListView(messagingViewModel: messagingViewModel)
+            BackAndForthChatView(messagingViewModel: messagingViewModel)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
