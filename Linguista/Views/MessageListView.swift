@@ -11,12 +11,8 @@ import SwiftUI
 struct MessageListView: View {
     
     @ObservedObject var messagingViewModel: ConversationViewModel
-    @State private var backgroundColor: Color = .yellow
 
     var body: some View {
-                    
-            backgroundColor
-                .edgesIgnoringSafeArea(.all)
             
             ScrollViewReader { scrollViewProxy in
                 ScrollView {
@@ -27,13 +23,10 @@ struct MessageListView: View {
                     }
                 }
                 .onChange(of: messagingViewModel.messages.count) {
-                    // Here, I want to maybe change the color or picture on the screen. So when you should be talking and when the thing is tlaking.
-                    // Might be a better way to do it but for now I have this array being checked anyways
                     
                     if let lastIndex = messagingViewModel.messages.last?.id {
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
-                            backgroundColor = (backgroundColor == .yellow) ? .purple : .yellow
                         }
                     }
                 }
