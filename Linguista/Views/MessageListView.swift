@@ -40,32 +40,3 @@ struct MessageListView: View {
             }
     }
 }
-
-struct MyView: View {
-    @State private var backgroundColor: Color = .blue // Initial background color
-
-    var body: some View {
-        ZStack {
-            backgroundColor
-                .edgesIgnoringSafeArea(.all) // Make it cover the entire screen
-
-            VStack {
-                Text("Tap the button to change background color")
-                    .foregroundColor(.white)
-                    .padding()
-
-                Button(action: {
-                    // Toggle between blue and green
-                    backgroundColor = (backgroundColor == .blue) ? .green : .blue
-                }) {
-                    Text("Change Background")
-                        .padding()
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
-                }
-            }
-        }
-    }
-}
-
