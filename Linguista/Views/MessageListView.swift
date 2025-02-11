@@ -39,10 +39,6 @@ struct MessageListView: View {
                 }
             }
     }
-    
-    private func switchBackgroundColor() -> Color {
-        return Color.blue
-    }
 }
 
 struct MyView: View {
