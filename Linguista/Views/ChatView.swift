@@ -20,17 +20,20 @@ struct ChatView: View {
             
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
+            Spacer()
+            
             BackAndForthChatView(messagingViewModel: messagingViewModel)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
+            
+            Spacer()
             
             MessageInputView(
                 languageToTranslate: $languageToTranslate,
                 messagingViewModel: messagingViewModel,
                 speechRecognizer: speechRecognizer
             )
-            .padding()
         }
     }
 }

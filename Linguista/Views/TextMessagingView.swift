@@ -28,7 +28,6 @@ struct TextMessagingView: View {
                 messagingViewModel: messagingViewModel,
                 speechRecognizer: speechRecognizer
             )
-            .padding()
         }
     }
 }
