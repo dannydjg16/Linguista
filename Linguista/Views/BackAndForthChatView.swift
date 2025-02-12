@@ -15,29 +15,55 @@ struct BackAndForthChatView: View {
     @Binding var innerSelection: Int
     
     var body: some View {
-        
-        Text("Last Message: ")
-        
-        if let lastMessage = messagingViewModel.messages.last {
+            Text("Last Message: ")
             
-            //backgroundColor = (backgroundColor == .yellow) ? .purple : .yellow
-            
-            MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
-        }
-        
-        VStack{
-            Button(action: {
-                // Action when the button is tapped
-                innerSelection += 1
-            }) {
-                Image(systemName: "phone.fill")
-                    .foregroundColor(.white)
+            if let lastMessage = messagingViewModel.messages.last {
+                
+                //backgroundColor = (backgroundColor == .yellow) ? .purple : .yellow
+                
+                MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
             }
-            .frame(minWidth: 25, idealWidth: 50, maxWidth: 75, minHeight: 25, idealHeight: 50, maxHeight: 75)
-            .background(Color.brown)
-            .clipShape(Circle())
+        
+        
+        Spacer()
+        
+        HStack{
+            Spacer()
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    innerSelection += 1
+                }) {
+                    Image(systemName: "list.dash")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                .background(Color.brown)
+                .clipShape(Circle())
+                
+                Text("Chat Recap")
+            }
             
-            Text("Chat Recap")
+            Spacer()
+            
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    innerSelection += 1
+                }) {
+                    Image(systemName: "phone.fill")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                .background(Color.brown)
+                .clipShape(Circle())
+                
+                Text("Chat Recap")
+            }
+            Spacer()
         }
+        
+        
+
     }
 }
