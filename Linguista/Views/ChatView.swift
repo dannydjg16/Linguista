@@ -18,7 +18,6 @@ struct ChatView: View {
     var body: some View {
         VStack{
             
-            Text("CHAT VIEW")
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
             BackAndForthChatView(messagingViewModel: messagingViewModel)
