@@ -25,8 +25,19 @@ struct BackAndForthChatView: View {
             MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
         }
         
-        Button("View Messages") {
-            innerSelection += 1
+        VStack{
+            Button(action: {
+                // Action when the button is tapped
+                innerSelection += 1
+            }) {
+                Image(systemName: "phone.fill")
+                    .foregroundColor(.white)
+            }
+            .frame(minWidth: 25, idealWidth: 50, maxWidth: 75, minHeight: 25, idealHeight: 50, maxHeight: 75)
+            .background(Color.brown)
+            .clipShape(Circle())
+            
+            Text("Chat Recap")
         }
     }
 }
