@@ -14,6 +14,7 @@ struct ChatView: View {
     @ObservedObject var messagingViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
     @Binding var languageToTranslate: Int
+    @Binding var innerSelection: Int
     
     var body: some View {
         VStack{
@@ -22,7 +23,7 @@ struct ChatView: View {
             
             Spacer()
             
-            BackAndForthChatView(messagingViewModel: messagingViewModel)
+            BackAndForthChatView(messagingViewModel: messagingViewModel, innerSelection: $innerSelection)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
@@ -40,7 +41,8 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     @State static var languageToTranslate = 1
+    @State static var innerSelection = 1
     static var previews: some View {
-        ChatView(messagingViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate)
+        ChatView(messagingViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
     }
 }

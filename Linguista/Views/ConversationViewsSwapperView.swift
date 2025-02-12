@@ -17,7 +17,7 @@ struct ConversationViewsSwapperView: View {
     var body: some View {
         NavigationView {
             TabView(selection: $innerSelection) {
-                    ChatView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate)
+                ChatView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
                     .tag(0)
                     .padding(.bottom, 40)
 
