@@ -16,8 +16,6 @@ struct TextMessagingView: View {
     
     var body: some View {
         VStack{
-            
-            Text("SPOKEN MESSAGING VIEW")
             LanguagePickerView(languageToTranslate: $languageToTranslate)
             
             MessageListView(messagingViewModel: messagingViewModel)
