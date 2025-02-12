@@ -12,7 +12,7 @@ struct TextMessagingView: View {
     
     @ObservedObject var messagingViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @State private var languageToTranslate = 1
+    @Binding var languageToTranslate: Int
     
     var body: some View {
         VStack{
@@ -34,7 +34,8 @@ struct TextMessagingView: View {
 }
 
 struct TextMessagingView_Previews: PreviewProvider {
+    @State static var languageToTranslate = 1
     static var previews: some View {
-        TextMessagingView(messagingViewModel: ConversationViewModel())
+        TextMessagingView(messagingViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate)
     }
 }

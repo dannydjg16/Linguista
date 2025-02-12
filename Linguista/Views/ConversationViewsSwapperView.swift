@@ -12,16 +12,17 @@ struct ConversationViewsSwapperView: View {
     
     @StateObject private var messagingViewModel = ConversationViewModel()
     @State private var innerSelection = 0
+    @State private var languageToTranslate = 1
+
     
     var body: some View {
         NavigationView {
             TabView(selection: $innerSelection) {
                 
-                ChatView(messagingViewModel: messagingViewModel)
+                ChatView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate)
                     .tag(0)
                 
-                
-                TextMessagingView(messagingViewModel: messagingViewModel)
+                TextMessagingView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate)
                     .tag(1)
             }
         }
