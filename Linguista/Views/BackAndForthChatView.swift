@@ -62,8 +62,5 @@ struct BackAndForthChatView: View {
             }
             Spacer()
         }
-        
-        
-
     }
 }
