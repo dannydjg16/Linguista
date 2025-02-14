@@ -60,6 +60,7 @@ struct BackAndForthChatView: View {
                 
                 Text("Chat Recap")
             }
+            
             Spacer()
         }
     }
