@@ -30,11 +30,11 @@ struct ChatView: View {
             
             Spacer()
             
-            MessageInputView(
-                languageToTranslate: $languageToTranslate,
-                messagingViewModel: messagingViewModel,
-                speechRecognizer: speechRecognizer
-            )
+//            MessageInputView(
+//                languageToTranslate: $languageToTranslate,
+//                messagingViewModel: messagingViewModel,
+//                speechRecognizer: speechRecognizer
+//            )
         }
     }
 }
