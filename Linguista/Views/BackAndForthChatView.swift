@@ -15,13 +15,13 @@ struct BackAndForthChatView: View {
     @Binding var innerSelection: Int
     
     var body: some View {
+        
+        if let lastMessage = messagingViewModel.messages.last {
             
-            if let lastMessage = messagingViewModel.messages.last {
-                
-                //backgroundColor = (backgroundColor == .yellow) ? .purple : .yellow
-                
-                MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
-            }
+            //backgroundColor = (backgroundColor == .yellow) ? .purple : .yellow
+            
+            MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
+        }
         
         
         Spacer()
@@ -137,7 +137,6 @@ struct BackAndForthChatView: View {
         Spacer()
         
         HStack{
-            //Spacer()
             
             VStack{
                 Button(action: {
@@ -153,10 +152,6 @@ struct BackAndForthChatView: View {
                 
                 Text("Talk")
             }
-            
-            //Spacer()
         }
-        
-        Spacer()
     }
 }
