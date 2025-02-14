@@ -94,7 +94,7 @@ struct BackAndForthChatView: View {
                 .background(Color.brown)
                 .clipShape(Circle())
                 
-                Text("Chat Recap")
+                Text("Do Something")
             }
             
             Spacer()
@@ -111,7 +111,7 @@ struct BackAndForthChatView: View {
                 .background(Color.brown)
                 .clipShape(Circle())
                 
-                Text("End ")
+                Text("New Conversation")
             }
             
             Spacer()
@@ -128,7 +128,7 @@ struct BackAndForthChatView: View {
                 .background(Color.brown)
                 .clipShape(Circle())
                 
-                Text("Some action")
+                Text("Replay Message")
             }
             
             Spacer()
@@ -144,7 +144,7 @@ struct BackAndForthChatView: View {
                     // Action when the button is tapped
                     innerSelection += 1
                 }) {
-                    Image(systemName: "microphone")
+                    Image(systemName: "waveform")
                         .foregroundColor(.white)
                 }
                 .frame(minWidth: 50, idealWidth: 100, maxWidth: 150, minHeight: 50, idealHeight: 100, maxHeight: 150)
