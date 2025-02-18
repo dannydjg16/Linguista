@@ -121,7 +121,7 @@ struct BackAndForthChatView: View {
                     // Action when the button is tapped
                     innerSelection += 1
                 }) {
-                    Image(systemName: "questionmark")
+                    Image(systemName: "arrow.clockwise")
                         .foregroundColor(.white)
                 }
                 .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
@@ -146,7 +146,7 @@ struct BackAndForthChatView: View {
                     Image(systemName: "waveform")
                         .foregroundColor(.white)
                 }
-                .frame(minWidth: 50, idealWidth: 100, maxWidth: 150, minHeight: 50, idealHeight: 100, maxHeight: 150)
+                .frame(minWidth: 100, idealWidth: 100, maxWidth: 150, minHeight: 100, idealHeight: 100, maxHeight: 150)
                 .background(Color.brown)
                 .clipShape(Circle())
                 
