@@ -29,12 +29,6 @@ struct ChatView: View {
                 .cornerRadius(10)
             
             Spacer()
-            
-//            MessageInputView(
-//                languageToTranslate: $languageToTranslate,
-//                messagingViewModel: messagingViewModel,
-//                speechRecognizer: speechRecognizer
-//            )
         }
     }
 }
