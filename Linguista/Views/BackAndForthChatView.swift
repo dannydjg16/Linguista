@@ -17,9 +17,6 @@ struct BackAndForthChatView: View {
     var body: some View {
         
         if let lastMessage = messagingViewModel.messages.last {
-            
-            //backgroundColor = (backgroundColor == .yellow) ? .purple : .yellow
-            
             MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
         }
         
@@ -139,6 +136,19 @@ struct BackAndForthChatView: View {
         HStack{
             
             VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    innerSelection += 1
+                }) {
+                    Image(systemName: "waveform")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 100, idealWidth: 100, maxWidth: 150, minHeight: 100, idealHeight: 100, maxHeight: 150)
+                .background(Color.brown)
+                .clipShape(Circle())
+                
+                Text("Speak \()")
+                
                 Button(action: {
                     // Action when the button is tapped
                     innerSelection += 1
