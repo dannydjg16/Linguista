@@ -20,7 +20,6 @@ struct BackAndForthChatView: View {
             MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
         }
         
-        
         Spacer()
         
         HStack{
@@ -91,7 +90,7 @@ struct BackAndForthChatView: View {
                 .background(Color.brown)
                 .clipShape(Circle())
                 
-                Text("Do Something")
+                Text("Restart Chat")
             }
             
             Spacer()
@@ -147,8 +146,10 @@ struct BackAndForthChatView: View {
                 .background(Color.brown)
                 .clipShape(Circle())
                 
-                Text("Speak \()")
-                
+                Text("English")
+            }
+            
+            VStack{
                 Button(action: {
                     // Action when the button is tapped
                     innerSelection += 1
@@ -160,8 +161,9 @@ struct BackAndForthChatView: View {
                 .background(Color.brown)
                 .clipShape(Circle())
                 
-                Text("Talk")
+                Text("Farsi")
             }
+            
         }
     }
 }
