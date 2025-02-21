@@ -56,6 +56,10 @@ struct BackAndForthChatView: View {
                 Text("Chat Recap")
             }
             
+
+        }
+        
+        HStack {
             Spacer()
             
             VStack{
@@ -73,10 +77,6 @@ struct BackAndForthChatView: View {
                 Text("Replay Message")
             }
             Spacer()
-        }
-        
-        HStack{
-            
         }
         
 //            VStack{
@@ -112,7 +112,7 @@ struct BackAndForthChatView: View {
 //            }
             
         
-        Spacer()
+   //     Spacer()
         
         HStack{
             
