@@ -46,7 +46,7 @@ struct BackAndForthChatView: View {
                     // Action when the button is tapped
                     innerSelection += 1
                 }) {
-                    Image(systemName: "phone.fill")
+                    Image(systemName: "list.dash")
                         .foregroundColor(.white)
                 }
                 .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
@@ -56,6 +56,7 @@ struct BackAndForthChatView: View {
                 Text("Chat Recap")
             }
             
+            Spacer()
 
         }
         
@@ -116,20 +117,7 @@ struct BackAndForthChatView: View {
         
         HStack{
             
-            VStack{
-                Button(action: {
-                    // Action when the button is tapped
-                    innerSelection += 1
-                }) {
-                    Image(systemName: "waveform")
-                        .foregroundColor(.white)
-                }
-                .frame(minWidth: 100, idealWidth: 100, maxWidth: 150, minHeight: 100, idealHeight: 100, maxHeight: 150)
-                .background(Color.brown)
-                .clipShape(Circle())
-                
-                Text("English")
-            }
+            Spacer()
             
             VStack{
                 Button(action: {
@@ -139,12 +127,31 @@ struct BackAndForthChatView: View {
                     Image(systemName: "waveform")
                         .foregroundColor(.white)
                 }
-                .frame(minWidth: 100, idealWidth: 100, maxWidth: 150, minHeight: 100, idealHeight: 100, maxHeight: 150)
+                .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
+                .background(Color.brown)
+                .clipShape(Circle())
+                
+                Text("English")
+            }
+            
+            Spacer()
+            
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    innerSelection += 1
+                }) {
+                    Image(systemName: "waveform")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
                 .background(Color.brown)
                 .clipShape(Circle())
                 
                 Text("Farsi")
             }
+            
+            Spacer()
             
         }
     }
