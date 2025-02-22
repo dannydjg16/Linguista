@@ -24,22 +24,8 @@ struct BackAndForthChatView: View {
         
         HStack{
             Spacer()
-            VStack{
-                Button(action: {
-                    // Action when the button is tapped
-                    innerSelection += 1
-                }) {
-                    Image(systemName: "list.dash")
-                        .foregroundColor(.white)
-                }
-                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
-                .background(Color.brown)
-                .clipShape(Circle())
-                
-                Text("Chat Recap")
-            }
+
             
-            Spacer()
             
             VStack{
                 Button(action: {
@@ -63,7 +49,7 @@ struct BackAndForthChatView: View {
         HStack {
             Spacer()
             
-            VStack{
+            VStack {
                 Button(action: {
                     // Action when the button is tapped
                     innerSelection += 1
@@ -115,44 +101,51 @@ struct BackAndForthChatView: View {
         
    //     Spacer()
         
-        HStack{
-            
+        VStack {
             Spacer()
-            
-            VStack{
-                Button(action: {
-                    // Action when the button is tapped
-                    innerSelection += 1
-                }) {
-                    Image(systemName: "waveform")
-                        .foregroundColor(.white)
-                }
-                .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
-                .background(Color.brown)
-                .clipShape(Circle())
+            Text("Get reply in:")
+            HStack{
                 
-                Text("English")
-            }
-            
-            Spacer()
-            
-            VStack{
-                Button(action: {
-                    // Action when the button is tapped
-                    innerSelection += 1
-                }) {
-                    Image(systemName: "waveform")
-                        .foregroundColor(.white)
-                }
-                .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
-                .background(Color.brown)
-                .clipShape(Circle())
+                Spacer()
                 
-                Text("Farsi")
+                VStack{
+                    Button(action: {
+                        // Action when the button is tapped
+                        innerSelection += 1
+                    }) {
+                        Image(systemName: "waveform")
+                            .foregroundColor(.white)
+                    }
+                    .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+                    
+                    Text("English")
+                }
+                
+                Spacer()
+                
+                VStack{
+                    Button(action: {
+                        // Action when the button is tapped
+                        innerSelection += 1
+                    }) {
+                        Image(systemName: "waveform")
+                            .foregroundColor(.white)
+                    }
+                    .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+                    
+                    Text("Farsi")
+                }
+                
+                Spacer()
+                
             }
-            
             Spacer()
-            
         }
+        .background(Color.brown.opacity(0.1))
+        .cornerRadius(10)
     }
 }
