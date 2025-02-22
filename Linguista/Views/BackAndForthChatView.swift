@@ -45,26 +45,7 @@ struct BackAndForthChatView: View {
             Spacer()
 
         }
-        
-        HStack {
-            Spacer()
-            
-            VStack {
-                Button(action: {
-                    // Action when the button is tapped
-                    innerSelection += 1
-                }) {
-                    Image(systemName: "arrow.clockwise")
-                        .foregroundColor(.white)
-                }
-                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
-                .background(Color.brown)
-                .clipShape(Circle())
-                
-                Text("Replay Message")
-            }
-            Spacer()
-        }
+
         
 //            VStack{
 //                Button(action: {
@@ -121,6 +102,23 @@ struct BackAndForthChatView: View {
                     .clipShape(Circle())
                     
                     Text("English")
+                }
+                
+                Spacer()
+                
+                VStack {
+                    Button(action: {
+                        // Action when the button is tapped
+                        innerSelection += 1
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundColor(.white)
+                    }
+                    .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+                    
+                    Text("Replay Message")
                 }
                 
                 Spacer()

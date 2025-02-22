@@ -18,8 +18,15 @@ struct ChatView: View {
     
     var body: some View {
         VStack{
+            SettingsView(languageToTranslate: $languageToTranslate)
+
             
-            LanguagePickerView(languageToTranslate: $languageToTranslate)
+            
+            //LanguagePickerView(languageToTranslate: $languageToTranslate)
+            
+            Spacer()
+            
+            Text("View to ")
             
             Spacer()
             
@@ -28,7 +35,6 @@ struct ChatView: View {
                 .background(Color.white)
                 .cornerRadius(10)
             
-            Spacer()
         }
     }
 }

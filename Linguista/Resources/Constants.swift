@@ -140,5 +140,5 @@ let conversationStarters = [
     "What's your favorite thing to do with friends?",
     "What's your favorite thing to do with family?",
     "What's your favorite thing to do with pets?",
-    "What's your favorite thing to do with your partner?",
+    "What's your favorite thing to do with your partner?"
 ]
