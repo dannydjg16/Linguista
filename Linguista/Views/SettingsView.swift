@@ -39,5 +39,4 @@ struct SettingsView: View {
             SettingsOptionsView(languageToTranslate: $languageToTranslate)
         }
     }
-    
 }

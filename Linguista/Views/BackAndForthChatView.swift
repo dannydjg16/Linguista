@@ -24,8 +24,6 @@ struct BackAndForthChatView: View {
         
         HStack{
             Spacer()
-
-            
             
             VStack{
                 Button(action: {
