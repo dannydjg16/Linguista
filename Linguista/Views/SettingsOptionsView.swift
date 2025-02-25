@@ -15,11 +15,40 @@ struct SettingsOptionsView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
-            Text("This is the modal view")
-            Button("Dismiss") {
-                dismiss()
+        HStack() {
+            Spacer()
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.brown)
+                }
+                .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
+                .background(Color.white )
+                .clipShape(Circle())
             }
+        }
+        Spacer()
+        
+        HStack() {
+            Spacer()
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    dismiss()
+                }) {
+                    Text("Save")
+                        .foregroundColor(Color.brown)
+                        
+                }
+                .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
+                .background(Color.white)
+                .clipShape(Circle())
+            }
+            
+            Spacer()
         }
     }
 }
