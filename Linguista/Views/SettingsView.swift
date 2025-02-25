@@ -12,31 +12,27 @@ struct SettingsView: View {
     
     @Binding var languageToTranslate: Int
     @State private var isShowingModal = false
-    
-    //    var body: some View {
-    //        HStack {
-    //            Spacer()
-    //            VStack{
-    //                Button(action: {
-    //                    // Action when the button is tapped
-    //                    SettingsOptionsView(languageToTranslate: $languageToTranslate)
-    //
-    //                }) {
-    //                    Image(systemName: "gear")
-    //                        .foregroundColor(.brown)
-    //                }
-    //                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
-    //                .background(Color.white )
-    //                .clipShape(Circle())
-    //            }
-    //        }
-    //    }
+
     var body: some View {
-        Button("Show Modal") {
-            isShowingModal = true
+        
+        HStack() {
+            Spacer()
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    isShowingModal = true
+                }) {
+                    Image(systemName: "gear")
+                        .foregroundColor(.brown)
+                }
+                .frame(minWidth: 30, idealWidth: 50, maxWidth: 50, minHeight: 30, idealHeight: 50, maxHeight: 50)
+                .background(Color.white )
+                .clipShape(Circle())
+            }
+            .sheet(isPresented: $isShowingModal) {
+                SettingsOptionsView(languageToTranslate: $languageToTranslate)
+            }
         }
-        .sheet(isPresented: $isShowingModal) {
-            SettingsOptionsView(languageToTranslate: $languageToTranslate)
-        }
+
     }
 }
