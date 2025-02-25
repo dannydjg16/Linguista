@@ -23,6 +23,7 @@ struct MessageBubbleView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+                
             } else {
                 Text(message.message.content)
                     .padding()

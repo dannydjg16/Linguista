@@ -19,9 +19,7 @@ struct ChatView: View {
     var body: some View {
         VStack{
             SettingsView(languageToTranslate: $languageToTranslate)
-            
-            Spacer()
-            
+                        
             BackAndForthChatView(messagingViewModel: messagingViewModel, innerSelection: $innerSelection)
                 .padding()
                 .background(Color.white)
