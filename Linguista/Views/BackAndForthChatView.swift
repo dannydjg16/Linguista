@@ -88,7 +88,7 @@ struct BackAndForthChatView: View {
                     Button(action: {
                         
                     }) {
-                        Image(systemName: "waveform")
+                        Image(systemName: "microphone")
                             .foregroundColor(.white)
                     }
                     .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
@@ -96,10 +96,10 @@ struct BackAndForthChatView: View {
                     .clipShape(Circle())
                     
                 }
+                
+                Spacer()
+                
             }
-            Spacer()
         }
-//        .background(Color.brown.opacity(0.1))
-//        .cornerRadius(10)
     }
 }
