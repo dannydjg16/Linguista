@@ -8,6 +8,6 @@
 import Foundation
 
 struct Settings {
-    var level: Int = 1
-    
+    var learningLevel: Int = 1
+    var languageToTranslate: Int
 }
