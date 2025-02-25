@@ -18,7 +18,7 @@ struct ChatView: View {
     
     var body: some View {
         VStack{
-            SettingsView(languageToTranslate: $languageToTranslate)
+            //SettingsView(languageToTranslate: $languageToTranslate)
                         
             BackAndForthChatView(messagingViewModel: messagingViewModel, innerSelection: $innerSelection)
                 .padding()

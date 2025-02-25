@@ -15,19 +15,25 @@ struct ConversationViewsSwapperView: View {
     @State private var languageToTranslate = 1
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $innerSelection) {
-                ChatView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
-                    .tag(0)
-                    .padding(.bottom, 40)
+        VStack {
+            SettingsView(languageToTranslate: $languageToTranslate)
+            
+            NavigationView {
 
-                
-                TextMessagingView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate)
-                    .tag(1)
-                    .padding(.bottom, 40)
+                TabView(selection: $innerSelection) {
+                    ChatView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
+                        .tag(0)
+                        .padding(.bottom, 40)
+
+                    
+                    TextMessagingView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate)
+                        .tag(1)
+                        .padding(.bottom, 40)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
+
     }
 }
