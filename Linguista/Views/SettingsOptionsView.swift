@@ -32,6 +32,14 @@ struct SettingsOptionsView: View {
         }
         Spacer()
         
+        NavigationView {
+            LanguagePickerView(languageToTranslate: $languageToTranslate)
+        }
+        .tint(Color.brown)
+        
+        
+        Spacer()
+        
         HStack() {
             Spacer()
             VStack{
