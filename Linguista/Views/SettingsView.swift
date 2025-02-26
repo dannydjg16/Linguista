@@ -16,13 +16,30 @@ struct SettingsView: View {
     var body: some View {
         
         HStack() {
-            Spacer()
             VStack{
                 Button(action: {
                     // Action when the button is tapped
                     isShowingModal = true
                 }) {
                     Image(systemName: "gear")
+                        .foregroundColor(.brown)
+                }
+                .frame(minWidth: 30, idealWidth: 50, maxWidth: 50, minHeight: 30, idealHeight: 50, maxHeight: 50)
+                .background(Color.white )
+                .clipShape(Circle())
+            }
+            .sheet(isPresented: $isShowingModal) {
+                SettingsOptionsView(languageToTranslate: $languageToTranslate)
+            }
+            
+            Spacer()
+            
+            VStack{
+                Button(action: {
+                    // Action when the button is tapped
+                    isShowingModal = true
+                }) {
+                    Image(systemName: "ellipsis.message")
                         .foregroundColor(.brown)
                 }
                 .frame(minWidth: 30, idealWidth: 50, maxWidth: 50, minHeight: 30, idealHeight: 50, maxHeight: 50)
