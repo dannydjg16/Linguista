@@ -65,12 +65,34 @@ struct ChatSettingsView: View {
         Spacer()
         
         HStack() {
+            
             Spacer()
+            
+            VStack{
+                Button(action: {
+                    
+                    dismiss()
+                    innerSelection = 0
+                    
+                }) {
+                    Image(systemName: "microphone")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                .background(Color.brown)
+                .clipShape(Circle())
+                
+                Text("Continue Chat")
+            }
+            
+            Spacer()
+            
             VStack{
                 Button(action: {
                     
                     dismiss()
                     innerSelection = 1
+                    
                 }) {
                     Image(systemName: "bubble.and.pencil")
                         .foregroundColor(.white)
@@ -80,8 +102,6 @@ struct ChatSettingsView: View {
                 .clipShape(Circle())
                 
                 Text("Chat Recap")
-                // Add another button to go back the other way.
-                
             }
             
             Spacer()
