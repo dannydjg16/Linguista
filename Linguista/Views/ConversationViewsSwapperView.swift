@@ -16,7 +16,7 @@ struct ConversationViewsSwapperView: View {
     
     var body: some View {
         VStack {
-            SettingsView(languageToTranslate: $languageToTranslate, conversationViewModel: conversationViewModel)
+            SettingsView(languageToTranslate: $languageToTranslate, conversationViewModel: conversationViewModel, innerSelection: $innerSelection)
             
             NavigationView {
 

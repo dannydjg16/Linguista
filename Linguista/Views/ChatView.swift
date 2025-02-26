@@ -19,7 +19,7 @@ struct ChatView: View {
     var body: some View {
         VStack{
                         
-            BackAndForthChatView(conversationViewModel: conversationViewModel, innerSelection: $innerSelection)
+            BackAndForthChatView(conversationViewModel: conversationViewModel)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)

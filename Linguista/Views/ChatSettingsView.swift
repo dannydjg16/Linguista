@@ -12,7 +12,8 @@ import SwiftUI
 struct ChatSettingsView: View {
 
     @Binding var languageToTranslate: Int
-    
+    @Binding var innerSelection: Int
+    @ObservedObject var conversationViewModel: ConversationViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -20,7 +21,6 @@ struct ChatSettingsView: View {
             Spacer()
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
                     dismiss()
                 }) {
                     Image(systemName: "xmark")
@@ -31,9 +31,36 @@ struct ChatSettingsView: View {
                 .clipShape(Circle())
             }
         }
+        
+        VStack{
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "list.dash")
+                    .foregroundColor(.white)
+            }
+            .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+            .background(Color.brown)
+            .clipShape(Circle())
+
+            Text("Restart Chat")
+        }
+
         Spacer()
-        
-        
+
+        VStack{
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "phone.fill")
+                    .foregroundColor(.white)
+            }
+            .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+            .background(Color.brown)
+            .clipShape(Circle())
+
+            Text("New Conversation")
+        }
         
         Spacer()
         
@@ -41,16 +68,20 @@ struct ChatSettingsView: View {
             Spacer()
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
+                    
                     dismiss()
+                    innerSelection += 1
                 }) {
-                    Text("Save")
-                        .foregroundColor(Color.brown)
-                        
+                    Image(systemName: "bubble.and.pencil")
+                        .foregroundColor(.white)
                 }
-                .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(Color.white)
+                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                .background(Color.brown)
                 .clipShape(Circle())
+                
+                Text("Chat Recap")
+                // Add another button to go back the other way.
+                
             }
             
             Spacer()

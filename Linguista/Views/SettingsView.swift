@@ -12,14 +12,15 @@ struct SettingsView: View {
     
     @Binding var languageToTranslate: Int
     @State private var isShowingModal = false
+    @State private var isShowingChatSettingsModal = false
     @ObservedObject var conversationViewModel: ConversationViewModel
+    @Binding var innerSelection: Int
 
     var body: some View {
         
         HStack() {
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
                     isShowingModal = true
                 }) {
                     Image(systemName: "gear")
@@ -37,8 +38,7 @@ struct SettingsView: View {
             
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
-                    isShowingModal = true
+                    isShowingChatSettingsModal = true
                 }) {
                     Image(systemName: "ellipsis.message")
                         .foregroundColor(.brown)
@@ -47,8 +47,8 @@ struct SettingsView: View {
                 .background(Color.white )
                 .clipShape(Circle())
             }
-            .sheet(isPresented: $isShowingModal) {
-                SettingsOptionsView(languageToTranslate: $languageToTranslate)
+            .sheet(isPresented: $isShowingChatSettingsModal) {
+                ChatSettingsView(languageToTranslate: $languageToTranslate, innerSelection: $innerSelection, conversationViewModel: conversationViewModel)
             }
         }
 
