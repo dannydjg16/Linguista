@@ -10,14 +10,14 @@ import SwiftUI
 
 struct BackAndForthChatView: View {
     
-    @ObservedObject var messagingViewModel: ConversationViewModel
+    @ObservedObject var conversationViewModel: ConversationViewModel
     @State private var backgroundColor: Color = .yellow
     @Binding var innerSelection: Int
     
     var body: some View {
         
-        if let lastMessage = messagingViewModel.messages.last(where: { $0.isSentByUser == false } ) {
-            MessageBubbleView(message: lastMessage, messagingViewModel: messagingViewModel)
+        if let lastMessage = conversationViewModel.messages.last(where: { $0.isSentByUser == false } ) {
+            MessageBubbleView(message: lastMessage, conversationViewModel: conversationViewModel)
         }
         
         Spacer()

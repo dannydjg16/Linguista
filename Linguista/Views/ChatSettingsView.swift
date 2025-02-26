@@ -33,10 +33,6 @@ struct ChatSettingsView: View {
         }
         Spacer()
         
-        NavigationView {
-            LanguagePickerView(languageToTranslate: $languageToTranslate)
-        }
-        .tint(Color.brown)
         
         
         Spacer()

@@ -12,6 +12,7 @@ struct SettingsView: View {
     
     @Binding var languageToTranslate: Int
     @State private var isShowingModal = false
+    @ObservedObject var conversationViewModel: ConversationViewModel
 
     var body: some View {
         

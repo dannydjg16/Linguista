@@ -10,23 +10,23 @@ import SwiftUI
 
 struct ConversationViewsSwapperView: View {
     
-    @StateObject private var messagingViewModel = ConversationViewModel()
+    @StateObject private var conversationViewModel = ConversationViewModel()
     @State private var innerSelection = 0
     @State private var languageToTranslate = 1
     
     var body: some View {
         VStack {
-            SettingsView(languageToTranslate: $languageToTranslate)
+            SettingsView(languageToTranslate: $languageToTranslate, conversationViewModel: conversationViewModel)
             
             NavigationView {
 
                 TabView(selection: $innerSelection) {
-                    ChatView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
+                    ChatView(conversationViewModel: conversationViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
                         .tag(0)
                         .padding(.bottom, 40)
 
                     
-                    TextMessagingView(messagingViewModel: messagingViewModel, languageToTranslate: $languageToTranslate)
+                    TextMessagingView(conversationViewModel: conversationViewModel, languageToTranslate: $languageToTranslate)
                         .tag(1)
                         .padding(.bottom, 40)
                 }

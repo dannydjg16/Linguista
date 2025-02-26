@@ -10,21 +10,21 @@ import SwiftUI
 
 struct TextMessagingView: View {
     
-    @ObservedObject var messagingViewModel: ConversationViewModel
+    @ObservedObject var conversationViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
     @Binding var languageToTranslate: Int
     
     var body: some View {
         VStack{
             
-            MessageListView(messagingViewModel: messagingViewModel)
+            MessageListView(conversationViewModel: conversationViewModel)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
             
             MessageInputView(
                 languageToTranslate: $languageToTranslate,
-                messagingViewModel: messagingViewModel,
+                conversationViewModel: conversationViewModel,
                 speechRecognizer: speechRecognizer
             )
         }
@@ -34,6 +34,6 @@ struct TextMessagingView: View {
 struct TextMessagingView_Previews: PreviewProvider {
     @State static var languageToTranslate = 1
     static var previews: some View {
-        TextMessagingView(messagingViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate)
+        TextMessagingView(conversationViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate)
     }
 }

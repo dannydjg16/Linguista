@@ -10,21 +10,21 @@ import SwiftUI
 
 struct MessageListView: View {
     
-    @ObservedObject var messagingViewModel: ConversationViewModel
+    @ObservedObject var conversationViewModel: ConversationViewModel
 
     var body: some View {
             
             ScrollViewReader { scrollViewProxy in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
-                        ForEach(messagingViewModel.messages, id: \.id) { message in
-                            MessageBubbleView(message: message, messagingViewModel: messagingViewModel)
+                        ForEach(conversationViewModel.messages, id: \.id) { message in
+                            MessageBubbleView(message: message, conversationViewModel: conversationViewModel)
                         }
                     }
                 }
-                .onChange(of: messagingViewModel.messages.count) {
+                .onChange(of: conversationViewModel.messages.count) {
                     
-                    if let lastIndex = messagingViewModel.messages.last?.id {
+                    if let lastIndex = conversationViewModel.messages.last?.id {
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
                         }

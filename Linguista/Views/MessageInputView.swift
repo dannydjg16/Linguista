@@ -12,7 +12,7 @@ struct MessageInputView: View {
     
     @Binding var languageToTranslate: Int
     
-    @ObservedObject var messagingViewModel: ConversationViewModel
+    @ObservedObject var conversationViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
     
     var body: some View {
@@ -44,7 +44,7 @@ struct MessageInputView: View {
             ]
             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
             Task {
-                await messagingViewModel.sendMessage(completionRequest: dataModel)
+                await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
             speechRecognizer.transcribedText = ""
         }
@@ -55,6 +55,6 @@ struct MessageInputView: View {
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
         MessageInputView(languageToTranslate: .constant(1),
-                         messagingViewModel: ConversationViewModel(),speechRecognizer: SpeechRecognizer())
+                         conversationViewModel: ConversationViewModel(),speechRecognizer: SpeechRecognizer())
     }
 }
