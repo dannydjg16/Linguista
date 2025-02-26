@@ -70,7 +70,7 @@ struct ChatSettingsView: View {
                 Button(action: {
                     
                     dismiss()
-                    innerSelection += 1
+                    innerSelection = 1
                 }) {
                     Image(systemName: "bubble.and.pencil")
                         .foregroundColor(.white)
