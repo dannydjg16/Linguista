@@ -44,7 +44,7 @@ struct ChatSettingsView: View {
                     conversationViewModel.resetChatWithSamePrompt()
                     dismiss()
                 }) {
-                    Image(systemName: "list.dash")
+                    Image(systemName: "arrow.trianglehead.counterclockwise.rotate.90")
                         .foregroundColor(.white)
                 }
                 .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
