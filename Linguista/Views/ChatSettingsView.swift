@@ -61,7 +61,7 @@ struct ChatSettingsView: View {
                     
                     dismiss()
                 }) {
-                    Image(systemName: "phone.fill")
+                    Image(systemName: "text.insert")
                         .foregroundColor(.white)
                 }
                 .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
