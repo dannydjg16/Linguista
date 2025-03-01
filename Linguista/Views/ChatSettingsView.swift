@@ -106,5 +106,6 @@ struct ChatSettingsView: View {
             
             Spacer()
         }
+        Spacer()
     }
 }
