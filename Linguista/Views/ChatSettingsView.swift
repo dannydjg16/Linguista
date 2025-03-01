@@ -17,6 +17,7 @@ struct ChatSettingsView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        
         HStack() {
             Spacer()
             VStack{
@@ -56,6 +57,7 @@ struct ChatSettingsView: View {
             
             VStack{
                 Button(action: {
+                    
                     dismiss()
                 }) {
                     Image(systemName: "phone.fill")
@@ -80,7 +82,6 @@ struct ChatSettingsView: View {
             
             VStack{
                 Button(action: {
-                    
                     dismiss()
                     innerSelection = 0
                     
@@ -99,7 +100,6 @@ struct ChatSettingsView: View {
             
             VStack{
                 Button(action: {
-                    
                     dismiss()
                     innerSelection = 1
                     

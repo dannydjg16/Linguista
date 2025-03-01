@@ -17,6 +17,14 @@ class ConversationViewModel: ObservableObject {
     private var isLoading = false
     private var errorMessage: String?
     
+    func makeNewChatWithNewPrompt() {
+        
+    }
+    
+    func resetChatWithSamePrompt() {
+        
+    }
+    
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
         if (completionRequest.messages.count == 0){
