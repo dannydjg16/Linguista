@@ -31,36 +31,46 @@ struct ChatSettingsView: View {
                 .clipShape(Circle())
             }
         }
-        
-        VStack{
-            Button(action: {
-                dismiss()
-            }) {
-                Image(systemName: "list.dash")
-                    .foregroundColor(.white)
-            }
-            .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
-            .background(Color.brown)
-            .clipShape(Circle())
-
-            Text("Restart Chat")
-        }
 
         Spacer()
 
-        VStack{
-            Button(action: {
-                dismiss()
-            }) {
-                Image(systemName: "phone.fill")
-                    .foregroundColor(.white)
-            }
-            .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
-            .background(Color.brown)
-            .clipShape(Circle())
+        HStack() {
+            
+            Spacer()
+            
+            VStack{
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "list.dash")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                .background(Color.brown)
+                .clipShape(Circle())
 
-            Text("New Conversation")
+                Text("Restart Chat")
+            }
+            
+            Spacer()
+            
+            VStack{
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "phone.fill")
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 25, idealWidth: 50, maxWidth: 50, minHeight: 25, idealHeight: 50, maxHeight: 50)
+                .background(Color.brown)
+                .clipShape(Circle())
+
+                Text("New Chat")
+            }
+            
+            Spacer()
         }
+        
         
         Spacer()
         
