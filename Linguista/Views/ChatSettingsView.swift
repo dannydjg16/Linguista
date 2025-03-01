@@ -41,6 +41,7 @@ struct ChatSettingsView: View {
             
             VStack{
                 Button(action: {
+                    conversationViewModel.resetChatWithSamePrompt()
                     dismiss()
                 }) {
                     Image(systemName: "list.dash")

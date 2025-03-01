@@ -22,7 +22,7 @@ class ConversationViewModel: ObservableObject {
     }
     
     func resetChatWithSamePrompt() {
-        
+        messages = Array(messages.prefix(2))
     }
     
     func sendMessage(completionRequest: CompletionsRequest) async  {
