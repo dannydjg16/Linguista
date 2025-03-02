@@ -17,6 +17,14 @@ class ConversationViewModel: ObservableObject {
     private var isLoading = false
     private var errorMessage: String?
     
+    func makeNewChatWithNewPrompt() {
+        messages = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false)]
+    }
+    
+    func resetChatWithSamePrompt() {
+        messages = Array(messages.prefix(1))
+    }
+    
     func sendMessage(completionRequest: CompletionsRequest) async  {
         
         if (completionRequest.messages.count == 0){

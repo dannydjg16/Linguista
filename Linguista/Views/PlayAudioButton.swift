@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PlayAudioButton: View {
     let message: MessagingModel // Replace with your actual message type
-    let messagingViewModel: ConversationViewModel // Replace with your view model type
+    let conversationViewModel: ConversationViewModel // Replace with your view model type
     @State private var playbackSpeed: Float = 1.0
     @State private var isSpeedSelectorPresented: Bool = false
     
@@ -19,7 +19,7 @@ struct PlayAudioButton: View {
             if message.audioData != nil {
                 Button(action: {
                     // Call playAudio with the selected speed
-                    messagingViewModel.playAudio(messagingModel: message, speed: playbackSpeed)
+                    conversationViewModel.playAudio(messagingModel: message, speed: playbackSpeed)
                 }) {
                     Image(systemName: "arrow.clockwise")
                                     .resizable()

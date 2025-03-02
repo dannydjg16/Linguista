@@ -12,7 +12,7 @@ struct MessageInputView: View {
     
     @Binding var languageToTranslate: Int
     
-    @ObservedObject var messagingViewModel: ConversationViewModel
+    @ObservedObject var conversationViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
     
     var body: some View {
@@ -39,12 +39,12 @@ struct MessageInputView: View {
     private func sendMessage() {
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Use very basic sentences that are not complex. Respond in \(Utilities.getLanguageName(by: languageToTranslate)) unless otherwise instructed."),
+                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Use basic sentences that are not complex, almost as if you are teaching a small child. Respond in \(Utilities.getLanguageName(by: languageToTranslate)) unless otherwise instructed by user"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
             Task {
-                await messagingViewModel.sendMessage(completionRequest: dataModel)
+                await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
             speechRecognizer.transcribedText = ""
         }
@@ -55,6 +55,6 @@ struct MessageInputView: View {
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
         MessageInputView(languageToTranslate: .constant(1),
-                         messagingViewModel: ConversationViewModel(),speechRecognizer: SpeechRecognizer())
+                         conversationViewModel: ConversationViewModel(),speechRecognizer: SpeechRecognizer())
     }
 }
