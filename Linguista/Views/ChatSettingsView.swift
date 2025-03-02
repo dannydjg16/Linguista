@@ -58,7 +58,7 @@ struct ChatSettingsView: View {
             
             VStack{
                 Button(action: {
-                    
+                    conversationViewModel.makeNewChatWithNewPrompt()
                     dismiss()
                 }) {
                     Image(systemName: "text.insert")
