@@ -34,6 +34,5 @@ struct ConversationViewsSwapperView: View {
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
         }
-
     }
 }

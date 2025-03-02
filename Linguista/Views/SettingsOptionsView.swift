@@ -30,6 +30,7 @@ struct SettingsOptionsView: View {
                 .clipShape(Circle())
             }
         }
+        
         Spacer()
         
         NavigationView {
