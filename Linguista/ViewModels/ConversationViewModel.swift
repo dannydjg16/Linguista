@@ -57,7 +57,7 @@ class ConversationViewModel: ObservableObject {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
             
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)

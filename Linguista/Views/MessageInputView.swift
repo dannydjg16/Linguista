@@ -20,13 +20,17 @@ struct MessageInputView: View {
         HStack {
             Spacer()
             Spacer()
-            Button("Create Reply") {
-                sendMessage()
+
+            Button(action: {
+                replyForUser()
+            }) {
+                Image(systemName: "arrow.up.message")
+                    .foregroundColor(.white)
             }
-            .padding()
+            .frame(minWidth: 50, idealWidth: 50, maxWidth: 50, minHeight: 50, idealHeight: 50, maxHeight: 50)
             .background(Color.brown)
-            .foregroundColor(.white)
-            .cornerRadius(10)
+            .clipShape(Circle())
+            .padding(.trailing)
         }
         HStack {
             TextField("Type a message", text: $speechRecognizer.transcribedText)
@@ -54,6 +58,19 @@ struct MessageInputView: View {
                 Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Use basic sentences that are not complex, almost as if you are teaching a small child. Respond in \(Utilities.getLanguageName(by: languageToTranslate)) unless otherwise instructed by user"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
+            let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+            Task {
+                await conversationViewModel.sendMessage(completionRequest: dataModel)
+            }
+            speechRecognizer.transcribedText = ""
+        }
+    }
+    
+    private func replyForUser() {
+        if !speechRecognizer.transcribedText.isEmpty {
+            let messages = [
+                Message(role: "system", content: "Continue the conversation as if you were responding to the last message. Reply in \(Utilities.getLanguageName(by: languageToTranslate)). Keep sentences very simple, as if you were replying to a small child")]
+            
             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
