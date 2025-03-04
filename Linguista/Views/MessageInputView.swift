@@ -16,6 +16,18 @@ struct MessageInputView: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
     
     var body: some View {
+        
+        HStack {
+            Spacer()
+            Spacer()
+            Button("Create Reply") {
+                sendMessage()
+            }
+            .padding()
+            .background(Color.brown)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
         HStack {
             TextField("Type a message", text: $speechRecognizer.transcribedText)
                 .padding()
