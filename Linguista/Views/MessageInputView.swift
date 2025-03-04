@@ -67,7 +67,6 @@ struct MessageInputView: View {
     }
     
     private func replyForUser() {
-        if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
                 Message(role: "system", content: "Continue the conversation as if you were responding to the last message. Reply in \(Utilities.getLanguageName(by: languageToTranslate)). Keep sentences very simple, as if you were replying to a small child")]
             
@@ -75,11 +74,8 @@ struct MessageInputView: View {
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
-            speechRecognizer.transcribedText = ""
-        }
     }
 }
-
 
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
