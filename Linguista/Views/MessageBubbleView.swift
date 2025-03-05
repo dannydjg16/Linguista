@@ -9,9 +9,11 @@ import Foundation
 import SwiftUI
 
 struct MessageBubbleView: View {
+    
     let message: MessagingModel
     let conversationViewModel: ConversationViewModel
-
+    @State private var showModal = false
+    
     var body: some View {
         HStack(alignment: .bottom, spacing: 10) {
             if message.isSentByUser {
@@ -23,6 +25,14 @@ struct MessageBubbleView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.brown.opacity(0.15), lineWidth: 2))
+                    .gesture(TapGesture()
+                        .onEnded { _ in
+                            showModal = true
+                        }
+                    )
+                    .sheet(isPresented: $showModal) {
+                        AccountView()
+                    }
                 
             } else {
                 Text(message.message.content)
