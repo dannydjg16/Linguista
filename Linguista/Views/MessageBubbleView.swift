@@ -34,7 +34,7 @@ struct MessageBubbleView: View {
                         }
                     )
                     .simultaneousGesture( // Use simultaneousGesture instead of .gesture
-                        DragGesture(minimumDistance: 20, coordinateSpace: .local)
+                        DragGesture(minimumDistance: 30, coordinateSpace: .local)
                             .onChanged { value in
                                 offset = CGSize(width: value.translation.width, height: 0)
                                 if value.translation.width > 0 {
