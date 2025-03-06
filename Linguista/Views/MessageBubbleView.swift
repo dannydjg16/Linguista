@@ -43,6 +43,14 @@ struct MessageBubbleView: View {
                     .padding()
                     .background(Color.brown.opacity(0.2))
                     .cornerRadius(10)
+                    .gesture(TapGesture()
+                        .onEnded { _ in
+                            showModal = true
+                        }
+                    )
+                    .sheet(isPresented: $showModal) {
+                        MessageModalView(message: message)
+                    }
                 
                 PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
                 Spacer()
