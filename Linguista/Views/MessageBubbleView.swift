@@ -18,6 +18,7 @@ struct MessageBubbleView: View {
 
     var body: some View {
         HStack(alignment: .bottom, spacing: 10) {
+            
             if message.isSentByUser {
                 Spacer()
                 Text(message.message.content)
@@ -33,26 +34,8 @@ struct MessageBubbleView: View {
                             showModal = true
                         }
                     )
-                    .simultaneousGesture( // Use simultaneousGesture instead of .gesture
-                        DragGesture(minimumDistance: 30, coordinateSpace: .local)
-                            .onChanged { value in
-                                offset = CGSize(width: value.translation.width, height: 0)
-                                if value.translation.width > 0 {
-                                    backgroundColor = .red.opacity(Double(value.translation.width) / 100)
-                                }
-                            }
-                            .onEnded { value in
-                                if value.translation.width > 50 {
-                                    backgroundColor = .red
-                                    offset = CGSize(width: 50, height: 0)
-                                } else {
-                                    backgroundColor = .gray
-                                    offset = .zero
-                                }
-                            }
-                    )
                     .sheet(isPresented: $showModal) {
-                        AccountView()
+                        MessageModalView(message: message)
                     }
                 
             } else {
