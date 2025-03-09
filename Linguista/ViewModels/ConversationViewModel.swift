@@ -10,7 +10,7 @@ import Combine
 
 class ConversationViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false)]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false), MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true) ]
     
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
@@ -72,7 +72,8 @@ class ConversationViewModel: ObservableObject {
         }
     }
     
-    func sendMessageForUser(completionRequest: CompletionsRequest) async  {
+    // Same functionality as sendMessageForUser EXCEPT this one does not add the original message into the messages array.
+    func sendMessageForUser(completionRequest: CompletionsRequest) async {
         
         if (completionRequest.messages.count == 0){
             return
@@ -97,7 +98,7 @@ class ConversationViewModel: ObservableObject {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-            
+
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
                 // Add response with audio to message array
@@ -109,6 +110,41 @@ class ConversationViewModel: ObservableObject {
         } catch {
             print("Error: \(error.localizedDescription)")
         }
+    }
+    
+    func sendMessageGetMessage(completionRequest: CompletionsRequest) async -> MessagingModel? {
+        
+        if (completionRequest.messages.count == 0){
+            return nil
+        }
+        
+        // Identify System Message for use later
+        let systemMessage = completionRequest.messages.filter{ $0.role == "system" }.first
+        
+        // Put together list to save messages
+        var conversationSoFar = completionRequest
+        
+        // Keep completion request data, but update the message array to pass forward.
+        conversationSoFar.messages = messages.compactMap { $0.message }
+        
+        // Add system prompt at the beginning of the conversation
+        conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
+        
+        // Call trimMessageArray to limit the size of the array thats passed in.
+        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
+        
+        do {
+            let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
+
+            return responseMessageModel
+            
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        return nil
     }
     
     private func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
