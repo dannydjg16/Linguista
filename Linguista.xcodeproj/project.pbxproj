@@ -35,7 +35,6 @@
 		81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */; };
 		81841B122C66B61100B7A5AC /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81841B112C66B61100B7A5AC /* Config.plist */; };
 		81841B142C66B66A00B7A5AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B132C66B66A00B7A5AC /* Config.swift */; };
-		81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */; };
 		81841B1A2C6C5F7700B7A5AC /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B192C6C5F7700B7A5AC /* Language.swift */; };
 		8188C7292CAEA25A00A10210 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C7282CAEA25A00A10210 /* Prompt.swift */; };
 		8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188C72D2CB764C700A10210 /* CompletionsService.swift */; };
@@ -103,7 +102,6 @@
 		81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		81841B112C66B61100B7A5AC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		81841B132C66B66A00B7A5AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTranslateView.swift; sourceTree = "<group>"; };
 		81841B192C6C5F7700B7A5AC /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		8188C7282CAEA25A00A10210 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		8188C72D2CB764C700A10210 /* CompletionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsService.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */,
 				8194D02B2D506D0300CAE54C /* ChatView.swift */,
 				81752E812D5AFDDF00D9F696 /* TextMessagingView.swift */,
-				81841B152C66BD1000B7A5AC /* QuickTranslateView.swift */,
 				8120C7A62C2A79EF007DCE2E /* AccountView.swift */,
 				8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */,
 				813C405F2D0A8630007C10D3 /* PlayAudioButton.swift */,
@@ -441,7 +438,6 @@
 				8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */,
 				81752E862D6A2BF200D9F696 /* SettingsOptionsView.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */,
-				81841B162C66BD1000B7A5AC /* QuickTranslateView.swift in Sources */,
 				819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */,
 				8194D0242D38C43000CAE54C /* LanguagePickerView.swift in Sources */,
 				81D8E40B2C74559E00D7C0F8 /* MessagingModel.swift in Sources */,
