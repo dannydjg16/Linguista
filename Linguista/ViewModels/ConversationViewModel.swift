@@ -117,19 +117,13 @@ class ConversationViewModel: ObservableObject {
         if (completionRequest.messages.count == 0){
             return nil
         }
-        
-        // Identify System Message for use later
-        let systemMessage = completionRequest.messages.filter{ $0.role == "system" }.first
-        
+                
         // Put together list to save messages
         var conversationSoFar = completionRequest
         
         // Keep completion request data, but update the message array to pass forward.
         conversationSoFar.messages = messages.compactMap { $0.message }
-        
-        // Add system prompt at the beginning of the conversation
-        conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
-        
+                
         // Call trimMessageArray to limit the size of the array thats passed in.
         conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
         
