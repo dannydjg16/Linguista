@@ -36,17 +36,16 @@ struct MessageModalView: View {
         }
         
         if let response = messageResponse {
-            MessageBubbleView(message: response, conversationViewModel: conversationViewModel)
+            TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
         }
     }
     
     func translateWithViewModel(message: MessagingModel) {
-        let messages = [Message(role: "system", content: "translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(message.message.content)")]
+        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(message.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
             messageResponse = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
         }
-        //return nil
     }
 }

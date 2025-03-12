@@ -118,17 +118,8 @@ class ConversationViewModel: ObservableObject {
             return nil
         }
                 
-        // Put together list to save messages
-        var conversationSoFar = completionRequest
-        
-        // Keep completion request data, but update the message array to pass forward.
-        conversationSoFar.messages = messages.compactMap { $0.message }
-                
-        // Call trimMessageArray to limit the size of the array thats passed in.
-        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
-        
         do {
-            let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
+            let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
 

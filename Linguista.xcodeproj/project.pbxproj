@@ -49,6 +49,7 @@
 		819DC6A52CF5742A00452923 /* TtsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A42CF5742A00452923 /* TtsRequest.swift */; };
 		819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A62CF579E100452923 /* TtsViewModel.swift */; };
 		81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */; };
+		81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */; };
 		81D8E40B2C74559E00D7C0F8 /* MessagingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E40A2C74559E00D7C0F8 /* MessagingModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		819DC6A42CF5742A00452923 /* TtsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsRequest.swift; sourceTree = "<group>"; };
 		819DC6A62CF579E100452923 /* TtsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsViewModel.swift; sourceTree = "<group>"; };
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
+		81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationBubbleView.swift; sourceTree = "<group>"; };
 		81D8E40A2C74559E00D7C0F8 /* MessagingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 				81752E852D6A2BF200D9F696 /* SettingsOptionsView.swift */,
 				81752E892D6EB86400D9F696 /* ChatSettingsView.swift */,
 				81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */,
+				81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			files = (
 				81752E842D6A2A7400D9F696 /* SettingsView.swift in Sources */,
 				813C40602D0A8630007C10D3 /* PlayAudioButton.swift in Sources */,
+				81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */,
 				81752E802D5AFA9600D9F696 /* BackAndForthChatView.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
