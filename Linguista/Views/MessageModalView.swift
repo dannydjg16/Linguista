@@ -13,6 +13,7 @@ struct MessageModalView: View {
     var message: MessagingModel
     @StateObject private var conversationViewModel = ConversationViewModel()
     @State var messageResponse: MessagingModel?
+    @State var messageWithAudio: MessagingModel?
     
     
     var body: some View {
@@ -26,7 +27,7 @@ struct MessageModalView: View {
         }
         
         Spacer()
-
+        
         HStack {
             Spacer()
             Button(action: {
@@ -42,15 +43,48 @@ struct MessageModalView: View {
         }
         
         Spacer()
-
-        HStack {
-            if let response = messageResponse {
+        
+        if let response = messageResponse {
+            HStack {
+                Spacer()
+                
                 TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
+                
+                Spacer()
+                
+                Button(action: {
+                    GetAudioMessage(message: response)
+                }) {
+                    Text("Get Audio")
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
+                
+                Spacer()
             }
         }
         
-        Spacer()
+        if let audioMessage = messageWithAudio {
+            
+            Spacer()
+            
+            HStack {
+                Spacer()
+                
+                PlayAudioButton(message: audioMessage, conversationViewModel: conversationViewModel)
+                
+                Spacer()
+            }
+            
+            Spacer()
 
+        }
+        
+        
+        Spacer()
+        
     }
     
     func translateWithViewModel(message: MessagingModel) {
@@ -59,6 +93,12 @@ struct MessageModalView: View {
         
         Task {
             messageResponse = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+        }
+    }
+    
+    func GetAudioMessage(message: MessagingModel) {
+        Task {
+            messageWithAudio = await conversationViewModel.fetchAndPlayAudio(messagingModel: message)
         }
     }
 }
