@@ -12,42 +12,31 @@ struct MessageModalView: View {
     
     var message: MessagingModel
     @StateObject private var conversationViewModel = ConversationViewModel()
-    @State private var translationResult = "See Translation"
     @State var messageResponse: MessagingModel?
     
     
     var body: some View {
         
-        List{
-            
-            Section {
-                Text(message.message.content)
-                    .border(Color.white, width: 1)
-                    .foregroundColor(Color.primary)
+        Text(message.message.content)
+            .border(Color.white, width: 1)
+            .foregroundColor(Color.primary)
+        
+        HStack{
+            Spacer()
+            Button(action: {
+                translateWithViewModel(message: message)
+            }) {
+                Text("Translate")
+                    .padding()
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .cornerRadius(5)
             }
-            
-            Section {
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        translateWithViewModel(message: message)
-                    }) {
-                        Text("Translate")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
-                    Spacer()
-                }
-            }
-            
-            Section {
-                if let response = messageResponse {
-                    MessageBubbleView(message: response, conversationViewModel: conversationViewModel)
-                    
-                }
-            }
+            Spacer()
+        }
+        
+        if let response = messageResponse {
+            MessageBubbleView(message: response, conversationViewModel: conversationViewModel)
         }
     }
     
