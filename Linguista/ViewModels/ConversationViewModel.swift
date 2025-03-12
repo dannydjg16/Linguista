@@ -10,7 +10,8 @@ import Combine
 
 class ConversationViewModel: ObservableObject {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false), MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true) ]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
+    //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
     
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
@@ -57,7 +58,7 @@ class ConversationViewModel: ObservableObject {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
