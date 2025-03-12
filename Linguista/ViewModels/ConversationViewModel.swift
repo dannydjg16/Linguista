@@ -132,7 +132,7 @@ class ConversationViewModel: ObservableObject {
         return nil
     }
     
-    private func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
+    func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
         
         isLoading = true
         errorMessage = nil
