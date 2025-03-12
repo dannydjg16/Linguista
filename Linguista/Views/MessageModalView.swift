@@ -17,11 +17,17 @@ struct MessageModalView: View {
     
     var body: some View {
         
-        Text(message.message.content)
-            .border(Color.white, width: 1)
-            .foregroundColor(Color.primary)
+        Spacer()
         
-        HStack{
+        HStack {
+            Text(message.message.content)
+                .border(Color.white, width: 1)
+                .foregroundColor(Color.primary)
+        }
+        
+        Spacer()
+
+        HStack {
             Spacer()
             Button(action: {
                 translateWithViewModel(message: message)
@@ -35,9 +41,16 @@ struct MessageModalView: View {
             Spacer()
         }
         
-        if let response = messageResponse {
-            TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
+        Spacer()
+
+        HStack {
+            if let response = messageResponse {
+                TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
+            }
         }
+        
+        Spacer()
+
     }
     
     func translateWithViewModel(message: MessagingModel) {
