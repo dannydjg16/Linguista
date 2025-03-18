@@ -31,7 +31,7 @@ struct MessageModalView: View {
         HStack {
             Spacer()
             Button(action: {
-                translateWithViewModel(message: message)
+                translateWithViewModel(messageToTranslate: message)
             }) {
                 Text("Translate")
                     .padding()
@@ -53,7 +53,7 @@ struct MessageModalView: View {
                 Spacer()
                 
                 Button(action: {
-                    GetAudioMessage(message: response)
+                    getAudioMessage(message: response)
                 }) {
                     Text("Get Audio")
                         .padding()
@@ -87,16 +87,17 @@ struct MessageModalView: View {
         
     }
     
-    func translateWithViewModel(message: MessagingModel) {
-        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(message.message.content)")]
+    func translateWithViewModel(messageToTranslate: MessagingModel) {
+        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
             messageResponse = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            message.translatedMessageContent = messageResponse?.message.content
         }
     }
     
-    func GetAudioMessage(message: MessagingModel) {
+    func getAudioMessage(message: MessagingModel) {
         Task {
             messageWithAudio = await conversationViewModel.fetchAndPlayAudio(messagingModel: message)
         }
