@@ -15,7 +15,6 @@ struct MessageModalView: View {
     @State var messageResponse: MessagingModel?
     @State var messageWithAudio: MessagingModel?
     
-    
     var body: some View {
         
         Spacer()
@@ -89,10 +88,6 @@ struct MessageModalView: View {
         
         Spacer()
         
-    }
-    
-    func abc(){
-        message.translatedMessageContent = messageResponse?.message.content
     }
     
     func translateWithViewModel(messageToTranslate: MessagingModel) async {
