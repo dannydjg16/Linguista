@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MessageModalView: View {
     
-    var message: MessagingModel
+    @Binding var message: MessagingModel
     @StateObject private var conversationViewModel = ConversationViewModel()
     @State var messageResponse: MessagingModel?
     @State var messageWithAudio: MessagingModel?
