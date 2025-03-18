@@ -34,7 +34,6 @@ struct MessageInputView: View {
         .padding(.trailing)
         
         HStack {
-            
             TextField("Type a message", text: $speechRecognizer.transcribedText)
                 .padding()
                 .background(Color.white)
