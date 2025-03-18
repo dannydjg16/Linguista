@@ -101,9 +101,8 @@ struct MessageModalView: View {
         
         Task {
             messageResponse = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            message.translatedMessageContent = messageResponse?.message.content
         }
-        message.translatedMessageContent = messageResponse?.message.content
-
     }
     
     func getAudioMessage(message: MessagingModel) {
