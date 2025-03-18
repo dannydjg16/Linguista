@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MessageBubbleView: View {
     
-    let message: MessagingModel
+    @State var message: MessagingModel
     let conversationViewModel: ConversationViewModel
     @State private var showModal = false
 
@@ -34,7 +34,7 @@ struct MessageBubbleView: View {
                         }
                     )
                     .sheet(isPresented: $showModal) {
-                        MessageModalView(message: message)
+                        MessageModalView(message: $message)
                     }
                 
             } else {
@@ -48,7 +48,7 @@ struct MessageBubbleView: View {
                         }
                     )
                     .sheet(isPresented: $showModal) {
-                        MessageModalView(message: message)
+                        MessageModalView(message: $message)
                     }
                 
                 PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
