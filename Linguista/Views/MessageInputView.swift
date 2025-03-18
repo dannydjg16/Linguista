@@ -30,9 +30,11 @@ struct MessageInputView: View {
             .frame(minWidth: 50, idealWidth: 50, maxWidth: 50, minHeight: 50, idealHeight: 50, maxHeight: 50)
             .background(Color.brown)
             .clipShape(Circle())
-            .padding(.trailing)
         }
+        .padding(.trailing)
+        
         HStack {
+            
             TextField("Type a message", text: $speechRecognizer.transcribedText)
                 .padding()
                 .background(Color.white)
@@ -50,6 +52,8 @@ struct MessageInputView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
         }
+        .padding(.leading)
+        .padding(.trailing)
     }
     
     private func sendMessage() {
