@@ -133,7 +133,7 @@ class ConversationViewModel: ObservableObject {
         return nil
     }
     
-    func get(messagingModel: MessagingModel) async{
+    func getTranslationMessage(messagingModel: MessagingModel) async{
 
         
         let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
