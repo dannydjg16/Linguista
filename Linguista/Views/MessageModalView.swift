@@ -45,18 +45,18 @@ struct MessageModalView: View {
         
         Spacer()
         
-        if let response = messageResponse {
+        if let response = message.translatedMessageContent {
 
             HStack {
                 
                 Spacer()
                 
-                TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
+                TranslationBubbleView(message: message, conversationViewModel: conversationViewModel)
                 
                 Spacer()
                 
                 Button(action: {
-                    getAudioMessage(message: response)
+                    getAudioMessage(message: message)
                 }) {
                     Text("Get Audio")
                         .padding()
@@ -90,13 +90,19 @@ struct MessageModalView: View {
         
     }
     
-    func translateWithViewModel(messageToTranslate: MessagingModel) async {
+    func translateWithVieswModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
             messageResponse = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
             message.translatedMessageContent = messageResponse?.message.content
+        }
+    }
+    
+    func translateWithViewModel(messageToTranslate: MessagingModel) async {
+        Task {
+            await conversationViewModel.getTranslationMessage(messagingModel: message)
         }
     }
     
