@@ -11,7 +11,7 @@ import SwiftUI
 struct MessageModalView: View {
     
     @Binding var message: MessagingModel
-    @StateObject private var conversationViewModel = ConversationViewModel()
+    @ObservedObject var conversationViewModel: ConversationViewModel
     @State var messageResponse: MessagingModel?
     @State var messageWithAudio: MessagingModel?
     
