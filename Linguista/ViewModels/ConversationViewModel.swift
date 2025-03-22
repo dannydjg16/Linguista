@@ -144,7 +144,6 @@ class ConversationViewModel: ObservableObject, Sendable {
                 self.messages[index].translatedMessageContent = "Hey"
             }
             
-            
 //        do {
 //            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
 //            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
