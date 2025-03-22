@@ -82,12 +82,9 @@ struct MessageModalView: View {
             }
             
             Spacer()
-
         }
         
-        
         Spacer()
-        
     }
     
     func translateWithVieswModel(messageToTranslate: MessagingModel) async {
