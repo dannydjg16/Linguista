@@ -20,7 +20,7 @@ struct MessageInputView: View {
         HStack {
             Spacer()
             Spacer()
-
+            
             Button(action: {
                 replyForUser()
             }) {
@@ -70,13 +70,13 @@ struct MessageInputView: View {
     }
     
     private func replyForUser() {
-            let messages = [
-                Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: languageToTranslate)). Keep sentences very simple, as if you were replying to a small child")]
-            
-            let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
-            Task {
-                await conversationViewModel.sendMessageForUser(completionRequest: dataModel)
-            }
+        let messages = [
+            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: languageToTranslate)). Keep sentences very simple, as if you were replying to a small child")]
+        
+        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+        Task {
+            await conversationViewModel.sendMessageForUser(completionRequest: dataModel)
+        }
     }
 }
 
