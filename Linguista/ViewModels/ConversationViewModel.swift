@@ -14,7 +14,6 @@ class ConversationViewModel: ObservableObject, Sendable {
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
     //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
     
-    
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
     private var isLoading = false
@@ -133,6 +132,15 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
         
         return nil
+    }
+    
+    func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
+        
+        let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
+        let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
+        
+        return responseMessageModel
+        
     }
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
