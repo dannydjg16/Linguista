@@ -8,10 +8,12 @@
 import Foundation
 import Combine
 
+@MainActor
 class ConversationViewModel: ObservableObject, Sendable {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
     //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
+    
     
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
@@ -26,7 +28,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         messages = Array(messages.prefix(1))
     }
     
-    func sendMessage(completionRequest: CompletionsRequest) async  {
+    func sendMessage(completionRequest: CompletionsRequest) async {
         
         if (completionRequest.messages.count == 0){
             return
@@ -99,7 +101,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-
+            
             Task {
                 let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
                 // Add response with audio to message array
@@ -118,12 +120,12 @@ class ConversationViewModel: ObservableObject, Sendable {
         if (completionRequest.messages.count == 0){
             return nil
         }
-                
+        
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-
+            
             return responseMessageModel
             
         } catch {
@@ -134,28 +136,36 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
-
+        
         
         let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
-                
+        
+        //        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
+        //            DispatchQueue.main.async { // Switch to main thread
+        //                self.messages[index].translatedMessageContent = "Hey"
+        //            }
+        //        }
+        
+        
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-            DispatchQueue.main.async { // Switch to main thread
+            await MainActor.run {
                 self.messages[index].translatedMessageContent = "Hey"
             }
-            
-//        do {
-//            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
-//            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-//            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-//
-//            if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-//                messages[index].translatedMessageContent = responseMessageModel.message.content
-//            }
-                        
-//        } catch {
-//            print("Error: \(error.localizedDescription)")
         }
+        
+        //        do {
+        //            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
+        //            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+        //            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
+        //
+        //            if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
+        //                messages[index].translatedMessageContent = responseMessageModel.message.content
+        //            }
+        
+        //        } catch {
+        //            print("Error: \(error.localizedDescription)")
+        
     }
     
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
