@@ -14,6 +14,7 @@ struct MessageModalView: View {
     @ObservedObject var conversationViewModel: ConversationViewModel
     @State var messageResponse: MessagingModel?
     @State var messageWithAudio: MessagingModel?
+    @State var translatedMessage: MessagingModel?
     
     var body: some View {
         
@@ -31,7 +32,7 @@ struct MessageModalView: View {
             Spacer()
             Button(action: {
                 Task {
-                    await translateWithViewModel(messageToTranslate: message)
+                    await translateWithVieswModel(messageToTranslate: message)
                 }
             }) {
                 Text("Translate")
@@ -45,13 +46,17 @@ struct MessageModalView: View {
         
         Spacer()
         
-        if let response = message.translatedMessageContent {
-
+//        if let index = conversationViewModel.messages.firstIndex(where: { $0.id == message.id }) {
+//            self.conversationViewModel.messages[index].translatedMessageContent = "Hey"
+//        }
+//        //if let response = conversationViewModel.messages {
+            
+        if let response = translatedMessage {
+            Text(response.translatedMessageContent ?? "")
             HStack {
-                
                 Spacer()
                 
-                TranslationBubbleView(message: message, conversationViewModel: conversationViewModel)
+                TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
                 
                 Spacer()
                 
@@ -92,12 +97,12 @@ struct MessageModalView: View {
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
-            messageResponse = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            translatedMessage = await conversationViewModel.sendMessageGetMessageTest(completionRequest: dataModel)
             message.translatedMessageContent = messageResponse?.message.content
         }
     }
     
-    func translateWithViewModel(messageToTranslate: MessagingModel) async {
+    func translateWithViewModel(messageToTranslate: MessagingModel) {
         Task {
             await conversationViewModel.getTranslationMessage(messagingModel: message)
         }
