@@ -139,8 +139,20 @@ class ConversationViewModel: ObservableObject, Sendable {
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
         
+        //messages
+        
         return responseMessageModel
         
+    }
+    
+    func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
+        
+        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
+            self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
+            
+        }
+        
+        return true
     }
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
