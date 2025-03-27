@@ -45,11 +45,6 @@ struct MessageModalView: View {
         }
         
         Spacer()
-        
-//        if let index = conversationViewModel.messages.firstIndex(where: { $0.id == message.id }) {
-//            self.conversationViewModel.messages[index].translatedMessageContent = "Hey"
-//        }
-//        //if let response = conversationViewModel.messages {
             
         if let response = translatedMessage {
             Text(response.translatedMessageContent ?? "")
