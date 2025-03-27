@@ -69,6 +69,29 @@ struct MessageModalView: View {
             }
         }
         
+        if message.translatedMessageContent != nil {
+            Text(message.translatedMessageContent ?? "")
+            HStack {
+                Spacer()
+                
+                TranslationBubbleView(message: message, conversationViewModel: conversationViewModel)
+                
+                Spacer()
+                
+                Button(action: {
+                    getAudioMessage(message: message)
+                }) {
+                    Text("Get Audio")
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
+                
+                Spacer()
+            }
+        }
+        
         if let audioMessage = messageWithAudio {
             
             Spacer()
@@ -87,17 +110,18 @@ struct MessageModalView: View {
         Spacer()
     }
     
-    func translateWithVieswModel(messageToTranslate: MessagingModel) async {
+    func translateWithVieswModel(messageToTranslate: MessagingModel) {
         let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
             translatedMessage = await conversationViewModel.sendMessageGetMessageTest(completionRequest: dataModel)
-            message.translatedMessageContent = messageResponse?.message.content
+            message.translatedMessageContent = translatedMessage?.translatedMessageContent
+            conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
     
-    func translateWithViewModel(messageToTranslate: MessagingModel) {
+    func translateWithViewModel(messageToTranslate: MessagingModel) async {
         Task {
             await conversationViewModel.getTranslationMessage(messagingModel: message)
         }
