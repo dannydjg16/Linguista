@@ -138,9 +138,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
-        
-        //messages
-        
+                
         return responseMessageModel
         
     }
