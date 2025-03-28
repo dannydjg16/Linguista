@@ -67,9 +67,7 @@ struct MessageModalView: View {
                 
                 Spacer()
             }
-        }
-        
-        if message.translatedMessageContent != nil {
+        } else if message.translatedMessageContent != nil {
             Text(message.translatedMessageContent ?? "")
             HStack {
                 Spacer()
