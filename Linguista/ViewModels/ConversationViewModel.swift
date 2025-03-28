@@ -140,7 +140,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
                 
         return responseMessageModel
-        
     }
     
     func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
@@ -158,12 +157,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
-        
-        //        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-        //            DispatchQueue.main.async { // Switch to main thread
-        //                self.messages[index].translatedMessageContent = "Hey"
-        //            }
-        //        }
         
         
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
