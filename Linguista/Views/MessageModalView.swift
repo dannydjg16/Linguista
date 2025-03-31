@@ -56,7 +56,7 @@ struct MessageModalView: View {
                 Spacer()
                 
                 Button(action: {
-                    getAudioMessage(message: message)
+                    getAudioMessage(messageToGetAudioFor: message)
                 }) {
                     Text("Get Audio")
                         .padding()
@@ -77,7 +77,7 @@ struct MessageModalView: View {
                 Spacer()
                 
                 Button(action: {
-                    getAudioMessage(message: message)
+                    getAudioMessage(messageToGetAudioFor: message)
                 }) {
                     Text("Get Audio")
                         .padding()
@@ -131,7 +131,6 @@ struct MessageModalView: View {
             message.audioData = messageWithAudio?.audioData
             conversationViewModel.setTranslatedMessage(messagingModel: message)
 
-            
         }
     }
 }
