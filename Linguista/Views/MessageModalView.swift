@@ -125,9 +125,11 @@ struct MessageModalView: View {
         }
     }
     
-    func getAudioMessage(message: MessagingModel) {
+    func getAudioMessage(messageToGetAudioFor: MessagingModel) {
         Task {
-            messageWithAudio = await conversationViewModel.fetchAndPlayAudio(messagingModel: message)
+            messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModal(messagingModel: messageToGetAudioFor)
+            message.audioData = messageWithAudio?.audioData
+            
         }
     }
 }
