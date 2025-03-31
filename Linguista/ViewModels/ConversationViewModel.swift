@@ -146,7 +146,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
             self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
-            
         }
         
         return true
@@ -188,6 +187,27 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         do {
             let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
+            ttsViewModel.playAudio(with: audioData)
+            updatedMessagingModel.audioData = audioData
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
+        
+        return updatedMessagingModel
+    }
+    
+    func fetchAndPlayAudioForMessagingModal(messagingModel: MessagingModel) async -> MessagingModel {
+        
+        isLoading = true
+        errorMessage = nil
+        
+        var updatedMessagingModel = messagingModel
+        
+        do {
+            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.translatedMessageContent!, voice: "shimmer", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
