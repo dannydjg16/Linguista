@@ -145,7 +145,13 @@ class ConversationViewModel: ObservableObject, Sendable {
     func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
         
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-            self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
+            if (self.messages[index].translatedMessageContent == nil) {
+                self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
+            }
+            
+            if (self.messages[index].audioData == nil) {
+                self.messages[index].audioData = messagingModel.audioData
+            }
         }
         
         return true
