@@ -47,7 +47,7 @@ struct MessageModalView: View {
         Spacer()
             
         if let response = translatedMessage {
-            Text(response.translatedMessageContent ?? "")
+
             HStack {
                 Spacer()
                 
