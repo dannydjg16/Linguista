@@ -103,6 +103,19 @@ struct MessageModalView: View {
             }
             
             Spacer()
+        } else if message.audioData != nil {
+            
+            Spacer()
+            
+            HStack {
+                Spacer()
+                
+                PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
+                
+                Spacer()
+            }
+            
+            Spacer()
         }
         
         Spacer()
