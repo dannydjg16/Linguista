@@ -13,4 +13,5 @@ struct MessagingModel: Identifiable, Equatable, Codable {
     var isSentByUser: Bool
     var audioData: Data?
     var translatedMessageContent: String?
+    var translatedAudioData: Data?
 }
