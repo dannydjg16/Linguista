@@ -55,18 +55,20 @@ struct MessageModalView: View {
             HStack {
                 Spacer()
                 
-                TranslationBubbleView(message: response, conversationViewModel: conversationViewModel)
+                TranslationBubbleViewWithoutPlayAudioButton(message: response, conversationViewModel: conversationViewModel)
                 
                 Spacer()
                 
-                Button(action: {
-                    getAudioMessage(messageToGetAudioFor: message)
-                }) {
-                    Text("Get Audio")
-                        .padding()
-                        .background(Color.brown)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
+                if messageWithAudio == nil && message.audioData == nil {
+                    Button(action: {
+                        getAudioMessage(messageToGetAudioFor: message)
+                    }) {
+                        Text("Get Audio")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    }
                 }
                 
                 Spacer()
@@ -75,18 +77,20 @@ struct MessageModalView: View {
             HStack {
                 Spacer()
                 
-                TranslationBubbleView(message: message, conversationViewModel: conversationViewModel)
+                TranslationBubbleViewWithoutPlayAudioButton(message: message, conversationViewModel: conversationViewModel)
                 
                 Spacer()
                 
-                Button(action: {
-                    getAudioMessage(messageToGetAudioFor: message)
-                }) {
-                    Text("Get Audio")
-                        .padding()
-                        .background(Color.brown)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
+                if messageWithAudio == nil && message.audioData == nil {
+                    Button(action: {
+                        getAudioMessage(messageToGetAudioFor: message)
+                    }) {
+                        Text("Get Audio")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    }
                 }
                 
                 Spacer()
