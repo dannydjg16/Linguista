@@ -30,17 +30,21 @@ struct MessageModalView: View {
         
         HStack {
             Spacer()
-            Button(action: {
-                Task {
-                    await translateWithVieswModel(messageToTranslate: message)
+            
+            if translatedMessage == nil && message.translatedMessageContent == nil {
+                Button(action: {
+                    Task {
+                        await translateWithVieswModel(messageToTranslate: message)
+                    }
+                }) {
+                    Text("Translate")
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
                 }
-            }) {
-                Text("Translate")
-                    .padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(5)
             }
+
             Spacer()
         }
         
