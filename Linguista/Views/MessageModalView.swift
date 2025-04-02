@@ -118,7 +118,8 @@ struct MessageModalView: View {
                 Spacer()
                 
                 PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
-                
+                AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+                    .transition(.slide)
                 Spacer()
             }
             
