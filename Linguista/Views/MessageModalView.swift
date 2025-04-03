@@ -104,8 +104,8 @@ struct MessageModalView: View {
             HStack {
                 Spacer()
                 
-                PlayAudioButton(message: audioMessage, conversationViewModel: conversationViewModel)
                 AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
+                
                 Spacer()
             }
             
@@ -117,9 +117,9 @@ struct MessageModalView: View {
             HStack {
                 Spacer()
                 
-                PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
                 AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
                     .transition(.slide)
+                
                 Spacer()
             }
             

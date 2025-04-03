@@ -7,24 +7,29 @@
 
 import SwiftUI
 import AVFoundation
+import SwiftUI
+import AVFoundation
+
 // MARK: - Audio Player Manager
-class AudioPlayerManager: ObservableObject {
+class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var currentTime: Double = 0.0
     @Published var duration: Double = 0.0
     @Published var isPlaying = false
-    @Published var playbackRate: Float = 1.0 // Default speed is 1x
+    @Published var playbackRate: Float = 1.0
     
     private var player: AVAudioPlayer?
     private var timer: Timer?
 
     init(audioData: Data) {
+        super.init() // Required when inheriting from NSObject
         setupPlayer(with: audioData)
     }
     
     private func setupPlayer(with audioData: Data) {
         do {
             player = try AVAudioPlayer(data: audioData)
-            player?.enableRate = true // Enable variable playback rate
+            player?.enableRate = true
+            player?.delegate = self
             player?.prepareToPlay()
             duration = player?.duration ?? 0.0
             
@@ -41,7 +46,7 @@ class AudioPlayerManager: ObservableObject {
             player?.pause()
         } else {
             player?.play()
-            player?.rate = playbackRate // Apply the current playback rate
+            player?.rate = playbackRate
         }
         isPlaying.toggle()
     }
@@ -52,7 +57,16 @@ class AudioPlayerManager: ObservableObject {
     
     func setPlaybackRate(_ rate: Float) {
         playbackRate = rate
-        player?.rate = rate // Update rate in real-time if playing
+        player?.rate = rate
+    }
+    
+    // Delegate method to handle audio completion
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            isPlaying = false // Reset to "Play" state
+            currentTime = 0.0 // Optional: Reset slider to start
+            player.currentTime = 0.0 // Optional: Reset player to start
+        }
     }
     
     deinit {
@@ -66,7 +80,6 @@ struct AudioPlayerView: View {
     
     var body: some View {
         VStack {
-            // Playback Position Slider
             Slider(value: $audioManager.currentTime, in: 0...audioManager.duration, step: 0.1) { editing in
                 if !editing {
                     audioManager.seek(to: audioManager.currentTime)
@@ -74,7 +87,6 @@ struct AudioPlayerView: View {
             }
             .padding()
             
-            // Playback Speed Slider
             VStack {
                 Text("Playback Speed: \(audioManager.playbackRate, specifier: "%.1f")x")
                     .font(.caption)
@@ -86,7 +98,6 @@ struct AudioPlayerView: View {
             }
             .padding()
             
-            // Play/Pause Button
             HStack {
                 Button(action: {
                     audioManager.togglePlayPause()
