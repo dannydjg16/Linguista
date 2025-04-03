@@ -21,9 +21,7 @@ struct MessageModalView: View {
         Spacer()
         
         HStack {
-            Text(message.message.content)
-                .border(Color.white, width: 1)
-                .foregroundColor(Color.primary)
+            MessageBubbleViewWithoutPlayAudioButton(message: message)
         }
         
         Spacer()
@@ -44,21 +42,22 @@ struct MessageModalView: View {
                         .cornerRadius(5)
                 }
             }
-
+            
             Spacer()
         }
         
         Spacer()
-            
+        
         if let response = translatedMessage {
-
+            
             HStack {
                 Spacer()
                 
-                TranslationBubbleViewWithoutPlayAudioButton(message: response, conversationViewModel: conversationViewModel)
+                TranslationBubbleViewWithoutPlayAudioButton(message: response)
                 
                 Spacer()
-                
+            }
+            HStack {
                 if messageWithAudio == nil && message.audioData == nil {
                     Button(action: {
                         getAudioMessage(messageToGetAudioFor: message)
@@ -70,17 +69,18 @@ struct MessageModalView: View {
                             .cornerRadius(5)
                     }
                 }
-                
-                Spacer()
             }
+            
         } else if message.translatedMessageContent != nil {
             HStack {
                 Spacer()
                 
-                TranslationBubbleViewWithoutPlayAudioButton(message: message, conversationViewModel: conversationViewModel)
+                TranslationBubbleViewWithoutPlayAudioButton(message: message)
                 
                 Spacer()
-                
+            }
+            
+            HStack {
                 if messageWithAudio == nil && message.audioData == nil {
                     Button(action: {
                         getAudioMessage(messageToGetAudioFor: message)
@@ -92,8 +92,6 @@ struct MessageModalView: View {
                             .cornerRadius(5)
                     }
                 }
-                
-                Spacer()
             }
         }
         
