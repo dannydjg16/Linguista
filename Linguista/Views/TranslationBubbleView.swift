@@ -8,36 +8,42 @@
 import Foundation
 import SwiftUI
 
-struct TranslationBubbleView: View {
+struct TranslationBubbleViewWithoutPlayAudioButton: View {
     
     let message: MessagingModel
-    let conversationViewModel: ConversationViewModel
     
     var body: some View {
-        HStack(alignment: .bottom, spacing: 10) {
+        VStack {
+            HStack {
+                Text("Translation:")
+            }
             
-            Text(message.translatedMessageContent ?? "Loading...")
-                .padding()
-                .background(Color.brown.opacity(0.2))
-                .cornerRadius(10)
-            
-            PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
+            HStack(alignment: .bottom, spacing: 10) {
+                Text(message.translatedMessageContent ?? "Loading...")
+                    .padding()
+                    .background(Color.brown.opacity(0.4))
+                    .cornerRadius(10)
+            }
         }
     }
 }
 
-struct TranslationBubbleViewWithoutPlayAudioButton: View {
+struct MessageBubbleViewWithoutPlayAudioButton: View {
     
     let message: MessagingModel
-    let conversationViewModel: ConversationViewModel
     
     var body: some View {
-        HStack(alignment: .bottom, spacing: 10) {
+        VStack {
+            HStack {
+                Text("Message:")
+            }
             
-            Text(message.translatedMessageContent ?? "Loading...")
-                .padding()
-                .background(Color.brown.opacity(0.2))
-                .cornerRadius(10)
+            HStack(alignment: .bottom, spacing: 10) {
+                Text(message.message.content)
+                    .padding()
+                    .background(Color.brown.opacity(0.4))
+                    .cornerRadius(10)
+            }
         }
     }
 }
