@@ -18,7 +18,6 @@ struct MessageModalView: View {
     
     var body: some View {
         VStack{
-            //Spacer()
             
             Text("Inspect Message")
                 .font(.title)
@@ -64,7 +63,7 @@ struct MessageModalView: View {
             } else {
                 Button(action: {
                     Task {
-                        await translateWithVieswModel(messageToTranslate: message)
+                        await translateWithViewModel(messageToTranslate: message)
                     }
                 }) {
                     Text("Translate")
