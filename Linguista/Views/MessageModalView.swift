@@ -57,7 +57,6 @@ struct MessageModalView: View {
                 }
             }
             
-            
             Spacer()
             
             if let audioMessage = messageWithAudio {
@@ -89,7 +88,10 @@ struct MessageModalView: View {
                 Spacer()
             } else {
                 Button(action: {
-                    getAudioMessage(messageToGetAudioFor: message)
+                    if message.translatedMessageContent != nil {
+                        getAudioMessage(messageToGetAudioFor: message)
+                    }
+                    
                 }) {
                     Text("Get Audio")
                         .padding()
@@ -101,7 +103,6 @@ struct MessageModalView: View {
             
             Spacer()
         }
-        
     }
     
     func translateWithVieswModel(messageToTranslate: MessagingModel) async {
