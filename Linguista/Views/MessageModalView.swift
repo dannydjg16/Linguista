@@ -139,8 +139,13 @@ struct MessageModalView: View {
     }
     
     func translateWithViewModel(messageToTranslate: MessagingModel) async {
+        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
+        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+        
         Task {
-            await conversationViewModel.getTranslationMessage(messagingModel: message)
+            translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            message.translatedMessageContent = translatedMessage?.translatedMessageContent
+            conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
     
@@ -152,3 +157,11 @@ struct MessageModalView: View {
         }
     }
 }
+
+//struct MessageModalView_Previews: PreviewProvider {
+//    @State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true, translatedMessageContent: "translation")
+//    
+//    static var previews: some View {
+//        MessageModalView(message: $message, conversationViewModel: ConversationViewModel())
+//    }
+//}
