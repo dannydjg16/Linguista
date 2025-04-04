@@ -24,16 +24,18 @@ struct MessageModalView: View {
                 .font(.title)
                 .padding(.top)
                 .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05)) 
-            Spacer()
+
             Divider()
                 .frame(height: 1)
                 .background(Color.gray.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
             Spacer()
+            
             HStack {
                 MessageBubbleViewWithoutPlayAudioButton(message: message)
             }
+            
             Spacer()
             Divider()
                 .frame(height: 1)
@@ -136,6 +138,7 @@ struct MessageModalView: View {
                         .transition(.opacity)
                 }
             }
+            
             Spacer()
             Divider()
                 .frame(height: 1)
