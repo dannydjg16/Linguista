@@ -18,8 +18,13 @@ struct MessageModalView: View {
     
     var body: some View {
         VStack{
+            //Spacer()
             
-            Spacer()
+            Text("Inspect Message")
+                .font(.title)
+                .padding(.top)
+                .padding(.bottom)
+            
             
             HStack {
                 MessageBubbleViewWithoutPlayAudioButton(message: message)
@@ -112,12 +117,12 @@ struct MessageModalView: View {
                         .foregroundColor(.red)
                         .font(.footnote)
                         .padding(.top, 5)
-                        .transition(.opacity) // Fade in/out effect
+                        .transition(.opacity)
                 }
             }
             Spacer()
         }
-        .animation(.easeInOut, value: showWarning) // Smooth animation for warning
+        .animation(.easeInOut, value: showWarning)
     }
     
     func translateWithVieswModel(messageToTranslate: MessagingModel) async {
