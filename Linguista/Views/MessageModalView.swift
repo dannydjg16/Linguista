@@ -23,8 +23,13 @@ struct MessageModalView: View {
             Text("Inspect Message")
                 .font(.title)
                 .padding(.top)
-                .padding(.bottom)
+                .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05)) 
             
+            Divider()
+                .frame(height: 1)
+                .background(Color.gray.opacity(0.3))
+                .padding(.leading)
+                .padding(.trailing)
             
             HStack {
                 MessageBubbleViewWithoutPlayAudioButton(message: message)
