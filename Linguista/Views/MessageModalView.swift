@@ -14,6 +14,7 @@ struct MessageModalView: View {
     @ObservedObject var conversationViewModel: ConversationViewModel
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
+    @State private var showWarning = false
     
     var body: some View {
         VStack{
@@ -90,8 +91,14 @@ struct MessageModalView: View {
                 Button(action: {
                     if message.translatedMessageContent != nil {
                         getAudioMessage(messageToGetAudioFor: message)
+                    } else {
+                        // Show warning if translatedMessageContent is nil
+                        showWarning = true
+                        // Hide warning after 2 seconds
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showWarning = false
+                        }
                     }
-                    
                 }) {
                     Text("Get Audio")
                         .padding()
@@ -99,10 +106,18 @@ struct MessageModalView: View {
                         .foregroundColor(.white)
                         .cornerRadius(5)
                 }
+                
+                if showWarning {
+                    Text("Need to Translate Message First!")
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                        .padding(.top, 5)
+                        .transition(.opacity) // Fade in/out effect
+                }
             }
-            
             Spacer()
         }
+        .animation(.easeInOut, value: showWarning) // Smooth animation for warning
     }
     
     func translateWithVieswModel(messageToTranslate: MessagingModel) async {
