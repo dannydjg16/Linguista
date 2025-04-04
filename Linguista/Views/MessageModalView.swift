@@ -12,7 +12,6 @@ struct MessageModalView: View {
     
     @Binding var message: MessagingModel
     @ObservedObject var conversationViewModel: ConversationViewModel
-    @State var messageResponse: MessagingModel?
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
     
@@ -127,14 +126,14 @@ struct MessageModalView: View {
         Spacer()
     }
     
-    func translateWithVieswModel(messageToTranslate: MessagingModel) {
+    func translateWithVieswModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
             translatedMessage = await conversationViewModel.sendMessageGetMessageTest(completionRequest: dataModel)
             message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            conversationViewModel.setTranslatedMessage(messagingModel: message)
+            var success = conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
     
@@ -145,7 +144,7 @@ struct MessageModalView: View {
         Task {
             translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
             message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            conversationViewModel.setTranslatedMessage(messagingModel: message)
+            var success = conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
     
@@ -153,7 +152,7 @@ struct MessageModalView: View {
         Task {
             messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModal(messagingModel: messageToGetAudioFor)
             message.audioData = messageWithAudio?.audioData
-            conversationViewModel.setTranslatedMessage(messagingModel: message)
+            var success = conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
 }
