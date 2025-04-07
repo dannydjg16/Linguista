@@ -84,7 +84,7 @@ struct MessageModalView: View {
                         await translateWithVieswModel(messageToTranslate: message)
                     }
                 }) {
-                    Text("Translate")
+                    Text("Get Translation")
                         .padding()
                         .background(Color.brown)
                         .foregroundColor(.white)
