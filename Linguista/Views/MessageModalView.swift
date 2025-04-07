@@ -29,6 +29,14 @@ struct MessageModalView: View {
                 .background(Color.gray.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
+            
+            HStack {
+                Text("Message:")
+                    .padding(.leading)
+                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                Spacer()
+            }
+            
             Spacer()
             
             HStack {
@@ -43,8 +51,9 @@ struct MessageModalView: View {
                 .padding(.trailing)
             
             HStack {
-                Text("Translation")
+                Text("Translation:")
                     .padding(.leading)
+                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
                 Spacer()
             }
            
@@ -61,6 +70,7 @@ struct MessageModalView: View {
                     Spacer()
                 }
             } else if message.translatedMessageContent != nil {
+                
                 HStack {
                     Spacer()
                     
@@ -88,6 +98,14 @@ struct MessageModalView: View {
                 .background(Color.gray.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
+            
+            HStack {
+                Text("Audio:")
+                    .padding(.leading)
+                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                Spacer()
+            }
+            
             Spacer()
             
             if let audioMessage = messageWithAudio {
