@@ -81,7 +81,7 @@ struct MessageModalView: View {
             } else {
                 Button(action: {
                     Task {
-                        await translateWithViewModel(messageToTranslate: message)
+                        await translateWithVieswModel(messageToTranslate: message)
                     }
                 }) {
                     Text("Translate")
@@ -140,9 +140,7 @@ struct MessageModalView: View {
                     if message.translatedMessageContent != nil {
                         getAudioMessage(messageToGetAudioFor: message)
                     } else {
-                        // Show warning if translatedMessageContent is nil
                         showWarning = true
-                        // Hide warning after 2 seconds
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             showWarning = false
                         }
