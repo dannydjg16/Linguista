@@ -17,7 +17,7 @@ struct TranslationBubbleViewWithoutPlayAudioButton: View {
             HStack(alignment: .bottom, spacing: 10) {
                 Text(message.translatedMessageContent ?? "Loading...")
                     .padding()
-                    .background(Color.brown.opacity(0.4))
+                    .background(Color.brown.opacity(0.2))
                     .cornerRadius(10)
             }
         }
@@ -33,7 +33,7 @@ struct MessageBubbleViewWithoutPlayAudioButton: View {
             HStack(alignment: .bottom, spacing: 10) {
                 Text(message.message.content)
                     .padding()
-                    .background(Color.brown.opacity(0.4))
+                    .background(Color.brown.opacity(0.2))
                     .cornerRadius(10)
             }
         }
