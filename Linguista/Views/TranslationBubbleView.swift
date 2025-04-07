@@ -14,11 +14,6 @@ struct TranslationBubbleViewWithoutPlayAudioButton: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Translation:")
-                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
-            }
-            
             HStack(alignment: .bottom, spacing: 10) {
                 Text(message.translatedMessageContent ?? "Loading...")
                     .padding()
@@ -35,11 +30,6 @@ struct MessageBubbleViewWithoutPlayAudioButton: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Message:")
-                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05)) 
-            }
-            
             HStack(alignment: .bottom, spacing: 10) {
                 Text(message.message.content)
                     .padding()
