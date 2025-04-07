@@ -41,11 +41,19 @@ struct MessageModalView: View {
                 .background(Color.gray.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
+            
+            HStack {
+                Text("Translation")
+                    .padding(.leading)
+                Spacer()
+            }
+           
             Spacer()
                         
             if let response = translatedMessage {
                 
                 HStack {
+                    
                     Spacer()
                     
                     TranslationBubbleViewWithoutPlayAudioButton(message: response)
