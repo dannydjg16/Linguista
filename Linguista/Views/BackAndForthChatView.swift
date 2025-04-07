@@ -22,6 +22,12 @@ struct BackAndForthChatView: View {
             
             Spacer()
             
+            Divider()
+                .frame(height: 1)
+                .background(Color.gray.opacity(0.3))
+                .padding(.leading)
+                .padding(.trailing)
+            
             HStack {
                 VStack {
                     Button(action: {
