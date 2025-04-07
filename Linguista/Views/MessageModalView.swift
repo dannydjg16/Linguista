@@ -26,7 +26,7 @@ struct MessageModalView: View {
 
             Divider()
                 .frame(height: 1)
-                .background(Color.gray.opacity(0.3))
+                .background(Color.black.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
             
@@ -46,7 +46,7 @@ struct MessageModalView: View {
             Spacer()
             Divider()
                 .frame(height: 1)
-                .background(Color.gray.opacity(0.3))
+                .background(Color.black.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
             
@@ -95,7 +95,7 @@ struct MessageModalView: View {
             Spacer()
             Divider()
                 .frame(height: 1)
-                .background(Color.gray.opacity(0.3))
+                .background(Color.black.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
             
@@ -165,7 +165,7 @@ struct MessageModalView: View {
             Spacer()
             Divider()
                 .frame(height: 1)
-                .background(Color.gray.opacity(0.3))
+                .background(Color.black.opacity(0.3))
                 .padding(.leading)
                 .padding(.trailing)
             Spacer()
