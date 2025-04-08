@@ -55,5 +55,6 @@ struct MessageBubbleView: View {
                 Spacer()
             }
         }
+        .padding([.leading, .trailing])
     }
 }
