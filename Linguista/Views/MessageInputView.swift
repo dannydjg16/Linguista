@@ -16,23 +16,6 @@ struct MessageInputView: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
     
     var body: some View {
-        
-        HStack {
-            Spacer()
-            Spacer()
-            
-            Button(action: {
-                replyForUser()
-            }) {
-                Image(systemName: "arrow.up.message")
-                    .foregroundColor(.white)
-            }
-            .frame(minWidth: 50, idealWidth: 50, maxWidth: 50, minHeight: 50, idealHeight: 50, maxHeight: 50)
-            .background(Color.brown)
-            .clipShape(Circle())
-        }
-        .padding(.trailing)
-        
         HStack {
             TextField("Type a message", text: $speechRecognizer.transcribedText)
                 .padding()

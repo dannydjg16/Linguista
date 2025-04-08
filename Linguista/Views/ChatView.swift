@@ -17,8 +17,7 @@ struct ChatView: View {
     @Binding var innerSelection: Int
     
     var body: some View {
-        VStack{
-                        
+        VStack {
             BackAndForthChatView(conversationViewModel: conversationViewModel)
                 .padding()
                 .background(Color.white)
