@@ -18,7 +18,6 @@ struct TextMessagingView: View {
         VStack{
             
             MessageListView(conversationViewModel: conversationViewModel)
-                .padding()
                 .background(Color.white)
                 .cornerRadius(10)
             
