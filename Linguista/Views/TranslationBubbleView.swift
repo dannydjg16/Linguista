@@ -19,9 +19,10 @@ struct TranslationBubbleViewWithoutPlayAudioButton: View {
                 HStack(alignment: .bottom, spacing: 10) {
                     Text(message.translatedMessageContent ?? "Loading...")
                         .padding()
+                        .background(Color.brown.opacity(0.2))
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.brown.opacity(0.15), lineWidth: 4))
+                                .stroke(Color.black.opacity(0.5), lineWidth: 4))
                         .cornerRadius(10)
                 }
             }
@@ -31,6 +32,9 @@ struct TranslationBubbleViewWithoutPlayAudioButton: View {
                     Text(message.translatedMessageContent ?? "Loading...")
                         .padding()
                         .background(.brown.opacity(0.2))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black.opacity(0.5), lineWidth: 4))
                         .cornerRadius(10)
                 }
             }
@@ -49,9 +53,10 @@ struct MessageBubbleViewWithoutPlayAudioButton: View {
                 HStack(alignment: .bottom, spacing: 10) {
                     Text(message.message.content)
                         .padding()
+                        .background(Color.brown.opacity(0.2))
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.brown.opacity(0.15), lineWidth: 4))
+                                .stroke(Color.black.opacity(0.5), lineWidth: 4))
                         .cornerRadius(10)
                 }
             }
@@ -61,6 +66,9 @@ struct MessageBubbleViewWithoutPlayAudioButton: View {
                     Text(message.message.content)
                         .padding()
                         .background(.brown.opacity(0.2))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black.opacity(0.5), lineWidth: 4))
                         .cornerRadius(10)
                 }
             }
