@@ -74,7 +74,6 @@ struct ChatSettingsView: View {
             Spacer()
         }
         
-        
         Spacer()
         
         HStack() {

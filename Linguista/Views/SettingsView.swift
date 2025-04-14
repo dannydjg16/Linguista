@@ -51,6 +51,5 @@ struct SettingsView: View {
                 ChatSettingsView(languageToTranslate: $languageToTranslate, innerSelection: $innerSelection, conversationViewModel: conversationViewModel)
             }
         }
-
     }
 }

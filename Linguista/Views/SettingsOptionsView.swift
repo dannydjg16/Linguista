@@ -30,13 +30,13 @@ struct SettingsOptionsView: View {
                 .clipShape(Circle())
             }
         }
+        
         Spacer()
         
         NavigationView {
             LanguagePickerView(languageToTranslate: $languageToTranslate)
         }
         .tint(Color.brown)
-        
         
         Spacer()
         

@@ -14,7 +14,7 @@ struct BackAndForthChatView: View {
     @State private var backgroundColor: Color = .yellow
     
     var body: some View {
-
+        
         VStack {
             if let lastMessage = conversationViewModel.messages.last(where: { $0.isSentByUser == false } ) {
                 MessageBubbleView(message: lastMessage, conversationViewModel: conversationViewModel)
@@ -22,8 +22,29 @@ struct BackAndForthChatView: View {
             
             Spacer()
             
-            HStack {
-                VStack {
+            Divider()
+                .frame(height: 1)
+                .background(Color.black.opacity(0.3))
+                .padding(.leading)
+                .padding(.trailing)
+            
+            VStack {
+                HStack {
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        //replyForUser()
+                    }) {
+                        Image(systemName: "arrow.up.message")
+                            .foregroundColor(.white)
+                    }
+                    .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+                    
+                    Spacer()
+                    
                     Button(action: {
                         
                     }) {
@@ -33,6 +54,8 @@ struct BackAndForthChatView: View {
                     .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
                     .background(Color.brown)
                     .clipShape(Circle())
+                    
+                    Spacer()
                 }
             }
         }

@@ -34,6 +34,8 @@ struct MessageInputView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
         }
+        .padding(.leading)
+        .padding(.trailing)
     }
     
     private func sendMessage() {
@@ -49,8 +51,17 @@ struct MessageInputView: View {
             speechRecognizer.transcribedText = ""
         }
     }
+    
+    private func replyForUser() {
+        let messages = [
+            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: languageToTranslate)). Keep sentences very simple, as if you were replying to a small child")]
+        
+        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+        Task {
+            await conversationViewModel.sendMessageForUser(completionRequest: dataModel)
+        }
+    }
 }
-
 
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {

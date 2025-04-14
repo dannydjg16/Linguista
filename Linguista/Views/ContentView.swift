@@ -14,12 +14,6 @@ struct ContentView: View {
             }
             .tag(0)
             
-            QuickTranslateView()
-                .tabItem {
-                    Label("Translate", systemImage: "arrow.left.arrow.right")
-                }
-                .tag(1)
-            
             AccountView()
                 .tabItem {
                     Label("Account", systemImage: "person.fill")
@@ -27,8 +21,6 @@ struct ContentView: View {
                 .tag(2)
             
         }.accentColor(.brown)
-        
-        
     }
 }
 

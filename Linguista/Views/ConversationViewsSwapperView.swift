@@ -11,7 +11,7 @@ import SwiftUI
 struct ConversationViewsSwapperView: View {
     
     @StateObject private var conversationViewModel = ConversationViewModel()
-    @State private var innerSelection = 0
+    @State private var innerSelection = 1
     @State private var languageToTranslate = 1
     
     var body: some View {
@@ -34,6 +34,5 @@ struct ConversationViewsSwapperView: View {
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
         }
-
     }
 }
