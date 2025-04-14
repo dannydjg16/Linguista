@@ -38,7 +38,6 @@ struct SettingsOptionsView: View {
         }
         .tint(Color.brown)
         
-        
         Spacer()
         
         HStack() {

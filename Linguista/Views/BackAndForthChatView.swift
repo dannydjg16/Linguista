@@ -28,38 +28,36 @@ struct BackAndForthChatView: View {
                 .padding(.leading)
                 .padding(.trailing)
             
-            //HStack {
-                VStack {
-                    HStack {
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            //replyForUser()
-                        }) {
-                            Image(systemName: "arrow.up.message")
-                                .foregroundColor(.white)
-                        }
-                        .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
-                        .background(Color.brown)
-                        .clipShape(Circle())
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            
-                        }) {
-                            Image(systemName: "microphone")
-                                .foregroundColor(.white)
-                        }
-                        .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
-                        .background(Color.brown)
-                        .clipShape(Circle())
-                        
-                        Spacer()
+            VStack {
+                HStack {
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        //replyForUser()
+                    }) {
+                        Image(systemName: "arrow.up.message")
+                            .foregroundColor(.white)
                     }
+                    .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "microphone")
+                            .foregroundColor(.white)
+                    }
+                    .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 75, idealHeight: 75, maxHeight: 100)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+                    
+                    Spacer()
                 }
-            //}
+            }
         }
     }
 }
