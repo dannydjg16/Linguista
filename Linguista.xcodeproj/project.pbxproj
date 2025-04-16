@@ -28,7 +28,7 @@
 		81752E822D5AFDDF00D9F696 /* TextMessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E812D5AFDDF00D9F696 /* TextMessagingView.swift */; };
 		81752E842D6A2A7400D9F696 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E832D6A2A7400D9F696 /* SettingsView.swift */; };
 		81752E862D6A2BF200D9F696 /* SettingsOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E852D6A2BF200D9F696 /* SettingsOptionsView.swift */; };
-		81752E8A2D6EB86400D9F696 /* ChatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E892D6EB86400D9F696 /* ChatSettingsView.swift */; };
+		81752E8A2D6EB86400D9F696 /* ChatOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E892D6EB86400D9F696 /* ChatOptionsView.swift */; };
 		81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */; };
 		81841B122C66B61100B7A5AC /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81841B112C66B61100B7A5AC /* Config.plist */; };
 		81841B142C66B66A00B7A5AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81841B132C66B66A00B7A5AC /* Config.swift */; };
@@ -89,7 +89,7 @@
 		81752E812D5AFDDF00D9F696 /* TextMessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessagingView.swift; sourceTree = "<group>"; };
 		81752E832D6A2A7400D9F696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		81752E852D6A2BF200D9F696 /* SettingsOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOptionsView.swift; sourceTree = "<group>"; };
-		81752E892D6EB86400D9F696 /* ChatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsView.swift; sourceTree = "<group>"; };
+		81752E892D6EB86400D9F696 /* ChatOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOptionsView.swift; sourceTree = "<group>"; };
 		81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		81841B112C66B61100B7A5AC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		81841B132C66B66A00B7A5AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 				81752E7F2D5AFA9600D9F696 /* BackAndForthChatView.swift */,
 				81752E832D6A2A7400D9F696 /* SettingsView.swift */,
 				81752E852D6A2BF200D9F696 /* SettingsOptionsView.swift */,
-				81752E892D6EB86400D9F696 /* ChatSettingsView.swift */,
+				81752E892D6EB86400D9F696 /* ChatOptionsView.swift */,
 				81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */,
 				81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */,
 			);
@@ -440,7 +440,7 @@
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
 				81752E7E2D532FDF00D9F696 /* ConversationViewsSwapperView.swift in Sources */,
 				81752E822D5AFDDF00D9F696 /* TextMessagingView.swift in Sources */,
-				81752E8A2D6EB86400D9F696 /* ChatSettingsView.swift in Sources */,
+				81752E8A2D6EB86400D9F696 /* ChatOptionsView.swift in Sources */,
 				8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */,
 				8194D0222D23791000CAE54C /* SpeedSelectorView.swift in Sources */,
 			);
