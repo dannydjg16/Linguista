@@ -32,6 +32,15 @@ struct ChatSettingsView: View {
                 .clipShape(Circle())
             }
         }
+        
+        Text("Chat Options")
+            .font(.title)
+            .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+        Divider()
+            .frame(height: 1)
+            .background(Color.black.opacity(0.3))
+            .padding(.leading)
+            .padding(.trailing)
 
         Spacer()
 

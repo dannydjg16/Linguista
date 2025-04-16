@@ -33,7 +33,6 @@ struct SettingsOptionsView: View {
         Text("Settings")
             .font(.title)
             .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
-
         Divider()
             .frame(height: 1)
             .background(Color.black.opacity(0.3))
