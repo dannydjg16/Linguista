@@ -19,7 +19,6 @@ struct SettingsOptionsView: View {
             Spacer()
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
                     dismiss()
                 }) {
                     Image(systemName: "xmark")
@@ -33,7 +32,6 @@ struct SettingsOptionsView: View {
         
         Text("Settings")
             .font(.title)
-            //.padding(.top)
             .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
 
         Divider()
@@ -52,7 +50,6 @@ struct SettingsOptionsView: View {
             Spacer()
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
                     dismiss()
                 }) {
                     Text("Save")
