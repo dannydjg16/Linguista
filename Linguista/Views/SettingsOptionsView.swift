@@ -31,6 +31,9 @@ struct SettingsOptionsView: View {
             }
         }
         
+        Text("Settings")
+            .padding(.top)
+        
         Spacer()
         
         NavigationView {
