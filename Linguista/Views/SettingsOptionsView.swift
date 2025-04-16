@@ -32,16 +32,21 @@ struct SettingsOptionsView: View {
         }
         
         Text("Settings")
-            .padding(.top)
-        
-        Spacer()
+            .font(.title)
+            //.padding(.top)
+            .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+
+        Divider()
+            .frame(height: 1)
+            .background(Color.black.opacity(0.3))
+            .padding(.leading)
+            .padding(.trailing)
         
         NavigationView {
             LanguagePickerView(languageToTranslate: $languageToTranslate)
         }
         .tint(Color.brown)
-        
-        Spacer()
+        .padding(.top)
         
         HStack() {
             Spacer()
