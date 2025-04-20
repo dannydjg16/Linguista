@@ -34,7 +34,7 @@ struct BackAndForthChatView: View {
                     Spacer()
                     
                     Button(action: {
-                        //replyForUser()
+                        conversationViewModel.testAddMessage()
                     }) {
                         Image(systemName: "arrow.up.message")
                             .foregroundColor(.white)
