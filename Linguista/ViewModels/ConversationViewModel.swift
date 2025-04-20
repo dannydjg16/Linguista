@@ -134,6 +134,12 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
+    func testAddMessage() {
+        let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
+        let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
+        messages.append(MessagingModel(message: responseMessage, isSentByUser: true))
+    }
+    
     func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
         
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
