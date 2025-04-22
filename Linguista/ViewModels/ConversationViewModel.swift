@@ -9,9 +9,10 @@ import Foundation
 import Combine
 
 @MainActor
-class ConversationViewModel: ObservableObject, Sendable {
+@Observable
+class ConversationViewModel: Sendable {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
+    var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
     //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
     
     private let completionsService = CompletionsService.shared
