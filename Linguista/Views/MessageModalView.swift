@@ -180,7 +180,7 @@ struct MessageModalView: View {
         Task {
             translatedMessage = await conversationViewModel.sendMessageGetMessageTest(completionRequest: dataModel)
             message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+            _ = conversationViewModel.setTranslatedMessage(messagingModel: translatedMessage!)
         }
     }
     
