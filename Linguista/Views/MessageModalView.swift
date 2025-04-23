@@ -121,7 +121,7 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
-            } else if message.audioData != nil {
+            } else if message.translatedAudioData != nil {
                 
                 Spacer()
                 
