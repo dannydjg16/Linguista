@@ -134,10 +134,51 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-    func testAddMessage() {
-        let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
-        let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
-        messages.append(MessagingModel(message: responseMessage, isSentByUser: true))
+    // Same functionality as sendMessageForUser EXCEPT this one does not add the original message into the messages array.
+    func sendMessageForUsera() async {
+        
+        let messages = [
+            Message(role: "system", content: "You are teaching an English-speaking person farsi. Use basic sentences that are not complex, almost as if you are teaching a small child. Respond as if you were just carrying on a conversation"),
+            Message(role: "user", content: messages.last!.message.content)
+        ]
+        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+     
+        
+        if (dataModel.messages.count == 0){
+            return
+        }
+        
+        // Identify System Message for use later
+        let systemMessage = dataModel.messages.filter{ $0.role == "system" }.first
+        
+        // Put together list to save messages
+        var conversationSoFar = dataModel
+        
+        // Keep completion request data, but update the message array to pass forward.
+        conversationSoFar.messages = self.messages.compactMap { $0.message }
+        
+        // Add system prompt at the beginning of the conversation
+        conversationSoFar.messages.insert(systemMessage ?? dataModel.messages[0], at: 0)
+        
+        // Call trimMessageArray to limit the size of the array thats passed in.
+        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
+        
+        do {
+            let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
+            
+            Task {
+                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                // Add response with audio to message array
+                await MainActor.run {
+                    self.messages.append(messageModelWithAudio)
+                }
+            }
+            
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
     }
     
     func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
