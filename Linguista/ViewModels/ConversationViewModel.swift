@@ -114,26 +114,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
     }
     
-    func sendMessageGetMessage(completionRequest: CompletionsRequest) async -> MessagingModel? {
-        
-        if (completionRequest.messages.count == 0){
-            return nil
-        }
-        
-        do {
-            let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
-            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-            
-            return responseMessageModel
-            
-        } catch {
-            print("Error: \(error.localizedDescription)")
-        }
-        
-        return nil
-    }
-    
     // Same functionality as sendMessageForUser EXCEPT this one does not add the original message into the messages array.
     func sendMessageForUsera() async {
         
@@ -181,12 +161,32 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
     }
     
+    func sendMessageGetMessage(completionRequest: CompletionsRequest) async -> MessagingModel? {
+        
+        if (completionRequest.messages.count == 0){
+            return nil
+        }
+        
+        do {
+            let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
+            
+            return responseMessageModel
+            
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+    
     func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
         
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
                 
-        return responseMessageModel
+        return await responseMessageModel
     }
     
     func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
