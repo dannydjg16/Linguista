@@ -189,9 +189,10 @@ struct MessageModalView: View {
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
         
         Task {
-            translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-            message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+            let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            //translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            message.translatedMessageContent = tm?.message.content
+            _ = conversationViewModel.setTranslatedMessage(messagingModel: tm!)
         }
     }
     
