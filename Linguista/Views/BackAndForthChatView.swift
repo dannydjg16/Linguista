@@ -34,7 +34,9 @@ struct BackAndForthChatView: View {
                     Spacer()
                     
                     Button(action: {
-                        //replyForUser()
+                        Task {
+                            await conversationViewModel.sendMessageForUsera()
+                        }
                     }) {
                         Image(systemName: "arrow.up.message")
                             .foregroundColor(.white)
@@ -46,7 +48,7 @@ struct BackAndForthChatView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        //textToSpeech()
                     }) {
                         Image(systemName: "microphone")
                             .foregroundColor(.white)

@@ -48,7 +48,7 @@ struct SettingsView: View {
                 .clipShape(Circle())
             }
             .sheet(isPresented: $isShowingChatSettingsModal) {
-                ChatSettingsView(languageToTranslate: $languageToTranslate, innerSelection: $innerSelection, conversationViewModel: conversationViewModel)
+                ChatOptionsView(languageToTranslate: $languageToTranslate, innerSelection: $innerSelection, conversationViewModel: conversationViewModel)
             }
         }
     }

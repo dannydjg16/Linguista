@@ -1,5 +1,5 @@
 //
-//  ChatSettingsView.swift
+//  ChatOptionsView.swift
 //  Linguista
 //
 //  Created by Daniel Grant on 2/25/25.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-struct ChatSettingsView: View {
+struct ChatOptionsView: View {
 
     @Binding var languageToTranslate: Int
     @Binding var innerSelection: Int
@@ -32,6 +32,15 @@ struct ChatSettingsView: View {
                 .clipShape(Circle())
             }
         }
+        
+        Text("Chat Options")
+            .font(.title)
+            .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+        Divider()
+            .frame(height: 1)
+            .background(Color.black.opacity(0.3))
+            .padding(.leading)
+            .padding(.trailing)
 
         Spacer()
 

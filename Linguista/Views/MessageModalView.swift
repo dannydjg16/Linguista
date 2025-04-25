@@ -81,7 +81,7 @@ struct MessageModalView: View {
             } else {
                 Button(action: {
                     Task {
-                        await translateWithVieswModel(messageToTranslate: message)
+                        await translateWithViewModel(messageToTranslate: message)
                     }
                 }) {
                     Text("Get Translation")
@@ -121,7 +121,7 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
-            } else if message.audioData != nil {
+            } else if message.translatedAudioData != nil {
                 
                 Spacer()
                 
@@ -173,25 +173,26 @@ struct MessageModalView: View {
         .animation(.easeInOut, value: showWarning)
     }
     
-    func translateWithVieswModel(messageToTranslate: MessagingModel) async {
+    func translateWithViewModelTest(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
         
         Task {
             translatedMessage = await conversationViewModel.sendMessageGetMessageTest(completionRequest: dataModel)
             message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+            _ = conversationViewModel.setTranslatedMessage(messagingModel: translatedMessage!)
         }
     }
     
     func translateWithViewModel(messageToTranslate: MessagingModel) async {
-        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English if Farsi is provided. Otherwise, translate from English to Farsi if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
+        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English if Farsi is provided. The translation should be very informal like chatting. Otherwise, translate from English to Farsi if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
+        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
         
         Task {
-            translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-            message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+            let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            //translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+            message.translatedMessageContent = tm?.message.content
+            _ = conversationViewModel.setTranslatedMessage(messagingModel: tm!)
         }
     }
     

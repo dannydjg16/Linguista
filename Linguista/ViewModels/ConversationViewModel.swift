@@ -114,6 +114,53 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
     }
     
+    // Same functionality as sendMessageForUser EXCEPT this one does not add the original message into the messages array.
+    func sendMessageForUsera() async {
+        
+        let messages = [
+            Message(role: "system", content: "Respond to the prompt in Farsi, as if you were just carrying on a conversation. Use basic sentences that are not complex, almost as if you are teaching a small child."),
+            Message(role: "user", content: messages.last!.message.content)
+        ]
+        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+     
+        
+        if (dataModel.messages.count == 0){
+            return
+        }
+        
+        // Identify System Message for use later
+        let systemMessage = dataModel.messages.filter{ $0.role == "system" }.first
+        
+        // Put together list to save messages
+        var conversationSoFar = dataModel
+        
+        // Keep completion request data, but update the message array to pass forward.
+        conversationSoFar.messages = self.messages.compactMap { $0.message }
+        
+        // Add system prompt at the beginning of the conversation
+        conversationSoFar.messages.insert(systemMessage ?? dataModel.messages[0], at: 0)
+        
+        // Call trimMessageArray to limit the size of the array thats passed in.
+        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
+        
+        do {
+            let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
+            
+            Task {
+                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                // Add response with audio to message array
+                await MainActor.run {
+                    self.messages.append(messageModelWithAudio)
+                }
+            }
+            
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
     func sendMessageGetMessage(completionRequest: CompletionsRequest) async -> MessagingModel? {
         
         if (completionRequest.messages.count == 0){
@@ -139,16 +186,20 @@ class ConversationViewModel: ObservableObject, Sendable {
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
                 
-        return responseMessageModel
+        return await responseMessageModel
     }
     
     func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
         
+        // Find the message to set the translation on
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
+            
+            // Set translated message content here
             if (self.messages[index].translatedMessageContent == nil && messagingModel.translatedMessageContent != nil) {
                 self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
             }
             
+            // Set audio stuff here may have to change to translatedAudioData
             if (self.messages[index].audioData == nil && messagingModel.audioData != nil) {
                 self.messages[index].audioData = messagingModel.audioData
             }

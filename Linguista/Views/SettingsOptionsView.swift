@@ -19,7 +19,6 @@ struct SettingsOptionsView: View {
             Spacer()
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
                     dismiss()
                 }) {
                     Image(systemName: "xmark")
@@ -31,20 +30,25 @@ struct SettingsOptionsView: View {
             }
         }
         
-        Spacer()
+        Text("Settings")
+            .font(.title)
+            .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+        Divider()
+            .frame(height: 1)
+            .background(Color.black.opacity(0.3))
+            .padding(.leading)
+            .padding(.trailing)
         
         NavigationView {
             LanguagePickerView(languageToTranslate: $languageToTranslate)
         }
         .tint(Color.brown)
-        
-        Spacer()
+        .padding(.top)
         
         HStack() {
             Spacer()
             VStack{
                 Button(action: {
-                    // Action when the button is tapped
                     dismiss()
                 }) {
                     Text("Save")
