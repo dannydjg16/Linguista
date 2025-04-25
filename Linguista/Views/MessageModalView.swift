@@ -51,6 +51,76 @@ struct MessageModalView: View {
                 .padding(.trailing)
             
             HStack {
+                Text("Audio:")
+                    .padding(.leading)
+                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                Spacer()
+            }
+            
+            Spacer()
+            
+            if let audioMessage = messageWithAudio {
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+            } else if message.translatedAudioData != nil {
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+                        .transition(.slide)
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+            } else {
+                Button(action: {
+                    if message.translatedMessageContent != nil {
+                        getAudioMessage(messageToGetAudioFor: message)
+                    } else {
+                        showWarning = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showWarning = false
+                        }
+                    }
+                }) {
+                    Text("Get Audio")
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
+                
+                if showWarning {
+                    Text("Need to Translate Message First!")
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                        .padding(.top, 5)
+                        .transition(.opacity)
+                }
+            }
+            
+            Spacer()
+            Divider()
+                .frame(height: 1)
+                .background(Color.black.opacity(0.3))
+                .padding(.leading)
+                .padding(.trailing)
+            
+            HStack {
                 Text("Translation:")
                     .padding(.leading)
                     .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
@@ -100,7 +170,7 @@ struct MessageModalView: View {
                 .padding(.trailing)
             
             HStack {
-                Text("Audio:")
+                Text("Translation Audio:")
                     .padding(.leading)
                     .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
                 Spacer()
