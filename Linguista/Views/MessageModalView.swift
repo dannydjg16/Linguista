@@ -246,7 +246,6 @@ struct MessageModalView: View {
         
         Task {
             let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-            //translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
             message.translatedMessageContent = tm?.message.content
             _ = conversationViewModel.setTranslatedMessage(messagingModel: tm!)
         }
