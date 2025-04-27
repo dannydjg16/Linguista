@@ -14,6 +14,7 @@ struct MessageModalView: View {
     @ObservedObject var conversationViewModel: ConversationViewModel
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
+    @State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
     
     var body: some View {
@@ -72,7 +73,7 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
-            } else if message.translatedAudioData != nil {
+            } else if message.audioData != nil {
                 
                 Spacer()
                 
@@ -163,7 +164,7 @@ struct MessageModalView: View {
             
             Spacer()
             
-            if let audioMessage = messageWithAudio {
+            if let audioMessage = translatedMessageWithAudio {
                 
                 Spacer()
                 
