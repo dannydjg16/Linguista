@@ -88,28 +88,13 @@ struct MessageModalView: View {
                 Spacer()
             } else {
                 Button(action: {
-                    if message.translatedMessageContent != nil {
-                        getAudioMessage(messageToGetAudioFor: message)
-                    } else {
-                        showWarning = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            showWarning = false
-                        }
-                    }
+                    getAudioMessage(messageToGetAudioFor: message)
                 }) {
                     Text("Get Audio")
                         .padding()
                         .background(Color.brown)
                         .foregroundColor(.white)
                         .cornerRadius(5)
-                }
-                
-                if showWarning {
-                    Text("Need to Translate Message First!")
-                        .foregroundColor(.red)
-                        .font(.footnote)
-                        .padding(.top, 5)
-                        .transition(.opacity)
                 }
             }
             
