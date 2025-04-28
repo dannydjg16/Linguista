@@ -194,7 +194,7 @@ struct MessageModalView: View {
             } else {
                 Button(action: {
                     if message.translatedMessageContent != nil {
-                        getAudioMessage(messageToGetAudioFor: message)
+                        getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
                     } else {
                         showWarning = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -255,6 +255,14 @@ struct MessageModalView: View {
         Task {
             messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModal(messagingModel: messageToGetAudioFor)
             message.audioData = messageWithAudio?.audioData
+            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+        }
+    }
+    
+    func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
+        Task {
+            translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModal(messagingModel: messageToGetAudioFor)
+            message.translatedAudioData = messageWithAudio?.translatedAudioData
             _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
