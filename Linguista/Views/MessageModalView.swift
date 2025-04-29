@@ -14,6 +14,7 @@ struct MessageModalView: View {
     @ObservedObject var conversationViewModel: ConversationViewModel
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
+    @State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
     
     var body: some View {
@@ -41,6 +42,61 @@ struct MessageModalView: View {
             
             HStack {
                 MessageBubbleViewWithoutPlayAudioButton(message: message)
+            }
+            
+            Spacer()
+            Divider()
+                .frame(height: 1)
+                .background(Color.black.opacity(0.3))
+                .padding(.leading)
+                .padding(.trailing)
+            
+            HStack {
+                Text("Audio:")
+                    .padding(.leading)
+                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                Spacer()
+            }
+            
+            Spacer()
+            
+            if let audioMessage = messageWithAudio {
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+            } else if message.audioData != nil {
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+                        .transition(.slide)
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+            } else {
+                Button(action: {
+                    getAudioMessage(messageToGetAudioFor: message)
+                }) {
+                    Text("Get Audio")
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
             }
             
             Spacer()
@@ -100,7 +156,7 @@ struct MessageModalView: View {
                 .padding(.trailing)
             
             HStack {
-                Text("Audio:")
+                Text("Translation Audio:")
                     .padding(.leading)
                     .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
                 Spacer()
@@ -108,7 +164,7 @@ struct MessageModalView: View {
             
             Spacer()
             
-            if let audioMessage = messageWithAudio {
+            if let audioMessage = translatedMessageWithAudio {
                 
                 Spacer()
                 
@@ -138,7 +194,7 @@ struct MessageModalView: View {
             } else {
                 Button(action: {
                     if message.translatedMessageContent != nil {
-                        getAudioMessage(messageToGetAudioFor: message)
+                        getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
                     } else {
                         showWarning = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -190,7 +246,6 @@ struct MessageModalView: View {
         
         Task {
             let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-            //translatedMessage = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
             message.translatedMessageContent = tm?.message.content
             _ = conversationViewModel.setTranslatedMessage(messagingModel: tm!)
         }
@@ -200,6 +255,14 @@ struct MessageModalView: View {
         Task {
             messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModal(messagingModel: messageToGetAudioFor)
             message.audioData = messageWithAudio?.audioData
+            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+        }
+    }
+    
+    func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
+        Task {
+            translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForTranslatedMessage(messagingModel: messageToGetAudioFor)
+            message.translatedAudioData = translatedMessageWithAudio?.translatedAudioData
             _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }

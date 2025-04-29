@@ -203,6 +203,11 @@ class ConversationViewModel: ObservableObject, Sendable {
             if (self.messages[index].audioData == nil && messagingModel.audioData != nil) {
                 self.messages[index].audioData = messagingModel.audioData
             }
+            
+            // Set audio stuff here may have to change to translatedAudioData
+            if (self.messages[index].translatedAudioData == nil && messagingModel.translatedAudioData != nil) {
+                self.messages[index].translatedAudioData = messagingModel.translatedAudioData
+            }
         }
         
         return true
@@ -257,6 +262,27 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     func fetchAndPlayAudioForMessagingModal(messagingModel: MessagingModel) async -> MessagingModel {
+        
+        isLoading = true
+        errorMessage = nil
+        
+        var updatedMessagingModel = messagingModel
+        
+        do {
+            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
+            ttsViewModel.playAudio(with: audioData)
+            updatedMessagingModel.audioData = audioData
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
+        
+        return updatedMessagingModel
+    }
+    
+    func fetchAndPlayAudioForTranslatedMessage(messagingModel: MessagingModel) async -> MessagingModel {
         
         isLoading = true
         errorMessage = nil
