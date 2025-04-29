@@ -203,6 +203,11 @@ class ConversationViewModel: ObservableObject, Sendable {
             if (self.messages[index].audioData == nil && messagingModel.audioData != nil) {
                 self.messages[index].audioData = messagingModel.audioData
             }
+            
+            // Set audio stuff here may have to change to translatedAudioData
+            if (self.messages[index].translatedAudioData == nil && messagingModel.translatedAudioData != nil) {
+                self.messages[index].translatedAudioData = messagingModel.translatedAudioData
+            }
         }
         
         return true

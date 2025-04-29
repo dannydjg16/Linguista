@@ -262,7 +262,7 @@ struct MessageModalView: View {
     func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
         Task {
             translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModal(messagingModel: messageToGetAudioFor)
-            message.translatedAudioData = messageWithAudio?.translatedAudioData
+            message.translatedAudioData = translatedMessageWithAudio?.translatedAudioData
             _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
         }
     }
