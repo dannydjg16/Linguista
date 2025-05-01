@@ -23,8 +23,8 @@ struct MessageModalView: View {
             Text("Inspect Message")
                 .font(.title)
                 .padding(.top)
-                .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05)) 
-
+                .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+            
             Divider()
                 .frame(height: 1)
                 .background(Color.black.opacity(0.3))
@@ -112,9 +112,9 @@ struct MessageModalView: View {
                     .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
                 Spacer()
             }
-           
+            
             Spacer()
-                        
+            
             if let response = translatedMessage {
                 
                 HStack {
