@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct PlayAudioButton: View {
-    let message: MessagingModel // Replace with your actual message type
-    let conversationViewModel: ConversationViewModel // Replace with your view model type
+    let message: MessagingModel
+    let conversationViewModel: ConversationViewModel 
     @State private var playbackSpeed: Float = 1.0
     @State private var isSpeedSelectorPresented: Bool = false
     
