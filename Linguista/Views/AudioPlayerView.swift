@@ -103,17 +103,11 @@ struct AudioPlayerView: View {
                         SpeedSelectorView(playbackSpeed: $audioManager.playbackRate)
                             .presentationDetents([.fraction(0.3)])
                     }
-                    Text("(\(audioManager.playbackRate, specifier: "%.1f")x)")
+                    Text("(\(Int(audioManager.playbackRate * 100))%)")
                         .font(.caption)
                     
-//                    Divider()
-//                        .frame(width: 1)
-//                        .background(Color.black.opacity(0.3))
-//                        .rotationEffect(.degrees(90))
                     Rectangle()
                         .fill(Color.black.opacity(0.3))
-                        .padding(.top)
-                        .padding(.bottom)
                         .frame(width: 1)
                     
                     Button(action: {
