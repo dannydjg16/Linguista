@@ -18,215 +18,217 @@ struct MessageModalView: View {
     @State private var showWarning = false
     
     var body: some View {
-        VStack{
-            
-            Text("Inspect Message")
-                .font(.title)
-                .padding(.top)
-                .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
-            
-            Divider()
-                .frame(height: 1)
-                .background(Color.black.opacity(0.3))
-                .padding(.leading)
-                .padding(.trailing)
-            
-            HStack {
-                Text("Message:")
-                    .padding(.leading)
+        ScrollView {
+            VStack(spacing: 10){
+                
+                Text("Inspect Message")
+                    .font(.title)
+                    .padding(.top)
                     .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
-                Spacer()
-            }
-            
-            Spacer()
-            
-            HStack {
-                MessageBubbleViewWithoutPlayAudioButton(message: message)
-            }
-            
-            Spacer()
-            Divider()
-                .frame(height: 1)
-                .background(Color.black.opacity(0.3))
-                .padding(.leading)
-                .padding(.trailing)
-            
-            HStack {
-                Text("Audio:")
+                
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.black.opacity(0.3))
                     .padding(.leading)
-                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
-                Spacer()
-            }
-            
-            Spacer()
-            
-            if let audioMessage = messageWithAudio {
+                    .padding(.trailing)
+                
+                HStack {
+                    Text("Message:")
+                        .padding(.leading)
+                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                    Spacer()
+                }
                 
                 Spacer()
                 
                 HStack {
-                    Spacer()
-                    
-                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
-                    
-                    Spacer()
+                    MessageBubbleViewWithoutPlayAudioButton(message: message)
                 }
                 
                 Spacer()
-            } else if message.audioData != nil {
-                
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    
-                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
-                        .transition(.slide)
-                    
-                    Spacer()
-                }
-                
-                Spacer()
-            } else {
-                Button(action: {
-                    getAudioMessage(messageToGetAudioFor: message)
-                }) {
-                    Text("Get Audio")
-                        .padding()
-                        .background(Color.brown)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
-                }
-            }
-            
-            Spacer()
-            Divider()
-                .frame(height: 1)
-                .background(Color.black.opacity(0.3))
-                .padding(.leading)
-                .padding(.trailing)
-            
-            HStack {
-                Text("Translation:")
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.black.opacity(0.3))
                     .padding(.leading)
-                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                    .padding(.trailing)
+                
+                HStack {
+                    Text("Audio:")
+                        .padding(.leading)
+                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                    Spacer()
+                }
+                
                 Spacer()
-            }
-            
-            Spacer()
-            
-            if let response = translatedMessage {
                 
-                HStack {
+                if let audioMessage = messageWithAudio {
                     
                     Spacer()
                     
-                    TranslationBubbleViewWithoutPlayAudioButton(message: response)
-                    
-                    Spacer()
-                }
-            } else if message.translatedMessageContent != nil {
-                
-                HStack {
-                    Spacer()
-                    
-                    TranslationBubbleViewWithoutPlayAudioButton(message: message)
-                    
-                    Spacer()
-                }
-            } else {
-                Button(action: {
-                    Task {
-                        await translateWithViewModel(messageToTranslate: message)
+                    HStack {
+                        Spacer()
+                        
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
+                        
+                        Spacer()
                     }
-                }) {
-                    Text("Get Translation")
-                        .padding()
-                        .background(Color.brown)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
+                    
+                    Spacer()
+                } else if message.audioData != nil {
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+                            .transition(.slide)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                } else {
+                    Button(action: {
+                        getAudioMessage(messageToGetAudioFor: message)
+                    }) {
+                        Text("Get Audio")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    }
                 }
-            }
-            
-            Spacer()
-            Divider()
-                .frame(height: 1)
-                .background(Color.black.opacity(0.3))
-                .padding(.leading)
-                .padding(.trailing)
-            
-            HStack {
-                Text("Translation Audio:")
+                
+                Spacer()
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.black.opacity(0.3))
                     .padding(.leading)
-                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
-                Spacer()
-            }
-            
-            Spacer()
-            
-            if let audioMessage = translatedMessageWithAudio {
-                
-                Spacer()
+                    .padding(.trailing)
                 
                 HStack {
-                    Spacer()
-                    
-                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
-                    
+                    Text("Translation:")
+                        .padding(.leading)
+                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
                     Spacer()
                 }
                 
                 Spacer()
-            } else if message.translatedAudioData != nil {
                 
-                Spacer()
-                
-                HStack {
-                    Spacer()
+                if let response = translatedMessage {
                     
-                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
-                        .transition(.slide)
+                    HStack {
+                        
+                        Spacer()
+                        
+                        TranslationBubbleViewWithoutPlayAudioButton(message: response)
+                        
+                        Spacer()
+                    }
+                } else if message.translatedMessageContent != nil {
                     
-                    Spacer()
-                }
-                
-                Spacer()
-            } else {
-                Button(action: {
-                    if message.translatedMessageContent != nil {
-                        getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
-                    } else {
-                        showWarning = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            showWarning = false
+                    HStack {
+                        Spacer()
+                        
+                        TranslationBubbleViewWithoutPlayAudioButton(message: message)
+                        
+                        Spacer()
+                    }
+                } else {
+                    Button(action: {
+                        Task {
+                            await translateWithViewModel(messageToTranslate: message)
                         }
+                    }) {
+                        Text("Get Translation")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
                     }
-                }) {
-                    Text("Get Audio")
-                        .padding()
-                        .background(Color.brown)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
                 }
                 
-                if showWarning {
-                    Text("Need to Translate Message First!")
-                        .foregroundColor(.red)
-                        .font(.footnote)
-                        .padding(.top, 5)
-                        .transition(.opacity)
+                Spacer()
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.black.opacity(0.3))
+                    .padding(.leading)
+                    .padding(.trailing)
+                
+                HStack {
+                    Text("Translation Audio:")
+                        .padding(.leading)
+                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                    Spacer()
                 }
+                
+                Spacer()
+                
+                if let audioMessage = translatedMessageWithAudio {
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                } else if message.translatedAudioData != nil {
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+                            .transition(.slide)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                } else {
+                    Button(action: {
+                        if message.translatedMessageContent != nil {
+                            getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
+                        } else {
+                            showWarning = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                showWarning = false
+                            }
+                        }
+                    }) {
+                        Text("Get Audio")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    }
+                    
+                    if showWarning {
+                        Text("Need to Translate Message First!")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                            .padding(.top, 5)
+                            .transition(.opacity)
+                    }
+                }
+                
+                Spacer()
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.black.opacity(0.3))
+                    .padding(.leading)
+                    .padding(.trailing)
+                Spacer()
             }
-            
-            Spacer()
-            Divider()
-                .frame(height: 1)
-                .background(Color.black.opacity(0.3))
-                .padding(.leading)
-                .padding(.trailing)
-            Spacer()
+            .animation(.easeInOut, value: showWarning)
         }
-        .animation(.easeInOut, value: showWarning)
     }
     
     func translateWithViewModelTest(messageToTranslate: MessagingModel) async {
