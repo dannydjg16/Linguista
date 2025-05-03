@@ -74,7 +74,6 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 }
 
-// MARK: - Audio Player View
 struct AudioPlayerView: View {
     @ObservedObject var audioManager: AudioPlayerManager
     @State private var isSpeedSelectorPresented: Bool = false
@@ -121,7 +120,8 @@ struct AudioPlayerView: View {
                     }
                 }
             }
-            .padding()
+            .padding(.leading)
+            .padding(.trailing)
         }
     }
 }

@@ -19,7 +19,7 @@ struct MessageModalView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 10){
+            VStack(spacing: 5){
                 
                 Text("Inspect Message")
                     .font(.title)

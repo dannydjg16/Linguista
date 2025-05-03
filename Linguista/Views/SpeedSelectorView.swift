@@ -19,7 +19,7 @@ struct SpeedSelectorView: View {
             Text("Current Playback Speed: \(Int(playbackSpeed * 100))%")
                 .padding()
 
-            Slider(value: $playbackSpeed, in: 0.4...1.0, step: 0.01)
+            Slider(value: $playbackSpeed, in: 0.5...1.4, step: 0.01)
                 .padding()
                 
             Spacer()
