@@ -90,17 +90,7 @@ struct AudioPlayerView: View {
             
             VStack {
                 HStack {
-
-                
-                    Button(action: {
-                        audioManager.togglePlayPause()
-                    }) {
-                        Text(audioManager.isPlaying ? "Pause" : "Play")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
+                    
                     
                     Button(action: {
                         isSpeedSelectorPresented = true
@@ -115,6 +105,26 @@ struct AudioPlayerView: View {
                     }
                     Text("(\(audioManager.playbackRate, specifier: "%.1f")x)")
                         .font(.caption)
+                    
+//                    Divider()
+//                        .frame(width: 1)
+//                        .background(Color.black.opacity(0.3))
+//                        .rotationEffect(.degrees(90))
+                    Rectangle()
+                        .fill(Color.black.opacity(0.3))
+                        .padding(.top)
+                        .padding(.bottom)
+                        .frame(width: 1)
+                    
+                    Button(action: {
+                        audioManager.togglePlayPause()
+                    }) {
+                        Text(audioManager.isPlaying ? "Pause" : "Play")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
                 }
             }
             .padding()
