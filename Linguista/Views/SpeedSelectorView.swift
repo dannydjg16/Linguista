@@ -11,17 +11,17 @@ import SwiftUI
 struct SpeedSelectorView: View {
     @Binding var playbackSpeed: Float
     @Environment(\.presentationMode) var presentationMode
-        
+    
     var body: some View {
         VStack {
             
             /// Display current speed as a percentage
             Text("Current Playback Speed: \(Int(playbackSpeed * 100))%")
                 .padding()
-
+            
             Slider(value: $playbackSpeed, in: 0.5...1.4, step: 0.01)
                 .padding()
-                
+            
             Spacer()
             
             HStack {

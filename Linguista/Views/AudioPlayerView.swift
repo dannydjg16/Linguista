@@ -19,7 +19,7 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     private var player: AVAudioPlayer?
     private var timer: Timer?
-
+    
     init(audioData: Data) {
         super.init() // Required when inheriting from NSObject
         setupPlayer(with: audioData)

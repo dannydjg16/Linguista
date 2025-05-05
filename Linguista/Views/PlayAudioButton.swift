@@ -22,13 +22,13 @@ struct PlayAudioButton: View {
                     conversationViewModel.playAudio(messagingModel: message, speed: playbackSpeed)
                 }) {
                     Image(systemName: "arrow.clockwise")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15, height: 15)
-                                    .padding()
-                                    .background(Color.brown)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15, height: 15)
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
                 
                 Button(action: {

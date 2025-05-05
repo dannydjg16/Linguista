@@ -122,7 +122,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             Message(role: "user", content: messages.last!.message.content)
         ]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
-     
+        
         
         if (dataModel.messages.count == 0){
             return
@@ -185,7 +185,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
-                
+        
         return await responseMessageModel
     }
     

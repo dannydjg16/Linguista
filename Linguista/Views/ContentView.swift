@@ -9,10 +9,10 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             
             ConversationViewsSwapperView()
-            .tabItem {
-                Label("Chat", systemImage: "phone.badge.waveform")
-            }
-            .tag(0)
+                .tabItem {
+                    Label("Chat", systemImage: "phone.badge.waveform")
+                }
+                .tag(0)
             
             AccountView()
                 .tabItem {
