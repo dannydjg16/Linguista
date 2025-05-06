@@ -261,7 +261,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         return updatedMessagingModel
     }
     
-    func fetchAndPlayAudioForMessagingModal(messagingModel: MessagingModel) async -> MessagingModel {
+    func fetchAndPlayAudioForMessagingModel(messagingModel: MessagingModel) async -> MessagingModel {
         
         isLoading = true
         errorMessage = nil
