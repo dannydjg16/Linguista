@@ -32,6 +32,9 @@ struct ConversationViewsSwapperView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                .onChange(of: innerSelection) {
+                    print("Tab changed to: \(innerSelection)")
+                }
             }
         }
     }
