@@ -11,6 +11,8 @@ import SwiftUI
 struct SpeedSelectorView: View {
     @Binding var playbackSpeed: Float
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
+
     
     var body: some View {
         VStack {
@@ -32,7 +34,7 @@ struct SpeedSelectorView: View {
                     Text("Done")
                         .bold()
                         .padding()
-                        .background(Color.brown)
+                        .background(colorScheme == .light ? Color.brown : Color.white)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }

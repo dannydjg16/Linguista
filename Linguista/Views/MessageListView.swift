@@ -11,6 +11,7 @@ import SwiftUI
 struct MessageListView: View {
     
     @ObservedObject var conversationViewModel: ConversationViewModel
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
             
@@ -21,6 +22,7 @@ struct MessageListView: View {
                             MessageBubbleView(message: message, conversationViewModel: conversationViewModel)
                         }
                     }
+                    .padding(.top)
                 }
                 .onChange(of: conversationViewModel.messages.count) {
                     
@@ -31,5 +33,6 @@ struct MessageListView: View {
                     }
                 }
             }
+            .background(colorScheme == .light ? Color.white : Color.black)
     }
 }

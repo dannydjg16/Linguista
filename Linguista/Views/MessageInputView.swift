@@ -14,12 +14,13 @@ struct MessageInputView: View {
     
     @ObservedObject var conversationViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack {
             TextField("Type a message", text: $speechRecognizer.transcribedText)
                 .padding()
-                .background(Color.white)
+                .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)

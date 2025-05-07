@@ -3,7 +3,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedTab = 0
-    
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         
         TabView(selection: $selectedTab) {
