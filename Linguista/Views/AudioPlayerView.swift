@@ -88,8 +88,6 @@ struct AudioPlayerView: View {
             
             VStack {
                 HStack {
-                    
-                    
                     Button(action: {
                         isSpeedSelectorPresented = true
                     }) {
