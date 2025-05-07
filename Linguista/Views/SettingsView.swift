@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @Binding var languageToTranslate: Int
-    @State private var isShowingModal = false
+    @State var isShowingModal = false
     @State private var isShowingChatSettingsModal = false
     @ObservedObject var conversationViewModel: ConversationViewModel
     @Binding var innerSelection: Int
@@ -34,7 +34,7 @@ struct SettingsView: View {
                 .padding(.leading)
             }
             .sheet(isPresented: $isShowingModal) {
-                SettingsOptionsView(languageToTranslate: $languageToTranslate)
+                SettingsOptionsView(languageToTranslate: $languageToTranslate, isShowingModal: $isShowingModal)
             }
             
             Spacer()

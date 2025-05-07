@@ -9,17 +9,19 @@ import Foundation
 import SwiftUI
 
 struct SettingsOptionsView: View {
-
+    
     @Binding var languageToTranslate: Int
+    @Binding var isShowingModal: Bool
     
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         HStack() {
             Spacer()
-            VStack{
+            VStack {
                 Button(action: {
-                    dismiss()
+                    isShowingModal = false
+                    //dismiss()
                 }) {
                     Image(systemName: "xmark")
                         .foregroundColor(.brown)
@@ -53,7 +55,7 @@ struct SettingsOptionsView: View {
                 }) {
                     Text("Save")
                         .foregroundColor(Color.brown)
-                        
+                    
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
                 .background(Color.white)

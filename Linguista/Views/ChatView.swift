@@ -19,8 +19,6 @@ struct ChatView: View {
     var body: some View {
         VStack {
             BackAndForthChatView(conversationViewModel: conversationViewModel)
-                .background(Color.white)
-                .cornerRadius(10)
         }
     }
 }
