@@ -52,6 +52,7 @@ struct SettingsOptionsView: View {
             VStack{
                 Button(action: {
                     dismiss()
+                    isShowingModal = false
                 }) {
                     Text("Save")
                         .foregroundColor(Color.brown)
