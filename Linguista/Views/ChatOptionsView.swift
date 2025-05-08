@@ -93,7 +93,6 @@ struct ChatOptionsView: View {
                 Button(action: {
                     dismiss()
                     innerSelection = 0
-                    
                 }) {
                     Image(systemName: "microphone")
                         .foregroundColor(.white)
