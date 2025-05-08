@@ -25,7 +25,6 @@ struct MessageListView: View {
                     .padding(.top)
                 }
                 .onChange(of: conversationViewModel.messages.count) {
-                    
                     if let lastIndex = conversationViewModel.messages.last?.id {
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
