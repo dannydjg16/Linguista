@@ -21,12 +21,11 @@ struct ConversationViewsSwapperView: View {
             NavigationView {
 
                 TabView(selection: $innerSelection) {
-                    ChatView(conversationViewModel: conversationViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
+                    TextMessagingView(conversationViewModel: conversationViewModel, languageToTranslate: $languageToTranslate)
                         .tag(0)
                         .padding(.bottom, 40)
-
                     
-                    TextMessagingView(conversationViewModel: conversationViewModel, languageToTranslate: $languageToTranslate)
+                    ChatView(conversationViewModel: conversationViewModel, languageToTranslate: $languageToTranslate, innerSelection: $innerSelection)
                         .tag(1)
                         .padding(.bottom, 40)
                 }
