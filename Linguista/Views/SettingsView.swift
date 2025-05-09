@@ -14,7 +14,7 @@ struct SettingsView: View {
     @State var isShowingModal = false
     @State private var isShowingChatSettingsModal = false
     @ObservedObject var conversationViewModel: ConversationViewModel
-    @Binding var innerSelection: Int
+    @Binding var chatTabViewSelectionValue: Int
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -53,7 +53,7 @@ struct SettingsView: View {
                 .padding(.trailing)
             }
             .sheet(isPresented: $isShowingChatSettingsModal) {
-                ChatOptionsView(languageToTranslate: $languageToTranslate, innerSelection: $innerSelection, conversationViewModel: conversationViewModel)
+                ChatOptionsView(languageToTranslate: $languageToTranslate, chatTabViewSelectionValue: $chatTabViewSelectionValue, conversationViewModel: conversationViewModel)
             }
         }
     }
