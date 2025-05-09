@@ -16,7 +16,6 @@ struct TextMessagingView: View {
     
     var body: some View {
         VStack{
-            
             MessageListView(conversationViewModel: conversationViewModel)
             
             MessageInputView(
