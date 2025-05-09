@@ -12,7 +12,7 @@ import SwiftUI
 struct ChatOptionsView: View {
 
     @Binding var languageToTranslate: Int
-    @Binding var chatTabViewSelectionValue: Int
+    @Binding var chatTabViewSelectedValue: Int
     @ObservedObject var conversationViewModel: ConversationViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -92,7 +92,7 @@ struct ChatOptionsView: View {
             VStack{
                 Button(action: {
                     dismiss()
-                    chatTabViewSelectionValue = 0
+                    chatTabViewSelectedValue = 0
                 }) {
                     Image(systemName: "microphone")
                         .foregroundColor(.white)
@@ -109,7 +109,7 @@ struct ChatOptionsView: View {
             VStack{
                 Button(action: {
                     dismiss()
-                    chatTabViewSelectionValue = 1
+                    chatTabViewSelectedValue = 1
                     
                 }) {
                     Image(systemName: "bubble.and.pencil")

@@ -14,7 +14,7 @@ struct ChatView: View {
     @ObservedObject var conversationViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
     @Binding var languageToTranslate: Int
-    @Binding var chatTabViewSelectionValue: Int
+    @Binding var chatTabViewSelectedValue: Int
     
     var body: some View {
         VStack {
@@ -25,8 +25,8 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     @State static var languageToTranslate = 1
-    @State static var chatTabViewSelectionValue = 1
+    @State static var chatTabViewSelectedValue = 1
     static var previews: some View {
-        ChatView(conversationViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate, chatTabViewSelectionValue: $chatTabViewSelectionValue)
+        ChatView(conversationViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate, chatTabViewSelectedValue: $chatTabViewSelectedValue)
     }
 }
