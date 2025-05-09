@@ -114,7 +114,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
     }
     
-    // Same functionality as sendMessageForUser EXCEPT this one does not add the original message into the messages array.
+    // This one does not have any object passed in. The messages array is made in this method as opposed to the view.
     func sendMessageForUsera() async {
         
         let messages = [
