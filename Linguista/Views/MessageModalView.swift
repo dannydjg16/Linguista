@@ -231,17 +231,6 @@ struct MessageModalView: View {
         }
     }
     
-    func translateWithViewModelTest(messageToTranslate: MessagingModel) async {
-        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 10, topP: 1)
-        
-        Task {
-            translatedMessage = await conversationViewModel.sendMessageGetMessageTest(completionRequest: dataModel)
-            message.translatedMessageContent = translatedMessage?.translatedMessageContent
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: translatedMessage!)
-        }
-    }
-    
     func translateWithViewModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English if Farsi is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to Farsi if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
