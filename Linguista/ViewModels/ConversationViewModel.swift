@@ -118,7 +118,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     func sendMessageForUsera() async {
         
         let messages = [
-            Message(role: "system", content: "Respond to the prompt in Farsi, as if you were just carrying on a conversation. Use basic sentences that are not complex, almost as if you are teaching a small child."),
+            Message(role: "system", content: "1- Respond to the prompt in Farsi, as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
