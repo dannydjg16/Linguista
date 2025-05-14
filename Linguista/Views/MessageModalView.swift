@@ -17,8 +17,24 @@ struct MessageModalView: View {
     @State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        HStack() {
+            Spacer()
+            VStack{
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.brown)
+                }
+                .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
+                .background(Color.white )
+                .clipShape(Circle())
+            }
+        }
+        
         ScrollView {
             VStack(spacing: 5){
                 
@@ -32,7 +48,7 @@ struct MessageModalView: View {
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
-                
+                                
                 HStack {
                     Text("Message:")
                         .padding(.leading)
