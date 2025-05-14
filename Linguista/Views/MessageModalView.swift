@@ -16,6 +16,7 @@ struct MessageModalView: View {
     @State var translatedMessage: MessagingModel?
     @State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ScrollView {
@@ -24,18 +25,18 @@ struct MessageModalView: View {
                 Text("Inspect Message")
                     .font(.title)
                     .padding(.top)
-                    .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                    .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                 
                 Divider()
                     .frame(height: 1)
-                    .background(Color.black.opacity(0.3))
+                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
                 
                 HStack {
                     Text("Message:")
                         .padding(.leading)
-                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                     Spacer()
                 }
                 
@@ -48,14 +49,14 @@ struct MessageModalView: View {
                 Spacer()
                 Divider()
                     .frame(height: 1)
-                    .background(Color.black.opacity(0.3))
+                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
                 
                 HStack {
                     Text("Audio:")
                         .padding(.leading)
-                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                     Spacer()
                 }
                 
@@ -103,14 +104,14 @@ struct MessageModalView: View {
                 Spacer()
                 Divider()
                     .frame(height: 1)
-                    .background(Color.black.opacity(0.3))
+                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
                 
                 HStack {
                     Text("Translation:")
                         .padding(.leading)
-                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                     Spacer()
                 }
                 
@@ -152,14 +153,14 @@ struct MessageModalView: View {
                 Spacer()
                 Divider()
                     .frame(height: 1)
-                    .background(Color.black.opacity(0.3))
+                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
                 
                 HStack {
                     Text("Translation Audio:")
                         .padding(.leading)
-                        .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                     Spacer()
                 }
                 
@@ -222,7 +223,7 @@ struct MessageModalView: View {
                 Spacer()
                 Divider()
                     .frame(height: 1)
-                    .background(Color.black.opacity(0.3))
+                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
                 Spacer()
