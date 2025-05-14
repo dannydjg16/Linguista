@@ -14,14 +14,15 @@ struct SettingsOptionsView: View {
     @Binding var isShowingModal: Bool
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack() {
             Spacer()
             VStack {
                 Button(action: {
+                    dismiss()
                     isShowingModal = false
-                    //dismiss()
                 }) {
                     Image(systemName: "xmark")
                         .foregroundColor(.brown)
@@ -34,10 +35,11 @@ struct SettingsOptionsView: View {
         
         Text("Settings")
             .font(.title)
-            .foregroundColor(Color(red: 0.3, green: 0.15, blue: 0.05))
+            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+
         Divider()
             .frame(height: 1)
-            .background(Color.black.opacity(0.3))
+            .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
             .padding(.leading)
             .padding(.trailing)
         
