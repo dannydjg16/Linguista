@@ -11,6 +11,7 @@ import SwiftUI
 struct MessageListView: View {
     
     @ObservedObject var conversationViewModel: ConversationViewModel
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
             
@@ -21,9 +22,9 @@ struct MessageListView: View {
                             MessageBubbleView(message: message, conversationViewModel: conversationViewModel)
                         }
                     }
+                    .padding(.top)
                 }
                 .onChange(of: conversationViewModel.messages.count) {
-                    
                     if let lastIndex = conversationViewModel.messages.last?.id {
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
@@ -31,5 +32,6 @@ struct MessageListView: View {
                     }
                 }
             }
+            .background(colorScheme == .light ? Color.white : Color.black)
     }
 }

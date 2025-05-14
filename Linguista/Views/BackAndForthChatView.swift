@@ -11,20 +11,20 @@ import SwiftUI
 struct BackAndForthChatView: View {
     
     @ObservedObject var conversationViewModel: ConversationViewModel
-    @State private var backgroundColor: Color = .yellow
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        
         VStack {
-            if let lastMessage = conversationViewModel.messages.last(where: { $0.isSentByUser == false } ) {
-                MessageBubbleView(message: lastMessage, conversationViewModel: conversationViewModel)
-            }
+            
+            MessageListView(conversationViewModel: conversationViewModel)
+                .background(Color.white)
+                .cornerRadius(10)
             
             Spacer()
             
             Divider()
                 .frame(height: 1)
-                .background(Color.black.opacity(0.3))
+                .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                 .padding(.leading)
                 .padding(.trailing)
             
@@ -61,5 +61,6 @@ struct BackAndForthChatView: View {
                 }
             }
         }
+        .background(colorScheme == .light ? Color.white : Color.black)
     }
 }

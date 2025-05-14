@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct PlayAudioButton: View {
-    let message: MessagingModel // Replace with your actual message type
-    let conversationViewModel: ConversationViewModel // Replace with your view model type
+    let message: MessagingModel
+    let conversationViewModel: ConversationViewModel 
     @State private var playbackSpeed: Float = 1.0
     @State private var isSpeedSelectorPresented: Bool = false
     
@@ -22,13 +22,13 @@ struct PlayAudioButton: View {
                     conversationViewModel.playAudio(messagingModel: message, speed: playbackSpeed)
                 }) {
                     Image(systemName: "arrow.clockwise")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15, height: 15)
-                                    .padding()
-                                    .background(Color.brown)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15, height: 15)
+                        .padding()
+                        .background(Color.brown)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
                 
                 Button(action: {

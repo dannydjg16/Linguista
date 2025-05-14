@@ -8,7 +8,6 @@
 import SwiftUI
 import AVFoundation
 import SwiftUI
-import AVFoundation
 
 // MARK: - Audio Player Manager
 class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
@@ -19,7 +18,7 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     private var player: AVAudioPlayer?
     private var timer: Timer?
-
+    
     init(audioData: Data) {
         super.init() // Required when inheriting from NSObject
         setupPlayer(with: audioData)
@@ -74,9 +73,9 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 }
 
-// MARK: - Audio Player View
 struct AudioPlayerView: View {
     @ObservedObject var audioManager: AudioPlayerManager
+    @State private var isSpeedSelectorPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -88,27 +87,38 @@ struct AudioPlayerView: View {
             .padding()
             
             VStack {
-                Text("Playback Speed: \(audioManager.playbackRate, specifier: "%.1f")x")
-                    .font(.caption)
-                Slider(value: $audioManager.playbackRate, in: 0.5...2.0, step: 0.1) { editing in
-                    if !editing {
-                        audioManager.setPlaybackRate(audioManager.playbackRate)
+                HStack {
+                    Button(action: {
+                        isSpeedSelectorPresented = true
+                    }) {
+                        Text("Speed")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(.brown)
+                    }
+                    .sheet(isPresented: $isSpeedSelectorPresented) {
+                        SpeedSelectorView(playbackSpeed: $audioManager.playbackRate)
+                            .presentationDetents([.fraction(0.3)])
+                    }
+                    Text("(\(Int(audioManager.playbackRate * 100))%)")
+                        .font(.caption)
+                    
+                    Rectangle()
+                        .fill(Color.black.opacity(0.3))
+                        .frame(width: 1)
+                    
+                    Button(action: {
+                        audioManager.togglePlayPause()
+                    }) {
+                        Text(audioManager.isPlaying ? "Pause" : "Play")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
                     }
                 }
             }
-            .padding()
-            
-            HStack {
-                Button(action: {
-                    audioManager.togglePlayPause()
-                }) {
-                    Text(audioManager.isPlaying ? "Pause" : "Play")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-            }
+            .padding(.leading)
+            .padding(.trailing)
         }
     }
 }

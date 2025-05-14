@@ -16,10 +16,7 @@ struct TextMessagingView: View {
     
     var body: some View {
         VStack{
-            
             MessageListView(conversationViewModel: conversationViewModel)
-                .background(Color.white)
-                .cornerRadius(10)
             
             MessageInputView(
                 languageToTranslate: $languageToTranslate,

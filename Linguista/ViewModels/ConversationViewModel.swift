@@ -114,15 +114,15 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
     }
     
-    // Same functionality as sendMessageForUser EXCEPT this one does not add the original message into the messages array.
+    // This one does not have any object passed in. The messages array is made in this method as opposed to the view.
     func sendMessageForUsera() async {
         
         let messages = [
-            Message(role: "system", content: "Respond to the prompt in Farsi, as if you were just carrying on a conversation. Use basic sentences that are not complex, almost as if you are teaching a small child."),
+            Message(role: "system", content: "1- Respond to the prompt in Farsi, as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
-     
+        
         
         if (dataModel.messages.count == 0){
             return
@@ -185,7 +185,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
-                
+        
         return await responseMessageModel
     }
     
@@ -261,7 +261,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         return updatedMessagingModel
     }
     
-    func fetchAndPlayAudioForMessagingModal(messagingModel: MessagingModel) async -> MessagingModel {
+    func fetchAndPlayAudioForMessagingModel(messagingModel: MessagingModel) async -> MessagingModel {
         
         isLoading = true
         errorMessage = nil
@@ -293,7 +293,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.translatedMessageContent!, voice: "shimmer", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
-            updatedMessagingModel.audioData = audioData
+            updatedMessagingModel.translatedAudioData = audioData
         } catch {
             errorMessage = error.localizedDescription
         }

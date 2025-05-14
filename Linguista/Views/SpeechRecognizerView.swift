@@ -18,7 +18,6 @@ struct SpeechRecognizerView: View {
                 Text(speechRecognizer.isRecording ? "Stop Recording" : "Start Recording")
                     .padding()
                     .background(speechRecognizer.isRecording ? Color.red : Color.brown)
-                
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }
