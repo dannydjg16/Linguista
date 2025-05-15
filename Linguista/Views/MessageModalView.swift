@@ -35,13 +35,12 @@ struct MessageModalView: View {
             }
         }
         
+        Text("Inspect Message")
+            .font(.title)
+            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+        
         ScrollView {
             VStack(spacing: 5){
-                
-                Text("Inspect Message")
-                    .font(.title)
-                    .padding(.top)
-                    .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                 
                 Divider()
                     .frame(height: 1)
