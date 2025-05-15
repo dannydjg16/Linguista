@@ -71,6 +71,7 @@
 		812D1F082C897DCD00255A86 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		812D1F0A2C897E8400255A86 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		813C405F2D0A8630007C10D3 /* PlayAudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayAudioButton.swift; sourceTree = "<group>"; };
+		813EBDE62DD596FE00371BBB /* Linguista.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Linguista.entitlements; sourceTree = "<group>"; };
 		81494AD42C13BD2900F1ABB0 /* Linguista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linguista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguistaApp.swift; sourceTree = "<group>"; };
 		81494AD92C13BD2900F1ABB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 		81494AD62C13BD2900F1ABB0 /* Linguista */ = {
 			isa = PBXGroup;
 			children = (
+				813EBDE62DD596FE00371BBB /* Linguista.entitlements */,
 				8120C7DE2C40F099007DCE2E /* Info.plist */,
 				8120C7C22C2B4C6C007DCE2E /* ViewModels */,
 				8120C7BD2C2B4833007DCE2E /* Resources */,
@@ -603,6 +605,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Linguista/Linguista.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Linguista/Preview Content\"";
@@ -622,6 +626,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Daniel-Grant.Linguista";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -633,6 +638,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Linguista/Linguista.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Linguista/Preview Content\"";
@@ -652,6 +659,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Daniel-Grant.Linguista";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
