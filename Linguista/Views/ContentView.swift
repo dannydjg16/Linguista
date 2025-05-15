@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -19,7 +19,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Account", systemImage: "person.fill")
                 }
-                .tag(2)
+                .tag(1)
             
         }.accentColor(.brown)
     }
