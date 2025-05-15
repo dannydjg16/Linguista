@@ -10,41 +10,74 @@ import AuthenticationServices
 
 struct AccountView: View {
     
+    // Track signed-in state and user data
+    @AppStorage("appleUserID") private var appleUserID: String = ""
+    @State private var userName: String = "" // Store user's name (if available)
+    
     //@Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack{
-            Spacer()
-            SignInWithAppleButton(
-                .signIn, // Button type: .signIn or .continue
-                onRequest: { request in
-                    request.requestedScopes = [.fullName, .email]
-                },
-                onCompletion: { result in
-                    switch result {
-                    case .success(let authResults):
-                        print("Authorization successful: \(authResults)")
-                        // Handle successful sign-in (e.g., extract user ID, token, etc.)
-                        if let appleIDCredential = authResults.credential as? ASAuthorizationAppleIDCredential {
-                            let userID = appleIDCredential.user
-                            let fullName = appleIDCredential.fullName
-                            let email = appleIDCredential.email
-                            print("User ID: \(userID)")
-                            print("Full Name: \(fullName?.givenName ?? "") \(fullName?.familyName ?? "")")
-                            print("Email: \(email ?? "")")
-                        }
-                    case .failure(let error):
-                        print("Authorization failed: \(error.localizedDescription)")
-                    }
+        
+        VStack(spacing: 20) {
+            
+            if isSignedIn {
+                // Signed-in UI
+                Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
+                    .font(.title)
+                
+                Button(action: {
+                    signOut()
+                }) {
+                    Text("Sign Out")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 200, height: 45)
+                        .background(Color.red)
+                        .cornerRadius(10)
                 }
-            )
-            .signInWithAppleButtonStyle(.whiteOutline)
-            .frame(width: 200, height: 45)
-            .padding()
+            }
+            
+            else {
+                Spacer()
+                SignInWithAppleButton(
+                    .signIn,
+                    onRequest: { request in
+                        // Configure your request here
+                        request.requestedScopes = [.fullName, .email]
+                    },
+                    onCompletion: { result in
+                        switch result {
+                        case .success(let authorization):
+                            handleAuthorization(authorization)
+                        case .failure(let error):
+                            print("Sign in with Apple failed: \(error.localizedDescription)")
+                        }
+                    }
+                )
+                .signInWithAppleButtonStyle(.whiteOutline)
+                .frame(width: 200, height: 45)
+                .padding()
+            }
         }
-        
-
-        
+        .onAppear {
+            // Optional: Validate user ID on view appearance
+            if !appleUserID.isEmpty {
+                print("User is signed in: \(appleUserID)")
+            }
+        }
+    }
+    
+    // Computed property to check signed-in state
+    private var isSignedIn: Bool {
+        !appleUserID.isEmpty
+    }
+    
+    // Sign-out function
+    private func signOut() {
+        appleUserID = "" // Clear stored user ID
+        userName = "" // Clear user name
+        print("User signed out")
     }
     
     func handleAuthorization(_ authorization: ASAuthorization) {
@@ -56,6 +89,13 @@ struct AccountView: View {
             print("User ID: \(userID)")
             print("Email: \(email ?? "No email")")
             print("Full Name: \(fullName?.givenName ?? "No name")")
+            
+            appleUserID = appleIDCredential.user
+            if let fullName = appleIDCredential.fullName {
+                userName = [fullName.givenName, fullName.familyName]
+                    .compactMap { $0 }
+                    .joined(separator: " ")
+            }
         }
     }
 }
