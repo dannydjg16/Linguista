@@ -114,6 +114,7 @@
 		814DE6EB2DA4D3E800A5C0DE /* API */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = API; sourceTree = "<group>"; };
 		814DE6EC2DA4D40800A5C0DE /* App Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "App Models"; sourceTree = "<group>"; };
 		814DE6ED2DA4D47900A5C0DE /* List Objects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "List Objects"; sourceTree = "<group>"; };
+		81BD14262DD6F89A003B4706 /* EnvironmentObjects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EnvironmentObjects; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,11 +232,12 @@
 			children = (
 				813EBDE62DD596FE00371BBB /* Linguista.entitlements */,
 				8120C7DE2C40F099007DCE2E /* Info.plist */,
-				8120C7C22C2B4C6C007DCE2E /* ViewModels */,
-				8120C7BD2C2B4833007DCE2E /* Resources */,
+				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
 				8120C7BC2C2B480E007DCE2E /* Helpers */,
+				8120C7BD2C2B4833007DCE2E /* Resources */,
 				8120C7A52C2A78DA007DCE2E /* Services */,
 				8120C7A42C2A78C6007DCE2E /* Views */,
+				8120C7C22C2B4C6C007DCE2E /* ViewModels */,
 				81E127F62C2287B5009A5051 /* Models */,
 				81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */,
 				81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */,
@@ -300,6 +302,7 @@
 				814DE6EB2DA4D3E800A5C0DE /* API */,
 				814DE6EC2DA4D40800A5C0DE /* App Models */,
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
+				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
 			);
 			name = Linguista;
 			productName = Linguista;
