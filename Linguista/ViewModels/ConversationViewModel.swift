@@ -214,8 +214,6 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
-        
-        
         let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
         
