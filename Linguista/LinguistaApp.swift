@@ -10,8 +10,9 @@ import AVFoundation
 
 @main
 struct LinguistaApp: App {
-    let conversationViewModel = ConversationViewModel()
-    
+    @StateObject private var conversationViewModel = ConversationViewModel()
+    @StateObject private var accountManager = AccountManager()
+
     init() {
         setupAudioSession()
     }
@@ -20,6 +21,7 @@ struct LinguistaApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(conversationViewModel)
+                .environmentObject(accountManager)
         }
     }
     
