@@ -11,7 +11,7 @@ import SwiftUI
 struct MessageModalView: View {
     
     @Binding var message: MessagingModel
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
     @State var translatedMessageWithAudio: MessagingModel?
@@ -281,6 +281,6 @@ struct MessageModalView_Previews: PreviewProvider {
     @State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true)
     
     static var previews: some View {
-        MessageModalView(message: $message, conversationViewModel: ConversationViewModel())
+        MessageModalView(message: $message)
     }
 }

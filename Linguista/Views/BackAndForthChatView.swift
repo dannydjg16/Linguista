@@ -10,13 +10,13 @@ import SwiftUI
 
 struct BackAndForthChatView: View {
     
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
             
-            MessageListView(conversationViewModel: conversationViewModel)
+            MessageListView()
                 .background(Color.white)
                 .cornerRadius(10)
             

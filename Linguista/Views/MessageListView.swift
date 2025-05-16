@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MessageListView: View {
     
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -19,7 +19,7 @@ struct MessageListView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach(conversationViewModel.messages, id: \.id) { message in
-                            MessageBubbleView(message: message, conversationViewModel: conversationViewModel)
+                            MessageBubbleView(message: message)
                         }
                     }
                     .padding(.top)

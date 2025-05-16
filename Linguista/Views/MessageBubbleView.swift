@@ -11,7 +11,7 @@ import SwiftUI
 struct MessageBubbleView: View {
     
     @State var message: MessagingModel
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @State private var showModal = false
 
     var body: some View {
@@ -34,7 +34,7 @@ struct MessageBubbleView: View {
                         }
                     )
                     .sheet(isPresented: $showModal) {
-                        MessageModalView(message: $message, conversationViewModel: conversationViewModel)
+                        MessageModalView(message: $message)
                     }
                 
             } else {
@@ -48,7 +48,7 @@ struct MessageBubbleView: View {
                         }
                     )
                     .sheet(isPresented: $showModal) {
-                        MessageModalView(message: $message, conversationViewModel: conversationViewModel)
+                        MessageModalView(message: $message)
                     }
                 
                 PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
