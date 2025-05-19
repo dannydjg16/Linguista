@@ -9,5 +9,4 @@ import Foundation
 
 struct Settings {
     var learningLevel: Int = 1
-    var languageToTranslate: Int
 }

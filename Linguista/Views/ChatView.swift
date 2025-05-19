@@ -13,7 +13,6 @@ struct ChatView: View {
     
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @Binding var languageToTranslate: Int
     @Binding var chatTabViewSelectedValue: Int
     
     var body: some View {
@@ -24,10 +23,9 @@ struct ChatView: View {
 }
 
 struct ChatView_Previews: PreviewProvider {
-    @State static var languageToTranslate = 1
     @State static var chatTabViewSelectedValue = 1
     static var previews: some View {
-        ChatView(languageToTranslate: $languageToTranslate, chatTabViewSelectedValue: $chatTabViewSelectedValue)
+        ChatView(chatTabViewSelectedValue: $chatTabViewSelectedValue)
             .environmentObject(ConversationViewModel())
     }
 }

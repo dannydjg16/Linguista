@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SettingsOptionsView: View {
     
-    @Binding var languageToTranslate: Int
     @Binding var isShowingModal: Bool
     
     @Environment(\.dismiss) var dismiss
@@ -44,7 +43,7 @@ struct SettingsOptionsView: View {
             .padding(.trailing)
         
         NavigationView {
-            LanguagePickerView(languageToTranslate: $languageToTranslate)
+            LanguagePickerView()
         }
         .tint(Color.brown)
         .padding(.top)

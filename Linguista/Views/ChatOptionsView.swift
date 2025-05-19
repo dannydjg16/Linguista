@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ChatOptionsView: View {
 
-    @Binding var languageToTranslate: Int
     @Binding var chatTabViewSelectedValue: Int
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @Environment(\.dismiss) var dismiss

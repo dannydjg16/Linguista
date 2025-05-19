@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 
 struct LanguagePickerView: View {
-    @Binding var languageToTranslate: Int
+    
+    @EnvironmentObject var accountManager: AccountManager
 
     var body: some View {
-        Picker("Language: ", selection: $languageToTranslate) {
+        Picker("Language: ", selection: $accountManager.userPreferredLanguage) {
             ForEach(popularLanguageObjects) { language in
                 Text(language.name).tag(language.id)
             }

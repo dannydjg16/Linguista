@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @Binding var languageToTranslate: Int
     @State var isShowingModal = false
     @State private var isShowingChatSettingsModal = false
     @Binding var chatTabViewSelectedValue: Int
@@ -34,7 +33,7 @@ struct SettingsView: View {
                 .padding(.leading)
             }
             .sheet(isPresented: $isShowingModal) {
-                SettingsOptionsView(languageToTranslate: $languageToTranslate, isShowingModal: $isShowingModal)
+                SettingsOptionsView(isShowingModal: $isShowingModal)
             }
             
             Spacer()
@@ -53,7 +52,7 @@ struct SettingsView: View {
                 .padding(.trailing)
             }
             .sheet(isPresented: $isShowingChatSettingsModal) {
-                ChatOptionsView(languageToTranslate: $languageToTranslate, chatTabViewSelectedValue: $chatTabViewSelectedValue)
+                ChatOptionsView(chatTabViewSelectedValue: $chatTabViewSelectedValue)
             }
         }
     }
