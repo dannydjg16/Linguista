@@ -9,6 +9,7 @@ import Security
 import Foundation
 
 class KeychainManager {
+    
     static func save(key: String, data: String) -> Bool {
         if let data = data.data(using: .utf8) {
             let query = [
@@ -17,7 +18,7 @@ class KeychainManager {
                 kSecValueData: data
             ] as CFDictionary
             
-            SecItemDelete(query) // Delete existing item
+            SecItemDelete(query)
             return SecItemAdd(query, nil) == noErr
         }
         return false
