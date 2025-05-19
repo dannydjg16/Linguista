@@ -12,7 +12,7 @@ struct MessageInputView: View {
     
     @Binding var languageToTranslate: Int
     
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
     @Environment(\.colorScheme) var colorScheme
     
@@ -67,6 +67,6 @@ struct MessageInputView: View {
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
         MessageInputView(languageToTranslate: .constant(1),
-                         conversationViewModel: ConversationViewModel(),speechRecognizer: SpeechRecognizer())
+                         speechRecognizer: SpeechRecognizer())
     }
 }

@@ -11,14 +11,14 @@ import SwiftUI
 
 struct ChatView: View {
     
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
     @Binding var languageToTranslate: Int
     @Binding var chatTabViewSelectedValue: Int
     
     var body: some View {
         VStack {
-            BackAndForthChatView(conversationViewModel: conversationViewModel)
+            BackAndForthChatView()
         }
     }
 }
@@ -27,6 +27,7 @@ struct ChatView_Previews: PreviewProvider {
     @State static var languageToTranslate = 1
     @State static var chatTabViewSelectedValue = 1
     static var previews: some View {
-        ChatView(conversationViewModel: ConversationViewModel(), languageToTranslate: $languageToTranslate, chatTabViewSelectedValue: $chatTabViewSelectedValue)
+        ChatView(languageToTranslate: $languageToTranslate, chatTabViewSelectedValue: $chatTabViewSelectedValue)
+            .environmentObject(ConversationViewModel())
     }
 }

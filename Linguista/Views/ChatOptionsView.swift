@@ -13,7 +13,7 @@ struct ChatOptionsView: View {
 
     @Binding var languageToTranslate: Int
     @Binding var chatTabViewSelectedValue: Int
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     

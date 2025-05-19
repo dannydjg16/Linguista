@@ -11,7 +11,7 @@ import SwiftUI
 struct MessageModalView: View {
     
     @Binding var message: MessagingModel
-    @ObservedObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
     @State var translatedMessageWithAudio: MessagingModel?
@@ -35,13 +35,12 @@ struct MessageModalView: View {
             }
         }
         
+        Text("Inspect Message")
+            .font(.title)
+            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+        
         ScrollView {
             VStack(spacing: 5){
-                
-                Text("Inspect Message")
-                    .font(.title)
-                    .padding(.top)
-                    .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                 
                 Divider()
                     .frame(height: 1)
@@ -282,6 +281,6 @@ struct MessageModalView_Previews: PreviewProvider {
     @State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true)
     
     static var previews: some View {
-        MessageModalView(message: $message, conversationViewModel: ConversationViewModel())
+        MessageModalView(message: $message)
     }
 }
