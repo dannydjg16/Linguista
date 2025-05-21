@@ -11,9 +11,10 @@ import SwiftUI
 struct LanguagePickerView: View {
     
     @EnvironmentObject var accountManager: AccountManager
+    @StateObject private var settings = Settings()
 
     var body: some View {
-        Picker("Language: ", selection: $accountManager.languageToLearn) {
+        Picker("Language: ", selection: $settings.languageToLearn) {
             ForEach(popularLanguageObjects) { language in
                 Text(language.name).tag(language.id)
             }
