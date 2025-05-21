@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 
 @MainActor
@@ -18,6 +19,8 @@ class ConversationViewModel: ObservableObject, Sendable {
     private let ttsViewModel = TtsViewModel()
     private var isLoading = false
     private var errorMessage: String?
+    
+    @EnvironmentObject var accountManager: AccountManager
     
     func makeNewChatWithNewPrompt() {
         messages = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false)]
@@ -223,19 +226,6 @@ class ConversationViewModel: ObservableObject, Sendable {
                 self.messages[index].translatedMessageContent = "Hey"
             }
         }
-        
-        //        do {
-        //            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
-        //            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-        //            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-        //
-        //            if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-        //                messages[index].translatedMessageContent = responseMessageModel.message.content
-        //            }
-        
-        //        } catch {
-        //            print("Error: \(error.localizedDescription)")
-        
     }
     
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
