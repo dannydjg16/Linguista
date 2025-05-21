@@ -12,7 +12,7 @@ class AccountManager: ObservableObject {
     @Published var isSignedIn: Bool = false
     @Published var userID: String = ""
     @Published var userName: String = ""
-    @Published var userPreferredLanguage: Int = 0
+    @Published var languageToLearn: Int = 1
     
     init() {
         if let storedUserID = KeychainManager.load(key: "appleUserID") {

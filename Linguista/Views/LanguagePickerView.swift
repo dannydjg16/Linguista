@@ -13,7 +13,7 @@ struct LanguagePickerView: View {
     @EnvironmentObject var accountManager: AccountManager
 
     var body: some View {
-        Picker("Language: ", selection: $accountManager.userPreferredLanguage) {
+        Picker("Language: ", selection: $accountManager.languageToLearn) {
             ForEach(popularLanguageObjects) { language in
                 Text(language.name).tag(language.id)
             }

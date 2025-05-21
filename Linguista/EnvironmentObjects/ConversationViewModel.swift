@@ -119,7 +119,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     func sendMessageForUsera() async {
         
         let messages = [
-            Message(role: "system", content: "1- Respond to the prompt in \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)), as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
+            Message(role: "system", content: "1- Respond to the prompt in \(Utilities.getLanguageName(by: accountManager.languageToLearn)), as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
@@ -184,7 +184,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     
     func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
         
-        let responseMessage = Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) to English or English to \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) based on what is provided.")
+        let responseMessage = Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
         
         return await responseMessageModel
@@ -215,7 +215,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
-        let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) to English or English to \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
+        let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
         
         
