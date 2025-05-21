@@ -18,6 +18,7 @@ struct MessageModalView: View {
     @State private var showWarning = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var accountManager: AccountManager
     
     var body: some View {
         HStack() {
@@ -248,7 +249,7 @@ struct MessageModalView: View {
     }
     
     func translateWithViewModel(messageToTranslate: MessagingModel) async {
-        let messages = [Message(role: "system", content: "Translate the word or sentence from Farsi to English if Farsi is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to Farsi if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
+        let messages = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) to English if \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to \(Utilities.getLanguageName(by: accountManager.userPreferredLanguage)) if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 30, topP: 1)
         
         Task {
