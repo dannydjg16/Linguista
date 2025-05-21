@@ -48,7 +48,7 @@ struct MessageModalView: View {
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding(.leading)
                     .padding(.trailing)
-                                
+                
                 HStack {
                     Text("Message:")
                         .padding(.leading)
