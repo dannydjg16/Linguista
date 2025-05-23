@@ -99,6 +99,7 @@ struct AudioPlayerView: View {
                         SpeedSelectorView(playbackSpeed: $audioManager.playbackRate)
                             .presentationDetents([.fraction(0.3)])
                     }
+                    
                     Text("(\(Int(audioManager.playbackRate * 100))%)")
                         .font(.caption)
                     

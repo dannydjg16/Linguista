@@ -12,7 +12,6 @@ struct SpeedSelectorView: View {
     @Binding var playbackSpeed: Float
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
-
     
     var body: some View {
         VStack {

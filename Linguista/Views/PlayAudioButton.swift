@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PlayAudioButton: View {
     let message: MessagingModel
-    let conversationViewModel: ConversationViewModel 
+    let conversationViewModel: ConversationViewModel
     @State private var playbackSpeed: Float = 1.0
     @State private var isSpeedSelectorPresented: Bool = false
     

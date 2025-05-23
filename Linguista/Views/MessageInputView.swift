@@ -66,8 +66,8 @@ struct MessageInputView: View {
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
         MessageInputView(speechRecognizer: SpeechRecognizer())
-        .environmentObject(ConversationViewModel())
-        .environmentObject(AccountManager())
+            .environmentObject(ConversationViewModel())
+            .environmentObject(AccountManager())
         
     }
 }

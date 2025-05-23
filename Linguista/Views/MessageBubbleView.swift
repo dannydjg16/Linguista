@@ -13,7 +13,7 @@ struct MessageBubbleView: View {
     @State var message: MessagingModel
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @State private var showModal = false
-
+    
     var body: some View {
         HStack(alignment: .bottom, spacing: 10) {
             
