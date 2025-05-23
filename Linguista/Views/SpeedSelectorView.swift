@@ -34,7 +34,7 @@ struct SpeedSelectorView: View {
                     Text("Done")
                         .bold()
                         .padding()
-                        .background(colorScheme == .light ? Color.brown : Color.white)
+                        .background(Color.brown)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
