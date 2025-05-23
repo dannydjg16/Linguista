@@ -54,7 +54,7 @@ struct MessageInputView: View {
     
     private func replyForUser() {
         let messages = [
-            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Keep sentences very simple, as if you were replying to an infant")]
+            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Keep sentences very simple, as if you were replying to an infant. Use only a few words in each response.")]
         
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
         Task {
