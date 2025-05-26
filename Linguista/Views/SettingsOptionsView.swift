@@ -66,5 +66,21 @@ struct SettingsOptionsView: View {
             
             Spacer()
         }
+        
+        HStack {
+            Spacer()
+            Button(action: {
+                dismiss()
+                isShowingModal = false
+            }) {
+                Text("Done")
+                    .bold()
+                    .padding()
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()
+        }
     }
 }
