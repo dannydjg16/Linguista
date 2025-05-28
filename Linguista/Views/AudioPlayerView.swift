@@ -14,8 +14,6 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var currentTime: Double = 0.0
     @Published var duration: Double = 0.0
     @Published var isPlaying = false
-    //@Published var playbackRate: Float = 1.0
-    
     private var player: AVAudioPlayer?
     private var timer: Timer?
     
