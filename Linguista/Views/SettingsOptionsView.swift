@@ -42,13 +42,9 @@ struct SettingsOptionsView: View {
             .padding(.leading)
             .padding(.trailing)
         
-        //NavigationView {
         LanguagePickerView()
             .padding(.top)
-//        }
-//        .tint(Color.brown)
-//        .padding(.top)
-        
+
         Spacer()
         
         HStack {
