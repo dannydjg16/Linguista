@@ -14,7 +14,7 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var currentTime: Double = 0.0
     @Published var duration: Double = 0.0
     @Published var isPlaying = false
-    @Published var playbackRate: Float = 1.0
+    //@Published var playbackRate: Float = 1.0
     
     private var player: AVAudioPlayer?
     private var timer: Timer?
@@ -40,23 +40,18 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
     
-    func togglePlayPause() {
+    func togglePlayPause(rate: Float) {
         if isPlaying {
             player?.pause()
         } else {
+            player?.rate = rate
             player?.play()
-            player?.rate = playbackRate
         }
         isPlaying.toggle()
     }
     
     func seek(to time: Double) {
         player?.currentTime = time
-    }
-    
-    func setPlaybackRate(_ rate: Float) {
-        playbackRate = rate
-        player?.rate = rate
     }
     
     // Delegate method to handle audio completion
@@ -76,6 +71,7 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
 struct AudioPlayerView: View {
     @ObservedObject var audioManager: AudioPlayerManager
     @State private var isSpeedSelectorPresented: Bool = false
+    @State private var playbackSpeed: Float = 1.0
     
     var body: some View {
         VStack {
@@ -96,11 +92,11 @@ struct AudioPlayerView: View {
                             .foregroundColor(.brown)
                     }
                     .sheet(isPresented: $isSpeedSelectorPresented) {
-                        SpeedSelectorView(playbackSpeed: $audioManager.playbackRate)
+                        SpeedSelectorView(playbackSpeed: $playbackSpeed)
                             .presentationDetents([.fraction(0.3)])
                     }
                     
-                    Text("(\(Int(audioManager.playbackRate * 100))%)")
+                    Text("(\(Int(playbackSpeed * 100))%)")
                         .font(.caption)
                     
                     Rectangle()
@@ -108,7 +104,7 @@ struct AudioPlayerView: View {
                         .frame(width: 1)
                     
                     Button(action: {
-                        audioManager.togglePlayPause()
+                        audioManager.togglePlayPause(rate: playbackSpeed)
                     }) {
                         Text(audioManager.isPlaying ? "Pause" : "Play")
                             .padding()

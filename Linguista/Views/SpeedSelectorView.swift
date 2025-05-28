@@ -10,7 +10,8 @@ import SwiftUI
 
 struct SpeedSelectorView: View {
     @Binding var playbackSpeed: Float
-    @Environment(\.presentationMode) var presentationMode
+        //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -28,7 +29,7 @@ struct SpeedSelectorView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }) {
                     Text("Done")
                         .bold()
