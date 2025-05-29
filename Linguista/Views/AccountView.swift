@@ -64,6 +64,8 @@ struct AccountView: View {
             // Optional: Validate user ID on view appearance
             if !appleUserID.isEmpty {
                 print("User is signed in: \(appleUserID)")
+            } else {
+                print("User is NOT  signed in!!!!!!!!")
             }
         }
     }
