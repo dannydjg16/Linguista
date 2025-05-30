@@ -28,9 +28,6 @@ struct ConversationViewsSwapperView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                .onChange(of: chatTabViewSelectedValue) {
-                    print("Tab changed to: \(chatTabViewSelectedValue)")
-                }
             }
         }
     }
