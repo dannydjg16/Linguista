@@ -13,10 +13,6 @@ struct Utilities {
         return popularLanguageObjects.first { $0.id == id }!.name
     }
     
-    static func getPromptById(by id: Int) -> String {
-        return conversationPromptObjects.first { $0.id == id }!.name
-    }
-    
     static func trimMessageArray(completionRequest: CompletionsRequest, maxLength: Int, savedMessages: Int) -> CompletionsRequest {
         
         guard completionRequest.messages.count > maxLength else {

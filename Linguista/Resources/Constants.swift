@@ -18,18 +18,6 @@ let ttsEndpoint = "/openai/tts"
 let authBaseUrl = "https://dev-7824301.okta.com/oauth2/default/v1"
 let authTokenEndpoint = "/token"
 
-let conversationPrompts: [String] = [
-    "Having a lesson with a language tutor",
-    "Ordering at a restaurant",
-    "Meeting someone for the first time",
-    "Asking for directions",
-    "Checking into a hotel"
-]
-
-let conversationPromptObjects: [Prompt] = conversationPrompts.enumerated().map { (index, name) in
-    Prompt(id: index + 1, name: name)
-}
-
 let popularLanguages = [
     "Farsi",
     "English",
