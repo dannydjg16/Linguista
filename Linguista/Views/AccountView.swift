@@ -77,6 +77,8 @@ struct AccountView: View {
     }
     
     func handleAuthorization(_ authorization: ASAuthorization) {
+        print("Authorization object: \(authorization)")
+        print("Credential: \(authorization.credential)")
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             let userID = appleIDCredential.user
             let email = appleIDCredential.email
