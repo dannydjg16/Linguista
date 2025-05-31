@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 
 @MainActor
@@ -13,11 +14,11 @@ class ConversationViewModel: ObservableObject, Sendable {
     
     @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
     //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
-    
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
     private var isLoading = false
     private var errorMessage: String?
+    @EnvironmentObject var accountManager: AccountManager
     
     func makeNewChatWithNewPrompt() {
         messages = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false)]
@@ -118,7 +119,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     func sendMessageForUsera() async {
         
         let messages = [
-            Message(role: "system", content: "1- Respond to the prompt in Farsi, as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
+            Message(role: "system", content: "1- Respond to the prompt in \(Utilities.getLanguageName(by: accountManager.languageToLearn)), as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
@@ -183,7 +184,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     
     func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
         
-        let responseMessage = Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided.")
+        let responseMessage = Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided.")
         let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
         
         return await responseMessageModel
@@ -214,7 +215,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
-        let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from Farsi to English or English to Farsi based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
+        let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
         
         
@@ -223,19 +224,6 @@ class ConversationViewModel: ObservableObject, Sendable {
                 self.messages[index].translatedMessageContent = "Hey"
             }
         }
-        
-        //        do {
-        //            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
-        //            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-        //            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-        //
-        //            if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-        //                messages[index].translatedMessageContent = responseMessageModel.message.content
-        //            }
-        
-        //        } catch {
-        //            print("Error: \(error.localizedDescription)")
-        
     }
     
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {

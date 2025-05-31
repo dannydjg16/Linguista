@@ -10,8 +10,7 @@ import SwiftUI
 
 struct MessageInputView: View {
     
-    @Binding var languageToTranslate: Int
-    
+    @EnvironmentObject var accountManager: AccountManager
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
     @Environment(\.colorScheme) var colorScheme
@@ -42,7 +41,7 @@ struct MessageInputView: View {
     private func sendMessage() {
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: languageToTranslate)). Use basic sentences that are not complex, as if you are teaching an infant. Respond in \(Utilities.getLanguageName(by: languageToTranslate)) unless otherwise instructed by user"),
+                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic sentences that are not complex, as if you are teaching an infant. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
@@ -55,7 +54,7 @@ struct MessageInputView: View {
     
     private func replyForUser() {
         let messages = [
-            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: languageToTranslate)). Keep sentences very simple, as if you were replying to an infant")]
+            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Keep sentences very simple, as if you were replying to an infant. Use only a few words in each response.")]
         
         let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
         Task {
@@ -66,7 +65,9 @@ struct MessageInputView: View {
 
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageInputView(languageToTranslate: .constant(1),
-                         speechRecognizer: SpeechRecognizer())
+        MessageInputView(speechRecognizer: SpeechRecognizer())
+            .environmentObject(ConversationViewModel())
+            .environmentObject(AccountManager())
+        
     }
 }

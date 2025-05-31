@@ -10,18 +10,14 @@ import AuthenticationServices
 
 struct AccountView: View {
     
-    // Track signed-in state and user data
     @AppStorage("appleUserID") private var appleUserID: String = ""
-    @State private var userName: String = "" // Store user's name (if available)
-    
-    //@Environment(\.colorScheme) var colorScheme
-    
+    @State private var userName: String = ""
+
     var body: some View {
         
         VStack(spacing: 20) {
             
             if isSignedIn {
-                // Signed-in UI
                 Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
                     .font(.title)
                 
@@ -64,16 +60,16 @@ struct AccountView: View {
             // Optional: Validate user ID on view appearance
             if !appleUserID.isEmpty {
                 print("User is signed in: \(appleUserID)")
+            } else {
+                print("User is NOT  signed in!!!!!!!!")
             }
         }
     }
     
-    // Computed property to check signed-in state
     private var isSignedIn: Bool {
         !appleUserID.isEmpty
     }
     
-    // Sign-out function
     private func signOut() {
         appleUserID = "" // Clear stored user ID
         userName = "" // Clear user name
@@ -81,6 +77,8 @@ struct AccountView: View {
     }
     
     func handleAuthorization(_ authorization: ASAuthorization) {
+        print("Authorization object: \(authorization)")
+        print("Credential: \(authorization.credential)")
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             let userID = appleIDCredential.user
             let email = appleIDCredential.email

@@ -10,16 +10,13 @@ import SwiftUI
 
 struct TextMessagingView: View {
     
-    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @Binding var languageToTranslate: Int
     
     var body: some View {
         VStack{
             MessageListView()
             
             MessageInputView(
-                languageToTranslate: $languageToTranslate,
                 speechRecognizer: speechRecognizer
             )
         }
@@ -27,9 +24,8 @@ struct TextMessagingView: View {
 }
 
 struct TextMessagingView_Previews: PreviewProvider {
-    @State static var languageToTranslate = 1
     static var previews: some View {
-        TextMessagingView(languageToTranslate: $languageToTranslate)
+        TextMessagingView()
             .environmentObject(ConversationViewModel())
     }
 }
