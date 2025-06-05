@@ -35,7 +35,7 @@ struct BackAndForthChatView: View {
                     
                     Button(action: {
                         Task {
-                            await conversationViewModel.sendMessageForUsera()
+                            await conversationViewModel.sendMessageForUser()
                         }
                     }) {
                         Image(systemName: "arrow.up.message")

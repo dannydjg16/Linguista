@@ -116,7 +116,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     // This one does not have any object passed in. The messages array is made in this method as opposed to the view.
-    func sendMessageForUsera() async {
+    func sendMessageForUser() async {
         
         let messages = [
             Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to a 3 year old."),
