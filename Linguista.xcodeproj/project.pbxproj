@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81030AB62DED490400450571 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81030AB52DED490400450571 /* AccountService.swift */; };
+		81030AB92DF14B9800450571 /* AccountCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81030AB72DF14B9800450571 /* AccountCoreData.xcdatamodeld */; };
 		8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7A62C2A79EF007DCE2E /* AccountView.swift */; };
 		8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AE2C2A8091007DCE2E /* Message.swift */; };
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		81030AB52DED490400450571 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		81030AB82DF14B9800450571 /* AccountCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountCoreData.xcdatamodel; sourceTree = "<group>"; };
 		8120C7A62C2A79EF007DCE2E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		8120C7AE2C2A8091007DCE2E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				81494ADB2C13BD2A00F1ABB0 /* Assets.xcassets */,
 				81494ADD2C13BD2A00F1ABB0 /* Preview Content */,
 				81841B112C66B61100B7A5AC /* Config.plist */,
+				81030AB72DF14B9800450571 /* AccountCoreData.xcdatamodeld */,
 			);
 			path = Linguista;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				8194D02C2D506D0300CAE54C /* ChatView.swift in Sources */,
 				819622132CDDAC75009D9392 /* SpeechRecognizerView.swift in Sources */,
 				812D1F0B2C897E8400255A86 /* Utilities.swift in Sources */,
+				81030AB92DF14B9800450571 /* AccountCoreData.xcdatamodeld in Sources */,
 				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
 				81BD14252DD6A4F9003B4706 /* KeychainManager.swift in Sources */,
@@ -789,6 +793,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		81030AB72DF14B9800450571 /* AccountCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				81030AB82DF14B9800450571 /* AccountCoreData.xcdatamodel */,
+			);
+			currentVersion = 81030AB82DF14B9800450571 /* AccountCoreData.xcdatamodel */;
+			path = AccountCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 81494ACC2C13BD2900F1ABB0 /* Project object */;
 }
