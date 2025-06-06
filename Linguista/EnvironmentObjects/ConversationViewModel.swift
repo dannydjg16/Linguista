@@ -122,7 +122,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
-        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
         
         
         if (dataModel.messages.count == 0){
@@ -216,7 +216,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
         let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
+        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messagesForCompletionRequest, maxTokens: 10, topP: 1)
         
         
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
