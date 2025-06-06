@@ -116,13 +116,13 @@ class ConversationViewModel: ObservableObject, Sendable {
     }
     
     // This one does not have any object passed in. The messages array is made in this method as opposed to the view.
-    func sendMessageForUsera() async {
+    func sendMessageForUser() async {
         
         let messages = [
-            Message(role: "system", content: "1- Respond to the prompt in \(Utilities.getLanguageName(by: accountManager.languageToLearn)), as if you were just carrying on a conversation. 2- Use basic sentences that are not complex, as if you were speaking to a 3 year old."),
+            Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
-        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
         
         
         if (dataModel.messages.count == 0){
@@ -216,7 +216,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     
     func getTranslationMessage(messagingModel: MessagingModel) async {
         let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messagesForCompletionRequest, temperature: 0.2, maxTokens: 10, topP: 1)
+        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messagesForCompletionRequest, maxTokens: 10, topP: 1)
         
         
         if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
@@ -234,7 +234,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "gpt-4o-mini-tts", input: messagingModel.message.content, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
@@ -255,7 +255,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "gpt-4o-mini-tts", input: messagingModel.message.content, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
@@ -276,7 +276,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.translatedMessageContent!, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "gpt-4o-mini-tts", input: messagingModel.translatedMessageContent!, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.translatedAudioData = audioData

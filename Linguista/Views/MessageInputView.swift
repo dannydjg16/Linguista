@@ -41,24 +41,14 @@ struct MessageInputView: View {
     private func sendMessage() {
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic sentences that are not complex, as if you are teaching an infant. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user"),
+                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you are teaching an infant. Preferably, respond with a question as if you were interested in the user. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
-            let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+            let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
             speechRecognizer.transcribedText = ""
-        }
-    }
-    
-    private func replyForUser() {
-        let messages = [
-            Message(role: "system", content: "Answer the last prompt and continue the conversation. Reply in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Keep sentences very simple, as if you were replying to an infant. Use only a few words in each response.")]
-        
-        let dataModel = CompletionsRequest(model: "gpt-3.5-turbo", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
-        Task {
-            await conversationViewModel.sendMessageForUser(completionRequest: dataModel)
         }
     }
 }
