@@ -44,7 +44,7 @@ struct MessageInputView: View {
                 Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you are teaching an infant. Preferably, respond with a question as if you were interested in the user. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
-            let dataModel = CompletionsRequest(model: "o4-mini", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
+            let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, temperature: 0.2, maxTokens: 100, topP: 1)
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
