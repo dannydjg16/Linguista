@@ -234,7 +234,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
@@ -255,7 +255,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.message.content, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
@@ -276,7 +276,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.translatedMessageContent!, voice: "shimmer", speed: 0.8)
+            let ttsRequest = TtsRequest(model: "tts-1-hd", input: messagingModel.translatedMessageContent!, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.translatedAudioData = audioData
