@@ -12,7 +12,7 @@ struct LanguagePickerView: View {
     
     @EnvironmentObject var accountManager: AccountManager
     @StateObject private var settings = Settings()
-
+    
     var body: some View {
         Picker("Language: ", selection: $settings.languageToLearn) {
             ForEach(popularLanguageObjects) { language in
