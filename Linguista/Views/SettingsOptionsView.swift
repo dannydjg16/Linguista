@@ -42,11 +42,12 @@ struct SettingsOptionsView: View {
             .padding(.leading)
             .padding(.trailing)
         
-        NavigationView {
-            LanguagePickerView()
-                .padding(.top)
-        }
-
+        Text("Language to Learn:")
+            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+            .padding(.top)
+        LanguagePickerView()
+            .padding(.top)
+        
         Spacer()
         
         HStack {

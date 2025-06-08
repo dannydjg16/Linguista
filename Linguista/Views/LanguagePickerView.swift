@@ -19,7 +19,8 @@ struct LanguagePickerView: View {
                 Text(language.name).tag(language.id)
             }
         }
-        .pickerStyle(NavigationLinkPickerStyle())
+        .pickerStyle(MenuPickerStyle())
+        .frame(width: 200)
         .padding()
         .background(Color.brown.opacity(0.15))
         .cornerRadius(10)
