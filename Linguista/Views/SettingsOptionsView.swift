@@ -42,8 +42,10 @@ struct SettingsOptionsView: View {
             .padding(.leading)
             .padding(.trailing)
         
-        LanguagePickerView()
-            .padding(.top)
+        NavigationView {
+            LanguagePickerView()
+                .padding(.top)
+        }
 
         Spacer()
         
