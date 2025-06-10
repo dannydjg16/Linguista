@@ -14,6 +14,7 @@ struct MessageInputView: View {
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @ObservedObject var speechRecognizer: SpeechRecognizer
     @Environment(\.colorScheme) var colorScheme
+    @StateObject private var settings = Settings()
     
     var body: some View {
         HStack {
@@ -41,7 +42,7 @@ struct MessageInputView: View {
     private func sendMessage() {
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you are teaching an infant. Preferably, respond with a question as if you were interested in the user. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user"),
+                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: settings.languageToLearn)). Use basic and short sentences that are not complex, as if you are teaching an infant. Preferably, respond with a question as if you were interested in the user. Respond in \(Utilities.getLanguageName(by: settings.languageToLearn)) unless otherwise instructed by user"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
