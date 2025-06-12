@@ -10,6 +10,12 @@ import SwiftUI
 
 struct LanguagePickerView: View {
     
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Account.createdAt, ascending: true)],
+        animation: .default)
+    private var accounts: FetchedResults<Account>
+    
     @EnvironmentObject var accountManager: AccountManager
     @StateObject private var settings = Settings()
     
