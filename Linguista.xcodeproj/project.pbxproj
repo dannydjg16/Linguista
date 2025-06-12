@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81004E692DFA755400BA780E /* CoreDataPersistence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81004E672DFA755400BA780E /* CoreDataPersistence.xcdatamodeld */; };
+		81004E6B2DFA76E400BA780E /* AccountFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004E6A2DFA76E400BA780E /* AccountFormView.swift */; };
+		81004E6D2DFA770B00BA780E /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004E6C2DFA770B00BA780E /* AccountListView.swift */; };
 		81030AB62DED490400450571 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81030AB52DED490400450571 /* AccountService.swift */; };
-		81030ABC2DF14C4100450571 /* CoreDataPersistence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81030ABA2DF14C4100450571 /* CoreDataPersistence.xcdatamodeld */; };
 		8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7A62C2A79EF007DCE2E /* AccountView.swift */; };
 		8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AE2C2A8091007DCE2E /* Message.swift */; };
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
@@ -66,8 +68,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		81004E682DFA755400BA780E /* CoreDataPersistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPersistence.xcdatamodel; sourceTree = "<group>"; };
+		81004E6A2DFA76E400BA780E /* AccountFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFormView.swift; sourceTree = "<group>"; };
+		81004E6C2DFA770B00BA780E /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
 		81030AB52DED490400450571 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
-		81030ABB2DF14C4100450571 /* CoreDataPersistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPersistence.xcdatamodel; sourceTree = "<group>"; };
 		8120C7A62C2A79EF007DCE2E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		8120C7AE2C2A8091007DCE2E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81004E6C2DFA770B00BA780E /* AccountListView.swift */,
+				81004E6A2DFA76E400BA780E /* AccountFormView.swift */,
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
 				81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */,
 				8194D02B2D506D0300CAE54C /* ChatView.swift */,
@@ -212,7 +218,6 @@
 		81494ACB2C13BD2900F1ABB0 = {
 			isa = PBXGroup;
 			children = (
-				81030ABA2DF14C4100450571 /* CoreDataPersistence.xcdatamodeld */,
 				81494AD62C13BD2900F1ABB0 /* Linguista */,
 				81494AE72C13BD2A00F1ABB0 /* LinguistaTests */,
 				81494AF12C13BD2A00F1ABB0 /* LinguistaUITests */,
@@ -235,6 +240,7 @@
 			children = (
 				813EBDE62DD596FE00371BBB /* Linguista.entitlements */,
 				8120C7DE2C40F099007DCE2E /* Info.plist */,
+				81004E672DFA755400BA780E /* CoreDataPersistence.xcdatamodeld */,
 				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
 				8120C7BC2C2B480E007DCE2E /* Helpers */,
 				8120C7BD2C2B4833007DCE2E /* Resources */,
@@ -424,10 +430,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				81752E842D6A2A7400D9F696 /* SettingsView.swift in Sources */,
+				81004E6B2DFA76E400BA780E /* AccountFormView.swift in Sources */,
 				813C40602D0A8630007C10D3 /* PlayAudioButton.swift in Sources */,
 				81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */,
 				81752E802D5AFA9600D9F696 /* TalkingChatView.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
+				81004E6D2DFA770B00BA780E /* AccountListView.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
 				81841B142C66B66A00B7A5AC /* Config.swift in Sources */,
 				8194D02C2D506D0300CAE54C /* ChatView.swift in Sources */,
@@ -439,7 +447,7 @@
 				8194D02A2D38C68C00CAE54C /* MessageInputView.swift in Sources */,
 				8194D0262D38C51300CAE54C /* MessageListView.swift in Sources */,
 				8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */,
-				81030ABC2DF14C4100450571 /* CoreDataPersistence.xcdatamodeld in Sources */,
+				81004E692DFA755400BA780E /* CoreDataPersistence.xcdatamodeld in Sources */,
 				81752E862D6A2BF200D9F696 /* SettingsOptionsView.swift in Sources */,
 				8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */,
 				819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */,
@@ -795,12 +803,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		81030ABA2DF14C4100450571 /* CoreDataPersistence.xcdatamodeld */ = {
+		81004E672DFA755400BA780E /* CoreDataPersistence.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				81030ABB2DF14C4100450571 /* CoreDataPersistence.xcdatamodel */,
+				81004E682DFA755400BA780E /* CoreDataPersistence.xcdatamodel */,
 			);
-			currentVersion = 81030ABB2DF14C4100450571 /* CoreDataPersistence.xcdatamodel */;
+			currentVersion = 81004E682DFA755400BA780E /* CoreDataPersistence.xcdatamodel */;
 			path = CoreDataPersistence.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

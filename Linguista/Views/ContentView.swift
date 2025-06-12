@@ -20,6 +20,16 @@ struct ContentView: View {
                     Label("Account", systemImage: "person.fill")
                 }
                 .tag(1)
+            AccountFormView()
+                .tabItem {
+                    Label("Add Account", systemImage: "person.crop.circle.fill")
+                }
+                .tag(2)
+            AccountListView()
+                .tabItem {
+                    Label("Accounts", systemImage: "list.bullet")
+                }
+                .tag(3)
             
         }.accentColor(.brown)
     }

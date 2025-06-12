@@ -12,6 +12,8 @@ import AVFoundation
 struct LinguistaApp: App {
     @StateObject private var conversationViewModel = ConversationViewModel()
     @StateObject private var accountManager = AccountManager()
+    let persistenceController = PersistenceController.shared
+
 
     init() {
         setupAudioSession()
@@ -22,6 +24,7 @@ struct LinguistaApp: App {
             ContentView()
                 .environmentObject(conversationViewModel)
                 .environmentObject(accountManager)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
     
@@ -33,5 +36,26 @@ struct LinguistaApp: App {
         } catch {
             print("Failed to set up audio session: \(error.localizedDescription)")
         }
+    }
+}
+
+import CoreData
+
+struct PersistenceController {
+    static let shared = PersistenceController()
+
+    let container: NSPersistentContainer
+
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "AccountModel") // Match your .xcdatamodeld file name
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
+        container.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
