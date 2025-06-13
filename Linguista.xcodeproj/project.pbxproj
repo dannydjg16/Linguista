@@ -71,6 +71,7 @@
 		81004E682DFA755400BA780E /* CoreDataPersistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPersistence.xcdatamodel; sourceTree = "<group>"; };
 		81004E6A2DFA76E400BA780E /* AccountFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFormView.swift; sourceTree = "<group>"; };
 		81004E6C2DFA770B00BA780E /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
+		81004E6E2DFBD2B000BA780E /* CoreDataPersistence2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPersistence2.xcdatamodel; sourceTree = "<group>"; };
 		81030AB52DED490400450571 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		8120C7A62C2A79EF007DCE2E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		8120C7AE2C2A8091007DCE2E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -806,6 +807,7 @@
 		81004E672DFA755400BA780E /* CoreDataPersistence.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				81004E6E2DFBD2B000BA780E /* CoreDataPersistence2.xcdatamodel */,
 				81004E682DFA755400BA780E /* CoreDataPersistence.xcdatamodel */,
 			);
 			currentVersion = 81004E682DFA755400BA780E /* CoreDataPersistence.xcdatamodel */;
