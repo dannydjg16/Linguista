@@ -38,8 +38,8 @@ struct AccountFormView: View {
 
     private func saveAccount() {
         withAnimation {
-            let newAccount = Account(context: viewContext)
-            newAccount.userName = username
+            let newAccount = AccountModel(context: viewContext)
+            newAccount.username = username
             newAccount.email = email
             newAccount.password = password
             newAccount.createdAt = Date()

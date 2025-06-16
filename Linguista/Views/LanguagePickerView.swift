@@ -11,22 +11,13 @@ import CoreData
 
 struct LanguagePickerView: View {
     
-//    @Environment(\.managedObjectContext) private var viewContext
-//    @FetchRequest(
-//        entity: Account.entity(),
-//        sortDescriptors: [],
-//        predicate: NSPredicate(format: "TRUEPREDICATE"),
-//        animation: .default
-//    ) private var accounts: FetchedResults<Account>
-//    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Account.createdAt, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \AccountModel.createdAt, ascending: true)],
         animation: .default)
-    private var accounts: FetchedResults<Account>
+    private var accounts: FetchedResults<AccountModel>
 
-
-    @State private var selectedLanguage: Int16 = 2
+    @State private var selectedLanguage: Int = 1
     
     var body: some View {
         Picker("Language: ", selection: $selectedLanguage) {
@@ -54,19 +45,19 @@ struct LanguagePickerView: View {
     
     private func loadSavedLanguage() {
         if let account = accounts.first {
-            selectedLanguage = Int16(account.languagePreference)
+            selectedLanguage = Int(account.languagePreference)
         } else {
             selectedLanguage = 2
         }
     }
     
-    private func saveLanguage(_ language: Int16) {
+    private func saveLanguage(_ language: Int) {
         withAnimation {
-            let account: Account
+            let account: AccountModel
             if let existingAccount = accounts.first {
                 account = existingAccount
             } else {
-                account = Account(context: viewContext)
+                account = AccountModel(context: viewContext)
             }
             account.languagePreference = Int16(language)
             

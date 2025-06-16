@@ -12,9 +12,9 @@ import CoreData
 struct AccountListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Account.createdAt, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \AccountModel.createdAt, ascending: true)],
         animation: .default)
-    private var accounts: FetchedResults<Account>
+    private var accounts: FetchedResults<AccountModel>
 
     var body: some View {
         NavigationView {
