@@ -7,32 +7,74 @@
 
 import Foundation
 import Combine
+import CoreData
 
 class AccountManager: ObservableObject {
     @Published var isSignedIn: Bool = false
     @Published var userID: String = ""
-    @Published var userName: String = ""
+    @Published var username: String = ""
     @Published var languageToLearn: Int = 1
     
-    init() {
+    private let context: NSManagedObjectContext
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+
+    
+    init(context: NSManagedObjectContext) {
         if let storedUserID = KeychainManager.load(key: "appleUserID") {
             userID = storedUserID
             isSignedIn = true
             // Optionally load userName from backend or local storage
+        }
+        
+        self.context = context
+        loadFromCoreData()
+    }
+    
+    func loadFromCoreData() {
+        let request: NSFetchRequest<AccountModel> = AccountModel.fetchRequest()
+        do {
+            let accounts = try context.fetch(request)
+            if let account = accounts.first {
+                languageToLearn = Int(account.languagePreference)
+                username = account.username ?? ""
+            }
+        } catch {
+            print("Error loading from Core Data: \(error)")
+        }
+    }
+    
+    func saveToCoreData() {
+        let request: NSFetchRequest<AccountModel> = AccountModel.fetchRequest()
+        do {
+            let accounts = try context.fetch(request)
+            let account: AccountModel
+            if let existingAccount = accounts.first {
+                account = existingAccount
+            } else {
+                account = AccountModel(context: context)
+            }
+            account.username = username
+            account.languagePreference = Int16(languageToLearn)
+            try context.save()
+        } catch {
+            print("Error saving to Core Data: \(error)")
         }
     }
     
     func signIn(userID: String, userName: String) {
         KeychainManager.save(key: "appleUserID", data: userID)
         self.userID = userID
-        self.userName = userName
+        self.username = userName
         isSignedIn = true
     }
     
     func signOut() {
         KeychainManager.delete(key: "appleUserID")
         userID = ""
-        userName = ""
+        username = ""
         isSignedIn = false
     }
+    
+    
 }

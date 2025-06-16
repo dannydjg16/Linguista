@@ -11,7 +11,6 @@ import AVFoundation
 @main
 struct LinguistaApp: App {
     @StateObject private var conversationViewModel = ConversationViewModel()
-    @StateObject private var accountManager = AccountManager()
     let persistenceController = PersistenceController.shared
 
 
@@ -23,7 +22,7 @@ struct LinguistaApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(conversationViewModel)
-                .environmentObject(accountManager)
+                .environmentObject(AccountManager(context: persistenceController.container.viewContext))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
