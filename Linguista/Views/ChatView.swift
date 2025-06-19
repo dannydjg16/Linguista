@@ -17,7 +17,7 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
-            BackAndForthChatView()
+            TalkingChatView()
         }
     }
 }

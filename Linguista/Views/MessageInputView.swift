@@ -55,9 +55,11 @@ struct MessageInputView: View {
 
 struct MessageInputView_Previews: PreviewProvider {
     static var previews: some View {
+        let persistenceController = PersistenceController(inMemory: true)
+        let context = persistenceController.container.viewContext
+        
         MessageInputView(speechRecognizer: SpeechRecognizer())
             .environmentObject(ConversationViewModel())
-            .environmentObject(AccountManager())
-        
+            .environmentObject(AccountManager(context: context))
     }
 }

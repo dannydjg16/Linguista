@@ -7,25 +7,31 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct LanguagePickerView: View {
     
+    @State private var selectedLanguage: Int = 1
     @EnvironmentObject var accountManager: AccountManager
-    @StateObject private var settings = Settings()
-
+    
     var body: some View {
-        Picker("Language: ", selection: $settings.languageToLearn) {
+        Picker("Language: ", selection: $accountManager.languageToLearn) {
             ForEach(popularLanguageObjects) { language in
                 Text(language.name).tag(language.id)
             }
         }
-        .pickerStyle(NavigationLinkPickerStyle())
+        .pickerStyle(MenuPickerStyle())
+        .frame(width: 200)
         .padding()
         .background(Color.brown.opacity(0.15))
+        .tint(.white)
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.brown.opacity(0.15), lineWidth: 2)
         )
+        .onChange(of: accountManager.languageToLearn) {
+            accountManager.saveToCoreData()
+        }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BackAndForthChatView.swift
+//  TalkingChatView.swift
 //  Linguista
 //
 //  Created by Daniel Grant on 2/10/25.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct BackAndForthChatView: View {
+struct TalkingChatView: View {
     
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @Environment(\.colorScheme) var colorScheme
