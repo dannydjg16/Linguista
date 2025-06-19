@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		81004E6B2DFA76E400BA780E /* AccountFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004E6A2DFA76E400BA780E /* AccountFormView.swift */; };
-		81004E6D2DFA770B00BA780E /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81004E6C2DFA770B00BA780E /* AccountListView.swift */; };
 		81004E7A2E00A33F00BA780E /* DataModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81004E782E00A33F00BA780E /* DataModels.xcdatamodeld */; };
 		81030AB62DED490400450571 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81030AB52DED490400450571 /* AccountService.swift */; };
 		8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7A62C2A79EF007DCE2E /* AccountView.swift */; };
@@ -68,8 +66,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		81004E6A2DFA76E400BA780E /* AccountFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFormView.swift; sourceTree = "<group>"; };
-		81004E6C2DFA770B00BA780E /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
 		81004E792E00A33F00BA780E /* DataModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels.xcdatamodel; sourceTree = "<group>"; };
 		81030AB52DED490400450571 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		8120C7A62C2A79EF007DCE2E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -151,8 +147,6 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				81004E6C2DFA770B00BA780E /* AccountListView.swift */,
-				81004E6A2DFA76E400BA780E /* AccountFormView.swift */,
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
 				81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */,
 				8194D02B2D506D0300CAE54C /* ChatView.swift */,
@@ -430,12 +424,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81752E842D6A2A7400D9F696 /* SettingsView.swift in Sources */,
-				81004E6B2DFA76E400BA780E /* AccountFormView.swift in Sources */,
 				813C40602D0A8630007C10D3 /* PlayAudioButton.swift in Sources */,
 				81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */,
 				81752E802D5AFA9600D9F696 /* TalkingChatView.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
-				81004E6D2DFA770B00BA780E /* AccountListView.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
 				81841B142C66B66A00B7A5AC /* Config.swift in Sources */,
 				8194D02C2D506D0300CAE54C /* ChatView.swift in Sources */,
