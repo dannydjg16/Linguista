@@ -12,7 +12,8 @@ import Combine
 @MainActor
 class ConversationViewModel: ObservableObject, Sendable {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
+    //@Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: ""), isSentByUser: false) ]
     //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
