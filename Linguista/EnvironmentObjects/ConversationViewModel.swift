@@ -206,18 +206,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         return true
     }
     
-    func getTranslationMessage(messagingModel: MessagingModel) async {
-        let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messagesForCompletionRequest, maxTokens: 10, topP: 1)
-        
-        
-        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-            await MainActor.run {
-                self.messages[index].translatedMessageContent = "Hey"
-            }
-        }
-    }
-    
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
         
         isLoading = true
