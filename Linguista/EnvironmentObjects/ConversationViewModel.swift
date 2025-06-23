@@ -182,14 +182,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-    func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
-        
-        let responseMessage = Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided.")
-        let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
-        
-        return await responseMessageModel
-    }
-    
     func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
         
         // Find the message to set the translation on
