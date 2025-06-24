@@ -12,8 +12,8 @@ import Combine
 @MainActor
 class ConversationViewModel: ObservableObject, Sendable {
     
-    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
-    //, MessagingModel(message: Message(role: "user", content: "Hello"), isSentByUser: true)
+    //@Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "\(conversationStarters[Int.random(in: 0..<conversationStarters.count)])"), isSentByUser: false) ]
+    @Published var messages: [MessagingModel] = [MessagingModel(message: Message(role: "system", content: "Hello, what do you want to know about animals?"), isSentByUser: false) ]
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
     private var isLoading = false
@@ -182,14 +182,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-    func sendMessageGetMessageTest(completionRequest: CompletionsRequest) async -> MessagingModel? {
-        
-        let responseMessage = Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided.")
-        let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true, translatedMessageContent: "translatedMessageContent")
-        
-        return await responseMessageModel
-    }
-    
     func setTranslatedMessage(messagingModel: MessagingModel) -> Bool {
         
         // Find the message to set the translation on
@@ -212,18 +204,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
         
         return true
-    }
-    
-    func getTranslationMessage(messagingModel: MessagingModel) async {
-        let messagesForCompletionRequest = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English or English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) based on what is provided."), Message(role: "user", content: "\(messagingModel.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messagesForCompletionRequest, maxTokens: 10, topP: 1)
-        
-        
-        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-            await MainActor.run {
-                self.messages[index].translatedMessageContent = "Hey"
-            }
-        }
     }
     
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {

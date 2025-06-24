@@ -39,9 +39,14 @@ struct MessageInputView: View {
     }
     
     private func sendMessage() {
+        
+        var languageToLearn = Utilities.getLanguageName(by: accountManager.languageToLearn)
+        
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you are teaching an infant. Preferably, respond with a question as if you were interested in the user. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user"),
+                Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about animals. Respond with a maximum of 10-15 words"),
+//                Message(role: "system", content: "You are teaching an English-speaking person \(languageToLearn). This is a  lesson about animals. Continue the lesson answering user questions and making new lesson points. Use very very basic sentences that are not complex. Respond in \(languageToLearn) unless otherwise instructed by user."),
+//                Message(role: "system", content: "You are teaching an English-speaking person \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you are teaching someone who knows no \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Sometimes ask questions but mostly try and organically respond. Respond in \(Utilities.getLanguageName(by: accountManager.languageToLearn)) unless otherwise instructed by user. Respond with a maximum of 10 words."),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
