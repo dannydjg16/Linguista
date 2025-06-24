@@ -277,7 +277,6 @@ struct MessageModalView: View {
 }
 
 struct MessageModalView_Previews: PreviewProvider {
-    //@State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true, translatedMessageContent: "translation")
     
     @State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true)
     
