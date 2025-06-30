@@ -25,6 +25,7 @@ struct MessageInputView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                 )
+                .autocorrectionDisabled()
             
             Button("Send") {
                 sendMessage()
