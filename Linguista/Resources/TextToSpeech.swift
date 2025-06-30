@@ -20,7 +20,6 @@ class TextToSpeech: ObservableObject {
         
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "fa-IR")
-        //utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         speechSynthesizer.speak(utterance)
     }
 }
