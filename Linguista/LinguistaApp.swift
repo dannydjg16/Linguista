@@ -12,8 +12,8 @@ import AVFoundation
 struct LinguistaApp: App {
     @StateObject private var conversationViewModel = ConversationViewModel()
     let persistenceController = PersistenceController.shared
-
-
+    
+    
     init() {
         setupAudioSession()
     }
@@ -42,9 +42,9 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
+    
     let container: NSPersistentContainer
-
+    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "DataModels") // Match your .xcdatamodeld file name
         if inMemory {

@@ -189,7 +189,7 @@ struct MessageModalView: View {
                     HStack {
                         Spacer()
                         
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.translatedAudioData!))
                         
                         Spacer()
                     }
@@ -202,7 +202,7 @@ struct MessageModalView: View {
                     HStack {
                         Spacer()
                         
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.translatedAudioData!))
                             .transition(.slide)
                         
                         Spacer()
@@ -277,7 +277,6 @@ struct MessageModalView: View {
 }
 
 struct MessageModalView_Previews: PreviewProvider {
-    //@State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true, translatedMessageContent: "translation")
     
     @State static var message: MessagingModel = MessagingModel(message: Message(role: "aaa", content: "bbb"), isSentByUser: true)
     

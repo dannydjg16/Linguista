@@ -18,7 +18,7 @@ class AccountManager: ObservableObject {
     private let context: NSManagedObjectContext
     @Published var firstName: String = ""
     @Published var lastName: String = ""
-
+    
     
     init(context: NSManagedObjectContext) {
         if let storedUserID = KeychainManager.load(key: "appleUserID") {
