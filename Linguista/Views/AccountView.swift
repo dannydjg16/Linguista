@@ -12,6 +12,7 @@ struct AccountView: View {
     
     @AppStorage("appleUserID") private var appleUserID: String = ""
     @State private var userName: String = ""
+    @EnvironmentObject var accountManager: AccountManager
 
     var body: some View {
         
@@ -20,6 +21,8 @@ struct AccountView: View {
             if isSignedIn {
                 Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
                     .font(.title)
+                
+                LanguagePickerView()
                 
                 Button(action: {
                     signOut()
