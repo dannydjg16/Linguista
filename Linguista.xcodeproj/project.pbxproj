@@ -43,6 +43,7 @@
 		819622112CDDAC59009D9392 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622102CDDAC59009D9392 /* SpeechRecognizer.swift */; };
 		819622132CDDAC75009D9392 /* SpeechRecognizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */; };
 		819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A62CF579E100452923 /* TtsViewModel.swift */; };
+		81A351252E15D9750079C157 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351242E15D9750079C157 /* AccountSettingsView.swift */; };
 		81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */; };
 		81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */; };
 		81BD14252DD6A4F9003B4706 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD14242DD6A4F9003B4706 /* KeychainManager.swift */; };
@@ -107,6 +108,7 @@
 		819622102CDDAC59009D9392 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
 		819DC6A62CF579E100452923 /* TtsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsViewModel.swift; sourceTree = "<group>"; };
+		81A351242E15D9750079C157 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
 		81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationBubbleView.swift; sourceTree = "<group>"; };
 		81BD14242DD6A4F9003B4706 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				81752E892D6EB86400D9F696 /* ChatOptionsView.swift */,
 				81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */,
 				81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */,
+				81A351242E15D9750079C157 /* AccountSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				81030AB62DED490400450571 /* AccountService.swift in Sources */,
 				8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */,
 				8194D0222D23791000CAE54C /* SpeedSelectorView.swift in Sources */,
+				81A351252E15D9750079C157 /* AccountSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

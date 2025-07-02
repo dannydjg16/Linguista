@@ -19,8 +19,8 @@ struct AccountView: View {
         
         VStack(spacing: 20) {
             
-            Spacer()
-            
+            AccountSettingsView()
+                        
             if isSignedIn {
                 
                 Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
