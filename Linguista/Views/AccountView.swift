@@ -13,16 +13,35 @@ struct AccountView: View {
     @AppStorage("appleUserID") private var appleUserID: String = ""
     @State private var userName: String = ""
     @EnvironmentObject var accountManager: AccountManager
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         
         VStack(spacing: 20) {
             
+            Spacer()
+            
             if isSignedIn {
+                
                 Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
                     .font(.title)
                 
+                Divider()
+                    .frame(height: 1)
+                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+                    .padding(.leading)
+                    .padding(.trailing)
+                
+                HStack {
+                    Text("Language to Learn:")
+                        .padding(.leading)
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                    Spacer()
+                }
+                
                 LanguagePickerView()
+                
+                Spacer()
                 
                 Button(action: {
                     signOut()
@@ -35,6 +54,9 @@ struct AccountView: View {
                         .background(Color.red)
                         .cornerRadius(10)
                 }
+                
+                Spacer()
+                
             }
             
             else {
