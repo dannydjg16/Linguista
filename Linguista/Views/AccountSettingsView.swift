@@ -1,33 +1,31 @@
 //
-//  SettingsView.swift
+//  AccountSettingsView.swift
 //  Linguista
 //
-//  Created by Daniel Grant on 2/22/25.
+//  Created by Daniel Grant on 7/2/25.
 //
 
 import Foundation
 import SwiftUI
 
-struct SettingsView: View {
+struct AccountSettingsView: View {
     
     @State var isShowingModal = false
     @State private var isShowingChatSettingsModal = false
-    @Binding var chatTabViewSelectedValue: Int
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var conversationViewModel: ConversationViewModel
 
     var body: some View {
         
         HStack() {
-            
             Spacer()
             
             VStack{
                 Button(action: {
-                    isShowingChatSettingsModal = true
+                    isShowingModal = true
                 }) {
-                    Image(systemName: "ellipsis.message")
-                    .foregroundColor(colorScheme == .light ? Color.brown : Color.white)
+                    Image(systemName: "gear")
+                        .foregroundColor(colorScheme == .light ? Color.brown : Color.white)
                 }
                 .frame(minWidth: 30, idealWidth: 50, maxWidth: 50, minHeight: 30, idealHeight: 50, maxHeight: 50)
                 .background(colorScheme == .light ? Color.white : Color.black)
@@ -35,8 +33,8 @@ struct SettingsView: View {
                 .clipShape(Circle())
                 .padding(.trailing)
             }
-            .sheet(isPresented: $isShowingChatSettingsModal) {
-                ChatOptionsView(chatTabViewSelectedValue: $chatTabViewSelectedValue)
+            .sheet(isPresented: $isShowingModal) {
+                SettingsOptionsView(isShowingModal: $isShowingModal)
             }
         }
     }

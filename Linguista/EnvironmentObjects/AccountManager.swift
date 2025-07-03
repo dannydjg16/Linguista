@@ -61,20 +61,4 @@ class AccountManager: ObservableObject {
             print("Error saving to Core Data: \(error)")
         }
     }
-    
-    func signIn(userID: String, userName: String) {
-        KeychainManager.save(key: "appleUserID", data: userID)
-        self.userID = userID
-        self.username = userName
-        isSignedIn = true
-    }
-    
-    func signOut() {
-        KeychainManager.delete(key: "appleUserID")
-        userID = ""
-        username = ""
-        isSignedIn = false
-    }
-    
-    
 }

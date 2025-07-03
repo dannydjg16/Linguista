@@ -11,7 +11,6 @@ import CoreData
 
 struct LanguagePickerView: View {
     
-    @State private var selectedLanguage: Int = 1
     @EnvironmentObject var accountManager: AccountManager
     
     var body: some View {
