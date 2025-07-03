@@ -18,6 +18,15 @@ struct AccountSettingsView: View {
     var body: some View {
         
         HStack() {
+            
+            Button(action: {
+                //signOut()
+            }) {
+                Text("Sign Out")
+                    .foregroundColor(.red)
+                    .padding()
+            }
+            
             Spacer()
             
             VStack{
