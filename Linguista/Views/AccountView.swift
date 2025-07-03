@@ -23,7 +23,7 @@ struct AccountView: View {
                         
             if isSignedIn {
                 
-                Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
+                Text("Welcome, \(accountManager.) ? "User" : userName)!")
                     .font(.title)
                 
                 Divider()
