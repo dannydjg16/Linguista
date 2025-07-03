@@ -109,6 +109,7 @@
 		819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
 		819DC6A62CF579E100452923 /* TtsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsViewModel.swift; sourceTree = "<group>"; };
 		81A351242E15D9750079C157 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
+		81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels_v2.xcdatamodel; sourceTree = "<group>"; };
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
 		81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationBubbleView.swift; sourceTree = "<group>"; };
 		81BD14242DD6A4F9003B4706 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -802,9 +803,10 @@
 		81004E782E00A33F00BA780E /* DataModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */,
 				81004E792E00A33F00BA780E /* DataModels.xcdatamodel */,
 			);
-			currentVersion = 81004E792E00A33F00BA780E /* DataModels.xcdatamodel */;
+			currentVersion = 81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */;
 			path = DataModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
