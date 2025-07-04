@@ -22,7 +22,7 @@ struct AccountView: View {
             if isSignedIn {
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
-                Text("Welcome, \(!accountManager.name.isEmpty ? "User" : accountManager.name)!")
+                Text("Welcome, \($accountManager.name)!")
                     .font(.title)
                 
                 Divider()
