@@ -22,7 +22,7 @@ struct AccountView: View {
             if isSignedIn {
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
-                Text("Welcome, \(accountManager.name.isEmpty ? "User" : accountManager.name)!")
+                Text("Welcome, \(!accountManager.name.isEmpty ? "User" : accountManager.name)!")
                     .font(.title)
                 
                 Divider()
@@ -101,6 +101,7 @@ struct AccountView: View {
             print("Full Name: \(fullName?.givenName ?? "No name")")
             
             accountManager.userID = appleIDCredential.user
+            accountManager.name = "Daniel"
             if let fullName = appleIDCredential.fullName {
                 accountManager.name = [fullName.givenName, fullName.familyName]
                     .compactMap { $0 }
