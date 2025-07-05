@@ -11,6 +11,11 @@ import CoreData
 
 class AccountManager: ObservableObject {
     @Published var isSignedIn: Bool = false
+    
+    private var isSignedIn: Bool {
+        !userID.isEmpty
+    }
+    
     @Published var userID: String = ""
     @Published var username: String = ""
     @Published var languageToLearn: Int = 1
