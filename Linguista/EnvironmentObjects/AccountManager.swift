@@ -10,11 +10,6 @@ import Combine
 import CoreData
 
 class AccountManager: ObservableObject {
-    @Published var isSignedIn: Bool = false
-    
-    private var isSignedIn: Bool {
-        !userID.isEmpty
-    }
     
     @Published var userID: String = ""
     @Published var username: String = ""
@@ -26,12 +21,15 @@ class AccountManager: ObservableObject {
     init(context: NSManagedObjectContext) {
         if let storedUserID = KeychainManager.load(key: "appleUserID") {
             userID = storedUserID
-            isSignedIn = true
             // Optionally load userName from backend or local storage
         }
         
         self.context = context
         loadFromCoreData()
+    }
+    
+    func isSignedIn() -> Bool {
+        !userID.isEmpty
     }
     
     func loadFromCoreData() {
