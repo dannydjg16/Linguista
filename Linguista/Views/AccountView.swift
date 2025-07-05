@@ -19,7 +19,7 @@ struct AccountView: View {
             
             AccountSettingsView()
                         
-            if isSignedIn {
+            if accountManager.isSignedIn {
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
                 Text("Welcome, \($accountManager.name)!")
@@ -76,10 +76,6 @@ struct AccountView: View {
                 print("User is NOT  signed in!!!!!!!!")
             }
         }
-    }
-    
-    private var isSignedIn: Bool {
-        !accountManager.userID.isEmpty
     }
     
     private func signOut() {
