@@ -18,15 +18,16 @@ struct AccountSettingsView: View {
         
         HStack() {
             
-            
-            
-            Button(action: {
-                //signOut()
-            }) {
-                Text("Sign Out")
-                    .foregroundColor(.red)
-                    .padding()
+            if (accountManager.isSignedIn()) {
+                Button(action: {
+                    //signOut()
+                }) {
+                    Text("Sign Out")
+                        .foregroundColor(.red)
+                        .padding()
+                }
             }
+            
             
             Spacer()
             
