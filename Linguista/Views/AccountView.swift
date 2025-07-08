@@ -73,7 +73,7 @@ struct AccountView: View {
             if !accountManager.userID.isEmpty {
                 print("User is signed in: \(accountManager.userID)")
             } else {
-                print("User is NOT  signed in!!!!!!!!")
+                print("User is NOT  signed in!!!!!!!!\(accountManager.userID)")
             }
         }
     }
