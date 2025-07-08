@@ -78,12 +78,6 @@ struct AccountView: View {
         }
     }
     
-    private func signOut() {
-        accountManager.userID = "" // Clear stored user ID
-        accountManager.username = "" // Clear user name
-        print("User signed out")
-    }
-    
     func handleAuthorization(_ authorization: ASAuthorization) {
         print("Authorization object: \(authorization)")
         print("Credential: \(authorization.credential)")

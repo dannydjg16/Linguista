@@ -62,4 +62,10 @@ class AccountManager: ObservableObject {
             print("Error saving to Core Data: \(error)")
         }
     }
+    
+    func signOut() {
+        userID = "" // Clear stored user ID
+        username = "" // Clear user name
+        print("User signed out")
+    }
 }

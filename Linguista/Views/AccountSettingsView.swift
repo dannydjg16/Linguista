@@ -20,7 +20,7 @@ struct AccountSettingsView: View {
             
             if (accountManager.isSignedIn()) {
                 Button(action: {
-                    //signOut()
+                    accountManager.signOut()
                 }) {
                     Text("Sign Out")
                         .foregroundColor(.red)
