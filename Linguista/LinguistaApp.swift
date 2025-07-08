@@ -48,6 +48,9 @@ struct PersistenceController {
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "DataModels") // Match your .xcdatamodeld file name
         if inMemory {
+            let description = container.persistentStoreDescriptions.first
+            description?.shouldMigrateStoreAutomatically = true
+            description?.shouldInferMappingModelAutomatically = true
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores { _, error in

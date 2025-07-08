@@ -11,13 +11,24 @@ import SwiftUI
 struct AccountSettingsView: View {
     
     @State var isShowingModal = false
-    @State private var isShowingChatSettingsModal = false
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var accountManager: AccountManager
 
     var body: some View {
         
         HStack() {
+            
+            if (accountManager.isSignedIn()) {
+                Button(action: {
+                    accountManager.signOut()
+                }) {
+                    Text("Sign Out")
+                        .foregroundColor(.red)
+                        .padding()
+                }
+            }
+            
+            
             Spacer()
             
             VStack{

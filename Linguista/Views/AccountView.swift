@@ -10,8 +10,6 @@ import AuthenticationServices
 
 struct AccountView: View {
     
-    @AppStorage("appleUserID") private var appleUserID: String = ""
-    @State private var userName: String = ""
     @EnvironmentObject var accountManager: AccountManager
     @Environment(\.colorScheme) var colorScheme
 
@@ -21,9 +19,10 @@ struct AccountView: View {
             
             AccountSettingsView()
                         
-            if isSignedIn {
+            if accountManager.isSignedIn() {
                 
-                Text("Welcome, \(userName.isEmpty ? "User" : userName)!")
+                // Would be cool to replace welcome with the language they are learning greeting.
+                Text("Welcome, \(accountManager.name)!")
                     .font(.title)
                 
                 Divider()
@@ -42,18 +41,6 @@ struct AccountView: View {
                 LanguagePickerView()
                 
                 Spacer()
-                
-                Button(action: {
-                    signOut()
-                }) {
-                    Text("Sign Out")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 200, height: 45)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                }
                 
                 Spacer()
                 
@@ -83,22 +70,12 @@ struct AccountView: View {
         }
         .onAppear {
             // Optional: Validate user ID on view appearance
-            if !appleUserID.isEmpty {
-                print("User is signed in: \(appleUserID)")
+            if !accountManager.userID.isEmpty {
+                print("User is signed in: \(accountManager.userID)")
             } else {
-                print("User is NOT  signed in!!!!!!!!")
+                print("User is NOT  signed in")
             }
         }
-    }
-    
-    private var isSignedIn: Bool {
-        !appleUserID.isEmpty
-    }
-    
-    private func signOut() {
-        appleUserID = "" // Clear stored user ID
-        userName = "" // Clear user name
-        print("User signed out")
     }
     
     func handleAuthorization(_ authorization: ASAuthorization) {
@@ -113,12 +90,8 @@ struct AccountView: View {
             print("Email: \(email ?? "No email")")
             print("Full Name: \(fullName?.givenName ?? "No name")")
             
-            appleUserID = appleIDCredential.user
-            if let fullName = appleIDCredential.fullName {
-                userName = [fullName.givenName, fullName.familyName]
-                    .compactMap { $0 }
-                    .joined(separator: " ")
-            }
+            accountManager.userID = appleIDCredential.user
+            accountManager.name = "Daniel"
         }
     }
 }

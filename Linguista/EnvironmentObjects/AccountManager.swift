@@ -10,25 +10,21 @@ import Combine
 import CoreData
 
 class AccountManager: ObservableObject {
-    @Published var isSignedIn: Bool = false
+    
     @Published var userID: String = ""
     @Published var username: String = ""
     @Published var languageToLearn: Int = 1
+    @Published var name: String = ""
     
     private let context: NSManagedObjectContext
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    
     
     init(context: NSManagedObjectContext) {
-        if let storedUserID = KeychainManager.load(key: "appleUserID") {
-            userID = storedUserID
-            isSignedIn = true
-            // Optionally load userName from backend or local storage
-        }
-        
         self.context = context
         loadFromCoreData()
+    }
+    
+    func isSignedIn() -> Bool {
+        !userID.isEmpty
     }
     
     func loadFromCoreData() {
@@ -60,5 +56,11 @@ class AccountManager: ObservableObject {
         } catch {
             print("Error saving to Core Data: \(error)")
         }
+    }
+    
+    func signOut() {
+        userID = "" // Clear stored user ID
+        username = "" // Clear user name
+        print("User signed out")
     }
 }
