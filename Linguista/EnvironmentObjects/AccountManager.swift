@@ -19,12 +19,6 @@ class AccountManager: ObservableObject {
     private let context: NSManagedObjectContext
     
     init(context: NSManagedObjectContext) {
-        if let storedUserID = KeychainManager.load(key: "appleUserID") {
-            userID = storedUserID
-            name = "Daniel"
-            // Optionally load userName from backend or local storage
-        }
-        
         self.context = context
         loadFromCoreData()
     }

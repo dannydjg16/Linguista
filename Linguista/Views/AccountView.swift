@@ -22,7 +22,7 @@ struct AccountView: View {
             if accountManager.isSignedIn() {
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
-                Text("Welcome, \($accountManager.name)!")
+                Text("Welcome, \(accountManager.name)!")
                     .font(.title)
                 
                 Divider()
@@ -73,7 +73,7 @@ struct AccountView: View {
             if !accountManager.userID.isEmpty {
                 print("User is signed in: \(accountManager.userID)")
             } else {
-                print("User is NOT  signed in!!!!!!!!\(accountManager.userID)")
+                print("User is NOT  signed in")
             }
         }
     }
@@ -92,11 +92,6 @@ struct AccountView: View {
             
             accountManager.userID = appleIDCredential.user
             accountManager.name = "Daniel"
-            if let fullName = appleIDCredential.fullName {
-                accountManager.name = [fullName.givenName, fullName.familyName]
-                    .compactMap { $0 }
-                    .joined(separator: " ")
-            }
         }
     }
 }
