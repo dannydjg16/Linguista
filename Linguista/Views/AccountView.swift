@@ -128,7 +128,6 @@ struct AccountView: View {
             print("Full Name: \(fullName?.givenName ?? "No name")")
             
             accountManager.userID = appleIDCredential.user
-            accountManager.name = "Daniel"
         }
     }
 }
