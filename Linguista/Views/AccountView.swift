@@ -14,48 +14,46 @@ struct AccountView: View {
     @State private var isEditing: Bool = false
     @EnvironmentObject var accountManager: AccountManager
     @Environment(\.colorScheme) var colorScheme
-
+    
     var body: some View {
-        VStack(spacing: 16) {
-                    if isEditing {
-                        HStack {
-                            TextField("Enter name", text: $name)
-                                .textFieldStyle(.roundedBorder)
-                                .padding(.horizontal)
-                            
-                            Button(action: {
-                                isEditing = false
-                            }) {
-                                Text("Save")
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                            }
-                        }
-                    } else {
-                        HStack {
-                            Text(name)
-                                .font(.title3)
-                                .padding(.horizontal)
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                isEditing = true
-                            }) {
-                                Image(systemName: "pencil")
-                                    .padding(.horizontal)
-                            }
-                        }
-                    }
-                }
-        
         VStack(spacing: 20) {
             
             AccountSettingsView()
-                        
+            
+            if isEditing {
+                HStack {
+                    TextField("Enter name", text: $name)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.horizontal)
+                    
+                    Button(action: {
+                        isEditing = false
+                    }) {
+                        Text("Save")
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                }
+            } else {
+                HStack {
+                    Text(name)
+                        .font(.title3)
+                        .padding(.horizontal)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        isEditing = true
+                    }) {
+                        Image(systemName: "pencil")
+                            .padding(.horizontal)
+                    }
+                }
+            }
+            
             if accountManager.isSignedIn() {
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
