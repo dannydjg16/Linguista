@@ -31,6 +31,7 @@ struct AccountView: View {
                         
                         Button(action: {
                             isEditing = false
+                            accountManager.saveToCoreData()
                         }) {
                             Text("Save")
                                 .padding(.horizontal)
