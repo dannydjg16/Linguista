@@ -20,41 +20,42 @@ struct AccountView: View {
             
             AccountSettingsView()
             
-            if isEditing {
-                HStack {
-                    TextField("Enter name", text: $name)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
-                    
-                    Button(action: {
-                        isEditing = false
-                    }) {
-                        Text("Save")
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
-                }
-            } else {
-                HStack {
-                    Text(name)
-                        .font(.title3)
-                        .padding(.horizontal)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        isEditing = true
-                    }) {
-                        Image(systemName: "pencil")
-                            .padding(.horizontal)
-                    }
-                }
-            }
             
             if accountManager.isSignedIn() {
+                
+                if isEditing {
+                    HStack {
+                        TextField("Enter name", text: $accountManager.name)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            isEditing = false
+                        }) {
+                            Text("Save")
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                    }
+                } else {
+                    HStack {
+                        Text(accountManager.name)
+                            .font(.title3)
+                            .padding(.horizontal)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            isEditing = true
+                        }) {
+                            Image(systemName: "pencil")
+                                .padding(.horizontal)
+                        }
+                    }
+                }
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
                 Text("Welcome, \(accountManager.name)!")
