@@ -88,7 +88,6 @@ struct AccountView: View {
                 SignInWithAppleButton(
                     .signIn,
                     onRequest: { request in
-                        // Configure your request here
                         request.requestedScopes = [.fullName, .email]
                     },
                     onCompletion: { result in
@@ -106,7 +105,6 @@ struct AccountView: View {
             }
         }
         .onAppear {
-            // Optional: Validate user ID on view appearance
             if !accountManager.userID.isEmpty {
                 print("User is signed in: \(accountManager.userID)")
             } else {
