@@ -10,16 +10,53 @@ import AuthenticationServices
 
 struct AccountView: View {
     
+    @State private var name: String = "John Doe"
+    @State private var isEditing: Bool = false
     @EnvironmentObject var accountManager: AccountManager
     @Environment(\.colorScheme) var colorScheme
-
+    
     var body: some View {
-        
         VStack(spacing: 20) {
             
             AccountSettingsView()
-                        
+            
+            
             if accountManager.isSignedIn() {
+                
+                if isEditing {
+                    HStack {
+                        TextField("Enter name", text: $accountManager.name)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            isEditing = false
+                            accountManager.saveToCoreData()
+                        }) {
+                            Text("Save")
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                    }
+                } else {
+                    HStack {
+                        Text(accountManager.name)
+                            .font(.title3)
+                            .padding(.horizontal)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            isEditing = true
+                        }) {
+                            Image(systemName: "pencil")
+                                .padding(.horizontal)
+                        }
+                    }
+                }
                 
                 // Would be cool to replace welcome with the language they are learning greeting.
                 Text("Welcome, \(accountManager.name)!")
@@ -51,7 +88,6 @@ struct AccountView: View {
                 SignInWithAppleButton(
                     .signIn,
                     onRequest: { request in
-                        // Configure your request here
                         request.requestedScopes = [.fullName, .email]
                     },
                     onCompletion: { result in
@@ -69,7 +105,6 @@ struct AccountView: View {
             }
         }
         .onAppear {
-            // Optional: Validate user ID on view appearance
             if !accountManager.userID.isEmpty {
                 print("User is signed in: \(accountManager.userID)")
             } else {
@@ -91,7 +126,6 @@ struct AccountView: View {
             print("Full Name: \(fullName?.givenName ?? "No name")")
             
             accountManager.userID = appleIDCredential.user
-            accountManager.name = "Daniel"
         }
     }
 }

@@ -52,6 +52,7 @@ class AccountManager: ObservableObject {
             }
             account.username = username
             account.languagePreference = Int16(languageToLearn)
+            account.name = name
             try context.save()
         } catch {
             print("Error saving to Core Data: \(error)")
