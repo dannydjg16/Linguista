@@ -13,7 +13,7 @@ struct AccountSettingsView: View {
     @State var isShowingModal = false
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var accountManager: AccountManager
-
+    
     var body: some View {
         
         HStack() {
@@ -27,7 +27,6 @@ struct AccountSettingsView: View {
                         .padding()
                 }
             }
-            
             
             Spacer()
             
