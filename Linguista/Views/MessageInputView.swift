@@ -49,7 +49,7 @@ struct MessageInputView: View {
                 .cornerRadius(10)
                 .frame(minWidth: 100, maxWidth: .infinity)
                 
-                Button("Button 2!!") {
+                Button("English") {
                     // Action for button 2
                 }
                 .padding()
@@ -58,7 +58,7 @@ struct MessageInputView: View {
                 .cornerRadius(10)
                 .frame(minWidth: 100, maxWidth: .infinity)
                 
-                Button("Button 3!!") {
+                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
                     // Action for button 3
                     sendMessage()
                 }
