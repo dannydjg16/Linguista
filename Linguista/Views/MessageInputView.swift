@@ -16,8 +16,58 @@ struct MessageInputView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        HStack {
-            TextField("Type a message", text: $speechRecognizer.transcribedText)
+//        HStack {
+//            TextField("Type a message", text: $speechRecognizer.transcribedText)
+//                .padding()
+//                .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
+//                .cornerRadius(10)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(Color.brown.opacity(0.15), lineWidth: 2)
+//                )
+//                .autocorrectionDisabled()
+//            
+//            Button("Send") {
+//                sendMessage()
+//            }
+//            .padding()
+//            .background(Color.brown)
+//            .foregroundColor(.white)
+//            .cornerRadius(10)
+//        }
+//        .padding(.leading)
+//        .padding(.trailing)
+        
+        VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                Button("1") {
+                    // Action for button 1
+                }
+                .padding()
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("2") {
+                    // Action for button 2
+                }
+                .padding()
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("Send") {
+                    // Action for button 3
+                    sendMessage()
+                }
+                .padding()
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+            
+            TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
+                .lineLimit(1...5) // Adjust min/max lines as needed
                 .padding()
                 .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
                 .cornerRadius(10)
@@ -26,14 +76,6 @@ struct MessageInputView: View {
                         .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                 )
                 .autocorrectionDisabled()
-            
-            Button("Send") {
-                sendMessage()
-            }
-            .padding()
-            .background(Color.brown)
-            .foregroundColor(.white)
-            .cornerRadius(10)
         }
         .padding(.leading)
         .padding(.trailing)
