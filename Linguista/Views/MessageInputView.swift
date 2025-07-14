@@ -40,23 +40,25 @@ struct MessageInputView: View {
         
         VStack(spacing: 8) {
             HStack(spacing: 8) {
-                Button("Button 1") {
+                Button("1") {
                     // Action for button 1
                 }
                 .padding()
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                .frame(minWidth: 100, maxWidth: .infinity)
                 
-                Button("Button 2") {
+                Button("Button 2!!") {
                     // Action for button 2
                 }
                 .padding()
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                .frame(minWidth: 100, maxWidth: .infinity)
                 
-                Button("Button 3") {
+                Button("Button 3!!") {
                     // Action for button 3
                     sendMessage()
                 }
@@ -64,6 +66,7 @@ struct MessageInputView: View {
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                .frame(minWidth: 100, maxWidth: .infinity)
             }
             
             TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
