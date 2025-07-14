@@ -39,7 +39,7 @@ struct MessageInputView: View {
 //        .padding(.trailing)
         
         VStack(spacing: 8) {
-            HStack(spacing: 8) {
+            HStack() {
                 Button("1") {
                     // Action for button 1
                 }
