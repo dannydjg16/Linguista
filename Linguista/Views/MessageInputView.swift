@@ -38,96 +38,47 @@ struct MessageInputView: View {
 //        .padding(.leading)
 //        .padding(.trailing)
         
-        
-        
-//        VStack(spacing: 8) {
-//            HStack(spacing: 8) {
-//                Button("1") {
-//                    // Action for button 1
-//                }
-//                .padding()
-//                .background(Color.brown)
-//                .foregroundColor(.white)
-//                .cornerRadius(10)
-//                
-//                Button("2") {
-//                    // Action for button 2
-//                }
-//                .padding()
-//                .background(Color.brown)
-//                .foregroundColor(.white)
-//                .cornerRadius(10)
-//                
-//                Button("Send") {
-//                    // Action for button 3
-//                    sendMessage()
-//                }
-//                .padding()
-//                .background(Color.brown)
-//                .foregroundColor(.white)
-//                .cornerRadius(10)
-//            }
-//            
-//            TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
-//                .lineLimit(1...5) // Adjust min/max lines as needed
-//                .padding()
-//                .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
-//                .cornerRadius(10)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(Color.brown.opacity(0.15), lineWidth: 2)
-//                )
-//                .autocorrectionDisabled()
-//        }
-//        .padding(.leading)
-//        .padding(.trailing)
-        GeometryReader { geometry in
-            VStack(spacing: 8) {
-                HStack(spacing: 8) {
-                    Button("Button 1") {
-                        // Action for button 1
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Button("Button 2") {
-                        // Action for button 2
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Button("Button 3") {
-                        // Action for button 3
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+        VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                Button("Button 1") {
+                    // Action for button 1
                 }
-                .frame(width: geometry.size.width)
+                .padding()
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
                 
-                TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
-                    .lineLimit(1...5)
-                    .padding()
-                    .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.brown.opacity(0.15), lineWidth: 2)
-                    )
-                    .autocorrectionDisabled()
-                    .frame(width: geometry.size.width)
+                Button("Button 2") {
+                    // Action for button 2
+                }
+                .padding()
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("Button 3") {
+                    // Action for button 3
+                    sendMessage()
+                }
+                .padding()
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
-            .padding(.leading)
-            .padding(.trailing)
+            
+            TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
+                .lineLimit(1...5) // Adjust min/max lines as needed
+                .padding()
+                .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
+                .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.brown.opacity(0.15), lineWidth: 2)
+                )
+                .autocorrectionDisabled()
         }
+        .padding(.leading)
+        .padding(.trailing)
     }
     
     private func sendMessage() {
