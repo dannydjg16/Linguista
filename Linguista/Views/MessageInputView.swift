@@ -16,27 +16,6 @@ struct MessageInputView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-//        HStack {
-//            TextField("Type a message", text: $speechRecognizer.transcribedText)
-//                .padding()
-//                .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
-//                .cornerRadius(10)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(Color.brown.opacity(0.15), lineWidth: 2)
-//                )
-//                .autocorrectionDisabled()
-//            
-//            Button("Send") {
-//                sendMessage()
-//            }
-//            .padding()
-//            .background(Color.brown)
-//            .foregroundColor(.white)
-//            .cornerRadius(10)
-//        }
-//        .padding(.leading)
-//        .padding(.trailing)
         
         VStack(spacing: 8) {
             HStack() {
