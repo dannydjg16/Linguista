@@ -20,6 +20,7 @@ struct MessageInputView: View {
         VStack(spacing: 8) {
             HStack() {
                 Button("1") {
+                    // Auto reply?
                 }
                 .padding()
                 .background(Color.brown)
@@ -28,6 +29,7 @@ struct MessageInputView: View {
                 .frame(minWidth: 100, maxWidth: .infinity)
                 
                 Button("English") {
+                    sendMessageGetEnglish()
                 }
                 .padding()
                 .background(Color.brown)
@@ -36,7 +38,7 @@ struct MessageInputView: View {
                 .frame(minWidth: 100, maxWidth: .infinity)
                 
                 Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                    sendMessageGetEnglish()
+                    sendMessageGetTranslation()
                 }
                 .padding()
                 .background(Color.brown)
