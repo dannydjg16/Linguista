@@ -41,7 +41,6 @@ struct MessageInputView: View {
         VStack(spacing: 8) {
             HStack() {
                 Button("1") {
-                    // Action for button 1
                 }
                 .padding()
                 .background(Color.brown)
@@ -50,7 +49,6 @@ struct MessageInputView: View {
                 .frame(minWidth: 100, maxWidth: .infinity)
                 
                 Button("English") {
-                    // Action for button 2
                 }
                 .padding()
                 .background(Color.brown)
@@ -59,7 +57,6 @@ struct MessageInputView: View {
                 .frame(minWidth: 100, maxWidth: .infinity)
                 
                 Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                    // Action for button 3
                     sendMessage()
                 }
                 .padding()
