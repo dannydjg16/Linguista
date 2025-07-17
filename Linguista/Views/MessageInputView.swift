@@ -19,7 +19,7 @@ struct MessageInputView: View {
         
         VStack(spacing: 8) {
             HStack() {
-                Button("1") {
+                Button("Reply in \(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
                     // Auto reply?
                 }
                 .padding()
@@ -48,7 +48,7 @@ struct MessageInputView: View {
             }
             
             TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
-                .lineLimit(1...5) // Adjust min/max lines as needed
+                .lineLimit(1...5)
                 .padding()
                 .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
                 .cornerRadius(10)
