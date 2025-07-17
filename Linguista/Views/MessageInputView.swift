@@ -19,7 +19,7 @@ struct MessageInputView: View {
         
         VStack(spacing: 8) {
             HStack() {
-                Button("Reply in \(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                Button("Reply") {
                     // Auto reply?
                 }
                 .padding()
