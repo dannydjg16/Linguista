@@ -22,27 +22,28 @@ struct MessageInputView: View {
                 Button("Reply") {
                     // Auto reply?
                 }
+                .padding()
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
-                .frame(minWidth: 150, maxWidth: .infinity)
                 
                 Button("English") {
                     sendMessageGetEnglish()
                 }
+                .padding()
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
-                .frame(minWidth: 150, maxWidth: .infinity)
                 
                 Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
                     sendMessageGetTranslation()
-                }
+                }.padding()
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
-                .frame(minWidth: 150, maxWidth: .infinity)
             }
+            .background(.white)
+            
             
             TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
                 .lineLimit(1...5)
