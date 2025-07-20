@@ -38,9 +38,9 @@ struct MessageInputView: View {
                 Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
                     sendMessageGetTranslation()
                 }.padding()
-                .background(Color.brown)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
             .background(.white)
             
