@@ -18,11 +18,12 @@ struct MessageInputView: View {
     var body: some View {
         
         VStack(spacing: 8) {
-            HStack() {
+            HStack {
                 Button("Reply") {
                     // Auto reply?
                 }
                 .padding()
+                .frame(maxWidth: .infinity) // Makes each button take equal width
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
@@ -31,19 +32,22 @@ struct MessageInputView: View {
                     sendMessageGetEnglish()
                 }
                 .padding()
+                .frame(maxWidth: .infinity)
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 
                 Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
                     sendMessageGetTranslation()
-                }.padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
-            .background(.white)
-            
+            .frame(maxWidth: .infinity)
+            .background(.brown)
             
             TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
                 .lineLimit(1...5)
