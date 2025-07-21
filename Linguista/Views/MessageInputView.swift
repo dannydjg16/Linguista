@@ -47,7 +47,6 @@ struct MessageInputView: View {
                 .cornerRadius(10)
             }
             .frame(maxWidth: .infinity)
-            .background(.brown)
             
             TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
                 .lineLimit(1...5)
