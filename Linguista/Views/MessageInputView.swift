@@ -18,12 +18,17 @@ struct MessageInputView: View {
     var body: some View {
         
         VStack(spacing: 8) {
+            
+            Divider()
+                .frame(height: 1)
+                .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+            
             HStack {
                 Button("Reply") {
                     // Auto reply?
                 }
                 .padding()
-                .frame(maxWidth: .infinity) // Makes each button take equal width
+                .frame(maxWidth: .infinity)
                 .background(Color.brown)
                 .foregroundColor(.white)
                 .cornerRadius(10)

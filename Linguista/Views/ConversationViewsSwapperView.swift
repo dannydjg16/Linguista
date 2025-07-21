@@ -20,14 +20,14 @@ struct ConversationViewsSwapperView: View {
                 TabView(selection: $chatTabViewSelectedValue) {
                     TextMessagingView()
                         .tag(0)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 10)
                     
                     ChatView(chatTabViewSelectedValue: $chatTabViewSelectedValue)
                         .tag(1)
                         .padding(.bottom, 40)
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .interactive))
             }
         }
     }
