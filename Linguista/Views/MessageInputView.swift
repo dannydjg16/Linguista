@@ -77,7 +77,7 @@ struct MessageInputView: View {
     
     private func sendMessageGetTranslation() {
         
-        var languageToLearn = Utilities.getLanguageName(by: accountManager.languageToLearn)
+        let languageToLearn = Utilities.getLanguageName(by: accountManager.languageToLearn)
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
