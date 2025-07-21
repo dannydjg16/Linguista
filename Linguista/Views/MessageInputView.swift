@@ -63,6 +63,16 @@ struct MessageInputView: View {
                         .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                 )
                 .autocorrectionDisabled()
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }
+                        }
+                    }
+                }
         }
         .padding(.leading)
         .padding(.trailing)
