@@ -66,6 +66,25 @@ struct MessageInputView: View {
                 .toolbar {
                     ToolbarItem(placement: .keyboard) {
                         HStack {
+                            Text("Respond in: ")
+                            Button("English") {
+                                sendMessageGetEnglish()
+                            }
+                            //.padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                                sendMessageGetTranslation()
+                            }
+                            //.padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            Text("|")
                             Spacer()
                             Button(action: {
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
