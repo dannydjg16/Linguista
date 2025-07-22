@@ -67,8 +67,10 @@ struct MessageInputView: View {
                     ToolbarItem(placement: .keyboard) {
                         HStack {
                             Spacer()
-                            Button("Done") {
+                            Button(action: {
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }) {
+                                Image(systemName: "keyboard.chevron.compact.down")
                             }
                         }
                     }
