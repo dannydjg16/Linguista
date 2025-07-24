@@ -62,6 +62,12 @@ struct MessageInputView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                 )
+                .onSubmit {
+                    // Add functionality here
+                    print("Enter pressed! Text entered: \(text)")
+                    // Example: Clear the text field
+                    text = ""
+                }
                 .autocorrectionDisabled()
                 .toolbar {
                     ToolbarItem(placement: .keyboard) {
