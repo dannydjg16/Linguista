@@ -70,7 +70,6 @@ struct MessageInputView: View {
                             Button("English") {
                                 sendMessageGetEnglish()
                             }
-                            //.padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.brown)
                             .foregroundColor(.white)
@@ -79,7 +78,6 @@ struct MessageInputView: View {
                             Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
                                 sendMessageGetTranslation()
                             }
-                            //.padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.brown)
                             .foregroundColor(.white)
