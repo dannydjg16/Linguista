@@ -63,10 +63,7 @@ struct MessageInputView: View {
                         .stroke(Color.brown.opacity(0.15), lineWidth: 2)
                 )
                 .onSubmit {
-                    // Add functionality here
-                    print("Enter pressed! Text entered: \(text)")
-                    // Example: Clear the text field
-                    text = ""
+                    sendMessageGetTranslation()
                 }
                 .autocorrectionDisabled()
                 .toolbar {
