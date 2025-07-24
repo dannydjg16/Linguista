@@ -18,40 +18,31 @@ struct MessageInputView: View {
     var body: some View {
         
         VStack(spacing: 8) {
-            
+            HStack {
+                TextField("Type a message...", text: $speechRecognizer.transcribedText)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal)
+                
+                // Show send button only when text is not empty
+                if !speechRecognizer.transcribedText.isEmpty {
+                    Button(action: {
+                        // Add send functionality here
+                        print("Sending: \(speechRecognizer.transcribedText)")
+                        speechRecognizer.transcribedText = "" // Clear the text field after sending
+                    }) {
+                        Image(systemName: "paperplane.fill")
+                            .foregroundColor(.blue)
+                            .padding(8)
+                            .background(Circle().fill(.gray.opacity(0.2)))
+                    }
+                    .padding(.trailing, 8)
+                }
+            }
+            .padding()
             Divider()
                 .frame(height: 1)
                 .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-            
-            HStack {
-                Button("Reply") {
-                    // Auto reply?
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.brown)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                
-                Button("English") {
-                    sendMessageGetEnglish()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.brown)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                
-                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                    sendMessageGetTranslation()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.brown)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-            }
-            .frame(maxWidth: .infinity)
             
             TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
                 .lineLimit(1...5)
