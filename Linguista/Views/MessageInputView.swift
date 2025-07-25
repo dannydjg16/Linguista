@@ -24,14 +24,13 @@ struct MessageInputView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal)
                 
-                // Show send button only when text is not empty
                 if !speechRecognizer.transcribedText.isEmpty {
                     Button(action: {
                         // Add send functionality here
                         print("Sending: \(speechRecognizer.transcribedText)")
-                        speechRecognizer.transcribedText = "" // Clear the text field after sending
+                        speechRecognizer.transcribedText = ""
                     }) {
-                        Image(systemName: "paperplane.fill")
+                        Image(systemName: "arrow.up.message.fill")
                             .foregroundColor(.blue)
                             .padding(8)
                             .background(Circle().fill(.gray.opacity(0.2)))
