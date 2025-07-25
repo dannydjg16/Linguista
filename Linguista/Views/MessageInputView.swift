@@ -30,7 +30,7 @@ struct MessageInputView: View {
                         print("Sending: \(speechRecognizer.transcribedText)")
                         speechRecognizer.transcribedText = ""
                     }) {
-                        Image(systemName: "arrow.up.message.fill")
+                        Image(systemName: "arrow.up.message")
                             //.foregroundColor(.blue)
                             .padding(8)
                             .background(Circle().fill(.brown))
