@@ -31,9 +31,10 @@ struct MessageInputView: View {
                         speechRecognizer.transcribedText = ""
                     }) {
                         Image(systemName: "arrow.up.message.fill")
-                            .foregroundColor(.blue)
+                            //.foregroundColor(.blue)
                             .padding(8)
-                            .background(Circle().fill(.gray.opacity(0.2)))
+                            .background(Circle().fill(.brown))
+                            .foregroundColor(.white)
                     }
                     .padding(.trailing, 8)
                 }
