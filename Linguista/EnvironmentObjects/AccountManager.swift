@@ -60,8 +60,8 @@ class AccountManager: ObservableObject {
     }
     
     func signOut() {
-        userID = "" // Clear stored user ID
-        username = "" // Clear user name
+        userID = ""
+        username = ""
         print("User signed out")
     }
 }
