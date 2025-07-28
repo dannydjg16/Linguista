@@ -39,6 +39,7 @@ struct MessageInputView: View {
                 }
             }
             .padding()
+            
             Divider()
                 .frame(height: 1)
                 .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
@@ -97,10 +98,13 @@ struct MessageInputView: View {
                 Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about numbers. Respond with a maximum of 10-15 words. The words should be very informal like just chatting."),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
+            
             let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
+            
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
+            
             speechRecognizer.transcribedText = ""
         }
     }
@@ -114,10 +118,13 @@ struct MessageInputView: View {
                 Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about numbers. Respond with a maximum of 10-15 words. The words should be very informal like just chatting. Respond in \(languageToLearn)"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
+            
             let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
+            
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
+            
             speechRecognizer.transcribedText = ""
         }
     }
