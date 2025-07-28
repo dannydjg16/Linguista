@@ -18,11 +18,54 @@ struct MessageInputView: View {
     var body: some View {
         
         VStack(spacing: 8) {
+            
+            Divider()
+                .frame(height: 1)
+                .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+           
             HStack {
-                TextField("Type a message...", text: $speechRecognizer.transcribedText)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal)
+                TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
+                    .lineLimit(1...5)
+                    .padding()
+                    .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.brown.opacity(0.15), lineWidth: 2)
+                    )
+                    .onSubmit {
+                        sendMessageGetTranslation()
+                    }
+                    .autocorrectionDisabled()
+                    .toolbar {
+                        ToolbarItem(placement: .keyboard) {
+                            HStack {
+                                Text("Respond in: ")
+                                Button("English") {
+                                    sendMessageGetEnglish()
+                                }
+                                .frame(maxWidth: .infinity)
+                                .background(Color.brown)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                
+                                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                                    sendMessageGetTranslation()
+                                }
+                                .frame(maxWidth: .infinity)
+                                .background(Color.brown)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                Text("|")
+                                Spacer()
+                                Button(action: {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }) {
+                                    Image(systemName: "keyboard.chevron.compact.down")
+                                }
+                            }
+                        }
+                    }
                 
                 if !speechRecognizer.transcribedText.isEmpty {
                     Button(action: {
@@ -40,52 +83,6 @@ struct MessageInputView: View {
             }
             .padding()
             
-            Divider()
-                .frame(height: 1)
-                .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-            
-            TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
-                .lineLimit(1...5)
-                .padding()
-                .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.brown.opacity(0.15), lineWidth: 2)
-                )
-                .onSubmit {
-                    sendMessageGetTranslation()
-                }
-                .autocorrectionDisabled()
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        HStack {
-                            Text("Respond in: ")
-                            Button("English") {
-                                sendMessageGetEnglish()
-                            }
-                            .frame(maxWidth: .infinity)
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            
-                            Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                                sendMessageGetTranslation()
-                            }
-                            .frame(maxWidth: .infinity)
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            Text("|")
-                            Spacer()
-                            Button(action: {
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            }) {
-                                Image(systemName: "keyboard.chevron.compact.down")
-                            }
-                        }
-                    }
-                }
         }
         .padding(.leading)
         .padding(.trailing)
