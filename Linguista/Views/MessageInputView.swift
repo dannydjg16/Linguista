@@ -26,7 +26,7 @@ struct MessageInputView: View {
                 
                 if !speechRecognizer.transcribedText.isEmpty {
                     Button(action: {
-                        // Add send functionality here
+
                         print("Sending: \(speechRecognizer.transcribedText)")
                         speechRecognizer.transcribedText = ""
                     }) {
