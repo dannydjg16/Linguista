@@ -40,7 +40,7 @@ struct MessageInputView: View {
                     .toolbar {
                         ToolbarItem(placement: .keyboard) {
                             HStack {
-                                Text("Respond in: ")
+                                Text("Response: ")
                                 Button("English") {
                                     sendMessageGetEnglish()
                                 }
