@@ -69,7 +69,7 @@ struct MessageInputView: View {
                 
                 if !speechRecognizer.transcribedText.isEmpty {
                     Button(action: {
-
+                        sendMessageGetTranslation()
                         print("Sending: \(speechRecognizer.transcribedText)")
                         speechRecognizer.transcribedText = ""
                     }) {
