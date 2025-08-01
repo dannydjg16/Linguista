@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SpeechRecognizerView: View {
-    let speechRecognizer: SpeechRecognizer
+    @EnvironmentObject var speechRecognizer: SpeechRecognizer
     
     var body: some View {
         VStack {
@@ -39,6 +39,6 @@ struct SpeechRecognizerView: View {
 
 struct SpeechRecognizerView_Previews: PreviewProvider {
     static var previews: some View {
-        SpeechRecognizerView(speechRecognizer: SpeechRecognizer())
+        SpeechRecognizerView()
     }
 }
