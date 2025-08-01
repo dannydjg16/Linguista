@@ -12,6 +12,7 @@ struct MessageInputView: View {
     
     @EnvironmentObject var accountManager: AccountManager
     @EnvironmentObject var conversationViewModel: ConversationViewModel
+    
     @ObservedObject var speechRecognizer: SpeechRecognizer
     @Environment(\.colorScheme) var colorScheme
     
