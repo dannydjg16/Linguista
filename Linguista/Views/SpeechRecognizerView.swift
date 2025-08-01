@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SpeechRecognizerView: View {
-    @ObservedObject var speechRecognizer: SpeechRecognizer
+    let speechRecognizer: SpeechRecognizer
     
     var body: some View {
         VStack {
