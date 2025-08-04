@@ -17,7 +17,7 @@ struct SpeedSelectorView: View {
     var body: some View {
         VStack {
             
-            /// Display current speed as a percentage
+            // Display current speed as a percentage
             Text("Current Playback Speed: \(Int(playbackSpeed * 100))%")
                 .padding()
             

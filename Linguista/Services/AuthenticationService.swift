@@ -49,7 +49,7 @@ class AuthenticationService {
                 throw URLError(.badServerResponse)
             }
         } else {
-            throw URLError(.badServerResponse) // Error: Invalid response
+            throw URLError(.badServerResponse)
         }
     }
 }
