@@ -46,7 +46,7 @@ class AuthenticationService {
                 self.accessToken = accessToken
                 return accessToken
             } else {
-                throw URLError(.badServerResponse) // Error: Unable to parse access token from response
+                throw URLError(.badServerResponse)
             }
         } else {
             throw URLError(.badServerResponse) // Error: Invalid response
