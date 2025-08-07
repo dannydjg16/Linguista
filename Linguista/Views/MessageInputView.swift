@@ -12,7 +12,7 @@ struct MessageInputView: View {
     
     @EnvironmentObject var accountManager: AccountManager
     @EnvironmentObject var conversationViewModel: ConversationViewModel
-    @ObservedObject var speechRecognizer: SpeechRecognizer
+    @EnvironmentObject var speechRecognizer: SpeechRecognizer
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -132,8 +132,9 @@ struct MessageInputView_Previews: PreviewProvider {
         let persistenceController = PersistenceController(inMemory: true)
         let context = persistenceController.container.viewContext
         
-        MessageInputView(speechRecognizer: SpeechRecognizer())
+        MessageInputView()
             .environmentObject(ConversationViewModel())
             .environmentObject(AccountManager(context: context))
+            .environmentObject(SpeechRecognizer())
     }
 }

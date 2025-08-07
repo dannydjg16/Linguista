@@ -120,7 +120,6 @@ struct AccountView: View {
             let userID = appleIDCredential.user
             let email = appleIDCredential.email
             let fullName = appleIDCredential.fullName
-            // Save user credentials or send to your server for verification
             print("User ID: \(userID)")
             print("Email: \(email ?? "No email")")
             print("Full Name: \(fullName?.givenName ?? "No name")")

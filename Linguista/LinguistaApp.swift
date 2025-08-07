@@ -11,8 +11,8 @@ import AVFoundation
 @main
 struct LinguistaApp: App {
     @StateObject private var conversationViewModel = ConversationViewModel()
+    @StateObject private var speechRecognizer = SpeechRecognizer()
     let persistenceController = PersistenceController.shared
-    
     
     init() {
         setupAudioSession()
@@ -22,6 +22,7 @@ struct LinguistaApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(conversationViewModel)
+                .environmentObject(speechRecognizer)
                 .environmentObject(AccountManager(context: persistenceController.container.viewContext))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

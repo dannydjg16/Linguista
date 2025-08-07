@@ -9,16 +9,12 @@ import Foundation
 import SwiftUI
 
 struct TextMessagingView: View {
-    
-    @StateObject var speechRecognizer = SpeechRecognizer()
-    
+        
     var body: some View {
         VStack{
             MessageListView()
             
-            MessageInputView(
-                speechRecognizer: speechRecognizer
-            )
+            MessageInputView()
         }
     }
 }
@@ -26,6 +22,5 @@ struct TextMessagingView: View {
 struct TextMessagingView_Previews: PreviewProvider {
     static var previews: some View {
         TextMessagingView()
-            .environmentObject(ConversationViewModel())
     }
 }
