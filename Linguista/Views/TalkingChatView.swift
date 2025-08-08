@@ -48,7 +48,7 @@ struct TalkingChatView: View {
                     Spacer()
                     
                     Button(action: {
-                        //textToSpeech()
+                        
                     }) {
                         Image(systemName: "microphone")
                             .foregroundColor(.white)
