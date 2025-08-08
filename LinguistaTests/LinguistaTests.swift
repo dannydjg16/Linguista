@@ -24,5 +24,4 @@ final class LinguistaTests: XCTestCase {
         self.measure {
         }
     }
-
 }
