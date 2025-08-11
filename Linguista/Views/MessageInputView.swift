@@ -67,7 +67,7 @@ struct MessageInputView: View {
                         }
                     }
                     .toolbar {
-                        ToolbarItem(placement: .navigation) {
+                        ToolbarItem(placement: .bottomBar) {
                             HStack {
                                 Text("Response: ")
                                 
