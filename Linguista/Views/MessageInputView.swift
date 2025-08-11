@@ -67,7 +67,7 @@ struct MessageInputView: View {
                         }
                     }
                     .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
+                        ToolbarItem(placement: .navigation) {
                             HStack {
                                 Text("Response: ")
                                 
