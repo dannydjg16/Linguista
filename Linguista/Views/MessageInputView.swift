@@ -103,8 +103,6 @@ struct MessageInputView: View {
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
-            
-            speechRecognizer.transcribedText = ""
         }
     }
     
@@ -122,9 +120,7 @@ struct MessageInputView: View {
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
-            }
-            
-            speechRecognizer.transcribedText = ""
+            }            
         }
     }
 }
