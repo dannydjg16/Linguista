@@ -28,10 +28,11 @@ struct MessageInputView: View {
                     .lineLimit(1...5)
                     .padding()
                     .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
+                    .foregroundColor(.white)
                     .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.brown.opacity(0.15), lineWidth: 2)
+                            .stroke(Color.brown, lineWidth: 2)
                     )
                     .onSubmit {
                         sendMessageGetTranslation()
