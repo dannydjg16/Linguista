@@ -41,6 +41,7 @@ struct MessageInputView: View {
                         ToolbarItem(placement: .keyboard) {
                             HStack {
                                 Text("Response: ")
+                                
                                 Button("English") {
                                     sendMessageGetEnglish()
                                 }
@@ -56,8 +57,9 @@ struct MessageInputView: View {
                                 .background(Color.brown)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
+                                
                                 Text("|")
-                                Spacer()
+                                
                                 Button(action: {
                                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }) {
