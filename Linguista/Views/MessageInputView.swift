@@ -66,28 +66,6 @@ struct MessageInputView: View {
                             }
                         }
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .bottomBar) {
-                            HStack {
-                                Text("Response: ")
-                                
-                                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                                    sendMessageGetTranslation()
-                                }
-                                .frame(maxWidth: .infinity)
-                                .background(Color.brown)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                Text("|")
-                                Spacer()
-                                Button(action: {
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }) {
-                                    Image(systemName: "keyboard.chevron.compact.down")
-                                }
-                            }
-                        }
-                    }
                 
                 if !speechRecognizer.transcribedText.isEmpty {
                     Button(action: {
