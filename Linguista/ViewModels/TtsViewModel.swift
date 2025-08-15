@@ -20,10 +20,9 @@ class TtsViewModel: ObservableObject {
     }
     
     func playAudio(with data: Data) {        
-        // Play the audio
         do {
             audioPlayer = try AVAudioPlayer(data: data)
-            audioPlayer?.prepareToPlay() // Optional: Prepares the player for better performance
+            audioPlayer?.prepareToPlay()
             audioPlayer?.play()
         } catch {
             print("Error playing audio: \(error.localizedDescription)")
