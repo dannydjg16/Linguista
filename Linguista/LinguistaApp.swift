@@ -47,7 +47,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
     
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "DataModels") // Match your .xcdatamodeld file name
+        container = NSPersistentContainer(name: "DataModels")
         if inMemory {
             let description = container.persistentStoreDescriptions.first
             description?.shouldMigrateStoreAutomatically = true
