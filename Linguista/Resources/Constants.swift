@@ -101,6 +101,7 @@ let popularLanguageObjects: [Language] = popularLanguages.enumerated().map { (in
     Language(id: index + 1, name: name)
 }
 
+// Conversation List
 let conversationStarters = [
     "What do you see around you right now?",
     "What did you do today?",
