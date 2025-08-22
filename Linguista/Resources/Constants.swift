@@ -18,6 +18,7 @@ let ttsEndpoint = "/openai/tts"
 let authBaseUrl = "https://dev-7824301.okta.com/oauth2/default/v1"
 let authTokenEndpoint = "/token"
 
+// Language List
 let popularLanguages = [
     "Farsi",
     "English",
