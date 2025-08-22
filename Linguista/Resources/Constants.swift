@@ -97,6 +97,7 @@ let popularLanguages = [
     "Zhuang"
 ]
 
+// Method to map language to object
 let popularLanguageObjects: [Language] = popularLanguages.enumerated().map { (index, name) in
     Language(id: index + 1, name: name)
 }
