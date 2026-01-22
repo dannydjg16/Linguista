@@ -28,10 +28,11 @@ struct MessageInputView: View {
                     .lineLimit(1...5)
                     .padding()
                     .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
+                    .foregroundColor(.white)
                     .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.brown.opacity(0.15), lineWidth: 2)
+                            .stroke(Color.brown, lineWidth: 2)
                     )
                     .onSubmit {
                         sendMessageGetTranslation()
@@ -41,6 +42,7 @@ struct MessageInputView: View {
                         ToolbarItem(placement: .keyboard) {
                             HStack {
                                 Text("Response: ")
+                                
                                 Button("English") {
                                     sendMessageGetEnglish()
                                 }
@@ -56,8 +58,9 @@ struct MessageInputView: View {
                                 .background(Color.brown)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
+                                
                                 Text("|")
-                                Spacer()
+                                
                                 Button(action: {
                                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }) {
@@ -101,8 +104,6 @@ struct MessageInputView: View {
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
             }
-            
-            speechRecognizer.transcribedText = ""
         }
     }
     
@@ -120,9 +121,7 @@ struct MessageInputView: View {
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
-            }
-            
-            speechRecognizer.transcribedText = ""
+            }            
         }
     }
 }

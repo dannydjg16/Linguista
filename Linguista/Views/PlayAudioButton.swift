@@ -18,7 +18,6 @@ struct PlayAudioButton: View {
         HStack(alignment: .bottom, spacing: 10) {
             if message.audioData != nil {
                 Button(action: {
-                    // Call playAudio with the selected speed
                     conversationViewModel.playAudio(messagingModel: message, speed: playbackSpeed)
                 }) {
                     Image(systemName: "arrow.clockwise")
@@ -35,8 +34,8 @@ struct PlayAudioButton: View {
                     isSpeedSelectorPresented = true
                 }) {
                     Text("Speed")
-                        .font(.system(size: 14, weight: .regular)) // Smaller font size
-                        .foregroundColor(.blue) // Link-like color
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.blue)
                 }
                 .sheet(isPresented: $isSpeedSelectorPresented) {
                     SpeedSelectorView(playbackSpeed: $playbackSpeed)

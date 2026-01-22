@@ -18,6 +18,7 @@ let ttsEndpoint = "/openai/tts"
 let authBaseUrl = "https://dev-7824301.okta.com/oauth2/default/v1"
 let authTokenEndpoint = "/token"
 
+// Language List
 let popularLanguages = [
     "Farsi",
     "English",
@@ -96,10 +97,12 @@ let popularLanguages = [
     "Zhuang"
 ]
 
+// Method to map language to object
 let popularLanguageObjects: [Language] = popularLanguages.enumerated().map { (index, name) in
     Language(id: index + 1, name: name)
 }
 
+// Conversation List
 let conversationStarters = [
     "What do you see around you right now?",
     "What did you do today?",

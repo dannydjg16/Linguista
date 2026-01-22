@@ -10,10 +10,8 @@ import AVFoundation
 
 struct TextToSpeechView: View {
     @StateObject private var textToSpeech = TextToSpeechA()
-    //@State private var textToSpeak = "Hello, my name is"
     @State private var textToSpeak = "سلام، چطور هستید؟"
     @State private var selectedLanguage = "fa-IR"
-    //@State private var selectedLanguage = "en-US"
     let languages = ["fa-IR": "Farsi", "en-US": "English (US)"]
 
     var body: some View {

@@ -235,7 +235,6 @@ struct MessageModalView: View {
                             .transition(.opacity)
                     }
                 }
-                
                 Spacer()
                 Divider()
                     .frame(height: 1)
