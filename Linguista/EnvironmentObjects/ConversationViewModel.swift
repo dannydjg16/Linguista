@@ -28,7 +28,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         messages = Array(messages.prefix(1))
     }
     
-    
     func sendMessage(completionRequest: CompletionsRequest) async {
         
         if (completionRequest.messages.count == 0){
@@ -46,20 +45,20 @@ class ConversationViewModel: ObservableObject, Sendable {
             self.messages.append(userMessage)
         }
         
-        // Put together list to save messages. completionRequest is a model that has messages list.
-        var conversationSoFar = completionRequest
-        
-        // Keep completion request data, but update the message array to pass forward.
-        conversationSoFar.messages = messages.compactMap { $0.message }
-        
-        // Add system prompt at the beginning of the conversation
-        conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
-        
-        // Call trimMessageArray to limit the size of the array thats passed in.
-        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
-        
+//        // Put together list to save messages. completionRequest is a model that has messages list.
+//        var conversationSoFar = completionRequest
+//        
+//        // Keep completion request data, but update the message array to pass forward.
+//        conversationSoFar.messages = messages.compactMap { $0.message }
+//        
+//        // Add system prompt at the beginning of the conversation
+//        conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
+//        
+//        // Call trimMessageArray to limit the size of the array thats passed in.
+//        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
+//        
         do {
-            let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
+            let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             
