@@ -28,6 +28,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         messages = Array(messages.prefix(1))
     }
     
+    
     func sendMessage(completionRequest: CompletionsRequest) async {
         
         if (completionRequest.messages.count == 0){
@@ -45,7 +46,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             self.messages.append(userMessage)
         }
         
-        // Put together list to save messages
+        // Put together list to save messages. completionRequest is a model that has messages list.
         var conversationSoFar = completionRequest
         
         // Keep completion request data, but update the message array to pass forward.
