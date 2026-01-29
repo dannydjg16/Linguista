@@ -50,6 +50,7 @@ struct Utilities {
         
         // Calculate how many non-system elements to keep
         let numberOfNonSystemElementsToKeep = maxLength - systemMessages.count
+        
         // Get non-system elements to send to API
         let nonSystemElementsToKeep = completionRequest.messages.suffix(numberOfNonSystemElementsToKeep)
         
@@ -58,6 +59,7 @@ struct Utilities {
         
         // Create new CompletionRequest so that I can alter the message array
         var completionRequestToReturn = completionRequest
+        
         // Attach trimmed list to Completion Request
         completionRequestToReturn.messages = trimmedArray
         
