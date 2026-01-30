@@ -53,10 +53,7 @@ class ConversationViewModel: ObservableObject, Sendable {
 //        
 //        // Add system prompt at the beginning of the conversation
 //        conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
-//        
-//        // Call trimMessageArray to limit the size of the array thats passed in.
-//        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
-//        
+        
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
