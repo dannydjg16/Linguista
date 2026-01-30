@@ -28,7 +28,7 @@ struct MessageInputView: View {
                     .lineLimit(1...5)
                     .padding()
                     .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.black.opacity(0.5))
                     .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
