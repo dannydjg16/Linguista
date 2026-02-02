@@ -28,6 +28,9 @@ struct ConversationViewsSwapperView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .interactive))
+                .onChange(of: chatTabViewSelectedValue) { oldValue, newValue in
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
             }
         }
     }

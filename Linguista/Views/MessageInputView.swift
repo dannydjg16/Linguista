@@ -23,12 +23,15 @@ struct MessageInputView: View {
                 .frame(height: 1)
                 .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
            
+            // TODO: fix the text field toolbar. It looks like its separate from the keyboard, and encroaches on the text field when in use.
+            
+            // Also could dismiss the keyboard when swiping away
             HStack {
                 TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
                     .lineLimit(1...5)
                     .padding()
                     .background(colorScheme == .light ? Color.white : Color.black.opacity(0.5))
-                    .foregroundColor(.white)
+                    .foregroundColor(colorScheme == .light ? Color.black : Color.white)
                     .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)

@@ -45,7 +45,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             self.messages.append(userMessage)
         }
         
-        // Put together list to save messages
+        // Put together list to save messages. completionRequest is a model that has messages list.
         var conversationSoFar = completionRequest
         
         // Keep completion request data, but update the message array to pass forward.
@@ -53,9 +53,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         // Add system prompt at the beginning of the conversation
         conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
-        
-        // Call trimMessageArray to limit the size of the array thats passed in.
-        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
         
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
@@ -93,9 +90,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         // Add system prompt at the beginning of the conversation
         conversationSoFar.messages.insert(systemMessage ?? completionRequest.messages[0], at: 0)
-        
-        // Call trimMessageArray to limit the size of the array thats passed in.
-        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
         
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
@@ -140,9 +134,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         // Add system prompt at the beginning of the conversation
         conversationSoFar.messages.insert(systemMessage ?? dataModel.messages[0], at: 0)
-        
-        // Call trimMessageArray to limit the size of the array thats passed in.
-        conversationSoFar = Utilities.trimMessageArray(completionRequest: conversationSoFar, maxLength: 10)
         
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
