@@ -18,36 +18,6 @@ struct MessageInputView: View {
     var body: some View {
         
         VStack(spacing: 8) {
-            // Toolbar buttons
-            HStack {
-                Text("Response: ")
-                
-                Button("English") {
-                    sendMessageGetEnglish()
-                }
-                .frame(maxWidth: .infinity)
-                .background(Color.brown)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                
-                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                    sendMessageGetTranslation()
-                }
-                .frame(maxWidth: .infinity)
-                .background(Color.brown)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                
-                Text("|")
-                
-                Button(action: {
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                }) {
-                    Image(systemName: "keyboard.chevron.compact.down")
-                }
-            }
-            .padding(.horizontal)
-            
             // Text input field
             HStack {
                 TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
@@ -80,6 +50,36 @@ struct MessageInputView: View {
                 }
             }
             .padding()
+            
+            // Toolbar buttons
+            HStack {
+                Text("Response: ")
+                
+                Button("English") {
+                    sendMessageGetEnglish()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                    sendMessageGetTranslation()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Text("|")
+                
+                Button(action: {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }) {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+            }
+            .padding(.horizontal)
         }
         .padding(.leading)
         .padding(.trailing)
