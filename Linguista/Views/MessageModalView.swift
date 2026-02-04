@@ -31,8 +31,9 @@ struct MessageModalView: View {
                         .foregroundColor(.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(Color.white )
+                .background(Color.white)
                 .clipShape(Circle())
+                .padding([.top, .trailing])
             }
         }
         
