@@ -24,7 +24,7 @@ struct LanguagePickerView: View {
         .frame(width: 200)
         .padding()
         .background(Color.brown.opacity(0.15))
-        .tint(Color(red: 0.3, green: 0.15, blue: 0.05))
+        .tint(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
