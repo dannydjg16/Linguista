@@ -12,6 +12,7 @@ import CoreData
 struct LanguagePickerView: View {
     
     @EnvironmentObject var accountManager: AccountManager
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         Picker("Language: ", selection: $accountManager.languageToLearn) {
@@ -23,7 +24,8 @@ struct LanguagePickerView: View {
         .frame(width: 200)
         .padding()
         .background(Color.brown.opacity(0.15))
-        .tint(.white)
+        //.foregroundColor(Color.brown)
+        .tint(.brown)
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
