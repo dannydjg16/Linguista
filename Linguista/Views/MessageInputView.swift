@@ -86,8 +86,7 @@ struct MessageInputView: View {
             }
             .padding(.horizontal)
         }
-        .padding(.leading)
-        .padding(.trailing)
+        .padding([.leading, .trailing])
     }
     
     private func sendMessageGetEnglish() {

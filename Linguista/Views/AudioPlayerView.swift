@@ -112,8 +112,7 @@ struct AudioPlayerView: View {
                     }
                 }
             }
-            .padding(.leading)
-            .padding(.trailing)
+            .padding([.leading, .trailing])
         }
     }
 }
