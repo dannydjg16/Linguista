@@ -14,6 +14,12 @@ let apiBaseUrl = "https://linguista-appservice.azurewebsites.net"
 let completionsEndpoint = "/openai/completions"
 let ttsEndpoint = "/openai/tts"
 
+// OpenAi Models
+//let selectedCompletionsEndpoint = "gpt-4o-mini"
+let selectedCompletionsModel = "gpt-5-nano"
+let selectedTtsModel = "gpt-4o-mini-tts"
+let maxTokens = 1000
+
 // Auth endpoint url builders
 let authBaseUrl = "https://dev-7824301.okta.com/oauth2/default/v1"
 let authTokenEndpoint = "/token"
