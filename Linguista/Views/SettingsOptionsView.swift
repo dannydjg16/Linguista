@@ -18,16 +18,16 @@ struct SettingsOptionsView: View {
     var body: some View {
         HStack() {
             Spacer()
-            VStack {
+            VStack {                
                 Button(action: {
                     dismiss()
                     isShowingModal = false
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(colorScheme == .light ? Color.white : Color(red: 0.3, green: 0.15, blue: 0.05))
+                        .foregroundColor(colorScheme == .light ? Color.white : Color.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                .background(colorScheme == .light ? Color.brown.opacity(0.7) : Color.white)
                 .clipShape(Circle())
                 .padding([.top, .trailing])
             }
