@@ -24,10 +24,10 @@ struct SettingsOptionsView: View {
                     isShowingModal = false
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.brown)
+                        .foregroundColor(colorScheme == .light ? Color.white : Color(red: 0.3, green: 0.15, blue: 0.05))
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(Color.white )
+                .background(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                 .clipShape(Circle())
                 .padding([.top, .trailing])
             }
