@@ -25,10 +25,10 @@ struct ChatOptionsView: View {
                     dismiss()
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(colorScheme == .light ? Color.brown : Color.white)
+                        .foregroundColor(colorScheme == .light ? Color.white : Color.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(colorScheme == .light ? Color.white : Color.brown)
+                .background(colorScheme == .light ? Color.brown : Color.white)
                 .clipShape(Circle())
                 .padding([.top, .trailing])
             }
