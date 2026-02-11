@@ -18,14 +18,7 @@ struct MessageInputView: View {
     var body: some View {
         
         VStack(spacing: 8) {
-            
-            Divider()
-                .frame(height: 1)
-                .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-           
-            // TODO: fix the text field toolbar. It looks like its separate from the keyboard, and encroaches on the text field when in use.
-            
-            // Also could dismiss the keyboard when swiping away
+            // Text input field
             HStack {
                 TextField("Type a message", text: $speechRecognizer.transcribedText, axis: .vertical)
                     .lineLimit(1...5)
@@ -41,37 +34,6 @@ struct MessageInputView: View {
                         sendMessageGetTranslation()
                     }
                     .autocorrectionDisabled()
-                    .toolbar {
-                        ToolbarItem(placement: .keyboard) {
-                            HStack {
-                                Text("Response: ")
-                                
-                                Button("English") {
-                                    sendMessageGetEnglish()
-                                }
-                                .frame(maxWidth: .infinity)
-                                .background(Color.brown)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                
-                                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                                    sendMessageGetTranslation()
-                                }
-                                .frame(maxWidth: .infinity)
-                                .background(Color.brown)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                
-                                Text("|")
-                                
-                                Button(action: {
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }) {
-                                    Image(systemName: "keyboard.chevron.compact.down")
-                                }
-                            }
-                        }
-                    }
                 
                 if !speechRecognizer.transcribedText.isEmpty {
                     Button(action: {
@@ -89,9 +51,42 @@ struct MessageInputView: View {
             }
             .padding()
             
+            // Toolbar buttons
+            HStack {
+                
+                if !speechRecognizer.transcribedText.isEmpty {
+                    Text("Response: ")
+                    
+                    Button("English") {
+                        sendMessageGetEnglish()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    
+                    Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                        sendMessageGetTranslation()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    
+                    Text("|")
+                    
+                    Button(action: {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }) {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    }
+                }
+                
+                
+            }
+            .padding(.horizontal)
         }
-        .padding(.leading)
-        .padding(.trailing)
+        .padding([.leading, .trailing])
     }
     
     private func sendMessageGetEnglish() {
@@ -102,7 +97,7 @@ struct MessageInputView: View {
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
-            let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
+            let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 100, topP: 1)
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
@@ -120,7 +115,7 @@ struct MessageInputView: View {
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
-            let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
+            let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 100, topP: 1)
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)

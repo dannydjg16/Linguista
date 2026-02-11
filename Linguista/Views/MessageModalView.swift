@@ -28,11 +28,12 @@ struct MessageModalView: View {
                     dismiss()
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.brown)
+                        .foregroundColor(colorScheme == .light ? Color.white : Color.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(Color.white )
+                .background(colorScheme == .light ? Color.brown.opacity(0.7) : Color.white)
                 .clipShape(Circle())
+                .padding([.top, .trailing])
             }
         }
         
@@ -46,8 +47,7 @@ struct MessageModalView: View {
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding(.leading)
-                    .padding(.trailing)
+                    .padding([.leading, .trailing])
                 
                 HStack {
                     Text("Message:")
@@ -66,8 +66,7 @@ struct MessageModalView: View {
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding(.leading)
-                    .padding(.trailing)
+                    .padding([.leading, .trailing])
                 
                 HStack {
                     Text("Audio:")
@@ -121,8 +120,7 @@ struct MessageModalView: View {
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding(.leading)
-                    .padding(.trailing)
+                    .padding([.leading, .trailing])
                 
                 HStack {
                     Text("Translation:")
@@ -170,8 +168,7 @@ struct MessageModalView: View {
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding(.leading)
-                    .padding(.trailing)
+                    .padding([.leading, .trailing])
                 
                 HStack {
                     Text("Translation Audio:")
@@ -239,8 +236,7 @@ struct MessageModalView: View {
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding(.leading)
-                    .padding(.trailing)
+                    .padding([.leading, .trailing])
                 Spacer()
             }
             .animation(.easeInOut, value: showWarning)
@@ -249,7 +245,7 @@ struct MessageModalView: View {
     
     func translateWithViewModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English if \(Utilities.getLanguageName(by: accountManager.languageToLearn)) is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
-        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 30, topP: 1)
+        let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 30, topP: 1)
         
         Task {
             let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)

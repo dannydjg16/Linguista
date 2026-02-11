@@ -116,7 +116,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
-        let dataModel = CompletionsRequest(model: "gpt-4o-mini", messages: messages, maxTokens: 100, topP: 1)
+        let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 100, topP: 1)
         
         
         if (dataModel.messages.count == 0){
@@ -205,7 +205,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "gpt-4o-mini-tts", input: messagingModel.message.content, voice: "echo", speed: 0.8)
+            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messagingModel.message.content, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
@@ -226,7 +226,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "gpt-4o-mini-tts", input: messagingModel.message.content, voice: "echo", speed: 0.8)
+            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messagingModel.message.content, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.audioData = audioData
@@ -247,7 +247,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         var updatedMessagingModel = messagingModel
         
         do {
-            let ttsRequest = TtsRequest(model: "gpt-4o-mini-tts", input: messagingModel.translatedMessageContent!, voice: "echo", speed: 0.8)
+            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messagingModel.translatedMessageContent!, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
             updatedMessagingModel.translatedAudioData = audioData

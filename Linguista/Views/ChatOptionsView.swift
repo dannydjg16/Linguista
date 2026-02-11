@@ -25,11 +25,12 @@ struct ChatOptionsView: View {
                     dismiss()
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.brown)
+                        .foregroundColor(colorScheme == .light ? Color.white : Color.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(Color.white )
+                .background(colorScheme == .light ? Color.brown.opacity(0.7) : Color.white)
                 .clipShape(Circle())
+                .padding([.top, .trailing])
             }
         }
         
@@ -39,8 +40,7 @@ struct ChatOptionsView: View {
         Divider()
             .frame(height: 1)
             .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-            .padding(.leading)
-            .padding(.trailing)
+            .padding([.leading, .trailing])
 
         Spacer()
 
