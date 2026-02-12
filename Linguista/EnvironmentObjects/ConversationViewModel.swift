@@ -116,7 +116,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to a 3 year old."),
             Message(role: "user", content: messages.last!.message.content)
         ]
-        let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 100, topP: 1)
+        let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
         
         
         if (dataModel.messages.count == 0){

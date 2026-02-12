@@ -97,7 +97,7 @@ struct MessageInputView: View {
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
-            let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 100, topP: 1)
+            let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
@@ -115,7 +115,7 @@ struct MessageInputView: View {
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
-            let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: 100, topP: 1)
+            let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
