@@ -10,7 +10,6 @@ import AuthenticationServices
 
 struct AccountView: View {
     
-    @State private var name: String = "John Doe"
     @State private var isEditing: Bool = false
     @EnvironmentObject var accountManager: AccountManager
     @Environment(\.colorScheme) var colorScheme
