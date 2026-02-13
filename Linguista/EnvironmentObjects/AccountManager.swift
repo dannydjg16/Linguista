@@ -64,4 +64,6 @@ class AccountManager: ObservableObject {
         username = ""
         print("User signed out")
     }
+    
+    // Set a user defaults set name option too.
 }
