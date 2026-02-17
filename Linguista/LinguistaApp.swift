@@ -18,15 +18,15 @@ struct LinguistaApp: App {
         setupAudioSession()
     }
     
-//    var body: some Scene {
-//        WindowGroup {
-//            ContentView()
-//                .environmentObject(conversationViewModel)
-//                .environmentObject(speechRecognizer)
-//                .environmentObject(AccountManager(context: persistenceController.container.viewContext))
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-//        }
-//    }
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(conversationViewModel)
+                .environmentObject(speechRecognizer)
+                .environmentObject(AccountManager(context: persistenceController.container.viewContext))
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        }
+    }
     
     
 //    var body: some Scene {
