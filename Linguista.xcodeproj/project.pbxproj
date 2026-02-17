@@ -122,6 +122,7 @@
 		814DE6EC2DA4D40800A5C0DE /* App Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "App Models"; sourceTree = "<group>"; };
 		814DE6ED2DA4D47900A5C0DE /* List Objects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "List Objects"; sourceTree = "<group>"; };
 		81BD14262DD6F89A003B4706 /* EnvironmentObjects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EnvironmentObjects; sourceTree = "<group>"; };
+		81F4A15A2F4421DD006EAE48 /* UserModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserModels; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +286,7 @@
 		81E127F62C2287B5009A5051 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				81F4A15A2F4421DD006EAE48 /* UserModels */,
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
 				814DE6EC2DA4D40800A5C0DE /* App Models */,
 				814DE6EB2DA4D3E800A5C0DE /* API */,
@@ -313,6 +315,7 @@
 				814DE6EC2DA4D40800A5C0DE /* App Models */,
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
 				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
+				81F4A15A2F4421DD006EAE48 /* UserModels */,
 			);
 			name = Linguista;
 			productName = Linguista;
