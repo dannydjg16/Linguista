@@ -123,6 +123,7 @@
 		814DE6ED2DA4D47900A5C0DE /* List Objects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "List Objects"; sourceTree = "<group>"; };
 		81BD14262DD6F89A003B4706 /* EnvironmentObjects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EnvironmentObjects; sourceTree = "<group>"; };
 		81F4A15A2F4421DD006EAE48 /* UserModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserModels; sourceTree = "<group>"; };
+		81F4A15E2F4424C5006EAE48 /* UserSignInFiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserSignInFiles; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +241,7 @@
 		81494AD62C13BD2900F1ABB0 /* Linguista */ = {
 			isa = PBXGroup;
 			children = (
+				81F4A15E2F4424C5006EAE48 /* UserSignInFiles */,
 				813EBDE62DD596FE00371BBB /* Linguista.entitlements */,
 				8120C7DE2C40F099007DCE2E /* Info.plist */,
 				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
@@ -316,6 +318,7 @@
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
 				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
 				81F4A15A2F4421DD006EAE48 /* UserModels */,
+				81F4A15E2F4424C5006EAE48 /* UserSignInFiles */,
 			);
 			name = Linguista;
 			productName = Linguista;
