@@ -9,6 +9,6 @@ struct User: Codable {
     let userId: String
     var name: String
     var email: String
-    var languagePreference: Int
-    var userName: String
+//    var languagePreference: Int
+//    var userName: String
 }
