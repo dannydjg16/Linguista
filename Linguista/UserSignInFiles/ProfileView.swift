@@ -31,8 +31,6 @@ struct ProfileView: View {
                 
             } else {
                 // User is signed out - show nothing personal
-                Text("Sign in to access more features")
-                    .font(.title)
                 
                 SignInWithAppleButton(.signIn) { request in
                     request.requestedScopes = [.fullName, .email]
@@ -40,6 +38,9 @@ struct ProfileView: View {
                     handleSignIn(result)
                 }
                 .frame(height: 50)
+                
+                Text("Sign in to access more features")
+                    .font(.callout)
             }
         }
         .padding()
