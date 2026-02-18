@@ -46,7 +46,7 @@ class AuthViewController: UIViewController, ASAuthorizationControllerDelegate {
                 
                 let newUser = User(
                     userId: userId,
-                    name: name.isEmpty ? "Apple User" : name,
+                    name: name.isEmpty ? "" : name,
                     email: email
                 )
                 
