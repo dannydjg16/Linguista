@@ -17,7 +17,7 @@ struct ProfileView: View {
         VStack(spacing: 20) {
             if let user = user {
                 // User is signed in - show their info
-                Text("Welcome, \(user.name)")
+                Text("Welcome to Linguista, \(user.name)")
                     .font(.title)
                 
                 Text(user.email)
@@ -31,7 +31,7 @@ struct ProfileView: View {
                 
             } else {
                 // User is signed out - show nothing personal
-                Text("Please sign in")
+                Text("Sign in to access more features")
                     .font(.title)
                 
                 SignInWithAppleButton(.signIn) { request in
@@ -69,7 +69,7 @@ struct ProfileView: View {
                 
                 let newUser = User(
                     userId: userId,
-                    name: name.isEmpty ? "Apple User" : name,
+                    name: name.isEmpty ? "" : name,
                     email: email
                 )
                 
