@@ -10,46 +10,57 @@ import SwiftUI
 import AuthenticationServices
 
 struct ProfileView: View {
-    // Using @State so the view updates when user signs out
     @State private var user: User? = UserManager.shared.currentUser
+    @State private var showEditProfile = false
     
     var body: some View {
-        VStack(spacing: 20) {
-            if let user = user {
-                // User is signed in - show their info
-                Text("Welcome to Linguista, \(user.name)")
-                    .font(.title)
-                
-                Text(user.email)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                
-                Button("Sign Out") {
-                    signOut()
+        NavigationView {
+            VStack(spacing: 20) {
+                if let user = user {
+                    // User is signed in - show their info
+                    Text("Welcome, \(user.name)")
+                        .font(.title)
+                    
+                    Text(user.email)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    
+                    Button("Edit Profile") {
+                        showEditProfile = true
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Button("Sign Out") {
+                        signOut()
+                    }
+                    .foregroundColor(.red)
+                    
+                } else {
+                    // User is signed out
+                    Text("Please sign in")
+                        .font(.title)
+                    
+                    SignInWithAppleButton(.signIn) { request in
+                        request.requestedScopes = [.fullName, .email]
+                    } onCompletion: { result in
+                        handleSignIn(result)
+                    }
+                    .frame(height: 50)
                 }
-                .foregroundColor(.red)
-                
-            } else {
-                // User is signed out - show nothing personal
-                SignInWithAppleButton(.signIn) { request in
-                    request.requestedScopes = [.fullName, .email]
-                } onCompletion: { result in
-                    handleSignIn(result)
-                }
-                .frame(height: 50)
-                
-                Text("Sign in for more features")
-                    .font(.callout)
+            }
+            .padding()
+            .sheet(isPresented: $showEditProfile) {
+                EditProfileView()
+            }
+            .onAppear {
+                // Refresh user data when view appears (in case it was edited)
+                user = UserManager.shared.currentUser
             }
         }
-        .padding()
     }
     
     func signOut() {
         UserManager.shared.clearUser()
-        // This clears the view by setting local state to nil
-        // The data is removed from UserDefaults but this is
-        // what actually updates the UI
         user = nil
     }
     
@@ -58,24 +69,30 @@ struct ProfileView: View {
         case .success(let auth):
             if let credential = auth.credential as? ASAuthorizationAppleIDCredential {
                 let userId = credential.user
-                let name = [
-                    credential.fullName?.givenName,
-                    credential.fullName?.familyName
-                ]
-                .compactMap { $0 }
-                .joined(separator: " ")
                 
-                let email = credential.email ?? "No email provided"
-                
-                let newUser = User(
-                    userId: userId,
-                    name: name.isEmpty ? "" : name,
-                    email: email
-                )
-                
-                UserManager.shared.currentUser = newUser
-                // Update the view state
-                user = newUser
+                // Check if user already exists
+                if let existingUser = UserManager.shared.currentUser {
+                    user = existingUser
+                } else {
+                    // First time sign in
+                    let name = [
+                        credential.fullName?.givenName,
+                        credential.fullName?.familyName
+                    ]
+                    .compactMap { $0 }
+                    .joined(separator: " ")
+                    
+                    let email = credential.email ?? "No email provided"
+                    
+                    let newUser = User(
+                        userId: userId,
+                        name: name.isEmpty ? "Apple User" : name,
+                        email: email
+                    )
+                    
+                    UserManager.shared.currentUser = newUser
+                    user = newUser
+                }
             }
         case .failure(let error):
             print("Error: \(error.localizedDescription)")
