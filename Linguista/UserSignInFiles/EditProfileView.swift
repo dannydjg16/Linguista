@@ -51,7 +51,7 @@ struct EditProfileView: View {
         guard let currentUser = UserManager.shared.currentUser else { return }
         
         // Create updated user with new info
-        let updatedUser = AppUser(
+        let updatedUser = User(
             userId: currentUser.userId,
             name: name,
             email: email
