@@ -39,7 +39,7 @@ struct ProfileView: View {
                 }
                 .frame(height: 50)
                 
-                Text("Sign in to access more features")
+                Text("Sign in for more features")
                     .font(.callout)
             }
         }
