@@ -31,7 +31,6 @@ struct ProfileView: View {
                 
             } else {
                 // User is signed out - show nothing personal
-                
                 SignInWithAppleButton(.signIn) { request in
                     request.requestedScopes = [.fullName, .email]
                 } onCompletion: { result in
