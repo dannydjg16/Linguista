@@ -37,15 +37,15 @@ struct ProfileView: View {
                     
                 } else {
                     // User is signed out
-                    Text("Please sign in")
-                        .font(.title)
-                    
                     SignInWithAppleButton(.signIn) { request in
                         request.requestedScopes = [.fullName, .email]
                     } onCompletion: { result in
                         handleSignIn(result)
                     }
                     .frame(height: 50)
+                    
+                    Text("Please sign in")
+                        .font(.title)
                 }
             }
             .padding()
