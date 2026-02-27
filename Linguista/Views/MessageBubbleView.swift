@@ -33,26 +33,43 @@ struct MessageBubbleView: View {
                             showModal = true
                         }
                     )
+                    .overlay(
+                        Rectangle()
+                            .frame(width: 4)
+                            .foregroundColor(.brown),
+                        alignment: .trailing)
                     .sheet(isPresented: $showModal) {
                         MessageModalView(message: $message)
                     }
                 
             } else {
-                Text(message.message.content)
-                    .padding()
-                    .background(Color.brown.opacity(0.2))
-                    .cornerRadius(10)
-                    .gesture(TapGesture()
-                        .onEnded { _ in
-                            showModal = true
+                VStack(alignment: .leading) {
+                    Text("Wista")
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, -8)
+                        .padding(.leading, 4)
+                    Text(message.message.content)
+                        .padding()
+                        .background(Color.brown.opacity(0.2))
+                        .cornerRadius(10)
+                        .gesture(TapGesture()
+                            .onEnded { _ in
+                                showModal = true
+                            }
+                        )
+                        .overlay(
+                            Rectangle()
+                                .frame(width: 4)
+                                .foregroundColor(.brown),
+                            alignment: .leading)
+                        .sheet(isPresented: $showModal) {
+                            MessageModalView(message: $message)
                         }
-                    )
-                    .sheet(isPresented: $showModal) {
-                        MessageModalView(message: $message)
-                    }
-                
-                PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
-                Spacer()
+                    
+                    PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
+                    Spacer()
+                }
             }
         }
         .padding([.leading, .trailing])
