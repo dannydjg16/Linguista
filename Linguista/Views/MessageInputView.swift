@@ -32,6 +32,7 @@ struct MessageInputView: View {
                     )
                     .onSubmit {
                         sendMessageGetTranslation()
+                        speechRecognizer.transcribedText = ""
                     }
                     .autocorrectionDisabled()
                 
@@ -39,7 +40,6 @@ struct MessageInputView: View {
                     Button(action: {
                         sendMessageGetTranslation()
                         print("Sending: \(speechRecognizer.transcribedText)")
-                        speechRecognizer.transcribedText = ""
                     }) {
                         Image(systemName: "arrow.up.message")
                             .padding(8)
@@ -93,7 +93,7 @@ struct MessageInputView: View {
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about numbers. Respond with a maximum of 10-15 words. The words should be very informal like just chatting."),
+                Message(role: "system", content: "Continue the conversation with the user. You are like a diary/journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting."),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
@@ -111,11 +111,13 @@ struct MessageInputView: View {
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about numbers. Respond with a maximum of 10-15 words. The words should be very informal like just chatting. Respond in \(languageToLearn)"),
+                Message(role: "system", content: "Continue the conversation with the user.  You are like a diary/journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting. Respond in \(languageToLearn)"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
             let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
+            
+            speechRecognizer.transcribedText = ""
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
