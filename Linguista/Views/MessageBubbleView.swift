@@ -74,6 +74,7 @@ struct MessageBubbleView: View {
                             }
                         
                         PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
+                            .padding(.leading, 4)
                         Spacer()
                     }
                 }
