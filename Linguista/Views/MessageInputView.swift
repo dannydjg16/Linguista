@@ -32,7 +32,6 @@ struct MessageInputView: View {
                     )
                     .onSubmit {
                         sendMessageGetTranslation()
-                        speechRecognizer.transcribedText = ""
                     }
                     .autocorrectionDisabled()
                 
@@ -53,33 +52,30 @@ struct MessageInputView: View {
             
             // Toolbar buttons
             HStack {
+                Text("Response: ")
                 
-                if !speechRecognizer.transcribedText.isEmpty {
-                    Text("Response: ")
-                    
-                    Button("English") {
-                        sendMessageGetEnglish()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                        sendMessageGetTranslation()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Text("|")
-                    
-                    Button(action: {
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }) {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    }
+                Button("English") {
+                    sendMessageGetEnglish()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                    sendMessageGetTranslation()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Text("|")
+                
+                Button(action: {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }) {
+                    Image(systemName: "keyboard.chevron.compact.down")
                 }
                 
                 
@@ -98,6 +94,8 @@ struct MessageInputView: View {
             ]
             
             let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
+            
+            speechRecognizer.transcribedText = ""
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
