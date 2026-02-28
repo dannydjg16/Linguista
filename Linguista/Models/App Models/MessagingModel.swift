@@ -14,4 +14,5 @@ struct MessagingModel: Identifiable, Equatable, Codable {
     var audioData: Data?
     var translatedMessageContent: String?
     var translatedAudioData: Data?
+    var transliteratedMessageContent: String?
 }
