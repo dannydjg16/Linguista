@@ -179,6 +179,32 @@ struct MessageModalView: View {
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding([.leading, .trailing])
                 
+                if message.translatedTransliteratedMessageContent != nil {
+                    
+                    HStack {
+                        Text("Translated Transliteration:")
+                            .padding(.leading)
+                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.transliteratedMessageContent!)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    Divider()
+                        .frame(height: 1)
+                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+                        .padding([.leading, .trailing])
+                }
+                
                 
                 
                 HStack {
