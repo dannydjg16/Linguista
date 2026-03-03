@@ -60,7 +60,10 @@ class ConversationViewModel: ObservableObject, Sendable {
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             
             Task {
-                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                var messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                let tranStr = await checkForTransliterationAndTransliterate(messageModel: responseMessageModel)
+                messageModelWithAudio.transliteratedMessageContent = tranStr
+
                 // Add response with audio to message array
                 await MainActor.run {
                     self.messages.append(messageModelWithAudio)
@@ -97,7 +100,8 @@ class ConversationViewModel: ObservableObject, Sendable {
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
             
             Task {
-                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                var messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                messageModelWithAudio.transliteratedMessageContent = await checkForTransliterationAndTransliterate(messageModel: responseMessageModel)
                 // Add response with audio to message array
                 await MainActor.run {
                     self.messages.append(messageModelWithAudio)
@@ -113,7 +117,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     func sendMessageForUser() async {
         
         let messages = [
-            Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to a 1 year old."),
+            Message(role: "system", content: "You are having a conversation. Continue the conversation in \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Use basic and short sentences that are not complex, as if you were speaking to someone with a 1 year old's ability to communicate."),
             Message(role: "user", content: messages.last!.message.content)
         ]
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
@@ -141,7 +145,8 @@ class ConversationViewModel: ObservableObject, Sendable {
             let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
             
             Task {
-                let messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                var messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                messageModelWithAudio.transliteratedMessageContent = await checkForTransliterationAndTransliterate(messageModel: responseMessageModel)
                 // Add response with audio to message array
                 await MainActor.run {
                     self.messages.append(messageModelWithAudio)
@@ -151,6 +156,40 @@ class ConversationViewModel: ObservableObject, Sendable {
         } catch {
             print("Error: \(error.localizedDescription)")
         }
+    }
+    
+    func transliterateString(messageToTransliterate: String) async  -> String? {
+        
+        let messages = [
+            Message(role: "system", content: "Transliterate the message to the latin alphabet."),
+            Message(role: "user", content: messageToTransliterate)
+        ]
+        let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
+        
+        do {
+            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            return responseMessage.content
+            
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+    
+    
+    func checkForTransliterationAndTransliterate(messageModel: MessagingModel) async -> String? {
+        let content = messageModel.message.content
+        // If the message contains only Latin characters, no transliteration is needed
+        if content.containsOnlyLatinLetters {
+            return nil
+        }
+        // TODO: Implement actual transliteration logic here if available.
+        // For now, return the original content as a placeholder or hook up to your transliteration service.
+        let transliteratedMessage = await transliterateString(messageToTransliterate: content)
+        
+        return transliteratedMessage
     }
     
 //    func sendMessageGetMessage(completionRequest: CompletionsRequest) async -> MessagingModel? {
@@ -330,3 +369,4 @@ class ConversationViewModel: ObservableObject, Sendable {
         }
     }
 }
+

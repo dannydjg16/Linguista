@@ -193,7 +193,7 @@ struct MessageModalView: View {
                     HStack {
                         Spacer()
                         
-                        MessageBubbleViewWithoutPlayAudioButton(message: message.transliteratedMessageContent!)
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedTransliteratedMessageContent!)
                         
                         Spacer()
                     }
