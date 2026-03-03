@@ -14,6 +14,7 @@ struct MessageModalView: View {
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @State var messageWithAudio: MessagingModel?
     @State var translatedMessage: MessagingModel?
+    @State var transliteratedMessage: MessagingModel?
     @State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
     @Environment(\.colorScheme) var colorScheme
@@ -137,7 +138,7 @@ struct MessageModalView: View {
                         
                         Spacer()
                         
-                        TranslationBubbleViewWithoutPlayAudioButton(message: response)
+                        MessageBubbleViewWithoutPlayAudioButton(message: response)
                         
                         Spacer()
                     }
@@ -146,7 +147,7 @@ struct MessageModalView: View {
                     HStack {
                         Spacer()
                         
-                        TranslationBubbleViewWithoutPlayAudioButton(message: message)
+                        MessageBubbleViewWithoutPlayAudioButton(message: message)
                         
                         Spacer()
                     }

@@ -45,7 +45,7 @@
 		819DC6A72CF579E100452923 /* TtsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819DC6A62CF579E100452923 /* TtsViewModel.swift */; };
 		81A351252E15D9750079C157 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351242E15D9750079C157 /* AccountSettingsView.swift */; };
 		81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */; };
-		81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */; };
+		81A9CB092D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */; };
 		81BD14252DD6A4F9003B4706 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD14242DD6A4F9003B4706 /* KeychainManager.swift */; };
 		81EDC52A2F510AF200E7770B /* Wista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EDC5292F510AF200E7770B /* Wista.swift */; };
 		81F6EB862E542E8D002F2981 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6EB852E542E8D002F2981 /* PersistenceController.swift */; };
@@ -113,7 +113,7 @@
 		81A351242E15D9750079C157 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels_v2.xcdatamodel; sourceTree = "<group>"; };
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
-		81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationBubbleView.swift; sourceTree = "<group>"; };
+		81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleViewWithoutPlayAudioButton.swift; sourceTree = "<group>"; };
 		81BD14242DD6A4F9003B4706 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		81EDC5292F510AF200E7770B /* Wista.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wista.swift; sourceTree = "<group>"; };
 		81F6EB852E542E8D002F2981 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -165,6 +165,7 @@
 				81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */,
 				8194D0232D38C43000CAE54C /* LanguagePickerView.swift */,
 				8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */,
+				81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */,
 				8194D0292D38C68C00CAE54C /* MessageInputView.swift */,
 				8194D0252D38C51300CAE54C /* MessageListView.swift */,
 				81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */,
@@ -176,7 +177,6 @@
 				81752E7F2D5AFA9600D9F696 /* TalkingChatView.swift */,
 				81752E812D5AFDDF00D9F696 /* TextMessagingView.swift */,
 				8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */,
-				81A9CB082D813210000FCE5C /* TranslationBubbleView.swift */,
 				81EDC5292F510AF200E7770B /* Wista.swift */,
 			);
 			path = Views;
@@ -441,7 +441,7 @@
 			files = (
 				81752E842D6A2A7400D9F696 /* SettingsView.swift in Sources */,
 				813C40602D0A8630007C10D3 /* PlayAudioButton.swift in Sources */,
-				81A9CB092D813210000FCE5C /* TranslationBubbleView.swift in Sources */,
+				81A9CB092D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift in Sources */,
 				81752E802D5AFA9600D9F696 /* TalkingChatView.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,

@@ -18,7 +18,7 @@ let ttsEndpoint = "/openai/tts"
 //let selectedCompletionsEndpoint = "gpt-4o-mini"
 let selectedCompletionsModel = "gpt-5-nano"
 let selectedTtsModel = "gpt-4o-mini-tts"
-let maxCompletionTokens = 1000
+let maxCompletionTokens = 2000
 
 // Auth endpoint url builders
 let authBaseUrl = "https://dev-7824301.okta.com/oauth2/default/v1"
