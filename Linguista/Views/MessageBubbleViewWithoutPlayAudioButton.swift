@@ -10,13 +10,13 @@ import SwiftUI
 
 struct MessageBubbleViewWithoutPlayAudioButton: View {
     
-    let message: MessagingModel
+    let message: String
     @State private var color: Color = .blue
     
     var body: some View {
         VStack {
             HStack(alignment: .bottom, spacing: 10) {
-                Text(message.message.content)
+                Text(message)
                     .padding()
                     .background(Color.brown.opacity(0.2))
                     .overlay(
