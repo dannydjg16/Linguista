@@ -232,7 +232,7 @@ struct MessageModalView: View {
             //message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messagingModel: messageToGetAudioFor)
             //_ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
             
-            message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messagingModel: messageToGetAudioFor)
+            message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messagingModel: messageToGetAudioFor!.translatedMessageContent)
         }
     }
     
