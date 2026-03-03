@@ -10,9 +10,6 @@ import Foundation
 import SwiftUI
 
 struct ChatView: View {
-    
-    @Binding var chatTabViewSelectedValue: Int
-    
     var body: some View {
         VStack {
             TalkingChatView()
@@ -21,8 +18,7 @@ struct ChatView: View {
 }
 
 struct ChatView_Previews: PreviewProvider {
-    @State static var chatTabViewSelectedValue = 1
     static var previews: some View {
-        ChatView(chatTabViewSelectedValue: $chatTabViewSelectedValue)
+        ChatView()
     }
 }

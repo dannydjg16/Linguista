@@ -24,7 +24,6 @@
 		8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FDFB2CE65A72005A0428 /* TextToSpeech.swift */; };
 		8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */; };
 		8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */; };
-		81752E7E2D532FDF00D9F696 /* ConversationViewsSwapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */; };
 		81752E802D5AFA9600D9F696 /* TalkingChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E7F2D5AFA9600D9F696 /* TalkingChatView.swift */; };
 		81752E822D5AFDDF00D9F696 /* TextMessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E812D5AFDDF00D9F696 /* TextMessagingView.swift */; };
 		81752E842D6A2A7400D9F696 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81752E832D6A2A7400D9F696 /* SettingsView.swift */; };
@@ -91,7 +90,6 @@
 		8159FDFB2CE65A72005A0428 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		8159FDFD2CE677A7005A0428 /* TextToSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechView.swift; sourceTree = "<group>"; };
 		8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
-		81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewsSwapperView.swift; sourceTree = "<group>"; };
 		81752E7F2D5AFA9600D9F696 /* TalkingChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkingChatView.swift; sourceTree = "<group>"; };
 		81752E812D5AFDDF00D9F696 /* TextMessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessagingView.swift; sourceTree = "<group>"; };
 		81752E832D6A2A7400D9F696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				81752E892D6EB86400D9F696 /* ChatOptionsView.swift */,
 				8194D02B2D506D0300CAE54C /* ChatView.swift */,
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
-				81752E7D2D532FDF00D9F696 /* ConversationViewsSwapperView.swift */,
 				8194D0232D38C43000CAE54C /* LanguagePickerView.swift */,
 				8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */,
 				81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */,
@@ -468,7 +465,6 @@
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
-				81752E7E2D532FDF00D9F696 /* ConversationViewsSwapperView.swift in Sources */,
 				81752E822D5AFDDF00D9F696 /* TextMessagingView.swift in Sources */,
 				81752E8A2D6EB86400D9F696 /* ChatOptionsView.swift in Sources */,
 				81030AB62DED490400450571 /* AccountService.swift in Sources */,

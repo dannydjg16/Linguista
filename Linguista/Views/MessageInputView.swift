@@ -81,6 +81,7 @@ struct MessageInputView: View {
                 
             }
             .padding(.horizontal)
+            .padding(.bottom)
         }
         .padding([.leading, .trailing])
     }
