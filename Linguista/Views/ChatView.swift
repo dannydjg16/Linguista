@@ -10,8 +10,12 @@ import Foundation
 import SwiftUI
 
 struct ChatView: View {
+    
+    @Binding var selectedTab: Int
+    
     var body: some View {
         VStack {
+            SettingsView(selectedTab: $selectedTab)
             TalkingChatView()
         }
     }
@@ -19,6 +23,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(selectedTab: .constant(1))
     }
 }

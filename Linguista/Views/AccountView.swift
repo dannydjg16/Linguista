@@ -19,7 +19,6 @@ struct AccountView: View {
             
             AccountSettingsView()
             
-            
             if accountManager.isSignedIn() {
                 
                 if isEditing {

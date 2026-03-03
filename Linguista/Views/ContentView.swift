@@ -6,17 +6,16 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        SettingsView(selectedTab: $selectedTab)
         
         TabView(selection: $selectedTab) {
             
-            TextMessagingView()
+            TextMessagingView(selectedTab: $selectedTab)
                 .tag(0)
                 .tabItem {
                     Label("Text", systemImage: "bubble.and.pencil")
                 }
             
-            ChatView()
+            ChatView(selectedTab: $selectedTab)
                 .tag(1)
                 .tabItem {
                     Label("Talk", systemImage: "microphone")
