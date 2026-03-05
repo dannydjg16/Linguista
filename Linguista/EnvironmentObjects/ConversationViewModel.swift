@@ -201,7 +201,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            //let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
             
             return responseMessage.content
             
@@ -211,30 +210,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         return nil
     }
-    
-//    func setTranslatedMessageAndAudio(messagingModel: MessagingModel) -> Bool {
-//        
-//        // Find the message to set the translation on
-//        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-//            
-//            // Set translated message content here
-//            if (self.messages[index].translatedMessageContent == nil && messagingModel.translatedMessageContent != nil) {
-//                self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
-//            }
-//            
-//            // Set audio stuff here may have to change to translatedAudioData
-//            if (self.messages[index].audioData == nil && messagingModel.audioData != nil) {
-//                self.messages[index].audioData = messagingModel.audioData
-//            }
-//            
-//            // Set audio stuff here may have to change to translatedAudioData
-//            if (self.messages[index].translatedAudioData == nil && messagingModel.translatedAudioData != nil) {
-//                self.messages[index].translatedAudioData = messagingModel.translatedAudioData
-//            }
-//        }
-//        
-//        return true
-//    }
     
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
         
