@@ -23,7 +23,8 @@ struct MessageBubbleView: View {
                     if message.audioData != nil {
                         PlayAudioButton(message: message, conversationViewModel: conversationViewModel)
                     }
-                    Text(message.message.content)
+                    let textToShow = message.transliteratedMessageContent != nil ? message.transliteratedMessageContent : message.message.content
+                    Text(textToShow ?? "Message Not Found")
                         .padding()
                         .cornerRadius(10)
                         .overlay(
