@@ -12,10 +12,6 @@ struct MessageModalView: View {
     
     @Binding var message: MessagingModel
     @EnvironmentObject var conversationViewModel: ConversationViewModel
-//    @State var messageWithAudio: MessagingModel?
-    //@State var translatedMessage: MessagingModel?
-    //@State var transliteratedMessage: MessagingModel?
-    //@State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
@@ -272,30 +268,18 @@ struct MessageModalView: View {
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
         
         Task {
-//            let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-//            message.translatedMessageContent = tm?.message.content
-//            _ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: tm!)
-            
             message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
         }
     }
     
     func getAudioMessage(messageToGetAudioFor: MessagingModel) {
         Task {
-            //messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModel(messagingModel: messageToGetAudioFor)
-            //message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messagingModel: messageToGetAudioFor)
-            //_ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
-            
             message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor.translatedMessageContent!)
         }
     }
     
     func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
         Task {
-//            translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForTranslatedMessage(messagingModel: messageToGetAudioFor)
-//            message.translatedAudioData = translatedMessageWithAudio?.translatedAudioData
-//            _ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
-            
             message.translatedAudioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor
                 .translatedMessageContent!)
             
