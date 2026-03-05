@@ -23,7 +23,7 @@ struct PlayAudioButton: View {
                     Image(systemName: "arrow.clockwise")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 15, height: 15)
+                        .frame(width: 10, height: 10)
                         .padding()
                         .background(Color.brown)
                         .foregroundColor(.white)

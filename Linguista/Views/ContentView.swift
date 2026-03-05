@@ -9,17 +9,23 @@ struct ContentView: View {
         
         TabView(selection: $selectedTab) {
             
-            ConversationViewsSwapperView()
-                .tabItem {
-                    Label("Chat", systemImage: "phone.badge.waveform")
-                }
+            TextMessagingView(selectedTab: $selectedTab)
                 .tag(0)
+                .tabItem {
+                    Label("Text", systemImage: "bubble.and.pencil")
+                }
+            
+            ChatView(selectedTab: $selectedTab)
+                .tag(1)
+                .tabItem {
+                    Label("Talk", systemImage: "microphone")
+                }
             
             AccountView()
+                .tag(2)
                 .tabItem {
                     Label("Account", systemImage: "person.fill")
                 }
-                .tag(1)
             
         }.accentColor(.brown)
     }

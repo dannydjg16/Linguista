@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ChatOptionsView: View {
 
-    @Binding var chatTabViewSelectedValue: Int
+    @Binding var selectedTab: Int
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
@@ -28,7 +28,7 @@ struct ChatOptionsView: View {
                         .foregroundColor(colorScheme == .light ? Color.white : Color.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(colorScheme == .light ? Color.brown.opacity(0.7) : Color.white)
+                .background(colorScheme == .light ? Color.brown : Color.white)
                 .clipShape(Circle())
                 .padding([.top, .trailing])
             }
@@ -92,7 +92,7 @@ struct ChatOptionsView: View {
             VStack{
                 Button(action: {
                     dismiss()
-                    chatTabViewSelectedValue = 0
+                    selectedTab = 0
                 }) {
                     Image(systemName: "microphone")
                         .foregroundColor(.white)
@@ -109,7 +109,7 @@ struct ChatOptionsView: View {
             VStack{
                 Button(action: {
                     dismiss()
-                    chatTabViewSelectedValue = 1
+                    selectedTab = 1
                     
                 }) {
                     Image(systemName: "bubble.and.pencil")

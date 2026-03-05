@@ -39,7 +39,6 @@ struct MessageInputView: View {
                     Button(action: {
                         sendMessageGetTranslation()
                         print("Sending: \(speechRecognizer.transcribedText)")
-                        speechRecognizer.transcribedText = ""
                     }) {
                         Image(systemName: "arrow.up.message")
                             .padding(8)
@@ -53,38 +52,36 @@ struct MessageInputView: View {
             
             // Toolbar buttons
             HStack {
+                Text("Response: ")
                 
-                if !speechRecognizer.transcribedText.isEmpty {
-                    Text("Response: ")
-                    
-                    Button("English") {
-                        sendMessageGetEnglish()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
-                        sendMessageGetTranslation()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Text("|")
-                    
-                    Button(action: {
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }) {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    }
+                Button("English") {
+                    sendMessageGetEnglish()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("\(Utilities.getLanguageName(by: accountManager.languageToLearn))") {
+                    sendMessageGetTranslation()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.brown)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Text("|")
+                
+                Button(action: {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }) {
+                    Image(systemName: "keyboard.chevron.compact.down")
                 }
                 
                 
             }
             .padding(.horizontal)
+            .padding(.bottom)
         }
         .padding([.leading, .trailing])
     }
@@ -93,11 +90,13 @@ struct MessageInputView: View {
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about numbers. Respond with a maximum of 10-15 words. The words should be very informal like just chatting."),
+                Message(role: "system", content: "Continue the conversation with the user. You are a responsive journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting with someone with a 1 year old's ability to communicate"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
             let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
+            
+            speechRecognizer.transcribedText = ""
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)
@@ -111,11 +110,13 @@ struct MessageInputView: View {
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "Continue the conversation with the user. You are giving a lesson about numbers. Respond with a maximum of 10-15 words. The words should be very informal like just chatting. Respond in \(languageToLearn)"),
+                Message(role: "system", content: "Continue the conversation with the user. You are a responsive journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting with someone with a 1 year old's ability to communicate. Respond in \(languageToLearn)"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
             let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
+            
+            speechRecognizer.transcribedText = ""
             
             Task {
                 await conversationViewModel.sendMessage(completionRequest: dataModel)

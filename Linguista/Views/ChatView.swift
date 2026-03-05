@@ -11,18 +11,18 @@ import SwiftUI
 
 struct ChatView: View {
     
-    @Binding var chatTabViewSelectedValue: Int
+    @Binding var selectedTab: Int
     
     var body: some View {
         VStack {
+            SettingsView(selectedTab: $selectedTab)
             TalkingChatView()
         }
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
-    @State static var chatTabViewSelectedValue = 1
     static var previews: some View {
-        ChatView(chatTabViewSelectedValue: $chatTabViewSelectedValue)
+        ChatView(selectedTab: .constant(1))
     }
 }

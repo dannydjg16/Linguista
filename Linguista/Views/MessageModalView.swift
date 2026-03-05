@@ -12,9 +12,10 @@ struct MessageModalView: View {
     
     @Binding var message: MessagingModel
     @EnvironmentObject var conversationViewModel: ConversationViewModel
-    @State var messageWithAudio: MessagingModel?
-    @State var translatedMessage: MessagingModel?
-    @State var translatedMessageWithAudio: MessagingModel?
+//    @State var messageWithAudio: MessagingModel?
+    //@State var translatedMessage: MessagingModel?
+    //@State var transliteratedMessage: MessagingModel?
+    //@State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
@@ -31,7 +32,7 @@ struct MessageModalView: View {
                         .foregroundColor(colorScheme == .light ? Color.white : Color.brown)
                 }
                 .frame(minWidth: 40, idealWidth: 50, maxWidth: 50, minHeight: 40, idealHeight: 50, maxHeight: 50)
-                .background(colorScheme == .light ? Color.brown.opacity(0.7) : Color.white)
+                .background(colorScheme == .light ? Color.brown : Color.white)
                 .clipShape(Circle())
                 .padding([.top, .trailing])
             }
@@ -59,7 +60,7 @@ struct MessageModalView: View {
                 Spacer()
                 
                 HStack {
-                    MessageBubbleViewWithoutPlayAudioButton(message: message)
+                    MessageBubbleViewWithoutPlayAudioButton(message: message.message.content)
                 }
                 
                 Spacer()
@@ -67,6 +68,35 @@ struct MessageModalView: View {
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding([.leading, .trailing])
+            
+                
+                if message.transliteratedMessageContent != nil {
+                    
+                    HStack {
+                        Text("Transliteration:")
+                            .padding(.leading)
+                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.transliteratedMessageContent!)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    Divider()
+                        .frame(height: 1)
+                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+                        .padding([.leading, .trailing])
+                }
+
+                
                 
                 HStack {
                     Text("Audio:")
@@ -77,20 +107,7 @@ struct MessageModalView: View {
                 
                 Spacer()
                 
-                if let audioMessage = messageWithAudio {
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.audioData!))
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                } else if message.audioData != nil {
+                if message.audioData != nil {
                     
                     Spacer()
                     
@@ -122,6 +139,8 @@ struct MessageModalView: View {
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding([.leading, .trailing])
                 
+                
+                
                 HStack {
                     Text("Translation:")
                         .padding(.leading)
@@ -131,22 +150,12 @@ struct MessageModalView: View {
                 
                 Spacer()
                 
-                if let response = translatedMessage {
-                    
-                    HStack {
-                        
-                        Spacer()
-                        
-                        TranslationBubbleViewWithoutPlayAudioButton(message: response)
-                        
-                        Spacer()
-                    }
-                } else if message.translatedMessageContent != nil {
+                if message.translatedMessageContent != nil {
                     
                     HStack {
                         Spacer()
                         
-                        TranslationBubbleViewWithoutPlayAudioButton(message: message)
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedMessageContent!)
                         
                         Spacer()
                     }
@@ -170,6 +179,34 @@ struct MessageModalView: View {
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding([.leading, .trailing])
                 
+                if message.translatedTransliteratedMessageContent != nil {
+                    
+                    HStack {
+                        Text("Translated Transliteration:")
+                            .padding(.leading)
+                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedTransliteratedMessageContent!)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    Divider()
+                        .frame(height: 1)
+                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+                        .padding([.leading, .trailing])
+                }
+                
+                
+                
                 HStack {
                     Text("Translation Audio:")
                         .padding(.leading)
@@ -179,20 +216,7 @@ struct MessageModalView: View {
                 
                 Spacer()
                 
-                if let audioMessage = translatedMessageWithAudio {
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioMessage.translatedAudioData!))
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                } else if message.translatedAudioData != nil {
+                if message.translatedAudioData != nil {
                     
                     Spacer()
                     
@@ -248,25 +272,33 @@ struct MessageModalView: View {
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
         
         Task {
-            let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-            message.translatedMessageContent = tm?.message.content
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: tm!)
+//            let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
+//            message.translatedMessageContent = tm?.message.content
+//            _ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: tm!)
+            
+            message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
         }
     }
     
     func getAudioMessage(messageToGetAudioFor: MessagingModel) {
         Task {
-            messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModel(messagingModel: messageToGetAudioFor)
-            message.audioData = messageWithAudio?.audioData
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+            //messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModel(messagingModel: messageToGetAudioFor)
+            //message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messagingModel: messageToGetAudioFor)
+            //_ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
+            
+            message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor.translatedMessageContent!)
         }
     }
     
     func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
         Task {
-            translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForTranslatedMessage(messagingModel: messageToGetAudioFor)
-            message.translatedAudioData = translatedMessageWithAudio?.translatedAudioData
-            _ = conversationViewModel.setTranslatedMessage(messagingModel: message)
+//            translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForTranslatedMessage(messagingModel: messageToGetAudioFor)
+//            message.translatedAudioData = translatedMessageWithAudio?.translatedAudioData
+//            _ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
+            
+            message.translatedAudioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor
+                .translatedMessageContent!)
+            
         }
     }
 }
