@@ -130,18 +130,17 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
-
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
                 
-                HStack {
-
+                VStack {
+                    
+                    Divider()
+                        .frame(height: 1)
+                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+                        .padding([.leading, .trailing])
                     
                     HStack {
                         Text("Translation:")
-                            .padding(.leading)
+                            .padding([.leading])
                             .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                         Spacer()
                     }
@@ -172,14 +171,15 @@ struct MessageModalView: View {
                     }
                     
                     Spacer()
+                    
+                    Divider()
+                        .frame(height: 1)
+                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
+                        .padding([.leading, .trailing])
                 }
                 .background(Color.brown.opacity(0.3))
-                .cornerRadius(3)
+                .cornerRadius(8)
 
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
                 
                 if message.translatedTransliteratedMessageContent != nil {
                     
