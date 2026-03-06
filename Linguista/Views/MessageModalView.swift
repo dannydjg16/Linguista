@@ -130,46 +130,52 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
+
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
                     .padding([.leading, .trailing])
                 
-                
-                
                 HStack {
-                    Text("Translation:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                if message.translatedMessageContent != nil {
+
                     
                     HStack {
-                        Spacer()
-                        
-                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedMessageContent!)
-                        
+                        Text("Translation:")
+                            .padding(.leading)
+                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                         Spacer()
                     }
-                } else {
-                    Button(action: {
-                        Task {
-                            await translateWithViewModel(messageToTranslate: message)
+                    
+                    Spacer()
+                    
+                    if message.translatedMessageContent != nil {
+                        
+                        HStack {
+                            Spacer()
+                            
+                            MessageBubbleViewWithoutPlayAudioButton(message: message.translatedMessageContent!)
+                            
+                            Spacer()
                         }
-                    }) {
-                        Text("Get Translation")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
+                    } else {
+                        Button(action: {
+                            Task {
+                                await translateWithViewModel(messageToTranslate: message)
+                            }
+                        }) {
+                            Text("Get Translation")
+                                .padding()
+                                .background(Color.brown)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                        }
                     }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .background(Color.brown.opacity(0.3))
+                .cornerRadius(3)
+
                 Divider()
                     .frame(height: 1)
                     .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
