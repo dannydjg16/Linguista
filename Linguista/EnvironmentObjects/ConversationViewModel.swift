@@ -185,7 +185,6 @@ class ConversationViewModel: ObservableObject, Sendable {
         if content.containsOnlyLatinLetters {
             return nil
         }
-        // TODO: Implement actual transliteration logic here if available.
         // For now, return the original content as a placeholder or hook up to your transliteration service.
         let transliteratedMessage = await transliterateString(messageToTransliterate: content)
         
