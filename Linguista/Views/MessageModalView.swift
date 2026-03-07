@@ -122,6 +122,7 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
+                
                 CommonDivider()
                 
                 VStack {
@@ -188,6 +189,7 @@ struct MessageModalView: View {
                     }
                     
                     Spacer()
+                    
                     CommonDivider()
                 }
                 
@@ -242,8 +244,11 @@ struct MessageModalView: View {
                             .transition(.opacity)
                     }
                 }
+                
                 Spacer()
+                
                 CommonDivider()
+                
                 Spacer()
             }
             .animation(.easeInOut, value: showWarning)
