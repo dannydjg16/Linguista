@@ -41,10 +41,7 @@ struct MessageModalView: View {
         ScrollView {
             VStack(spacing: 5){
                 
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
+                CommonDivider()
                 
                 HStack {
                     Text("Message:")
@@ -60,10 +57,8 @@ struct MessageModalView: View {
                 }
                 
                 Spacer()
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
+                
+                CommonDivider()
             
                 
                 if message.transliteratedMessageContent != nil {
@@ -86,13 +81,10 @@ struct MessageModalView: View {
                     }
                     
                     Spacer()
-                    Divider()
-                        .frame(height: 1)
-                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                        .padding([.leading, .trailing])
+                    CommonDivider()
                 }
 
-                
+                CommonDivider()
                 
                 HStack {
                     Text("Audio:")
@@ -126,22 +118,15 @@ struct MessageModalView: View {
                             .background(Color.brown)
                             .foregroundColor(.white)
                             .cornerRadius(5)
-                        
-                        Divider()
-                            .frame(height: 1)
-                            .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                            .padding([.leading, .trailing])
                     }
                 }
                 
                 Spacer()
+                CommonDivider()
                 
                 VStack {
                     
-                    Divider()
-                        .frame(height: 1)
-                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                        .padding([.leading, .trailing])
+                    CommonDivider()
                     
                     HStack {
                         Text("Translation:")
@@ -177,41 +162,16 @@ struct MessageModalView: View {
                     
                     Spacer()
                     
-                    Divider()
-                        .frame(height: 1)
-                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                        .padding([.leading, .trailing])
-                    
-                    if message.translatedTransliteratedMessageContent != nil {
-                        
-                        HStack {
-                            Text("Translated Transliteration:")
-                                .padding(.leading)
-                                .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                            Spacer()
-                        }
-                        
-                        Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            
-                            MessageBubbleViewWithoutPlayAudioButton(message: message.translatedTransliteratedMessageContent!)
-                            
-                            Spacer()
-                        }
-                        
-                        Spacer()
-                        Divider()
-                            .frame(height: 1)
-                            .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                            .padding([.leading, .trailing])
-                    }
-                    
-                    
+                    CommonDivider()
+                }
+                .background(Color.brown.opacity(0.1))
+                .cornerRadius(8)
+
+                
+                if message.translatedTransliteratedMessageContent != nil {
                     
                     HStack {
-                        Text("Translation Audio:")
+                        Text("Translated Transliteration:")
                             .padding(.leading)
                             .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
                         Spacer()
@@ -219,55 +179,71 @@ struct MessageModalView: View {
                     
                     Spacer()
                     
-                    if message.translatedAudioData != nil {
-                        
+                    HStack {
                         Spacer()
                         
-                        HStack {
-                            Spacer()
-                            
-                            AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.translatedAudioData!))
-                                .transition(.slide)
-                            
-                            Spacer()
-                        }
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedTransliteratedMessageContent!)
                         
                         Spacer()
-                    } else {
-                        Button(action: {
-                            if message.translatedMessageContent != nil {
-                                getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
-                            } else {
-                                showWarning = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    showWarning = false
-                                }
-                            }
-                        }) {
-                            Text("Get Audio")
-                                .padding()
-                                .background(Color.brown)
-                                .foregroundColor(.white)
-                                .cornerRadius(5)
-                        }
-                        
-                        if showWarning {
-                            Text("Need to Translate Message First!")
-                                .foregroundColor(.red)
-                                .font(.footnote)
-                                .padding(.top, 5)
-                                .transition(.opacity)
-                        }
                     }
+                    
                     Spacer()
-                    Divider()
-                        .frame(height: 1)
-                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                        .padding([.leading, .trailing])
+                    CommonDivider()
                 }
-                .background(Color.brown.opacity(0.2))
-                .cornerRadius(8)
-
+                
+                
+                
+                HStack {
+                    Text("Translation Audio:")
+                        .padding(.leading)
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                    Spacer()
+                }
+                
+                Spacer()
+                
+                if message.translatedAudioData != nil {
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.translatedAudioData!))
+                            .transition(.slide)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                } else {
+                    Button(action: {
+                        if message.translatedMessageContent != nil {
+                            getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
+                        } else {
+                            showWarning = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                showWarning = false
+                            }
+                        }
+                    }) {
+                        Text("Get Audio")
+                            .padding()
+                            .background(Color.brown)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    }
+                    
+                    if showWarning {
+                        Text("Need to Translate Message First!")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                            .padding(.top, 5)
+                            .transition(.opacity)
+                    }
+                }
+                Spacer()
+                CommonDivider()
                 Spacer()
             }
             .animation(.easeInOut, value: showWarning)

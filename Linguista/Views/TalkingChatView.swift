@@ -22,10 +22,7 @@ struct TalkingChatView: View {
             
             Spacer()
             
-            Divider()
-                .frame(height: 1)
-                .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                .padding([.leading, .trailing])
+            CommonDivider()
             
             VStack {
                 HStack {

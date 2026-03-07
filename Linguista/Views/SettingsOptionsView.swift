@@ -37,10 +37,7 @@ struct SettingsOptionsView: View {
             .font(.title)
             .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
         
-        Divider()
-            .frame(height: 1)
-            .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-            .padding([.leading, .trailing])
+        CommonDivider()
         
         HStack {
             Text("Language to Learn:")
