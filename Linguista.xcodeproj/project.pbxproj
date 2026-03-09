@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		81004E7A2E00A33F00BA780E /* DataModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81004E782E00A33F00BA780E /* DataModels.xcdatamodeld */; };
 		81030AB62DED490400450571 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81030AB52DED490400450571 /* AccountService.swift */; };
+		8116AD6C2F5E4AF000B0632D /* InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8116AD6B2F5E4AF000B0632D /* InfoSection.swift */; };
 		8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7A62C2A79EF007DCE2E /* AccountView.swift */; };
 		8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AE2C2A8091007DCE2E /* Message.swift */; };
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		81004E792E00A33F00BA780E /* DataModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels.xcdatamodel; sourceTree = "<group>"; };
 		81030AB52DED490400450571 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		8116AD6B2F5E4AF000B0632D /* InfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSection.swift; sourceTree = "<group>"; };
 		8120C7A62C2A79EF007DCE2E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		8120C7AE2C2A8091007DCE2E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8116AD6B2F5E4AF000B0632D /* InfoSection.swift */,
 				815E3B962F5BCFC4000DD076 /* CommonDivider.swift */,
 				81A351242E15D9750079C157 /* AccountSettingsView.swift */,
 				8120C7A62C2A79EF007DCE2E /* AccountView.swift */,
@@ -443,6 +446,7 @@
 				813C40602D0A8630007C10D3 /* PlayAudioButton.swift in Sources */,
 				81A9CB092D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift in Sources */,
 				81752E802D5AFA9600D9F696 /* TalkingChatView.swift in Sources */,
+				8116AD6C2F5E4AF000B0632D /* InfoSection.swift in Sources */,
 				8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */,
 				81494ADA2C13BD2900F1ABB0 /* ContentView.swift in Sources */,
 				81841B142C66B66A00B7A5AC /* Config.swift in Sources */,
