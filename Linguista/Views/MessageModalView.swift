@@ -84,46 +84,61 @@ struct MessageModalView: View {
                     CommonDivider()
                 }
 
-                CommonDivider()
+                //CommonDivider()
                 
-                HStack {
-                    Text("Audio:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
+//                HStack {
+//                    Text("Audio:")
+//                        .padding(.leading)
+//                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+//                    Spacer()
+//                }
+//                
+//                Spacer()
+//                
+//                if message.audioData != nil {
+//                    
+//                    Spacer()
+//                    
+//                    HStack {
+//                        Spacer()
+//                        
+//                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
+//                            .transition(.slide)
+//                        
+//                        Spacer()
+//                    }
+//                    
+//                    Spacer()
+//                } else {
+//                    Button(action: {
+//                        getAudioMessage(messageToGetAudioFor: message)
+//                    }) {
+//                        Text("Get Audio")
+//                            .padding()
+//                            .background(Color.brown)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(5)
+//                    }
+//                }
+//                
+//                Spacer()
+//                
+//                CommonDivider()
                 
-                Spacer()
-                
-                if message.audioData != nil {
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
-                            .transition(.slide)
-                        
-                        Spacer()
+                InfoSection(title: "Audio") {
+                    if let audioData = message.audioData {
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioData))
+                            .transition(.opacity.combined(with: .move(edge: .top)))
+                    } else {
+                        Button(action: { getAudioMessage(messageToGetAudioFor: message) }) {
+                            Label("Load Audio", systemImage: "waveform")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(.brown)
                     }
-                    
-                    Spacer()
-                } else {
-                    Button(action: {
-                        getAudioMessage(messageToGetAudioFor: message)
-                    }) {
-                        Text("Get Audio")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
                 }
-                
-                Spacer()
-                
-                CommonDivider()
+                .animation(.easeInOut, value: message.audioData != nil)
                 
                 VStack {
                     
