@@ -57,16 +57,19 @@ class ConversationViewModel: ObservableObject, Sendable {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
+            var responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             
             Task {
-                var messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                let messageData = await fetchAudioReturnData(messageToConvertAndPlay: responseMessageModel.message.content)
+                responseMessageModel.audioData = messageData
+
                 let tranStr = await checkForTransliterationAndTransliterate(messageModel: responseMessageModel)
-                messageModelWithAudio.transliteratedMessageContent = tranStr
+                responseMessageModel.transliteratedMessageContent = tranStr
 
                 // Add response with audio to message array
                 await MainActor.run {
-                    self.messages.append(messageModelWithAudio)
+                    self.messages.append(responseMessageModel)
+                    ttsViewModel.playAudio(with: responseMessageModel.audioData!)
                 }
             }
             
@@ -240,6 +243,24 @@ class ConversationViewModel: ObservableObject, Sendable {
             let ttsRequest = TtsRequest(model: selectedTtsModel, input: messageToConvertAndPlay, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             ttsViewModel.playAudio(with: audioData)
+            return audioData
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
+        
+        return nil
+    }
+    
+    func fetchAudioReturnData(messageToConvertAndPlay: String) async -> Data? {
+        
+        isLoading = true
+        errorMessage = nil
+                
+        do {
+            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messageToConvertAndPlay, voice: "echo", speed: 0.8)
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             return audioData
         } catch {
             errorMessage = error.localizedDescription
