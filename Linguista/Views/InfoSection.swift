@@ -9,6 +9,7 @@ import SwiftUI
 struct InfoSection<Content: View>: View {
     let title: String
     let content: () -> Content
+    @Environment(\.colorScheme) var colorScheme
 
     init(title: String, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
@@ -31,6 +32,4 @@ struct InfoSection<Content: View>: View {
             CommonDivider()
         }
     }
-
-    @Environment(\.colorScheme) var colorScheme
 }
