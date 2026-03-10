@@ -161,65 +161,39 @@ struct MessageModalView: View {
                     CommonDivider()
                 }
                 
-                
-                
-                HStack {
-                    Text("Translation Audio:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                if message.translatedAudioData != nil {
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.translatedAudioData!))
-                            .transition(.slide)
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                } else {
-                    if isLoadingTranslatedAudio {
-                        HStack {
-                            ProgressView()
-                            Text("Generating audio…")
-                        }
+                InfoSection(title: "Translation Audio:") {
+                    if let translatedMessageAudio = message.translatedAudioData {
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: translatedMessageAudio))
+                            .transition(.opacity.combined(with: .move(edge: .top)))
                     } else {
-                        Button(action: {
-                            if message.translatedMessageContent != nil {
-                                Task { isLoadingTranslatedAudio = true; defer { isLoadingTranslatedAudio = false }; await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
-                            } else {
-                                showWarning = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    showWarning = false
-                                }
+                        if isLoadingTranslatedAudio {
+                            HStack {
+                                ProgressView()
+                                Text("Generating audio…")
                             }
-                        }) {
-                            Text("Get Audio")
-                                .padding()
-                                .background(Color.brown)
-                                .foregroundColor(.white)
-                                .cornerRadius(5)
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            Button(action: {
+                                if message.translatedMessageContent != nil {
+                                    Task { isLoadingTranslatedAudio = true; defer { isLoadingTranslatedAudio = false }; await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
+                                } else {
+                                    showWarning = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        showWarning = false
+                                    }
+                                }
+                            }) {
+                                Label("Get Audio", systemImage: "waveform")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.brown)
+                            .disabled(isLoadingTranslatedAudio)
                         }
-                        .disabled(isLoadingTranslatedAudio)
                     }
                 }
-                
-                Spacer()
-                
-                CommonDivider()
-                
-                Spacer()
+                .animation(.easeInOut, value: message.translatedAudioData != nil)
             }
-            .animation(.easeInOut, value: showWarning)
         }
     }
     
