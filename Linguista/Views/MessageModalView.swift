@@ -84,53 +84,13 @@ struct MessageModalView: View {
                     CommonDivider()
                 }
 
-                //CommonDivider()
-                
-//                HStack {
-//                    Text("Audio:")
-//                        .padding(.leading)
-//                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-//                    Spacer()
-//                }
-//                
-//                Spacer()
-//                
-//                if message.audioData != nil {
-//                    
-//                    Spacer()
-//                    
-//                    HStack {
-//                        Spacer()
-//                        
-//                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
-//                            .transition(.slide)
-//                        
-//                        Spacer()
-//                    }
-//                    
-//                    Spacer()
-//                } else {
-//                    Button(action: {
-//                        getAudioMessage(messageToGetAudioFor: message)
-//                    }) {
-//                        Text("Get Audio")
-//                            .padding()
-//                            .background(Color.brown)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(5)
-//                    }
-//                }
-//                
-//                Spacer()
-//                
-//                CommonDivider()
                 
                 InfoSection(title: "Audio") {
                     if let audioData = message.audioData {
                         AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioData))
                             .transition(.opacity.combined(with: .move(edge: .top)))
                     } else {
-                        Button(action: { getAudioMessage(messageToGetAudioFor: message) }) {
+                        Button(action: { Task { await getAudioMessage(messageToGetAudioFor: message) } }) {
                             Label("Load Audio", systemImage: "waveform")
                                 .frame(maxWidth: .infinity)
                         }
@@ -140,48 +100,20 @@ struct MessageModalView: View {
                 }
                 .animation(.easeInOut, value: message.audioData != nil)
                 
-                VStack {
-                    
-                    CommonDivider()
-                    
-                    HStack {
-                        Text("Translation:")
-                            .padding([.leading])
-                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                    
-                    if message.translatedMessageContent != nil {
-                        
-                        HStack {
-                            Spacer()
-                            
-                            MessageBubbleViewWithoutPlayAudioButton(message: message.translatedMessageContent!)
-                            
-                            Spacer()
-                        }
+                InfoSection(title: "Translation") {
+                    if let translatedContent = message.translatedMessageContent {
+                        MessageBubbleViewWithoutPlayAudioButton(message: translatedContent)
+                            .transition(.opacity.combined(with: .move(edge: .top)))
                     } else {
-                        Button(action: {
-                            Task {
-                                await translateWithViewModel(messageToTranslate: message)
-                            }
-                        }) {
-                            Text("Get Translation")
-                                .padding()
-                                .background(Color.brown)
-                                .foregroundColor(.white)
-                                .cornerRadius(5)
+                        Button(action: { Task { await translateWithViewModel(messageToTranslate: message) } }) {
+                            Label("Get Translation", systemImage: "text.bubble")
+                                .frame(maxWidth: .infinity)
                         }
+                        .buttonStyle(.bordered)
+                        .tint(.brown)
                     }
-                    
-                    Spacer()
-                    
-                    CommonDivider()
                 }
-                .background(Color.brown.opacity(0.1))
-                .cornerRadius(8)
+                .animation(.easeInOut, value: message.translatedMessageContent != nil)
 
                 
                 if message.translatedTransliteratedMessageContent != nil {
@@ -236,7 +168,7 @@ struct MessageModalView: View {
                 } else {
                     Button(action: {
                         if message.translatedMessageContent != nil {
-                            getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
+                            Task { await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
                         } else {
                             showWarning = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -270,27 +202,20 @@ struct MessageModalView: View {
         }
     }
     
-    func translateWithViewModel(messageToTranslate: MessagingModel) async {
+    @MainActor func translateWithViewModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English if \(Utilities.getLanguageName(by: accountManager.languageToLearn)) is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
         
-        Task {
-            message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
-        }
+        message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
     }
     
-    func getAudioMessage(messageToGetAudioFor: MessagingModel) {
-        Task {
-            message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor.message.content)
-        }
+    @MainActor func getAudioMessage(messageToGetAudioFor: MessagingModel) async {
+        message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor.message.content)
     }
     
-    func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
-        Task {
-            message.translatedAudioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor
-                .translatedMessageContent!)
-            
-        }
+    @MainActor func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) async {
+        message.translatedAudioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor
+            .translatedMessageContent!)
     }
 }
 
@@ -302,3 +227,4 @@ struct MessageModalView_Previews: PreviewProvider {
         MessageModalView(message: $message)
     }
 }
+
