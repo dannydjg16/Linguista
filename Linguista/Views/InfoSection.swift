@@ -24,6 +24,7 @@ struct InfoSection<Content: View>: View {
                 Text("\(title):")
                     .padding(.leading)
                     .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                    .bold()
                 Spacer()
             }
 
