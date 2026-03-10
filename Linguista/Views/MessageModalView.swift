@@ -44,26 +44,11 @@ struct MessageModalView: View {
         ScrollView {
             VStack(spacing: 5){
                 
-                CommonDivider()
-                
-                HStack {
-                    Text("Message:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
+                InfoSection(title: "Audio") {
+                        MessageBubbleViewWithoutPlayAudioButton(message: message.message.content)
+                    }
                 }
-                
-                Spacer()
-                
-                HStack {
-                    MessageBubbleViewWithoutPlayAudioButton(message: message.message.content)
-                }
-                
-                Spacer()
-                
-                CommonDivider()
             
-                
                 if message.transliteratedMessageContent != nil {
                     
                     HStack {
@@ -195,7 +180,6 @@ struct MessageModalView: View {
                 .animation(.easeInOut, value: message.translatedAudioData != nil)
             }
         }
-    }
     
     @MainActor func translateWithViewModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English if \(Utilities.getLanguageName(by: accountManager.languageToLearn)) is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
