@@ -13,6 +13,9 @@ struct MessageModalView: View {
     @Binding var message: MessagingModel
     @EnvironmentObject var conversationViewModel: ConversationViewModel
     @State private var showWarning = false
+    @State private var isLoadingAudio = false
+    @State private var isLoadingTranslation = false
+    @State private var isLoadingTranslatedAudio = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var accountManager: AccountManager
@@ -90,12 +93,21 @@ struct MessageModalView: View {
                         AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioData))
                             .transition(.opacity.combined(with: .move(edge: .top)))
                     } else {
-                        Button(action: { Task { await getAudioMessage(messageToGetAudioFor: message) } }) {
-                            Label("Load Audio", systemImage: "waveform")
-                                .frame(maxWidth: .infinity)
+                        if isLoadingAudio {
+                            HStack {
+                                ProgressView()
+                                Text("Loading audio…")
+                            }
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            Button(action: { Task { isLoadingAudio = true; defer { isLoadingAudio = false }; await getAudioMessage(messageToGetAudioFor: message) } }) {
+                                Label("Load Audio", systemImage: "waveform")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.brown)
+                            .disabled(isLoadingAudio)
                         }
-                        .buttonStyle(.bordered)
-                        .tint(.brown)
                     }
                 }
                 .animation(.easeInOut, value: message.audioData != nil)
@@ -105,12 +117,21 @@ struct MessageModalView: View {
                         MessageBubbleViewWithoutPlayAudioButton(message: translatedContent)
                             .transition(.opacity.combined(with: .move(edge: .top)))
                     } else {
-                        Button(action: { Task { await translateWithViewModel(messageToTranslate: message) } }) {
-                            Label("Get Translation", systemImage: "text.bubble")
-                                .frame(maxWidth: .infinity)
+                        if isLoadingTranslation {
+                            HStack {
+                                ProgressView()
+                                Text("Translating…")
+                            }
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            Button(action: { Task { isLoadingTranslation = true; defer { isLoadingTranslation = false }; await translateWithViewModel(messageToTranslate: message) } }) {
+                                Label("Get Translation", systemImage: "text.bubble")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.brown)
+                            .disabled(isLoadingTranslation)
                         }
-                        .buttonStyle(.bordered)
-                        .tint(.brown)
                     }
                 }
                 .animation(.easeInOut, value: message.translatedMessageContent != nil)
@@ -166,29 +187,29 @@ struct MessageModalView: View {
                     
                     Spacer()
                 } else {
-                    Button(action: {
-                        if message.translatedMessageContent != nil {
-                            Task { await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
-                        } else {
-                            showWarning = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                showWarning = false
-                            }
+                    if isLoadingTranslatedAudio {
+                        HStack {
+                            ProgressView()
+                            Text("Generating audio…")
                         }
-                    }) {
-                        Text("Get Audio")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
-                    
-                    if showWarning {
-                        Text("Need to Translate Message First!")
-                            .foregroundColor(.red)
-                            .font(.footnote)
-                            .padding(.top, 5)
-                            .transition(.opacity)
+                    } else {
+                        Button(action: {
+                            if message.translatedMessageContent != nil {
+                                Task { isLoadingTranslatedAudio = true; defer { isLoadingTranslatedAudio = false }; await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
+                            } else {
+                                showWarning = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    showWarning = false
+                                }
+                            }
+                        }) {
+                            Text("Get Audio")
+                                .padding()
+                                .background(Color.brown)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                        }
+                        .disabled(isLoadingTranslatedAudio)
                     }
                 }
                 
