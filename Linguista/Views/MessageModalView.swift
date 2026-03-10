@@ -161,7 +161,7 @@ struct MessageModalView: View {
                     CommonDivider()
                 }
                 
-                InfoSection(title: "Translation Audio:") {
+                InfoSection(title: "Translation Audio") {
                     if let translatedMessageAudio = message.translatedAudioData {
                         AudioPlayerView(audioManager: AudioPlayerManager(audioData: translatedMessageAudio))
                             .transition(.opacity.combined(with: .move(edge: .top)))
