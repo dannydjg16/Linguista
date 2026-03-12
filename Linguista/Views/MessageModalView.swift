@@ -137,14 +137,8 @@ struct MessageModalView: View {
                             .frame(maxWidth: .infinity)
                         } else {
                             Button(action: {
-                                if message.translatedMessageContent != nil {
-                                    Task { isLoadingTranslatedAudio = true; defer { isLoadingTranslatedAudio = false }; await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
-                                } else {
-                                    showWarning = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        showWarning = false
-                                    }
-                                }
+                                
+                                Task { isLoadingTranslatedAudio = true; defer { isLoadingTranslatedAudio = false }; await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
                             }) {
                                 Label("Get Audio", systemImage: "waveform")
                                     .frame(maxWidth: .infinity)
