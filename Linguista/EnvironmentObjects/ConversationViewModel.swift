@@ -181,14 +181,13 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-    
     func checkForTransliterationAndTransliterate(messageModel: MessagingModel) async -> String? {
         let content = messageModel.message.content
         // If the message contains only Latin characters, no transliteration is needed
         if content.containsOnlyLatinLetters {
             return nil
         }
-        // For now, return the original content as a placeholder or hook up to your transliteration service.
+
         let transliteratedMessage = await transliterateString(messageToTransliterate: content)
         
         return transliteratedMessage
@@ -197,7 +196,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     func checkForTransliterationAndTransliterate(message: String) async -> String? {
         // If the message contains only Latin characters, no transliteration is needed
         if message.containsOnlyLatinLetters {
-            return nil
+            return message
         }
         // For now, return the original content as a placeholder or hook up to your transliteration service.
         let transliteratedMessage = await transliterateString(messageToTransliterate: message)
@@ -214,6 +213,8 @@ class ConversationViewModel: ObservableObject, Sendable {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            
+            let possibleTransliteration = await checkForTransliterationAndTransliterate(message: responseMessage.content)
             
             return responseMessage.content
             
