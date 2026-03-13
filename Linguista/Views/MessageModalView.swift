@@ -184,7 +184,6 @@ struct MessageModalView: View {
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
         
         message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
-        message.translatedTransliteratedMessageContent = await conversationViewModel.checkForTransliterationAndTransliterate(message: message.translatedMessageContent!)
     }
     
     @MainActor func getAudioMessage(messageToGetAudioFor: MessagingModel) async {
