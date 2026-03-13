@@ -158,14 +158,14 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8116AD6B2F5E4AF000B0632D /* InfoSection.swift */,
-				815E3B962F5BCFC4000DD076 /* CommonDivider.swift */,
 				81A351242E15D9750079C157 /* AccountSettingsView.swift */,
 				8120C7A62C2A79EF007DCE2E /* AccountView.swift */,
 				8159FE012CEEEEA4005A0428 /* AudioPlayerView.swift */,
 				81752E892D6EB86400D9F696 /* ChatOptionsView.swift */,
 				8194D02B2D506D0300CAE54C /* ChatView.swift */,
+				815E3B962F5BCFC4000DD076 /* CommonDivider.swift */,
 				81494AD92C13BD2900F1ABB0 /* ContentView.swift */,
+				8116AD6B2F5E4AF000B0632D /* InfoSection.swift */,
 				8194D0232D38C43000CAE54C /* LanguagePickerView.swift */,
 				8194D0272D38C53A00CAE54C /* MessageBubbleView.swift */,
 				81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */,
