@@ -194,6 +194,17 @@ class ConversationViewModel: ObservableObject, Sendable {
         return transliteratedMessage
     }
     
+    func checkForTransliterationAndTransliterate(message: String) async -> String? {
+        // If the message contains only Latin characters, no transliteration is needed
+        if message.containsOnlyLatinLetters {
+            return nil
+        }
+        // For now, return the original content as a placeholder or hook up to your transliteration service.
+        let transliteratedMessage = await transliterateString(messageToTransliterate: message)
+        
+        return transliteratedMessage
+    }
+    
     func sendMessageGetMessageString(completionRequest: CompletionsRequest) async -> String? {
         
         if (completionRequest.messages.count == 0){
