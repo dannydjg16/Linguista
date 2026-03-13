@@ -216,7 +216,7 @@ class ConversationViewModel: ObservableObject, Sendable {
             
             let possibleTransliteration = await checkForTransliterationAndTransliterate(message: responseMessage.content)
             
-            return responseMessage.content
+            return possibleTransliteration
             
         } catch {
             print("Error: \(error.localizedDescription)")
