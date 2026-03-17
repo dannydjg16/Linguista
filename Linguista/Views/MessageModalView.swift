@@ -204,4 +204,3 @@ struct MessageModalView_Previews: PreviewProvider {
         MessageModalView(message: $message)
     }
 }
-
