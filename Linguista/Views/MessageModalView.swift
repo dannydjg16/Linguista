@@ -100,6 +100,8 @@ struct MessageModalView: View {
             }
             .animation(.easeInOut, value: message.audioData != nil)
             
+            CommonDivider(height: 3.0)
+
             InfoSection(title: "Translation") {
                 if let translatedContent = message.translatedMessageContent {
                     MessageBubbleViewWithoutPlayAudioButton(message: translatedContent)
