@@ -18,7 +18,6 @@ struct TalkingChatView: View {
             
             MessageListView()
                 .background(Color.white)
-                .cornerRadius(10)
             
             Spacer()
             
