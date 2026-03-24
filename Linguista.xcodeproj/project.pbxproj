@@ -53,7 +53,7 @@
 		81C461012F72327600881688 /* WordPopoverContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461002F72327600881688 /* WordPopoverContent.swift */; };
 		81C461032F72328E00881688 /* TappableWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461022F72328E00881688 /* TappableWordView.swift */; };
 		81C461052F72329900881688 /* WordLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461042F72329900881688 /* WordLookupService.swift */; };
-		81C461072F7232A900881688 /* WordLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461062F7232A900881688 /* WordLookupResult.swift */; };
+		81C4610C2F73316F00881688 /* TooltipBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C4610B2F73316F00881688 /* TooltipBox.swift */; };
 		81EDC52A2F510AF200E7770B /* Wista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EDC5292F510AF200E7770B /* Wista.swift */; };
 		81F6EB862E542E8D002F2981 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6EB852E542E8D002F2981 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
@@ -128,7 +128,7 @@
 		81C461002F72327600881688 /* WordPopoverContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPopoverContent.swift; sourceTree = "<group>"; };
 		81C461022F72328E00881688 /* TappableWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableWordView.swift; sourceTree = "<group>"; };
 		81C461042F72329900881688 /* WordLookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordLookupService.swift; sourceTree = "<group>"; };
-		81C461062F7232A900881688 /* WordLookupResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordLookupResult.swift; sourceTree = "<group>"; };
+		81C4610B2F73316F00881688 /* TooltipBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipBox.swift; sourceTree = "<group>"; };
 		81EDC5292F510AF200E7770B /* Wista.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wista.swift; sourceTree = "<group>"; };
 		81F6EB852E542E8D002F2981 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +138,7 @@
 		814DE6EC2DA4D40800A5C0DE /* App Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "App Models"; sourceTree = "<group>"; };
 		814DE6ED2DA4D47900A5C0DE /* List Objects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "List Objects"; sourceTree = "<group>"; };
 		81BD14262DD6F89A003B4706 /* EnvironmentObjects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EnvironmentObjects; sourceTree = "<group>"; };
+		81C461082F73312A00881688 /* Word Lookup */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Word Lookup"; sourceTree = "<group>"; };
 		81F4A15A2F4421DD006EAE48 /* UserModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserModels; sourceTree = "<group>"; };
 		81F4A15E2F4424C5006EAE48 /* UserSignInFiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserSignInFiles; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -170,6 +171,7 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81C4610B2F73316F00881688 /* TooltipBox.swift */,
 				81C461042F72329900881688 /* WordLookupService.swift */,
 				81C461022F72328E00881688 /* TappableWordView.swift */,
 				81C461002F72327600881688 /* WordPopoverContent.swift */,
@@ -311,7 +313,7 @@
 		81E127F62C2287B5009A5051 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				81C461062F7232A900881688 /* WordLookupResult.swift */,
+				81C461082F73312A00881688 /* Word Lookup */,
 				81F4A15A2F4421DD006EAE48 /* UserModels */,
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
 				814DE6EC2DA4D40800A5C0DE /* App Models */,
@@ -341,6 +343,7 @@
 				814DE6EC2DA4D40800A5C0DE /* App Models */,
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
 				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
+				81C461082F73312A00881688 /* Word Lookup */,
 				81F4A15A2F4421DD006EAE48 /* UserModels */,
 				81F4A15E2F4424C5006EAE48 /* UserSignInFiles */,
 			);
@@ -474,7 +477,6 @@
 				812D1F0B2C897E8400255A86 /* Utilities.swift in Sources */,
 				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
-				81C461072F7232A900881688 /* WordLookupResult.swift in Sources */,
 				81C460FF2F72325A00881688 /* WrappingWordsView.swift in Sources */,
 				81C461052F72329900881688 /* WordLookupService.swift in Sources */,
 				81C460FD2F72323900881688 /* WrappingHStack.swift in Sources */,
@@ -499,6 +501,7 @@
 				815E3B972F5BCFC4000DD076 /* CommonDivider.swift in Sources */,
 				81752E822D5AFDDF00D9F696 /* TextMessagingView.swift in Sources */,
 				81752E8A2D6EB86400D9F696 /* ChatOptionsView.swift in Sources */,
+				81C4610C2F73316F00881688 /* TooltipBox.swift in Sources */,
 				81030AB62DED490400450571 /* AccountService.swift in Sources */,
 				8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */,
 				8194D0222D23791000CAE54C /* SpeedSelectorView.swift in Sources */,

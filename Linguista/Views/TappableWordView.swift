@@ -1,48 +1,25 @@
-////
-////  TappableWordView.swift
-////  Linguista
-////
-////  Created by Daniel Grant on 3/23/26.
-////
 //
-//import Foundation
-//import SwiftUI
+//  TappableWordView.swift
+//  Linguista
 //
-//struct TappableWordView: View {
-//    let word: String
+//  Created by Daniel Grant on 3/23/26.
 //
-//    @State private var showPopover = false
-//    @State private var isLoading = false
-//    @State private var result: WordLookupResult?
-//
-//    var body: some View {
-//        Text(word)
-//            .foregroundColor(.primary)
-//            .background(
-//                showPopover
-//                    ? Color.brown.opacity(0.35)
-//                    : Color.clear
-//            )
-//            .cornerRadius(3)
-//            .onTapGesture {
-//                showPopover = true
-//                if result == nil {
-//                    isLoading = true
-//                    Task {
-//                        let r = await WordLookupService.lookup(word)
-//                        await MainActor.run {
-//                            result = r
-//                            isLoading = false
-//                        }
-//                    }
-//                }
-//            }
-//            .popover(isPresented: $showPopover, arrowEdge: .top) {
-//                WordPopoverContent(
-//                    word: word,
-//                    isLoading: isLoading,
-//                    result: result
-//                )
-//            }
-//    }
-//}
+
+import Foundation
+import SwiftUI
+
+struct TappableWordView: View {
+    let word: String
+    let index: Int
+    let isSelected: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        Text(word)
+            .foregroundColor(.primary)
+            .background(isSelected ? Color.brown.opacity(0.3) : Color.clear)
+            .cornerRadius(3)
+            .anchorPreference(key: WordFrameKey.self, value: .bounds) { [index: $0] }
+            .onTapGesture { onTap() }
+    }
+}
