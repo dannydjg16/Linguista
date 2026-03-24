@@ -57,16 +57,19 @@ class ConversationViewModel: ObservableObject, Sendable {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: conversationSoFar)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
+            var responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: false)
             
             Task {
-                var messageModelWithAudio = await fetchAndPlayAudio(messagingModel: responseMessageModel)
+                let messageData = await fetchAudioReturnData(messageToConvertAndPlay: responseMessageModel.message.content)
+                responseMessageModel.audioData = messageData
+
                 let tranStr = await checkForTransliterationAndTransliterate(messageModel: responseMessageModel)
-                messageModelWithAudio.transliteratedMessageContent = tranStr
+                responseMessageModel.transliteratedMessageContent = tranStr
 
                 // Add response with audio to message array
                 await MainActor.run {
-                    self.messages.append(messageModelWithAudio)
+                    self.messages.append(responseMessageModel)
+                    ttsViewModel.playAudio(with: responseMessageModel.audioData!)
                 }
             }
             
@@ -178,39 +181,28 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-    
     func checkForTransliterationAndTransliterate(messageModel: MessagingModel) async -> String? {
         let content = messageModel.message.content
         // If the message contains only Latin characters, no transliteration is needed
         if content.containsOnlyLatinLetters {
             return nil
         }
-        // TODO: Implement actual transliteration logic here if available.
-        // For now, return the original content as a placeholder or hook up to your transliteration service.
+
         let transliteratedMessage = await transliterateString(messageToTransliterate: content)
         
         return transliteratedMessage
     }
     
-//    func sendMessageGetMessage(completionRequest: CompletionsRequest) async -> MessagingModel? {
-//        
-//        if (completionRequest.messages.count == 0){
-//            return nil
-//        }
-//        
-//        do {
-//            let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
-//            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-//            let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
-//            
-//            return responseMessageModel
-//            
-//        } catch {
-//            print("Error: \(error.localizedDescription)")
-//        }
-//        
-//        return nil
-//    }
+    func checkForTransliterationAndTransliterate(message: String) async -> String? {
+        // If the message contains only Latin characters, no transliteration is needed
+        if message.containsOnlyLatinLetters {
+            return message
+        }
+        // For now, return the original content as a placeholder or hook up to your transliteration service.
+        let transliteratedMessage = await transliterateString(messageToTransliterate: message)
+        
+        return transliteratedMessage
+    }
     
     func sendMessageGetMessageString(completionRequest: CompletionsRequest) async -> String? {
         
@@ -221,39 +213,16 @@ class ConversationViewModel: ObservableObject, Sendable {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: completionRequest)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            //let responseMessageModel = MessagingModel(message: responseMessage , isSentByUser: true)
             
-            return responseMessage.content
+            let possibleTransliteration = await checkForTransliterationAndTransliterate(message: responseMessage.content)
+            
+            return possibleTransliteration
             
         } catch {
             print("Error: \(error.localizedDescription)")
         }
         
         return nil
-    }
-    
-    func setTranslatedMessageAndAudio(messagingModel: MessagingModel) -> Bool {
-        
-        // Find the message to set the translation on
-        if let index = messages.firstIndex(where: { $0.id == messagingModel.id }) {
-            
-            // Set translated message content here
-            if (self.messages[index].translatedMessageContent == nil && messagingModel.translatedMessageContent != nil) {
-                self.messages[index].translatedMessageContent = messagingModel.translatedMessageContent
-            }
-            
-            // Set audio stuff here may have to change to translatedAudioData
-            if (self.messages[index].audioData == nil && messagingModel.audioData != nil) {
-                self.messages[index].audioData = messagingModel.audioData
-            }
-            
-            // Set audio stuff here may have to change to translatedAudioData
-            if (self.messages[index].translatedAudioData == nil && messagingModel.translatedAudioData != nil) {
-                self.messages[index].translatedAudioData = messagingModel.translatedAudioData
-            }
-        }
-        
-        return true
     }
     
     func fetchAndPlayAudio(messagingModel: MessagingModel) async -> MessagingModel {
@@ -276,47 +245,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         
         return updatedMessagingModel
     }
-    
-//    func fetchAndPlayAudioForMessagingModel(messagingModel: MessagingModel) async -> MessagingModel {
-//        
-//        isLoading = true
-//        errorMessage = nil
-//        
-//        var updatedMessagingModel = messagingModel
-//        
-//        do {
-//            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messagingModel.message.content, voice: "echo", speed: 0.8)
-//            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
-//            ttsViewModel.playAudio(with: audioData)
-//            updatedMessagingModel.audioData = audioData
-//        } catch {
-//            errorMessage = error.localizedDescription
-//        }
-//        
-//        isLoading = false
-//        
-//        return updatedMessagingModel
-//    }
-    
-//    func fetchAndPlayAudioReturnData(messagingModel: MessagingModel) async -> Data? {
-//        
-//        isLoading = true
-//        errorMessage = nil
-//                
-//        do {
-//            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messagingModel.message.content, voice: "echo", speed: 0.8)
-//            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
-//            ttsViewModel.playAudio(with: audioData)
-//            return audioData
-//        } catch {
-//            errorMessage = error.localizedDescription
-//        }
-//        
-//        isLoading = false
-//        
-//        return nil
-//    }
-//    
+
     func fetchAndPlayAudioReturnData(messageToConvertAndPlay: String) async -> Data? {
         
         isLoading = true
@@ -336,26 +265,23 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-//    func fetchAndPlayAudioForTranslatedMessage(messagingModel: MessagingModel) async -> MessagingModel {
-//        
-//        isLoading = true
-//        errorMessage = nil
-//        
-//        var updatedMessagingModel = messagingModel
-//        
-//        do {
-//            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messagingModel.translatedMessageContent!, voice: "echo", speed: 0.8)
-//            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
-//            ttsViewModel.playAudio(with: audioData)
-//            updatedMessagingModel.translatedAudioData = audioData
-//        } catch {
-//            errorMessage = error.localizedDescription
-//        }
-//        
-//        isLoading = false
-//        
-//        return updatedMessagingModel
-//    }
+    func fetchAudioReturnData(messageToConvertAndPlay: String) async -> Data? {
+        
+        isLoading = true
+        errorMessage = nil
+                
+        do {
+            let ttsRequest = TtsRequest(model: selectedTtsModel, input: messageToConvertAndPlay, voice: "echo", speed: 0.8)
+            let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
+            return audioData
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
+        
+        return nil
+    }
     
     public func playAudio(messagingModel: MessagingModel){
         if let audioData = messagingModel.audioData {

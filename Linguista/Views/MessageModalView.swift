@@ -12,11 +12,10 @@ struct MessageModalView: View {
     
     @Binding var message: MessagingModel
     @EnvironmentObject var conversationViewModel: ConversationViewModel
-//    @State var messageWithAudio: MessagingModel?
-    //@State var translatedMessage: MessagingModel?
-    //@State var transliteratedMessage: MessagingModel?
-    //@State var translatedMessageWithAudio: MessagingModel?
     @State private var showWarning = false
+    @State private var isLoadingAudio = false
+    @State private var isLoadingTranslation = false
+    @State private var isLoadingTranslatedAudio = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var accountManager: AccountManager
@@ -42,264 +41,159 @@ struct MessageModalView: View {
             .font(.title)
             .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
         
+        CommonDivider()
+        
         ScrollView {
             VStack(spacing: 5){
                 
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
-                
-                HStack {
-                    Text("Message:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                HStack {
+                InfoSection(title: "Message") {
                     MessageBubbleViewWithoutPlayAudioButton(message: message.message.content)
                 }
-                
-                Spacer()
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
-            
-                
-                if message.transliteratedMessageContent != nil {
-                    
-                    HStack {
-                        Text("Transliteration:")
-                            .padding(.leading)
-                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        MessageBubbleViewWithoutPlayAudioButton(message: message.transliteratedMessageContent!)
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                    Divider()
-                        .frame(height: 1)
-                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                        .padding([.leading, .trailing])
-                }
-
-                
-                
-                HStack {
-                    Text("Audio:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                if message.audioData != nil {
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.audioData!))
-                            .transition(.slide)
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                } else {
-                    Button(action: {
-                        getAudioMessage(messageToGetAudioFor: message)
-                    }) {
-                        Text("Get Audio")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
-                }
-                
-                Spacer()
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
-                
-                
-                
-                HStack {
-                    Text("Translation:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                if message.translatedMessageContent != nil {
-                    
-                    HStack {
-                        Spacer()
-                        
-                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedMessageContent!)
-                        
-                        Spacer()
-                    }
-                } else {
-                    Button(action: {
-                        Task {
-                            await translateWithViewModel(messageToTranslate: message)
-                        }
-                    }) {
-                        Text("Get Translation")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
-                }
-                
-                Spacer()
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
-                
-                if message.translatedTransliteratedMessageContent != nil {
-                    
-                    HStack {
-                        Text("Translated Transliteration:")
-                            .padding(.leading)
-                            .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        MessageBubbleViewWithoutPlayAudioButton(message: message.translatedTransliteratedMessageContent!)
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                    Divider()
-                        .frame(height: 1)
-                        .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                        .padding([.leading, .trailing])
-                }
-                
-                
-                
-                HStack {
-                    Text("Translation Audio:")
-                        .padding(.leading)
-                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                if message.translatedAudioData != nil {
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: message.translatedAudioData!))
-                            .transition(.slide)
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                } else {
-                    Button(action: {
-                        if message.translatedMessageContent != nil {
-                            getAudioMessageForTranslatedMessage(messageToGetAudioFor: message)
-                        } else {
-                            showWarning = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                showWarning = false
-                            }
-                        }
-                    }) {
-                        Text("Get Audio")
-                            .padding()
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
-                    
-                    if showWarning {
-                        Text("Need to Translate Message First!")
-                            .foregroundColor(.red)
-                            .font(.footnote)
-                            .padding(.top, 5)
-                            .transition(.opacity)
-                    }
-                }
-                Spacer()
-                Divider()
-                    .frame(height: 1)
-                    .background(colorScheme == .light ? Color.black.opacity(0.3) : Color.white)
-                    .padding([.leading, .trailing])
-                Spacer()
             }
-            .animation(.easeInOut, value: showWarning)
+            
+            if message.transliteratedMessageContent != nil {
+                
+                HStack {
+                    Text("Transliteration:")
+                        .padding(.leading)
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                        .bold()
+                    Spacer()
+                }
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    MessageBubbleViewWithoutPlayAudioButton(message: message.transliteratedMessageContent!)
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+                CommonDivider()
+            }
+            
+            
+            InfoSection(title: "Audio") {
+                if let audioData = message.audioData {
+                    AudioPlayerView(audioManager: AudioPlayerManager(audioData: audioData))
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                } else {
+                    if isLoadingAudio {
+                        HStack {
+                            ProgressView()
+                            Text("Loading audio…")
+                        }
+                        .frame(maxWidth: .infinity)
+                    } else {
+                        Button(action: { Task { isLoadingAudio = true; defer { isLoadingAudio = false }; await getAudioMessage(messageToGetAudioFor: message) } }) {
+                            Label("Load Audio", systemImage: "waveform")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(.brown)
+                        .disabled(isLoadingAudio)
+                    }
+                }
+            }
+            .animation(.easeInOut, value: message.audioData != nil)
+            
+            InfoSection(title: "Translation") {
+                if let translatedContent = message.translatedMessageContent {
+                    MessageBubbleViewWithoutPlayAudioButton(message: translatedContent)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                } else {
+                    if isLoadingTranslation {
+                        HStack {
+                            ProgressView()
+                            Text("Translating…")
+                        }
+                        .frame(maxWidth: .infinity)
+                    } else {
+                        Button(action: { Task { isLoadingTranslation = true; defer { isLoadingTranslation = false }; await translateWithViewModel(messageToTranslate: message) } }) {
+                            Label("Get Translation", systemImage: "text.bubble")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(.brown)
+                        .disabled(isLoadingTranslation)
+                    }
+                }
+            }
+            .animation(.easeInOut, value: message.translatedMessageContent != nil)
+            
+            if message.translatedMessageContent != nil {
+                InfoSection(title: "Translation Audio") {
+                    if let translatedMessageAudio = message.translatedAudioData {
+                        AudioPlayerView(audioManager: AudioPlayerManager(audioData: translatedMessageAudio))
+                            .transition(.opacity.combined(with: .move(edge: .top)))
+                    } else {
+                        if isLoadingTranslatedAudio {
+                            HStack {
+                                ProgressView()
+                                Text("Generating audio…")
+                            }
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            Button(action: {
+                                
+                                Task { isLoadingTranslatedAudio = true; defer { isLoadingTranslatedAudio = false }; await getAudioMessageForTranslatedMessage(messageToGetAudioFor: message) }
+                            }) {
+                                Label("Get Audio", systemImage: "waveform")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.brown)
+                            .disabled(isLoadingTranslatedAudio)
+                        }
+                    }
+                }
+                .animation(.easeInOut, value: message.translatedAudioData != nil)
+            }
+            
+            
+            if message.translatedTransliteratedMessageContent != nil {
+                
+                HStack {
+                    Text("Translated Transliteration:")
+                        .padding(.leading)
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.3, green: 0.15, blue: 0.05) : Color.white)
+                    Spacer()
+                }
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    MessageBubbleViewWithoutPlayAudioButton(message: message.translatedTransliteratedMessageContent!)
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+                
+                CommonDivider()
+            }
         }
     }
     
-    func translateWithViewModel(messageToTranslate: MessagingModel) async {
+    @MainActor func translateWithViewModel(messageToTranslate: MessagingModel) async {
         let messages = [Message(role: "system", content: "Translate the word or sentence from \(Utilities.getLanguageName(by: accountManager.languageToLearn)) to English if \(Utilities.getLanguageName(by: accountManager.languageToLearn)) is provided. The translation should be very informal like chatting with an infant. Otherwise, translate from English to \(Utilities.getLanguageName(by: accountManager.languageToLearn)) if English is provided."), Message(role: "user", content: "\(messageToTranslate.message.content)")]
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
         
-        Task {
-//            let tm = await conversationViewModel.sendMessageGetMessage(completionRequest: dataModel)
-//            message.translatedMessageContent = tm?.message.content
-//            _ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: tm!)
-            
-            message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
-        }
+        message.translatedMessageContent = await conversationViewModel.sendMessageGetMessageString(completionRequest: dataModel)
     }
     
-    func getAudioMessage(messageToGetAudioFor: MessagingModel) {
-        Task {
-            //messageWithAudio = await conversationViewModel.fetchAndPlayAudioForMessagingModel(messagingModel: messageToGetAudioFor)
-            //message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messagingModel: messageToGetAudioFor)
-            //_ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
-            
-            message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor.translatedMessageContent!)
-        }
+    @MainActor func getAudioMessage(messageToGetAudioFor: MessagingModel) async {
+        message.audioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor.message.content)
     }
     
-    func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) {
-        Task {
-//            translatedMessageWithAudio = await conversationViewModel.fetchAndPlayAudioForTranslatedMessage(messagingModel: messageToGetAudioFor)
-//            message.translatedAudioData = translatedMessageWithAudio?.translatedAudioData
-//            _ = conversationViewModel.setTranslatedMessageAndAudio(messagingModel: message)
-            
-            message.translatedAudioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor
-                .translatedMessageContent!)
-            
-        }
+    @MainActor func getAudioMessageForTranslatedMessage(messageToGetAudioFor: MessagingModel) async {
+        message.translatedAudioData = await conversationViewModel.fetchAndPlayAudioReturnData(messageToConvertAndPlay: messageToGetAudioFor
+            .translatedMessageContent!)
     }
 }
 
