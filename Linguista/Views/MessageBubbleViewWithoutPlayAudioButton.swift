@@ -11,7 +11,6 @@ import SwiftUI
 struct MessageBubbleViewWithoutPlayAudioButton: View {
     
     let message: String
-    @State private var color: Color = .blue
     
     var body: some View {
         VStack {
