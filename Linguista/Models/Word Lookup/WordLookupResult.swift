@@ -8,6 +8,5 @@
 
 struct WordLookupResult {
     let word: String
-    let definition: String
-    let partOfSpeech: String
+    let translation: String
 }
