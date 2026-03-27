@@ -184,7 +184,7 @@ class ConversationViewModel: ObservableObject, Sendable {
     func translateWord(wordToTranslate: String, contextOfWord: String) async  -> String? {
         
         let messages = [
-            Message(role: "system", content: "Translate the word in the given context. Return maximum two or three words but try to keep it at one word translation."),
+            Message(role: "system", content: "Translate the word in the given context. Return maximum two or three words but try to keep it at one word translation. If word and context are in English, translate into \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Otherwise translate into English."),
             Message(role: "user", content: "word: \(wordToTranslate), context: \(contextOfWord)")
         ]
         let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
