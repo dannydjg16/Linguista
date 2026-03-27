@@ -181,7 +181,7 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
-    func translateWord(wordToTranslate: String, contextOfWord: String) async  -> String? {
+    func translateWord(wordToTranslate: String, contextOfWord: String) async  -> WordLookupResult? {
         
         let messages = [
             Message(role: "system", content: "Translate the word in the given context. Return maximum two or three words but try to keep it at one word translation. If word and context are in English, translate into \(Utilities.getLanguageName(by: accountManager.languageToLearn)). Otherwise translate into English."),
@@ -192,7 +192,8 @@ class ConversationViewModel: ObservableObject, Sendable {
         do {
             let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
             let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
-            return responseMessage.content
+            let wordLookUpResult = WordLookupResult(word: wordToTranslate, translation: responseMessage.content)
+            return wordLookUpResult
             
         } catch {
             print("Error: \(error.localizedDescription)")
