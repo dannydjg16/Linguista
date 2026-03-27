@@ -14,8 +14,7 @@ struct WordLookupService {
         let clean = word.lowercased().trimmingCharacters(in: .punctuationCharacters)
         return WordLookupResult(
             word: clean,
-            definition: "Your method result for appears here.",
-            partOfSpeech: ["noun", "verb", "adjective"].randomElement()!
+            translation: "hello test"
         )
     }
 }
