@@ -16,6 +16,7 @@ struct WrappingWordsView: View {
     @State private var result: WordLookupResult? = nil
     @State private var cachedResults: [String: WordLookupResult] = [:]
     @EnvironmentObject var conversationViewModel: ConversationViewModel
+    @EnvironmentObject var accountManager: AccountManager
 
     private var words: [String] {
         message.components(separatedBy: .whitespaces).filter { !$0.isEmpty }
@@ -73,7 +74,7 @@ struct WrappingWordsView: View {
 
         isLoading = true
         Task {
-            let r = await conversationViewModel.translateWord(wordToTranslate: word, contextOfWord: message)
+            let r = await conversationViewModel.translateWord(wordToTranslate: word, contextOfWord: message, languageToTranslateTo: Utilities.getLanguageName(by: accountManager.languageToLearn))
             await MainActor.run {
                 cachedResults[word] = r
                 isLoading = false
