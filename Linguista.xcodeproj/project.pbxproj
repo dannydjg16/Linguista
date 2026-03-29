@@ -52,7 +52,6 @@
 		81C460FF2F72325A00881688 /* WrappingWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C460FE2F72325A00881688 /* WrappingWordsView.swift */; };
 		81C461012F72327600881688 /* WordPopoverContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461002F72327600881688 /* WordPopoverContent.swift */; };
 		81C461032F72328E00881688 /* TappableWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461022F72328E00881688 /* TappableWordView.swift */; };
-		81C461052F72329900881688 /* WordLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461042F72329900881688 /* WordLookupService.swift */; };
 		81C4610C2F73316F00881688 /* TooltipBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C4610B2F73316F00881688 /* TooltipBox.swift */; };
 		81EDC52A2F510AF200E7770B /* Wista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EDC5292F510AF200E7770B /* Wista.swift */; };
 		81F6EB862E542E8D002F2981 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6EB852E542E8D002F2981 /* PersistenceController.swift */; };
@@ -127,7 +126,6 @@
 		81C460FE2F72325A00881688 /* WrappingWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingWordsView.swift; sourceTree = "<group>"; };
 		81C461002F72327600881688 /* WordPopoverContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPopoverContent.swift; sourceTree = "<group>"; };
 		81C461022F72328E00881688 /* TappableWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableWordView.swift; sourceTree = "<group>"; };
-		81C461042F72329900881688 /* WordLookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordLookupService.swift; sourceTree = "<group>"; };
 		81C4610B2F73316F00881688 /* TooltipBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipBox.swift; sourceTree = "<group>"; };
 		81EDC5292F510AF200E7770B /* Wista.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wista.swift; sourceTree = "<group>"; };
 		81F6EB852E542E8D002F2981 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				81C4610B2F73316F00881688 /* TooltipBox.swift */,
-				81C461042F72329900881688 /* WordLookupService.swift */,
 				81C461022F72328E00881688 /* TappableWordView.swift */,
 				81C461002F72327600881688 /* WordPopoverContent.swift */,
 				81C460FE2F72325A00881688 /* WrappingWordsView.swift */,
@@ -478,7 +475,6 @@
 				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
 				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
 				81C460FF2F72325A00881688 /* WrappingWordsView.swift in Sources */,
-				81C461052F72329900881688 /* WordLookupService.swift in Sources */,
 				81C460FD2F72323900881688 /* WrappingHStack.swift in Sources */,
 				81BD14252DD6A4F9003B4706 /* KeychainManager.swift in Sources */,
 				81004E7A2E00A33F00BA780E /* DataModels.xcdatamodeld in Sources */,
