@@ -181,6 +181,27 @@ class ConversationViewModel: ObservableObject, Sendable {
         return nil
     }
     
+    func translateWord(wordToTranslate: String, contextOfWord: String, languageToTranslateTo: String) async  -> WordLookupResult? {
+        
+        let messages = [
+            Message(role: "system", content: "Translate the word in the given context. Return maximum two or three words but try to keep it at one word translation. If word and context are in English, translate into \(languageToTranslateTo)). Otherwise translate into English. Transliterate the word if it is not in latin alphabet."),
+            Message(role: "user", content: "word: \(wordToTranslate), context: \(contextOfWord)")
+        ]
+        let dataModel = CompletionsRequest(model: selectedCompletionsModel, messages: messages, maxTokens: maxCompletionTokens, topP: 1)
+        
+        do {
+            let response = try await completionsService.fetchCompletion(completionRequest: dataModel)
+            let responseMessage = response.choices?.first?.message ?? Message(role: "error", content: "error")
+            let wordLookUpResult = WordLookupResult(word: wordToTranslate, translation: responseMessage.content)
+            return wordLookUpResult
+            
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+    
     func checkForTransliterationAndTransliterate(messageModel: MessagingModel) async -> String? {
         let content = messageModel.message.content
         // If the message contains only Latin characters, no transliteration is needed

@@ -27,13 +27,6 @@ struct LinguistaApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
-     
-//    var body: some Scene {
-//        WindowGroup {
-//            ProfileView()
-//        }
-//    }
-    
     
     func setupAudioSession() {
         do {

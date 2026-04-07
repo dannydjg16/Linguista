@@ -90,7 +90,7 @@ struct MessageInputView: View {
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "Continue the conversation with the user. You are a responsive journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting with someone with a 1 year old's ability to communicate"),
+                Message(role: "system", content: "Continue the conversation with the user. You are a responsive journal. Respond with a maximum of 10-15 words. The words should be mostly informal like  chatting with someone with a 1 year old's ability to communicate. This person is trying to learn \(Utilities.getLanguageName(by: accountManager.languageToLearn)) so make sure you are a helpful language tutor as well as a responsive journal"),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             
@@ -110,7 +110,7 @@ struct MessageInputView: View {
         
         if !speechRecognizer.transcribedText.isEmpty {
             let messages = [
-                Message(role: "system", content: "Continue the conversation with the user. You are a responsive journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting with someone with a 1 year old's ability to communicate. Respond in \(languageToLearn)"),
+                Message(role: "system", content: "Continue the conversation with the user. You are a responsive journal. Respond with a maximum of 10-15 words. The words should be very informal like just chatting with someone with a 1 year old's ability to communicate. Respond in \(languageToLearn). This person is trying to learn \(Utilities.getLanguageName(by: accountManager.languageToLearn)) so make sure you are a helpful language tutor as well as a responsive journal."),
                 Message(role: "user", content: speechRecognizer.transcribedText)
             ]
             

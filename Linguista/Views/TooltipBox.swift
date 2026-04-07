@@ -27,12 +27,8 @@ struct TooltipBox: View {
                     Text(r.word)
                         .font(.caption)
                         .fontWeight(.bold)
-                    Text(r.partOfSpeech)
-                        .font(.caption2)
-                        .italic()
-                        .foregroundColor(.secondary)
                 }
-                Text(r.definition)
+                Text(r.translation)
                     .font(.caption2)
                     .foregroundColor(.primary)
                     .fixedSize(horizontal: false, vertical: true)
