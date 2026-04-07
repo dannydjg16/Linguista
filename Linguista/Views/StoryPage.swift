@@ -135,7 +135,7 @@ class StoryViewModel: ObservableObject {
 }
 
 // MARK: - Root View
-
+// https://claude.ai/chat/e5d5f890-b027-4615-87d7-62885cda1959
 struct StoryGeneratorView: View {
     @StateObject private var viewModel = StoryViewModel()
 
