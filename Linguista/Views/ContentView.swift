@@ -15,10 +15,16 @@ struct ContentView: View {
                     Label("Text", systemImage: "bubble.and.pencil")
                 }
             
-            ChatView(selectedTab: $selectedTab)
+//            ChatView(selectedTab: $selectedTab)
+//                .tag(1)
+//                .tabItem {
+//                    Label("Talk", systemImage: "microphone")
+//                }
+            
+            StoryGeneratorView()
                 .tag(1)
                 .tabItem {
-                    Label("Talk", systemImage: "microphone")
+                    Label("Story", systemImage: "book")
                 }
             
             AccountView()
