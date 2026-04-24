@@ -18,6 +18,7 @@ let ttsEndpoint = "/openai/tts"
 let selectedCompletionsModel = "gpt-4o-mini"
 //let selectedCompletionsModel = "gpt-5-nano"
 let selectedTtsModel = "gpt-4o-mini-tts"
+let selectedImageModel = "gpt-image-1-mini"
 let maxCompletionTokens = 4000
 
 // Auth endpoint url builders
