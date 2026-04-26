@@ -161,7 +161,7 @@ struct StoryGeneratorView: View {
                         .transition(.opacity)
                 }
             }
-            .navigationTitle("Story Weaver")
+            .navigationTitle("Create a Story")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
