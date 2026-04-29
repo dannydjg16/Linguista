@@ -139,6 +139,7 @@
 		814DE6ED2DA4D47900A5C0DE /* List Objects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "List Objects"; sourceTree = "<group>"; };
 		81BD14262DD6F89A003B4706 /* EnvironmentObjects */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EnvironmentObjects; sourceTree = "<group>"; };
 		81C461082F73312A00881688 /* Word Lookup */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Word Lookup"; sourceTree = "<group>"; };
+		81D2D8A92FA1BE5000432F13 /* StoryCreation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StoryCreation; sourceTree = "<group>"; };
 		81F4A15A2F4421DD006EAE48 /* UserModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserModels; sourceTree = "<group>"; };
 		81F4A15E2F4424C5006EAE48 /* UserSignInFiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserSignInFiles; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -313,6 +314,7 @@
 		81E127F62C2287B5009A5051 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				81D2D8A92FA1BE5000432F13 /* StoryCreation */,
 				81C461082F73312A00881688 /* Word Lookup */,
 				81F4A15A2F4421DD006EAE48 /* UserModels */,
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
@@ -344,6 +346,7 @@
 				814DE6ED2DA4D47900A5C0DE /* List Objects */,
 				81BD14262DD6F89A003B4706 /* EnvironmentObjects */,
 				81C461082F73312A00881688 /* Word Lookup */,
+				81D2D8A92FA1BE5000432F13 /* StoryCreation */,
 				81F4A15A2F4421DD006EAE48 /* UserModels */,
 				81F4A15E2F4424C5006EAE48 /* UserSignInFiles */,
 			);

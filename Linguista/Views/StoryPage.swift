@@ -8,14 +8,6 @@
 
 import SwiftUI
 
-// MARK: - Models
-
-struct StoryPage: Identifiable {
-    let id = UUID()
-    let sentence: String
-    let imageURL: String? // Replace with your actual image type (e.g. UIImage, URL)
-    let imagePrompt: String
-}
 
 // MARK: - API Protocol (swap this implementation out for your real API)
 
