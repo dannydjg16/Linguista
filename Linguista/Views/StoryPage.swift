@@ -186,8 +186,6 @@ struct StoryGeneratorView: View {
     }
 }
 
-// MARK: - Prompt Entry View
-
 struct StoryPromptView: View {
     @ObservedObject var viewModel: StoryViewModel
     @FocusState private var isFocused: Bool
