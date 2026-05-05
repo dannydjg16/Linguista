@@ -49,6 +49,7 @@
 		81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */; };
 		81A9CB092D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */; };
 		81BC1E0E2FA9909600E0EB31 /* StoryGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */; };
+		81BC1E102FA990C400E0EB31 /* StoryPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC1E0F2FA990C400E0EB31 /* StoryPromptView.swift */; };
 		81BD14252DD6A4F9003B4706 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD14242DD6A4F9003B4706 /* KeychainManager.swift */; };
 		81C460FD2F72323900881688 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C460FC2F72323900881688 /* WrappingHStack.swift */; };
 		81C460FF2F72325A00881688 /* WrappingWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C460FE2F72325A00881688 /* WrappingWordsView.swift */; };
@@ -126,6 +127,7 @@
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
 		81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleViewWithoutPlayAudioButton.swift; sourceTree = "<group>"; };
 		81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorView.swift; sourceTree = "<group>"; };
+		81BC1E0F2FA990C400E0EB31 /* StoryPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPromptView.swift; sourceTree = "<group>"; };
 		81BD14242DD6A4F9003B4706 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		81C460FC2F72323900881688 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		81C460FE2F72325A00881688 /* WrappingWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingWordsView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81BC1E0F2FA990C400E0EB31 /* StoryPromptView.swift */,
 				81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */,
 				812876C02F84A34E00DD6556 /* StoryPage.swift */,
 				81C4610B2F73316F00881688 /* TooltipBox.swift */,
@@ -503,6 +506,7 @@
 				819622112CDDAC59009D9392 /* SpeechRecognizer.swift in Sources */,
 				81C461012F72327600881688 /* WordPopoverContent.swift in Sources */,
 				8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */,
+				81BC1E102FA990C400E0EB31 /* StoryPromptView.swift in Sources */,
 				81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */,
 				81EDC52A2F510AF200E7770B /* Wista.swift in Sources */,
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
