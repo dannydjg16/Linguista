@@ -55,6 +55,7 @@
 		81C461032F72328E00881688 /* TappableWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461022F72328E00881688 /* TappableWordView.swift */; };
 		81C4610C2F73316F00881688 /* TooltipBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C4610B2F73316F00881688 /* TooltipBox.swift */; };
 		81D2D8AD2FA98FEE00432F13 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2D8AC2FA98FEE00432F13 /* StoryViewModel.swift */; };
+		81D2D8AF2FA9901A00432F13 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2D8AE2FA9901A00432F13 /* StoryViewModel.swift */; };
 		81EDC52A2F510AF200E7770B /* Wista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EDC5292F510AF200E7770B /* Wista.swift */; };
 		81F6EB862E542E8D002F2981 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6EB852E542E8D002F2981 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		81C461022F72328E00881688 /* TappableWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableWordView.swift; sourceTree = "<group>"; };
 		81C4610B2F73316F00881688 /* TooltipBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipBox.swift; sourceTree = "<group>"; };
 		81D2D8AC2FA98FEE00432F13 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
+		81D2D8AE2FA9901A00432F13 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
 		81EDC5292F510AF200E7770B /* Wista.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wista.swift; sourceTree = "<group>"; };
 		81F6EB852E542E8D002F2981 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +176,7 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81D2D8AE2FA9901A00432F13 /* StoryViewModel.swift */,
 				812876C02F84A34E00DD6556 /* StoryPage.swift */,
 				81C4610B2F73316F00881688 /* TooltipBox.swift */,
 				81C461022F72328E00881688 /* TappableWordView.swift */,
@@ -490,6 +493,7 @@
 				81004E7A2E00A33F00BA780E /* DataModels.xcdatamodeld in Sources */,
 				81C461032F72328E00881688 /* TappableWordView.swift in Sources */,
 				8194D02A2D38C68C00CAE54C /* MessageInputView.swift in Sources */,
+				81D2D8AF2FA9901A00432F13 /* StoryViewModel.swift in Sources */,
 				8194D0262D38C51300CAE54C /* MessageListView.swift in Sources */,
 				8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */,
 				81752E862D6A2BF200D9F696 /* SettingsOptionsView.swift in Sources */,

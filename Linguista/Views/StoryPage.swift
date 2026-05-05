@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// https://claude.ai/chat/e5d5f890-b027-4615-87d7-62885cda1959
 
 // MARK: - API Protocol (swap this implementation out for your real API)
 
@@ -58,123 +59,6 @@ class FakeStoryAPIService: StoryAPIService {
             imageURL: nil,
             imagePrompt: fakeImagePrompts[index]
         )
-    }
-}
-
-// MARK: - ViewModel
-
-@MainActor
-class StoryViewModel: ObservableObject {
-    @Published var pages: [StoryPage] = []
-    @Published var currentIndex: Int = -1
-    @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
-    @Published var promptText: String = ""
-    @Published var storyStarted: Bool = false
-
-    // 🔁 Swap FakeStoryAPIService() for your real API service here:
-    private let apiService: StoryAPIService = FakeStoryAPIService()
-
-    var currentPage: StoryPage? {
-        guard currentIndex >= 0, currentIndex < pages.count else { return nil }
-        return pages[currentIndex]
-    }
-
-    var canGoBack: Bool { currentIndex > 0 }
-    var canGoForward: Bool { !isLoading }
-
-    func startStory() async {
-        guard !promptText.trimmingCharacters(in: .whitespaces).isEmpty else {
-            errorMessage = "Please enter a story prompt first."
-            return
-        }
-        isLoading = true
-        errorMessage = nil
-        do {
-            let page = try await apiService.generateFirstSentence(prompt: promptText)
-            pages = [page]
-            currentIndex = 0
-            storyStarted = true
-        } catch {
-            errorMessage = "Failed to start story: \(error.localizedDescription)"
-        }
-        isLoading = false
-    }
-
-    func goForward() async {
-        // If there's a cached next page, just navigate to it
-        if currentIndex < pages.count - 1 {
-            currentIndex += 1
-            return
-        }
-        // Otherwise generate a new page
-        isLoading = true
-        errorMessage = nil
-        do {
-            let page = try await apiService.generateNextSentence(previousPages: pages)
-            pages.append(page)
-            currentIndex += 1
-        } catch {
-            errorMessage = "Failed to generate next page: \(error.localizedDescription)"
-        }
-        isLoading = false
-    }
-
-    func goBack() {
-        guard canGoBack else { return }
-        currentIndex -= 1
-    }
-}
-
-// MARK: - Root View
-// https://claude.ai/chat/e5d5f890-b027-4615-87d7-62885cda1959
-struct StoryGeneratorView: View {
-    @StateObject private var viewModel = StoryViewModel()
-
-    var body: some View {
-        NavigationStack {
-            ZStack {
-                // Background
-                LinearGradient(
-                    colors: [Color("1a0a2e"), Color("2d1b4e"), Color("1a2744")],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .ignoresSafeArea()
-
-                if viewModel.storyStarted {
-                    StoryPageView(viewModel: viewModel)
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .trailing).combined(with: .opacity),
-                            removal: .move(edge: .leading).combined(with: .opacity)
-                        ))
-                } else {
-                    StoryPromptView(viewModel: viewModel)
-                        .transition(.opacity)
-                }
-            }
-            .navigationTitle("Create a Story")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbar {
-                if viewModel.storyStarted {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                viewModel.storyStarted = false
-                                viewModel.pages = []
-                                viewModel.currentIndex = -1
-                                viewModel.promptText = ""
-                            }
-                        }) {
-                            Label("New Story", systemImage: "book.closed")
-                                .foregroundStyle(.white.opacity(0.8))
-                        }
-                    }
-                }
-            }
-        }
-        .preferredColorScheme(.dark)
     }
 }
 

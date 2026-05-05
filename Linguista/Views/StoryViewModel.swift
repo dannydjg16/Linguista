@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 class StoryViewModel: ObservableObject {
     @Published var pages: [StoryPage] = []
     @Published var currentIndex: Int = -1
