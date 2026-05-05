@@ -48,6 +48,7 @@
 		81A351252E15D9750079C157 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351242E15D9750079C157 /* AccountSettingsView.swift */; };
 		81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */; };
 		81A9CB092D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */; };
+		81BC1E0E2FA9909600E0EB31 /* StoryGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */; };
 		81BD14252DD6A4F9003B4706 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD14242DD6A4F9003B4706 /* KeychainManager.swift */; };
 		81C460FD2F72323900881688 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C460FC2F72323900881688 /* WrappingHStack.swift */; };
 		81C460FF2F72325A00881688 /* WrappingWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C460FE2F72325A00881688 /* WrappingWordsView.swift */; };
@@ -55,7 +56,6 @@
 		81C461032F72328E00881688 /* TappableWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C461022F72328E00881688 /* TappableWordView.swift */; };
 		81C4610C2F73316F00881688 /* TooltipBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C4610B2F73316F00881688 /* TooltipBox.swift */; };
 		81D2D8AD2FA98FEE00432F13 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2D8AC2FA98FEE00432F13 /* StoryViewModel.swift */; };
-		81D2D8AF2FA9901A00432F13 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2D8AE2FA9901A00432F13 /* StoryViewModel.swift */; };
 		81EDC52A2F510AF200E7770B /* Wista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EDC5292F510AF200E7770B /* Wista.swift */; };
 		81F6EB862E542E8D002F2981 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6EB852E542E8D002F2981 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
@@ -125,6 +125,7 @@
 		81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels_v2.xcdatamodel; sourceTree = "<group>"; };
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
 		81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleViewWithoutPlayAudioButton.swift; sourceTree = "<group>"; };
+		81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorView.swift; sourceTree = "<group>"; };
 		81BD14242DD6A4F9003B4706 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		81C460FC2F72323900881688 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		81C460FE2F72325A00881688 /* WrappingWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingWordsView.swift; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		81C461022F72328E00881688 /* TappableWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableWordView.swift; sourceTree = "<group>"; };
 		81C4610B2F73316F00881688 /* TooltipBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipBox.swift; sourceTree = "<group>"; };
 		81D2D8AC2FA98FEE00432F13 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
-		81D2D8AE2FA9901A00432F13 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
 		81EDC5292F510AF200E7770B /* Wista.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wista.swift; sourceTree = "<group>"; };
 		81F6EB852E542E8D002F2981 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,7 +176,7 @@
 		8120C7A42C2A78C6007DCE2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				81D2D8AE2FA9901A00432F13 /* StoryViewModel.swift */,
+				81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */,
 				812876C02F84A34E00DD6556 /* StoryPage.swift */,
 				81C4610B2F73316F00881688 /* TooltipBox.swift */,
 				81C461022F72328E00881688 /* TappableWordView.swift */,
@@ -485,6 +485,7 @@
 				81F6EB862E542E8D002F2981 /* PersistenceController.swift in Sources */,
 				812D1F0B2C897E8400255A86 /* Utilities.swift in Sources */,
 				81841B0E2C62B96B00B7A5AC /* AuthenticationService.swift in Sources */,
+				81BC1E0E2FA9909600E0EB31 /* StoryGeneratorView.swift in Sources */,
 				8159FE022CEEEEA4005A0428 /* AudioPlayerView.swift in Sources */,
 				81C460FF2F72325A00881688 /* WrappingWordsView.swift in Sources */,
 				81C460FD2F72323900881688 /* WrappingHStack.swift in Sources */,
@@ -493,7 +494,6 @@
 				81004E7A2E00A33F00BA780E /* DataModels.xcdatamodeld in Sources */,
 				81C461032F72328E00881688 /* TappableWordView.swift in Sources */,
 				8194D02A2D38C68C00CAE54C /* MessageInputView.swift in Sources */,
-				81D2D8AF2FA9901A00432F13 /* StoryViewModel.swift in Sources */,
 				8194D0262D38C51300CAE54C /* MessageListView.swift in Sources */,
 				8194D0282D38C53A00CAE54C /* MessageBubbleView.swift in Sources */,
 				81752E862D6A2BF200D9F696 /* SettingsOptionsView.swift in Sources */,
