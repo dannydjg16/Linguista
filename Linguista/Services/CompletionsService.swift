@@ -16,7 +16,7 @@ class CompletionsService: ObservableObject {
     
     func fetchCompletion(completionRequest: CompletionsRequest) async throws -> CompletionsResponse {
         
-        guard let url = URL(string: localBaseUrl + completionsEndpoint) else {
+        guard let url = URL(string: apiBaseUrl + completionsEndpoint) else {
             throw URLError(.badURL)
         }
         
@@ -44,7 +44,37 @@ class CompletionsService: ObservableObject {
     
     func fetchTts(ttsRequest: TtsRequest) async throws -> Data {
         
-        guard let url = URL(string: localBaseUrl + ttsEndpoint) else {
+        guard let url = URL(string: apiBaseUrl + ttsEndpoint) else {
+            throw URLError(.badURL)
+        }
+        
+        let accessToken = try await authService.getAccessToken()
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        let jsonData = try JSONEncoder().encode(ttsRequest)
+        request.httpBody = jsonData
+        
+        isLoading = true
+        errorMessage = nil
+        
+        let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
+        
+        let (data, response) = try await session.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+        
+        isLoading = false
+        return data
+    }
+    
+    func fetchImage(ttsRequest: TtsRequest) async throws -> Data {
+        
+        guard let url = URL(string: apiBaseUrl + ttsEndpoint) else {
             throw URLError(.badURL)
         }
         
