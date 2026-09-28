@@ -1,5 +1,5 @@
 //
-//  StoryPage.swift
+//  StoryPageViews.swift
 //  Linguista
 //
 //  Created by Daniel Grant on 4/6/26.

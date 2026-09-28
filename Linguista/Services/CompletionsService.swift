@@ -16,7 +16,7 @@ class CompletionsService: ObservableObject {
     
     func fetchCompletion(completionRequest: CompletionsRequest) async throws -> CompletionsResponse {
         
-        guard let url = URL(string: localBaseUrl + completionsEndpoint) else {
+        guard let url = URL(string: apiBaseUrl + completionsEndpoint) else {
             throw URLError(.badURL)
         }
         
@@ -44,7 +44,7 @@ class CompletionsService: ObservableObject {
     
     func fetchTts(ttsRequest: TtsRequest) async throws -> Data {
         
-        guard let url = URL(string: localBaseUrl + ttsEndpoint) else {
+        guard let url = URL(string: apiBaseUrl + ttsEndpoint) else {
             throw URLError(.badURL)
         }
         
@@ -74,7 +74,7 @@ class CompletionsService: ObservableObject {
     
     func fetchImage(ttsRequest: TtsRequest) async throws -> Data {
         
-        guard let url = URL(string: localBaseUrl + ttsEndpoint) else {
+        guard let url = URL(string: apiBaseUrl + ttsEndpoint) else {
             throw URLError(.badURL)
         }
         

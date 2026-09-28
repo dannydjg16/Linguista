@@ -13,7 +13,7 @@
 		8120C7A72C2A79EF007DCE2E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7A62C2A79EF007DCE2E /* AccountView.swift */; };
 		8120C7AF2C2A8091007DCE2E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7AE2C2A8091007DCE2E /* Message.swift */; };
 		8120C7BF2C2B483E007DCE2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C7BE2C2B483E007DCE2E /* Constants.swift */; };
-		812876C12F84A34F00DD6556 /* StoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812876C02F84A34E00DD6556 /* StoryPage.swift */; };
+		812876C12F84A34F00DD6556 /* StoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812876C02F84A34E00DD6556 /* StoryPageView.swift */; };
 		812D1F0B2C897E8400255A86 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812D1F0A2C897E8400255A86 /* Utilities.swift */; };
 		813C40602D0A8630007C10D3 /* PlayAudioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813C405F2D0A8630007C10D3 /* PlayAudioButton.swift */; };
 		81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81494AD72C13BD2900F1ABB0 /* LinguistaApp.swift */; };
@@ -86,7 +86,7 @@
 		8120C7AE2C2A8091007DCE2E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8120C7BE2C2B483E007DCE2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8120C7DE2C40F099007DCE2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		812876C02F84A34E00DD6556 /* StoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPage.swift; sourceTree = "<group>"; };
+		812876C02F84A34E00DD6556 /* StoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPageView.swift; sourceTree = "<group>"; };
 		812D1F0A2C897E8400255A86 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		813C405F2D0A8630007C10D3 /* PlayAudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayAudioButton.swift; sourceTree = "<group>"; };
 		813EBDE62DD596FE00371BBB /* Linguista.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Linguista.entitlements; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 			children = (
 				81BC1E0F2FA990C400E0EB31 /* StoryPromptView.swift */,
 				81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */,
-				812876C02F84A34E00DD6556 /* StoryPage.swift */,
+				812876C02F84A34E00DD6556 /* StoryPageView.swift */,
 				81C4610B2F73316F00881688 /* TooltipBox.swift */,
 				81C461022F72328E00881688 /* TappableWordView.swift */,
 				81C461002F72327600881688 /* WordPopoverContent.swift */,
@@ -512,7 +512,7 @@
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
-				812876C12F84A34F00DD6556 /* StoryPage.swift in Sources */,
+				812876C12F84A34F00DD6556 /* StoryPageView.swift in Sources */,
 				815E3B972F5BCFC4000DD076 /* CommonDivider.swift in Sources */,
 				81752E822D5AFDDF00D9F696 /* TextMessagingView.swift in Sources */,
 				81752E8A2D6EB86400D9F696 /* ChatOptionsView.swift in Sources */,
