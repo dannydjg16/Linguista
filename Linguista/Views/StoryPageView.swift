@@ -236,7 +236,7 @@ struct NavigationControlsView: View {
                 .background(
                     LinearGradient(colors: [Color(hex: "7b2fff"), Color(hex: "3b82f6")],
                                    startPoint: .leading, endPoint: .trailing)
-                        .opacity(viewModel.isLoading ? 0.5 : 1)
+                        //.opacity(viewModel.isLoading ? 0.5 : 1)
                 )
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 12))

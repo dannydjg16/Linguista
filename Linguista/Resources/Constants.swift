@@ -22,8 +22,8 @@ let selectedImageModel = "gpt-image-1-mini"
 let maxCompletionTokens = 4000
 
 // Auth endpoint url builders
-let authBaseUrl = "https://dev-7824301.okta.com/oauth2/default/v1"
-let authTokenEndpoint = "/token"
+let authBaseUrl = "https://dev-elfrjj2bolc6otn0.us.auth0.com"
+let authTokenEndpoint = "/oauth/token"
 
 // Language List
 let popularLanguages = [
