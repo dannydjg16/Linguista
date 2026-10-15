@@ -13,7 +13,8 @@
 
 **Master any language. Anytime, anywhere.**
 
-🔗 Backend API: [dannydjg16/linguista-api](https://github.com/dannydjg16/linguista-api)
+🔗 Backend API: [dannydjg16/linguista-api](https://github.com/dannydjg16/linguista-api) <br/>
+🏗 Infrastructure (Terraform): [dannydjg16/linguista-tf](https://github.com/dannydjg16/linguista-tf)
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-FA7343?style=flat-square&logo=swift&logoColor=white)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-17.0+-000000?style=flat-square&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
