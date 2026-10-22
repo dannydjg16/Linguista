@@ -72,9 +72,9 @@ class CompletionsService: ObservableObject {
         return data
     }
     
-    func fetchImage(ttsRequest: TtsRequest) async throws -> Data {
+    func fetchImage(imageRequest: ImageRequest) async throws -> Data {
         
-        guard let url = URL(string: apiBaseUrl + ttsEndpoint) else {
+        guard let url = URL(string: apiBaseUrl + imageEndpoint) else {
             throw URLError(.badURL)
         }
         
@@ -83,12 +83,11 @@ class CompletionsService: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        // Image generation regularly takes longer than the default 60 second timeout
+        request.timeoutInterval = 180
         
-        let jsonData = try JSONEncoder().encode(ttsRequest)
+        let jsonData = try JSONEncoder().encode(imageRequest)
         request.httpBody = jsonData
-        
-        isLoading = true
-        errorMessage = nil
         
         let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
         
@@ -98,8 +97,23 @@ class CompletionsService: ObservableObject {
             throw URLError(.badServerResponse)
         }
         
-        isLoading = false
-        return data
+        // The API can either pass the image bytes straight through or return OpenAI's JSON payload
+        if httpResponse.mimeType?.hasPrefix("image/") == true {
+            return data
+        }
+        
+        let imageResponse = try JSONDecoder().decode(ImageResponse.self, from: data)
+        
+        if let base64 = imageResponse.data.first?.b64Json, let imageData = Data(base64Encoded: base64) {
+            return imageData
+        }
+        
+        if let urlString = imageResponse.data.first?.url, let imageUrl = URL(string: urlString) {
+            let (imageData, _) = try await URLSession.shared.data(from: imageUrl)
+            return imageData
+        }
+        
+        throw URLError(.cannotDecodeContentData)
     }
 }
 

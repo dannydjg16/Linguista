@@ -9,110 +9,107 @@ import SwiftUI
 
 struct StoryPromptView: View {
     @ObservedObject var viewModel: StoryViewModel
-    @FocusState private var isFocused: Bool
+    @EnvironmentObject var accountManager: AccountManager
+    @FocusState private var isPromptFocused: Bool
+
+    private var language: String {
+        Utilities.getLanguageName(by: accountManager.languageToLearn)
+    }
+
+    private var hasPrompt: Bool {
+        !viewModel.promptText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
 
     var body: some View {
-        VStack(spacing: 32) {
-            Spacer()
+        ScrollView {
+            VStack(spacing: 24) {
+                VStack(spacing: 8) {
+                    Image(systemName: "book.pages")
+                        .font(.system(size: 44))
+                        .foregroundColor(.brown)
+                    Text("Read a story in \(language)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                    Text("Every page is illustrated. Tap any word to see what it means.")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.top)
 
-            // Header
-            VStack(spacing: 12) {
-                Image(systemName: "sparkles")
-                    .font(.system(size: 48))
-                    .foregroundStyle(
-                        LinearGradient(colors: [.yellow, .orange], startPoint: .top, endPoint: .bottom)
-                    )
-                    .symbolEffect(.pulse)
-
-                Text("Create a story prompt\nto get your story started")
-                    .font(.system(size: 26, weight: .bold, design: .serif))
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4)
-
-                Text("Describe a character, a place, or a feeling — let imagination do the rest.")
-                    .font(.system(size: 15, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.6))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-            }
-
-            // Prompt input
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Your prompt")
-                    .font(.caption)
-                    .foregroundStyle(.white.opacity(0.5))
-                    .padding(.leading, 4)
-
-                ZStack(alignment: .topLeading) {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(.white.opacity(0.08))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(isFocused ? Color.purple.opacity(0.6) : Color.white.opacity(0.15), lineWidth: 1)
-                        )
-
-                    if viewModel.promptText.isEmpty {
-                        Text("e.g. A young inventor who finds a map in her grandmother's attic…")
-                            .foregroundStyle(.white.opacity(0.3))
-                            .font(.system(size: 15, design: .rounded))
-                            .padding(16)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Level")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Picker("Level", selection: $viewModel.level) {
+                        ForEach(StoryLevel.allCases) { level in
+                            Text(level.rawValue).tag(level)
+                        }
                     }
+                    .pickerStyle(.segmented)
+                }
 
-                    TextEditor(text: $viewModel.promptText)
-                        .focused($isFocused)
-                        .scrollContentBackground(.hidden)
-                        .foregroundStyle(.white)
-                        .font(.system(size: 15, design: .rounded))
-                        .frame(minHeight: 100, maxHeight: 150)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("What should the story be about?")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    TextField("e.g. A cat who opens a bakery in Paris", text: $viewModel.promptText, axis: .vertical)
+                        .lineLimit(3...6)
+                        .focused($isPromptFocused)
                         .padding(12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(uiColor: .secondarySystemBackground))
+                        )
                 }
-            }
-            .padding(.horizontal)
 
-            // Error message
-            if let error = viewModel.errorMessage {
-                Text(error)
-                    .font(.caption)
-                    .foregroundStyle(.red.opacity(0.8))
-                    .padding(.horizontal)
-            }
-
-            // Start button
-            Button {
-                isFocused = false
-                Task {
-                    withAnimation(.spring()) {
-                        _ = viewModel.isLoading
-                    }
-                    await viewModel.startStory()
+                if let error = viewModel.errorMessage {
+                    Text(error)
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .multilineTextAlignment(.center)
                 }
-            } label: {
-                HStack(spacing: 10) {
-                    if viewModel.isLoading {
+
+                if viewModel.isGeneratingStory {
+                    HStack(spacing: 8) {
                         ProgressView()
-                            .tint(.white)
-                    } else {
-                        Image(systemName: "wand.and.stars")
-                        Text("Begin the Story")
-                            .fontWeight(.semibold)
+                        Text("Writing your story…")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 54)
-                .background(
-                    LinearGradient(colors: [Color("7b2fff"), Color("3b82f6")],
-                                   startPoint: .leading, endPoint: .trailing)
-                )
-                .foregroundStyle(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-                .shadow(color: .purple.opacity(0.5), radius: 12, y: 4)
-            }
-            .disabled(viewModel.isLoading || viewModel.promptText.trimmingCharacters(in: .whitespaces).isEmpty)
-            .padding(.horizontal)
-            .animation(.spring(), value: viewModel.isLoading)
+                } else {
+                    VStack(spacing: 12) {
+                        Button {
+                            startStory(surpriseMe: false)
+                        } label: {
+                            Label("Write My Story", systemImage: "wand.and.stars")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!hasPrompt)
 
-            Spacer()
+                        Button {
+                            startStory(surpriseMe: true)
+                        } label: {
+                            Label("Surprise Me", systemImage: "dice")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                    .controlSize(.large)
+                    .tint(.brown)
+                }
+            }
+            .padding()
+        }
+        .scrollDismissesKeyboard(.interactively)
+    }
+
+    private func startStory(surpriseMe: Bool) {
+        isPromptFocused = false
+        Task {
+            await viewModel.generateStory(language: language, surpriseMe: surpriseMe)
         }
     }
 }
