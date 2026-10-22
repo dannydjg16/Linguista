@@ -13,12 +13,14 @@ let localBaseUrl = "https://localhost:7244"
 let apiBaseUrl = "https://linguista-appservice.azurewebsites.net"
 let completionsEndpoint = "/openai/completions"
 let ttsEndpoint = "/openai/tts"
+let imageEndpoint = "/openai/image"
 
 // OpenAi Models
 let selectedCompletionsModel = "gpt-4o-mini"
 //let selectedCompletionsModel = "gpt-5-nano"
 let selectedTtsModel = "gpt-4o-mini-tts"
 let selectedImageModel = "gpt-image-1-mini"
+let storyImageSize = "1536x1024"
 let maxCompletionTokens = 4000
 
 // Auth endpoint url builders
