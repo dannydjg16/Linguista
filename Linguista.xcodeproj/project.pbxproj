@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81A3514F2FB0A10000C0FFEE /* StoryLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A3514E2FB0A10000C0FFEE /* StoryLibraryView.swift */; };
+		81A3514D2FB0A10000C0FFEE /* StoryLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A3514C2FB0A10000C0FFEE /* StoryLibraryService.swift */; };
 		81004E7A2E00A33F00BA780E /* DataModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81004E782E00A33F00BA780E /* DataModels.xcdatamodeld */; };
 		81030AB62DED490400450571 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81030AB52DED490400450571 /* AccountService.swift */; };
 		8116AD6C2F5E4AF000B0632D /* InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8116AD6B2F5E4AF000B0632D /* InfoSection.swift */; };
@@ -80,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		81A3514E2FB0A10000C0FFEE /* StoryLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryLibraryView.swift; sourceTree = "<group>"; };
+		81A3514C2FB0A10000C0FFEE /* StoryLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryLibraryService.swift; sourceTree = "<group>"; };
 		81004E792E00A33F00BA780E /* DataModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels.xcdatamodel; sourceTree = "<group>"; };
 		81030AB52DED490400450571 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		8116AD6B2F5E4AF000B0632D /* InfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSection.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		819622122CDDAC75009D9392 /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
 		819DC6A62CF579E100452923 /* TtsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtsViewModel.swift; sourceTree = "<group>"; };
 		81A351242E15D9750079C157 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
+		81A3514B2FB0A10000C0FFEE /* DataModels_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels_v3.xcdatamodel; sourceTree = "<group>"; };
 		81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModels_v2.xcdatamodel; sourceTree = "<group>"; };
 		81A9CB062D7A54CE000FCE5C /* MessageModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModalView.swift; sourceTree = "<group>"; };
 		81A9CB082D813210000FCE5C /* MessageBubbleViewWithoutPlayAudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleViewWithoutPlayAudioButton.swift; sourceTree = "<group>"; };
@@ -181,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				81BC1E0F2FA990C400E0EB31 /* StoryPromptView.swift */,
+				81A3514E2FB0A10000C0FFEE /* StoryLibraryView.swift */,
 				81BC1E0D2FA9909600E0EB31 /* StoryGeneratorView.swift */,
 				812876C02F84A34E00DD6556 /* StoryPageView.swift */,
 				81E5A0012FB0C10000A1B2C3 /* StoryPageDetailView.swift */,
@@ -221,6 +227,7 @@
 			children = (
 				81841B0D2C62B96B00B7A5AC /* AuthenticationService.swift */,
 				8188C72D2CB764C700A10210 /* CompletionsService.swift */,
+				81A3514C2FB0A10000C0FFEE /* StoryLibraryService.swift */,
 				81030AB52DED490400450571 /* AccountService.swift */,
 			);
 			path = Services;
@@ -510,9 +517,11 @@
 				81C461012F72327600881688 /* WordPopoverContent.swift in Sources */,
 				8159FDFE2CE677B0005A0428 /* TextToSpeechView.swift in Sources */,
 				81BC1E102FA990C400E0EB31 /* StoryPromptView.swift in Sources */,
+				81A3514F2FB0A10000C0FFEE /* StoryLibraryView.swift in Sources */,
 				81A9CB072D7A54CE000FCE5C /* MessageModalView.swift in Sources */,
 				81EDC52A2F510AF200E7770B /* Wista.swift in Sources */,
 				8188C72E2CB764C700A10210 /* CompletionsService.swift in Sources */,
+				81A3514D2FB0A10000C0FFEE /* StoryLibraryService.swift in Sources */,
 				81494AD82C13BD2900F1ABB0 /* LinguistaApp.swift in Sources */,
 				8159FDFC2CE65A72005A0428 /* TextToSpeech.swift in Sources */,
 				812876C12F84A34F00DD6556 /* StoryPageView.swift in Sources */,
@@ -867,10 +876,11 @@
 		81004E782E00A33F00BA780E /* DataModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				81A3514B2FB0A10000C0FFEE /* DataModels_v3.xcdatamodel */,
 				81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */,
 				81004E792E00A33F00BA780E /* DataModels.xcdatamodel */,
 			);
-			currentVersion = 81A3514A2E16215C0079C157 /* DataModels_v2.xcdatamodel */;
+			currentVersion = 81A3514B2FB0A10000C0FFEE /* DataModels_v3.xcdatamodel */;
 			path = DataModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

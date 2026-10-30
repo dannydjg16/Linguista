@@ -8,7 +8,7 @@
 import Foundation
 
 struct Story: Identifiable {
-    let id = UUID()
+    var id = UUID()
     let title: String
     let titleTranslation: String
     let language: String

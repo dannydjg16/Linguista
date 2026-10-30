@@ -18,10 +18,21 @@ class StoryViewModel: ObservableObject {
     @Published var isContinuingStory = false
     @Published var loadingAudioPageID: UUID?
     @Published var errorMessage: String?
+    @Published var isSaved = false
 
     private let completionsService = CompletionsService.shared
     private let ttsViewModel = TtsViewModel()
+    private let storyLibrary = StoryLibraryService()
     private let pagesPerRequest = 6
+
+    init() {}
+
+    // Opens a story from the library to re-read
+    init(savedStory: Story) {
+        story = savedStory
+        isSaved = true
+        loadImages(around: 0)
+    }
 
     var isOnLastPage: Bool {
         guard let story else { return false }
@@ -62,6 +73,7 @@ class StoryViewModel: ObservableObject {
                 }
             )
             currentPageIndex = 0
+            isSaved = false
             loadImages(around: 0)
         } catch {
             print("Error: \(error.localizedDescription)")
@@ -96,6 +108,7 @@ class StoryViewModel: ObservableObject {
                 makePage(from: $0, visualStyle: existingStory.visualStyle, characters: existingStory.characters)
             })
             withAnimation { currentPageIndex = firstNewPageIndex }
+            persistIfSaved()
             loadImages(around: firstNewPageIndex)
         } catch {
             print("Error: \(error.localizedDescription)")
@@ -110,6 +123,32 @@ class StoryViewModel: ObservableObject {
         promptText = ""
         showTranslation = false
         errorMessage = nil
+        isSaved = false
+    }
+
+    // MARK: - Library
+
+    func toggleSaved() {
+        guard let story else { return }
+        if isSaved {
+            storyLibrary.delete(story.id)
+            isSaved = false
+        } else {
+            storyLibrary.save(story)
+            isSaved = true
+            // Illustrate every page so the saved copy is complete, not just the pages read so far
+            for page in story.pages {
+                if case .notLoaded = page.imageState {
+                    loadImage(for: page.id)
+                }
+            }
+        }
+    }
+
+    // Images, audio, and new pages that arrive after saving are added to the saved copy
+    private func persistIfSaved() {
+        guard isSaved, let story else { return }
+        storyLibrary.save(story)
     }
 
     // MARK: - Navigation
@@ -152,6 +191,7 @@ class StoryViewModel: ObservableObject {
             do {
                 let imageData = try await completionsService.fetchImage(imageRequest: imageRequest)
                 updatePage(pageID) { $0.imageState = .loaded(imageData) }
+                persistIfSaved()
             } catch {
                 print("Error: \(error.localizedDescription)")
                 updatePage(pageID) { $0.imageState = .failed }
@@ -183,6 +223,7 @@ class StoryViewModel: ObservableObject {
             let ttsRequest = TtsRequest(model: selectedTtsModel, input: page.text, voice: "echo", speed: 0.8)
             let audioData = try await ttsViewModel.fetchTts(ttsRequest: ttsRequest)
             updatePage(pageID) { $0.audioData = audioData }
+            persistIfSaved()
             return audioData
         } catch {
             print("Error: \(error.localizedDescription)")
