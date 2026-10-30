@@ -8,7 +8,7 @@
 import Foundation
 
 struct StoryPage: Identifiable {
-    let id = UUID()
+    var id = UUID()
     let text: String
     let translation: String
     let transliteration: String?

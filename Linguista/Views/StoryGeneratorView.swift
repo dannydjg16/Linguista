@@ -32,16 +32,48 @@ struct StoryGeneratorView: View {
                             Label("New Story", systemImage: "square.and.pencil")
                         }
                     }
+                    ToolbarItemGroup(placement: .topBarTrailing) {
+                        StorySaveButton(viewModel: viewModel)
+                        StoryTranslationButton(viewModel: viewModel)
+                    }
+                } else {
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            withAnimation { viewModel.showTranslation.toggle() }
+                        NavigationLink {
+                            StoryLibraryView()
                         } label: {
-                            Label(viewModel.showTranslation ? "Hide Translation" : "Show Translation",
-                                  systemImage: viewModel.showTranslation ? "character.bubble.fill" : "character.bubble")
+                            Label("My Stories", systemImage: "books.vertical")
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+// MARK: - Toolbar Buttons
+
+struct StorySaveButton: View {
+    @ObservedObject var viewModel: StoryViewModel
+
+    var body: some View {
+        Button {
+            viewModel.toggleSaved()
+        } label: {
+            Label(viewModel.isSaved ? "Remove from My Stories" : "Save to My Stories",
+                  systemImage: viewModel.isSaved ? "bookmark.fill" : "bookmark")
+        }
+    }
+}
+
+struct StoryTranslationButton: View {
+    @ObservedObject var viewModel: StoryViewModel
+
+    var body: some View {
+        Button {
+            withAnimation { viewModel.showTranslation.toggle() }
+        } label: {
+            Label(viewModel.showTranslation ? "Hide Translation" : "Show Translation",
+                  systemImage: viewModel.showTranslation ? "character.bubble.fill" : "character.bubble")
         }
     }
 }
