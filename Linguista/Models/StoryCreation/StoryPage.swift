@@ -11,7 +11,7 @@ struct StoryPage: Identifiable {
     var id = UUID()
     let text: String
     let translation: String
-    let transliteration: String?
+    var transliteration: String?
     let imagePrompt: String
     var imageState: StoryImageState = .notLoaded
     var audioData: Data?

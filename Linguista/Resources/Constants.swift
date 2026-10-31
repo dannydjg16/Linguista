@@ -21,7 +21,7 @@ let selectedCompletionsModel = "gpt-4o-mini"
 let selectedTtsModel = "gpt-4o-mini-tts"
 let selectedImageModel = "gpt-image-1-mini"
 let storyImageSize = "1536x1024"
-let maxCompletionTokens = 4000
+let maxCompletionTokens = 10000
 
 // Auth endpoint url builders
 let authBaseUrl = "https://dev-elfrjj2bolc6otn0.us.auth0.com"

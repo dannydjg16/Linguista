@@ -21,6 +21,10 @@ struct StoryContinuationCompletion: Decodable {
     let pages: [StoryPageCompletion]
 }
 
+struct TransliterationCompletion: Decodable {
+    let transliterations: [String]
+}
+
 struct StoryPageCompletion: Decodable {
     let text: String
     let translation: String

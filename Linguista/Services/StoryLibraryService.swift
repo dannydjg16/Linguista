@@ -35,6 +35,13 @@ struct StoryLibraryService {
         savedStory.characters = story.characters
 
         let existingPages = (savedStory.pages as? Set<SavedStoryPage>) ?? []
+
+        // Pages deleted from the story are removed from the saved copy too
+        let pageIDs = Set(story.pages.map(\.id))
+        for savedPage in existingPages where !pageIDs.contains(savedPage.id ?? UUID()) {
+            context.delete(savedPage)
+        }
+
         for (index, page) in story.pages.enumerated() {
             let savedPage = existingPages.first(where: { $0.id == page.id }) ?? SavedStoryPage(context: context)
             savedPage.id = page.id

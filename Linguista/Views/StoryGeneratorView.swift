@@ -82,6 +82,7 @@ struct StoryTranslationButton: View {
 
 struct StoryReaderView: View {
     @ObservedObject var viewModel: StoryViewModel
+    @State private var showDeleteConfirmation = false
 
     var body: some View {
         if let story = viewModel.story {
@@ -95,9 +96,20 @@ struct StoryReaderView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
-                    Text("Page \(viewModel.currentPageIndex + 1) of \(story.pages.count)")
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
+                    HStack(spacing: 6) {
+                        Text("Page \(viewModel.currentPageIndex + 1) of \(story.pages.count)")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        Button {
+                            showDeleteConfirmation = true
+                        } label: {
+                            Image(systemName: "trash")
+                                .font(.caption)
+                        }
+                        .accessibilityLabel("Delete Page")
+                        .foregroundColor(viewModel.canDeleteCurrentPage ? .red : .secondary)
+                        .disabled(!viewModel.canDeleteCurrentPage)
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
@@ -125,6 +137,19 @@ struct StoryReaderView: View {
                 StoryNavigationControls(viewModel: viewModel)
                     .padding()
             }
+            .confirmationDialog(
+                "Delete page \(viewModel.currentPageIndex + 1)?",
+                isPresented: $showDeleteConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Delete Page", role: .destructive) {
+                    viewModel.deleteCurrentPage()
+                }
+            } message: {
+                Text(viewModel.isSaved
+                     ? "Its text, picture, and audio will also be removed from My Stories."
+                     : "Its text, picture, and audio will be removed.")
+            }
         }
     }
 }
@@ -133,34 +158,61 @@ struct StoryReaderView: View {
 
 struct StoryNavigationControls: View {
     @ObservedObject var viewModel: StoryViewModel
+    @State private var showPageComposer = false
+
+    private var isWriting: Bool {
+        viewModel.isContinuingStory || viewModel.isAddingPage
+    }
 
     var body: some View {
         HStack(spacing: 12) {
             Button {
                 withAnimation { viewModel.goToPreviousPage() }
             } label: {
-                Label("Back", systemImage: "chevron.left")
-                    .frame(maxWidth: .infinity)
+                // Shrinks to an arrow on the last page to make room for both ways of continuing
+                if viewModel.isOnLastPage {
+                    Image(systemName: "chevron.left")
+                        .accessibilityLabel("Back")
+                } else {
+                    Label("Back", systemImage: "chevron.left")
+                        .frame(maxWidth: .infinity)
+                }
             }
             .buttonStyle(.bordered)
             .disabled(viewModel.currentPageIndex == 0)
 
             if viewModel.isOnLastPage {
+                // Write the next page yourself
+                Button {
+                    showPageComposer = true
+                } label: {
+                    Group {
+                        if viewModel.isAddingPage {
+                            ProgressView()
+                        } else {
+                            Text("Add Page")
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .disabled(isWriting)
+
+                // Let the story write several more pages on its own
                 Button {
                     Task { await viewModel.continueStory() }
                 } label: {
-                    HStack(spacing: 6) {
+                    Group {
                         if viewModel.isContinuingStory {
                             ProgressView()
                         } else {
-                            Image(systemName: "wand.and.stars")
                             Text("Keep Going")
                         }
                     }
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(viewModel.isContinuingStory)
+                .disabled(isWriting)
             } else {
                 Button {
                     withAnimation { viewModel.goToNextPage() }
@@ -176,6 +228,9 @@ struct StoryNavigationControls: View {
         }
         .controlSize(.large)
         .tint(.brown)
+        .sheet(isPresented: $showPageComposer) {
+            StoryPageComposerView(viewModel: viewModel)
+        }
     }
 }
 
