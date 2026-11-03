@@ -110,8 +110,12 @@ struct StoryPageComposerView: View {
 // MARK: - Shared Inputs
 
 enum StoryInputField: Hashable {
+    case title
     case idea
     case pictureContext
+    // The fields on each page card in the book builder
+    case pageIdea(UUID)
+    case pagePictureContext(UUID)
 }
 
 // An optional field describing what the page's picture should show, separate from its text

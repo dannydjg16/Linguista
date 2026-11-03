@@ -83,14 +83,44 @@ struct StoryTranslationButton: View {
 struct StoryReaderView: View {
     @ObservedObject var viewModel: StoryViewModel
     @State private var showDeleteConfirmation = false
+    @State private var showRenameAlert = false
+    @State private var newTitle = ""
 
     var body: some View {
         if let story = viewModel.story {
             VStack(spacing: 0) {
                 VStack(spacing: 2) {
-                    Text(story.title)
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
+                    // Tap the title to rename the story
+                    Button {
+                        newTitle = story.title
+                        showRenameAlert = true
+                    } label: {
+                        HStack(spacing: 6) {
+                            Text(story.title)
+                                .font(.headline)
+                                .multilineTextAlignment(.center)
+                            if viewModel.isRenamingStory {
+                                ProgressView()
+                                    .controlSize(.small)
+                            } else {
+                                Image(systemName: "pencil")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(viewModel.isRenamingStory)
+                    .accessibilityHint("Renames the story")
+                    .alert("Rename Story", isPresented: $showRenameAlert) {
+                        TextField("Title", text: $newTitle)
+                        Button("Cancel", role: .cancel) {}
+                        Button("Rename") {
+                            Task { await viewModel.renameStory(to: newTitle) }
+                        }
+                    } message: {
+                        Text("Write it in English or \(story.language).")
+                    }
                     if viewModel.showTranslation {
                         Text(story.titleTranslation)
                             .font(.caption)

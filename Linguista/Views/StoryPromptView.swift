@@ -20,6 +20,14 @@ struct StoryPromptView: View {
         viewModel.creationMode == .pageByPage
     }
 
+    private var modeDescription: String {
+        switch viewModel.creationMode {
+        case .wholeStory: return "Give an idea and the whole story is written for you."
+        case .pageByPage: return "Describe each page yourself, one at a time."
+        case .allAtOnce: return "Plan every page and its picture, then create the whole book at once."
+        }
+    }
+
     private var hasPrompt: Bool {
         !viewModel.promptText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
@@ -69,69 +77,87 @@ struct StoryPromptView: View {
                             }
                         }
                         .pickerStyle(.segmented)
-                        Text(isPageByPage
-                             ? "Describe each page yourself, one at a time."
-                             : "Give an idea and the whole story is written for you.")
+                        Text(modeDescription)
                             .font(.caption2)
                             .foregroundColor(.secondary)
                             .allowsHitTesting(false)
                     }
 
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(isPageByPage ? "What happens on the first page?" : "What should the story be about?")
+                        Text("Title (optional)")
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .allowsHitTesting(false)
-                        TextField(isPageByPage ? "e.g. A cat opens a tiny bakery in Paris" : "e.g. A cat who opens a bakery in Paris",
-                                  text: $viewModel.promptText, axis: .vertical)
-                            .lineLimit(3...6)
-                            .focused($focusedField, equals: .idea)
+                        TextField("e.g. The Bakery Cat", text: $viewModel.customTitleText)
+                            .focused($focusedField, equals: .title)
+                            .submitLabel(.done)
                             .storyInputBackground()
+                        Text("Write it in English or \(language). Leave it blank to have one made up for you.")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .allowsHitTesting(false)
                     }
 
-                    if isPageByPage {
-                        StoryPictureContextField(
-                            pictureContext: $viewModel.pictureContextText,
-                            focusedField: $focusedField
-                        )
-                        .transition(.opacity)
-                    }
-
-                    if let error = viewModel.errorMessage {
-                        Text(error)
-                            .font(.caption)
-                            .foregroundColor(.red)
-                            .multilineTextAlignment(.center)
-                    }
-
-                    if viewModel.isGeneratingStory {
-                        HStack(spacing: 8) {
-                            ProgressView()
-                            Text(isPageByPage ? "Writing your first page…" : "Writing your story…")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
+                    if viewModel.creationMode == .allAtOnce {
+                        StoryBookBuilderView(viewModel: viewModel, language: language, focusedField: $focusedField)
+                            .transition(.opacity)
                     } else {
-                        VStack(spacing: 12) {
-                            Button {
-                                startStory(surpriseMe: false)
-                            } label: {
-                                Label(isPageByPage ? "Write First Page" : "Write My Story", systemImage: "wand.and.stars")
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .disabled(!hasPrompt)
-
-                            Button {
-                                startStory(surpriseMe: true)
-                            } label: {
-                                Label("Surprise Me", systemImage: "dice")
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.bordered)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(isPageByPage ? "What happens on the first page?" : "What should the story be about?")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .allowsHitTesting(false)
+                            TextField(isPageByPage ? "e.g. A cat opens a tiny bakery in Paris" : "e.g. A cat who opens a bakery in Paris",
+                                      text: $viewModel.promptText, axis: .vertical)
+                                .lineLimit(3...6)
+                                .focused($focusedField, equals: .idea)
+                                .storyInputBackground()
                         }
-                        .controlSize(.large)
-                        .tint(.brown)
+
+                        if isPageByPage {
+                            StoryPictureContextField(
+                                pictureContext: $viewModel.pictureContextText,
+                                focusedField: $focusedField
+                            )
+                            .transition(.opacity)
+                        }
+
+                        if let error = viewModel.errorMessage {
+                            Text(error)
+                                .font(.caption)
+                                .foregroundColor(.red)
+                                .multilineTextAlignment(.center)
+                        }
+
+                        if viewModel.isGeneratingStory {
+                            HStack(spacing: 8) {
+                                ProgressView()
+                                Text(isPageByPage ? "Writing your first page…" : "Writing your story…")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                        } else {
+                            VStack(spacing: 12) {
+                                Button {
+                                    startStory(surpriseMe: false)
+                                } label: {
+                                    Label(isPageByPage ? "Write First Page" : "Write My Story", systemImage: "wand.and.stars")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .disabled(!hasPrompt)
+
+                                Button {
+                                    startStory(surpriseMe: true)
+                                } label: {
+                                    Label("Surprise Me", systemImage: "dice")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+                            }
+                            .controlSize(.large)
+                            .tint(.brown)
+                        }
                     }
                 }
                 .padding()
@@ -146,6 +172,8 @@ struct StoryPromptView: View {
             }
             .scrollDismissesKeyboard(.interactively)
         }
+        // An error from one mode doesn't apply to the others
+        .onChange(of: viewModel.creationMode) { viewModel.errorMessage = nil }
     }
 
     private func startStory(surpriseMe: Bool) {

@@ -9,8 +9,8 @@ import Foundation
 
 struct Story: Identifiable {
     var id = UUID()
-    let title: String
-    let titleTranslation: String
+    var title: String
+    var titleTranslation: String
     let language: String
     let level: StoryLevel
     // Shared across every image prompt so the illustrations look like one book

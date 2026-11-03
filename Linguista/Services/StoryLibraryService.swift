@@ -56,8 +56,9 @@ struct StoryLibraryService {
             if case .loaded(let imageData) = page.imageState, savedPage.imageData != imageData {
                 savedPage.imageData = imageData
             }
-            if let audioData = page.audioData, savedPage.audioData != audioData {
-                savedPage.audioData = audioData
+            // Editing a page's text clears its audio, so the saved recording is cleared too
+            if savedPage.audioData != page.audioData {
+                savedPage.audioData = page.audioData
             }
         }
 

@@ -9,10 +9,10 @@ import Foundation
 
 struct StoryPage: Identifiable {
     var id = UUID()
-    let text: String
-    let translation: String
+    var text: String
+    var translation: String
     var transliteration: String?
-    let imagePrompt: String
+    var imagePrompt: String
     var imageState: StoryImageState = .notLoaded
     var audioData: Data?
 }
