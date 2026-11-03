@@ -91,29 +91,61 @@ class CompletionsService: ObservableObject {
         
         let session = URLSession(configuration: .default, delegate: URLSessionPinningDelegate(), delegateQueue: nil)
         
-        let (data, response) = try await session.data(for: request)
-        
+        let startTime = Date()
+        let data: Data
+        let response: URLResponse
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch {
+            // Timeouts, dropped connections, and TLS failures land here rather than as a status code
+            print("[Image] Request failed after \(elapsedSeconds(since: startTime))s: \(error)")
+            throw error
+        }
+
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+            print("[Image] HTTP \(statusCode) after \(elapsedSeconds(since: startTime))s. Body: \(logPreview(of: data))")
             throw URLError(.badServerResponse)
         }
-        
+
         // The API can either pass the image bytes straight through or return OpenAI's JSON payload
         if httpResponse.mimeType?.hasPrefix("image/") == true {
             return data
         }
-        
-        let imageResponse = try JSONDecoder().decode(ImageResponse.self, from: data)
-        
+
+        let imageResponse: ImageResponse
+        do {
+            imageResponse = try JSONDecoder().decode(ImageResponse.self, from: data)
+        } catch {
+            print("[Image] Couldn't decode response (\(httpResponse.mimeType ?? "no mime type")): \(error). Body: \(logPreview(of: data))")
+            throw error
+        }
+
         if let base64 = imageResponse.data.first?.b64Json, let imageData = Data(base64Encoded: base64) {
             return imageData
         }
-        
+
         if let urlString = imageResponse.data.first?.url, let imageUrl = URL(string: urlString) {
             let (imageData, _) = try await URLSession.shared.data(from: imageUrl)
             return imageData
         }
-        
+
+        print("[Image] Response had no usable b64_json or url. Body: \(logPreview(of: data))")
         throw URLError(.cannotDecodeContentData)
+    }
+
+    // MARK: - Logging Helpers
+
+    private func elapsedSeconds(since startTime: Date) -> String {
+        String(format: "%.1f", Date().timeIntervalSince(startTime))
+    }
+
+    // Truncated so a successful base64 image payload can't flood the console
+    private func logPreview(of data: Data, limit: Int = 1000) -> String {
+        guard let body = String(data: data, encoding: .utf8) else {
+            return "<\(data.count) bytes, not UTF-8>"
+        }
+        return body.count > limit ? "\(body.prefix(limit))… (\(body.count) chars)" : body
     }
 }
 

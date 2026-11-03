@@ -11,6 +11,11 @@ struct StoryPageView: View {
     let page: StoryPage
     @ObservedObject var viewModel: StoryViewModel
     @State private var showDetail = false
+    @State private var showEditor = false
+
+    private var isEditing: Bool {
+        viewModel.editingPageIDs.contains(page.id)
+    }
 
     var body: some View {
         ScrollView {
@@ -26,11 +31,33 @@ struct StoryPageView: View {
                     onPlayAudio: { Task { await viewModel.playAudio(for: page.id) } },
                     onInspect: { showDetail = true }
                 )
+
+                Button {
+                    showEditor = true
+                } label: {
+                    HStack(spacing: 6) {
+                        if isEditing {
+                            ProgressView()
+                                .controlSize(.small)
+                            Text("Changing page…")
+                        } else {
+                            Image(systemName: "pencil")
+                            Text("Edit Page")
+                        }
+                    }
+                    .font(.subheadline)
+                }
+                .buttonStyle(.bordered)
+                .tint(.brown)
+                .disabled(isEditing)
             }
             .padding()
         }
         .sheet(isPresented: $showDetail) {
             StoryPageDetailView(pageID: page.id, viewModel: viewModel)
+        }
+        .sheet(isPresented: $showEditor) {
+            StoryPageEditorView(pageID: page.id, viewModel: viewModel)
         }
     }
 }
