@@ -19,7 +19,7 @@ let imageEndpoint = "/openai/image"
 let selectedCompletionsModel = "gpt-4o-mini"
 //let selectedCompletionsModel = "gpt-5-nano"
 let selectedTtsModel = "gpt-4o-mini-tts"
-let selectedImageModel = "gpt-image-1-mini"
+let selectedImageModel = "gpt-image-2.5-flare"
 let storyImageSize = "1536x1024"
 let maxCompletionTokens = 10000
 
